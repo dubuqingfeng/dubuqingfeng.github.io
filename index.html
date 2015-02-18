@@ -1,102 +1,77 @@
-<!doctype html>
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>独步清风</title>
+    <link rel="stylesheet" href="/theme/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="/theme/css/bootswatch.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/theme/js/html5shiv.js"></script>
+      <script src="/theme/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
 
-		<title>独步清风</title>
-		<meta name="description" content="">
-		<meta name="author" content="admin">
+<!-- mobile top bar to activate nav -->
 
-		<link rel="stylesheet" href="/theme/css/foundation.css" />
-		<link rel="stylesheet" href="/theme/css/pygment/monokai.css" />
-		<link rel="stylesheet" href="/theme/css/custom.css" />
+<!-- Nav Bar -->
+<nav>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="" class="navbar-brand">独步清风</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+          <li ><a href="/category/2014.html">2014</a></li>
+          <li ><a href="/category/php.html">php</a></li>
+          <li ><a href="/category/test.html">test</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download"> xialaliebiao<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="download">
+            <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+            <li><a href="./bootstrap.css">bootstrap.css</a></li>
+            <li class="divider"></li>
+            <li><a href="./variables.less">variables.less</a></li>
+            <li><a href="./bootswatch.less">bootswatch.less</a></li>
+            <li class="divider"></li>
+            <li><a href="./_variables.scss">_variables.scss</a></li>
+            <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+          </ul>
+        </li>
+      </ul>
 
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" target="_blank">RSS</a></li>
+        <li><a href="" target="_blank">Github</a></li>
+      </ul>
 
-		<script src="/theme/js/modernizr.js"></script>
+    </div>
+  </div>
+</div>
+</nav>
+<!-- End Nav -->
 
-		<!-- Feeds -->
+<!-- Main Page Content and Sidebar -->
+<section class="main-section">
+    <div class="container">
+    <div class="row">
 
-
-		<!-- mathjax config similar to math.stackexchange -->
-		<script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			jax: ["input/TeX", "output/HTML-CSS"],
-			tex2jax: {
-				inlineMath: [ ['$', '$'] ],
-				displayMath: [ ['$$', '$$']],
-				processEscapes: true,
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-			},
-			messageStyle: "none",
-			"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-		});
-		</script>
-		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	</head>
-	<body>
-		<div class="off-canvas-wrap">
-			<div class="inner-wrap">
-				<!-- mobile top bar to activate nav -->
-				<nav class="tab-bar show-for-small">
-					<section class="left-small">
-						<a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-					</section>
-
-					<section class="middle tab-bar-section">
-						<h1 class="title">独步清风</h1>
-					</section>
-				</nav>
-
-				<!-- mobile side bar nav -->
-				<aside class="left-off-canvas-menu">
-					<ul class="off-canvas-list">
-						<li><a href="">Home</a></li>
-						<li><label>Categories</label></li>
-							<li ><a href="/category/2014.html">2014</a></li>
-							<li ><a href="/category/php.html">php</a></li>
-							<li ><a href="/category/test.html">test</a></li>
-
-						<li><label>Places</label></li>
-							<li><a href="http://getpelican.com/">Pelican</a></li>
-							<li><a href="http://python.org/">Python.org</a></li>
-							<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-							<li><a href="#">You can modify those links in your config file</a></li>
-
-
-
-						<li><label>Links</label></li>
-							<li><a href="#">Another social link</a></li>
-							<li><a href="http://github.com/dubuqingfeng">Github</a></li>
-					</ul>	
-				</aside>
-
-				<!-- top bar nav -->
-				<nav class="top-bar hide-for-small-only" data-topbar>
-					<ul class="title-area">
-						<li class="name">
-							<h1><a href="/">独步清风</a></h1>
-						</li>
-					</ul>
-
-					<section class="top-bar-section">
-						<ul class="left">
-								<li ><a href="/category/2014.html">2014</a></li>
-								<li ><a href="/category/php.html">php</a></li>
-								<li ><a href="/category/test.html">test</a></li>
-						</ul>
-					</section>
-				</nav>
-
-				<!-- Main Page Content and Sidebar -->
-				<section class="main-section">
-					<div class="row">
-						<!-- Main Content -->
-						<div class="medium-9 small-12 columns" role="content">
+        <!-- Main Content -->
+        <div class="col-lg-8 col-md-7 col-sm-6" role="content">
 
 <article>
-	<h3><a href="/201502-2014.html">2014年的那些碎碎念。</a></h3>
-	<h6>Written by <a href="/author/admin.html">admin</a> in <a href="/category/2014.html">2014</a> on Thu 12 February 2015. Tags: <a href="/tag/2014.html">2014</a>, <a href="/tag/nian-zhong-zong-jie.html">年终总结</a>, </h6>
+	<h2><a href="/201502-2014.html">2014年的那些碎碎念。</a></h2>
+	<h5>Written by <a href="/author/admin.html">admin</a> in <a href="/category/2014.html">2014</a> on Thu 12 February 2015. Tags: <a href="/tag/2014.html">2014</a>, <a href="/tag/nian-zhong-zong-jie.html">年终总结</a>, </h5>
 	<h4>前言</h4>
 <p>转眼之间大学已度一半有余，2014年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，</p>
 <h4>起</h4>
@@ -109,8 +84,8 @@
 </article>
 <hr />
 <article>
-	<h3><a href="/201502-php-zhanzhang.html">php实现一些站长的工具</a></h3>
-	<h6>Written by <a href="/author/admin.html">admin</a> in <a href="/category/php.html">php</a> on Thu 12 February 2015. Tags: <a href="/tag/php.html">php</a>, <a href="/tag/whois.html">whois</a>, <a href="/tag/seo.html">seo</a>, </h6>
+	<h2><a href="/201502-php-zhanzhang.html">php实现一些站长的工具</a></h2>
+	<h5>Written by <a href="/author/admin.html">admin</a> in <a href="/category/php.html">php</a> on Thu 12 February 2015. Tags: <a href="/tag/php.html">php</a>, <a href="/tag/whois.html">whois</a>, <a href="/tag/seo.html">seo</a>, </h5>
 	<h4>0x01 前言</h4>
 <p>近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。</p>
 <h4>0x02 计划与环境搭建</h4>
@@ -124,70 +99,78 @@ php要求性能的话，phalcon框架，是php的一个扩展</p>
 </article>
 <hr />
 <article>
-	<h3><a href="/2015-create-blog.html">文章标题</a></h3>
-	<h6>Written by <a href="/author/admin.html">admin</a> in <a href="/category/test.html">test</a> on Tue 10 February 2015. Tags: <a href="/tag/github-pages.html">github pages</a>, <a href="/tag/pelican.html">pelican</a>, </h6>
+	<h2><a href="/2015-create-blog.html">文章标题</a></h2>
+	<h5>Written by <a href="/author/admin.html">admin</a> in <a href="/category/test.html">test</a> on Tue 10 February 2015. Tags: <a href="/tag/github-pages.html">github pages</a>, <a href="/tag/pelican.html">pelican</a>, </h5>
 	<p>这是搭建pelican的第一篇文章</p>
 		<p class="continue"><a href="/2015-create-blog.html">Continue reading &raquo;</a></p>
 </article>
 <hr />
 
+        </div>
+        <!-- End Main Content -->
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-md-5 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tags</div>
+                <div class="panel-body">
+                    <ul class="tag-cloud">
+                            <li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
+                            <li class="tag-4"><a href="/tag/whois.html">whois</a></li>
+                            <li class="tag-4"><a href="/tag/nian-zhong-zong-jie.html">年终总结</a></li>
+                            <li class="tag-4"><a href="/tag/php.html">php</a></li>
+                            <li class="tag-4"><a href="/tag/2014.html">2014</a></li>
+                            <li class="tag-4"><a href="/tag/seo.html">seo</a></li>
+                            <li class="tag-4"><a href="/tag/github-pages.html">github pages</a></li>
+                    </ul>
+                </div>
+            </div>
 
-						</div>
-						<!-- End Main Content -->
-						<!-- Sidebar -->
-						<aside class="medium-3 hide-for-small-only columns">
-							<div class="panel">
-								<h5>Places</h5>
-								<ul class="side-nav">
-									<li><a href="http://getpelican.com/">Pelican</a></li>
-									<li><a href="http://python.org/">Python.org</a></li>
-									<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-									<li><a href="#">You can modify those links in your config file</a></li>
-								</ul>
-							</div>
-
-							<div class="panel">
-								<h5>Tags</h5>
-								<ul class="tag-cloud">
-										<li class="tag-4"><a href="/tag/2014.html">2014</a></li>
-										<li class="tag-4"><a href="/tag/nian-zhong-zong-jie.html">年终总结</a></li>
-										<li class="tag-4"><a href="/tag/php.html">php</a></li>
-										<li class="tag-4"><a href="/tag/github-pages.html">github pages</a></li>
-										<li class="tag-4"><a href="/tag/whois.html">whois</a></li>
-										<li class="tag-4"><a href="/tag/pelican.html">pelican</a></li>
-										<li class="tag-4"><a href="/tag/seo.html">seo</a></li>
-								</ul>
-							</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Places</div>
+                <div class="panel-body">
+                    <ul class="side-nav">
+                        <li><a href="http://getpelican.com/">Pelican</a></li>
+                        <li><a href="http://python.org/">Python.org</a></li>
+                        <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        <li><a href="#">You can modify those links in your config file</a></li>
+                    </ul>
+                </div>
+            </div>
 
 
-							<div class="panel">
-								<h5>Links</h5>
-								<ul class="side-nav">
-									<li><a href="#">Another social link</a></li>
-									<li><a href="http://github.com/dubuqingfeng">Github</a></li>
-								</ul>
-							</div>
-						</aside>
-						<!-- End Sidebar -->
-					</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Links</div>
+                <div class="panel-body">
+                    <ul class="side-nav">
+                        <li><a href="#">Another social link</a></li>
+                        <li><a href="http://github.com/dubuqingfeng">Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+    </div>
 
-					<!-- Footer -->
-					<footer class="row">
-						<div class="medium-9 small-12">
-							<hr/>
-							<p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Zurb Foundation</a>. Theme by <a href="http://hamaluik.com">Kenton Hamaluik</a>.</p>
-						</div>
-					</footer>
-					<!-- End Footer -->
-				</section>
-				<a class="exit-off-canvas"></a>
-			</div><!--off-canvas inner-->
-		</div><!--off-canvas wrap-->
-
-		<script src="/theme/js/jquery.js"></script>
-		<script src="/theme/js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-	</body>
+    <!-- Footer -->
+    <footer class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Back to top</a></li>
+              <li><a href="http://news.bootswatch.com" onclick="pageTracker._link(this.href); return false;">Blog</a></li>
+              <li><a href="http://feeds.feedburner.com/bootswatch">RSS</a></li>
+              <li><a href="https://twitter.com/bootswatch">Twitter</a></li>
+              <li><a href="https://github.com/thomaspark/bootswatch/">GitHub</a></li>
+              <li><a href="../help/#api">API</a></li>
+              <li><a href="../help/#support">Support</a></li>
+            </ul>
+            <p class="text-center">Powered by <a href="http://getpelican.com">Pelican</a> and <a href="http://foundation.zurb.com/">Bootwatch</a>. Theme by <a href="http://hamaluik.com">Dubuqingfeng</a>.</p>
+        </div>
+    </footer>
+    </div>
+    <!-- End Footer -->
+</section>
+<script src="/theme/js/jquery-1.11.2.min.js"></script>
+<script src="/theme/js/bootstrap.min.js"></script>
+<script src="/theme/js/bootswatch.js"></script>
+</body>
 </html>
