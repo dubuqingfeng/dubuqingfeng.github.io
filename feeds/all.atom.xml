@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-02-12T12:22:00+01:00</updated><entry><title>2014年的那些碎碎念。</title><link href="dubuqingfeng.github.io/201502-2014.html" rel="alternate"></link><updated>2015-02-12T12:22:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</id><summary type="html">&lt;h6&gt;前言&lt;/h6&gt;
+&lt;p&gt;转眼之间大学已度一半有余，2014年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，&lt;/p&gt;
+&lt;h6&gt;起&lt;/h6&gt;
+&lt;p&gt;这一年过早地体验到了不完美，遂想起小榕高数。&lt;/p&gt;
+&lt;h6&gt;承&lt;/h6&gt;
+&lt;h6&gt;转&lt;/h6&gt;
+&lt;h6&gt;合&lt;/h6&gt;
+&lt;h6&gt;后记&lt;/h6&gt;</summary><category term="2014"></category><category term="年终总结"></category></entry><entry><title>php实现一些站长的工具</title><link href="dubuqingfeng.github.io/201502-php-zhanzhang.html" rel="alternate"></link><updated>2015-02-12T12:11:11+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-12:dubuqingfeng.github.io/201502-php-zhanzhang.html</id><summary type="html">&lt;h4&gt;0x01 前言&lt;/h4&gt;
+&lt;p&gt;近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。&lt;/p&gt;
+&lt;h4&gt;0x02 计划与环境搭建&lt;/h4&gt;
+&lt;p&gt;前端框架采用bootstrap，有一个比较方便的bootwatch，
+生产环境的php版本为5.2.17，很多框架的新版本在5.3以下的不太适用，因此先搭建一个相应版本的php环境进行测试，
+php要求性能的话，phalcon框架，是php的一个扩展&lt;/p&gt;
+&lt;h4&gt;0x03 whois&lt;/h4&gt;
+&lt;p&gt;whois功能需要根据域名后缀，来连接一些whois服务器进行查询，&lt;/p&gt;
+&lt;h4&gt;0x04 ip查询&lt;/h4&gt;</summary><category term="php"></category><category term="whois"></category><category term="seo"></category></entry><entry><title>文章标题</title><link href="dubuqingfeng.github.io/2015-create-blog.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</id><summary type="html">&lt;p&gt;这是搭建pelican的第一篇文章&lt;/p&gt;</summary><category term="github pages"></category><category term="pelican"></category></entry></feed>

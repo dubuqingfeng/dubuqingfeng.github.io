@@ -4,126 +4,126 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/</loc>
-<lastmod>2015-03-03T14:30:02-00:00</lastmod>
+<loc>dubuqingfeng.github.io/</loc>
+<lastmod>2015-03-03T17:59:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/archives.html</loc>
-<lastmod>2015-03-03T14:30:02-00:00</lastmod>
+<loc>dubuqingfeng.github.io/archives.html</loc>
+<lastmod>2015-03-03T17:59:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tags.html</loc>
-<lastmod>2015-03-03T14:30:02-00:00</lastmod>
+<loc>dubuqingfeng.github.io/tags.html</loc>
+<lastmod>2015-03-03T17:59:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/categories.html</loc>
-<lastmod>2015-03-03T14:30:02-00:00</lastmod>
+<loc>dubuqingfeng.github.io/categories.html</loc>
+<lastmod>2015-03-03T17:59:08-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/201502-2014.html</loc>
+<loc>dubuqingfeng.github.io/201502-2014.html</loc>
 <lastmod>2015-02-12T12:22:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>/201502-php-zhanzhang.html</loc>
+<loc>dubuqingfeng.github.io/201502-php-zhanzhang.html</loc>
 <lastmod>2015-02-12T12:11:11+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>/2015-create-blog.html</loc>
+<loc>dubuqingfeng.github.io/2015-create-blog.html</loc>
 <lastmod>2015-02-10T12:11:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>/category/2014.html</loc>
+<loc>dubuqingfeng.github.io/category/2014.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/category/php.html</loc>
+<loc>dubuqingfeng.github.io/category/php.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/category/test.html</loc>
+<loc>dubuqingfeng.github.io/category/test.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/pelican.html</loc>
+<loc>dubuqingfeng.github.io/tag/pelican.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/whois.html</loc>
+<loc>dubuqingfeng.github.io/tag/whois.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/github-pages.html</loc>
+<loc>dubuqingfeng.github.io/tag/github-pages.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/nian-zhong-zong-jie.html</loc>
+<loc>dubuqingfeng.github.io/tag/nian-zhong-zong-jie.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/seo.html</loc>
+<loc>dubuqingfeng.github.io/tag/seo.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/2014.html</loc>
+<loc>dubuqingfeng.github.io/tag/2014.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/tag/php.html</loc>
+<loc>dubuqingfeng.github.io/tag/php.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>/author/admin.html</loc>
+<loc>dubuqingfeng.github.io/author/admin.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
