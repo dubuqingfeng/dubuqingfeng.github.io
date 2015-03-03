@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2015-02-16T17:18:09-00:00</lastmod>
+<lastmod>2015-03-03T14:30:02-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2015-02-16T17:18:09-00:00</lastmod>
+<lastmod>2015-03-03T14:30:02-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2015-02-16T17:18:09-00:00</lastmod>
+<lastmod>2015-03-03T14:30:02-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2015-02-16T17:18:09-00:00</lastmod>
+<lastmod>2015-03-03T14:30:02-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -40,7 +40,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/201502-php-zhanzhang.html</loc>
-<lastmod>2015-02-12T12:11:00+01:00</lastmod>
+<lastmod>2015-02-12T12:11:11+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -61,7 +61,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/php.html</loc>
-<lastmod>2015-02-12T12:11:00+00:09</lastmod>
+<lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -82,7 +82,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/whois.html</loc>
-<lastmod>2015-02-12T12:11:00+00:09</lastmod>
+<lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -103,7 +103,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/seo.html</loc>
-<lastmod>2015-02-12T12:11:00+00:09</lastmod>
+<lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -117,7 +117,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tag/php.html</loc>
-<lastmod>2015-02-12T12:11:00+00:09</lastmod>
+<lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
