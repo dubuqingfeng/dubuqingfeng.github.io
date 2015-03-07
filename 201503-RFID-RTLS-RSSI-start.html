@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - 年终总结</title>
+  <title>基于XXX的初步设计 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -40,8 +40,8 @@
           <ul class="collapsible" data-collapsible="accordion">
             <li>
               <div class="collapsible-header">
-<i class="mdi-action-loyalty"></i><a href="#">年终总结</a>               </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于XXX的初步设计</a>              </div>
+              <div class="collapsible-body"><p>这个项目一开始是想区域性物流定位，主要使用了RFID定位技术，实现实时定位，并且通过网络后台，同步上传数据到互联网，以至于连入互联网的设备可以看到标签的移动方向及轨迹等。</p></div>
             </li>
           </ul>
         </div>
@@ -49,16 +49,53 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201502-2014.html" class="black-text flow-text" id="title">2014年的那些碎碎念。</a></span>
-      <p><p>转眼之间大学已度一半有余，这一年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，经历过迷茫，也经历过幻想。收到过感动，也收到过挫折。在那片青葱岁月，却不忍唏嘘几句。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/201503-RFID-RTLS-RSSI-start.html" class="black-text flow-text" id="title">基于XXX的初步设计</a></span>
+      <h5>0x01 RFID定位</h5>
+<p>RFID技术，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，</p>
+<blockquote>
+<p>RFID 定位模块</p>
+<p>RFID 标签</p>
+</blockquote>
+<p>分为主动式和被动式两种，主动式又称为有源标签，主动向读写器发送射频信号，被动式标签不带电池，又称为无源标签，其发射电波及内部所需能量来自读写器产生的电磁波，</p>
+<h5>0x02 网页端显示</h5>
+<p>通过自己设计的地图模型，以反映现实的具体环境，初期进行2D地图的模拟，逐步发展到2.5D，3D。</p>
+<h5>0x03 微信公众号的对接</h5>
+<p>使用weiphp开源程序进行微信公众平台的对接，可以搭设一些后台。通过实时传回的数据进行小车的定位显示。</p>
+<h5>0x04 Q&amp;A</h5>
+<blockquote>
+<p>Question:定位的相关技术及对比？</p>
+<p>Question:读写器与主控的连接方式</p>
+<p>Question:有源标签的信号折射问题.</p>
+<p>Question:读写器天线节点的布置。</p>
+</blockquote>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/2014.html" onclick="">2015-02-12 12:22:00</a>
-<a href="/tag/2014.html">2014</a><a href="/tag/nian-zhong-zong-jie.html">年终总结</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-06 19:22:00</a>
+<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/rfid.html">RFID</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -71,7 +108,7 @@
                 <div class="card-action">
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
-                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
@@ -139,7 +176,7 @@
         <div class="card-action">
           <ul class="">
             <li ><a href="/category/2014.html">dubuqingfeng</a></li>
-            <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
+            <li class="active"><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
             <li ><a href="/category/github.html">dubuqingfeng</a></li>
             <li ><a href="/category/php.html">dubuqingfeng</a></li>
             <li ><a href="/category/test.html">dubuqingfeng</a></li>

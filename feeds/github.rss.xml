@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/github.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 04 Mar 2015 12:22:00 +0100</lastBuildDate><item><title>git-fork项目后与原项目进行同步</title><link>dubuqingfeng.github.io/201503-git-fork-synchronized.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.首先clone自己，从git获取自己仓库的内容。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/xxx.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2.添加远程仓库
+添加远程仓库的别名，获取远程仓库的内容并合并。如果有冲突则需要手动解决冲突。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git remote add username https://github.com/xxx.git
+git fetch username
+git merge username/master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3.提交改动，推到远程的master分支。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git commit -m &amp;quot;merge from username-xx&amp;quot;
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4.查看本地仓库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git remote -v
+git branch -a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x02 git协同命令&lt;/h5&gt;
+&lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
+&lt;p&gt;http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item></channel></rss>

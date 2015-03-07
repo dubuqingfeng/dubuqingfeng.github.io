@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - 年终总结</title>
+  <title>git-fork项目后与原项目进行同步 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -40,8 +40,8 @@
           <ul class="collapsible" data-collapsible="accordion">
             <li>
               <div class="collapsible-header">
-<i class="mdi-action-loyalty"></i><a href="#">年终总结</a>               </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<a href="/category/github.html"><i class="mdi-action-subject"></i>【github】</a><a href="#">--git-fork项目后与原项目进行同步</a>              </div>
+              <div class="collapsible-body"><p>每fork一个项目后，当进行改动，然后push上去以后，如何进行保持与原作者的同步，以及git的一些协同命令和Pull Request。</p></div>
             </li>
           </ul>
         </div>
@@ -49,16 +49,67 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201502-2014.html" class="black-text flow-text" id="title">2014年的那些碎碎念。</a></span>
-      <p><p>转眼之间大学已度一半有余，这一年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，经历过迷茫，也经历过幻想。收到过感动，也收到过挫折。在那片青葱岁月，却不忍唏嘘几句。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/201503-git-fork-synchronized.html" class="black-text flow-text" id="title">git-fork项目后与原项目进行同步</a></span>
+      <h5>0x01 与原项目进行同步</h5>
+<blockquote>
+<p>在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。</p>
+</blockquote>
+<p>1.首先clone自己，从git获取自己仓库的内容。</p>
+<div class="highlight"><pre>git clone https://github.com/xxx.git
+</pre></div>
+
+
+<p>2.添加远程仓库
+添加远程仓库的别名，获取远程仓库的内容并合并。如果有冲突则需要手动解决冲突。</p>
+<div class="highlight"><pre>git remote add username https://github.com/xxx.git
+git fetch username
+git merge username/master
+</pre></div>
+
+
+<p>3.提交改动，推到远程的master分支。</p>
+<div class="highlight"><pre>git commit -m &quot;merge from username-xx&quot;
+git push -u origin master
+</pre></div>
+
+
+<p>4.查看本地仓库</p>
+<div class="highlight"><pre>git remote -v
+git branch -a
+</pre></div>
+
+
+<h5>0x02 git协同命令</h5>
+<h5>0x03 Pull Request</h5>
+<p>http://taoyuanxiaoqi.com/2015/01/12/apkshell1/</p>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/2014.html" onclick="">2015-02-12 12:22:00</a>
-<a href="/tag/2014.html">2014</a><a href="/tag/nian-zhong-zong-jie.html">年终总结</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/github.html" onclick="">2015-03-04 12:22:00</a>
+<a href="/tag/git.html">git</a><a href="/tag/fork.html">fork</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -72,7 +123,7 @@
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
-                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li class="active"><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                   </ul>
@@ -140,7 +191,7 @@
           <ul class="">
             <li ><a href="/category/2014.html">dubuqingfeng</a></li>
             <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
-            <li ><a href="/category/github.html">dubuqingfeng</a></li>
+            <li class="active"><a href="/category/github.html">dubuqingfeng</a></li>
             <li ><a href="/category/php.html">dubuqingfeng</a></li>
             <li ><a href="/category/test.html">dubuqingfeng</a></li>
           </ul>

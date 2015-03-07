@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/dian-zi-she-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 07 Mar 2015 11:00:00 +0100</lastBuildDate><item><title>基于XXX的初步设计</title><link>dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
+&lt;p&gt;RFID技术，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;RFID 定位模块&lt;/p&gt;
+&lt;p&gt;RFID 标签&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;分为主动式和被动式两种，主动式又称为有源标签，主动向读写器发送射频信号，被动式标签不带电池，又称为无源标签，其发射电波及内部所需能量来自读写器产生的电磁波，&lt;/p&gt;
+&lt;h5&gt;0x02 网页端显示&lt;/h5&gt;
+&lt;p&gt;通过自己设计的地图模型，以反映现实的具体环境，初期进行2D地图的模拟，逐步发展到2.5D，3D。&lt;/p&gt;
+&lt;h5&gt;0x03 微信公众号的对接&lt;/h5&gt;
+&lt;p&gt;使用weiphp开源程序进行微信公众平台的对接，可以搭设一些后台。通过实时传回的数据进行小车的定位显示。&lt;/p&gt;
+&lt;h5&gt;0x04 Q&amp;amp;A&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Question:定位的相关技术及对比？&lt;/p&gt;
+&lt;p&gt;Question:读写器与主控的连接方式&lt;/p&gt;
+&lt;p&gt;Question:有源标签的信号折射问题.&lt;/p&gt;
+&lt;p&gt;Question:读写器天线节点的布置。&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:,2015-03-06:dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</guid><category>电子设计</category><category>RFID</category></item></channel></rss>

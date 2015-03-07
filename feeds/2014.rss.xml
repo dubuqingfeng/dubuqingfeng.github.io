@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/2014.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 12 Feb 2015 12:22:00 +0100</lastBuildDate><item><title>2014年的那些碎碎念。</title><link>dubuqingfeng.github.io/201502-2014.html</link><description>&lt;h6&gt;前言&lt;/h6&gt;
-&lt;p&gt;转眼之间大学已度一半有余，2014年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，&lt;/p&gt;
-&lt;h6&gt;起&lt;/h6&gt;
-&lt;p&gt;这一年过早地体验到了不完美，遂想起小榕高数。&lt;/p&gt;
-&lt;h6&gt;承&lt;/h6&gt;
-&lt;h6&gt;转&lt;/h6&gt;
-&lt;h6&gt;合&lt;/h6&gt;
-&lt;h6&gt;后记&lt;/h6&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</guid><category>2014</category><category>年终总结</category></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/2014.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 12 Feb 2015 12:22:00 +0100</lastBuildDate><item><title>2014年的那些碎碎念。</title><link>dubuqingfeng.github.io/201502-2014.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;转眼之间大学已度一半有余，没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，从建立社团，到建立小组，以及各方面的为人处世，慢慢地提高自己，并且在所学领域希望也可以有一定的思考。&lt;/p&gt;
+&lt;h5&gt;0x02 起&lt;/h5&gt;
+&lt;h5&gt;0x03 承&lt;/h5&gt;
+&lt;p&gt;一开始“兴致勃勃”地去参加校学生会面试，面试网络中心，那时并不理解什么正装，只是随意的打扮，面试之时，尽力使自己不紧张，从社团慢慢开始介绍，到那次比赛，再到对计算机感兴趣，再到工作的想法，他们面试官也比较觉得特别，并且会说以后会联系，当初想去竞争这个职位，并不是想去得到一官半职，而是想对社团搞活动的时候也有所帮助，还可以去培养一些网络或者网站方面的人才。后来他们让做学生会网站，当时想法是通过织梦cms仿一套模板，然后将这托管到网络中心，后来了解到网络中心一般也不给这权限，当时也想也对，如果有个远程执行代码的漏洞，getshell，进一步提权，然后可以控制内网主机，织梦在后台可以直接上传文件而getshell，并且逐步开始接触CSS，去了解那些盒子模型，以及一些浮动等的基础知识，然后一知半解的去看超越css，css设计之禅等书籍，&lt;/p&gt;
+&lt;h5&gt;0x04 转&lt;/h5&gt;
+&lt;h5&gt;0x05 合&lt;/h5&gt;
+&lt;h5&gt;0x06 后记&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</guid><category>2014</category><category>年终总结</category></item></channel></rss>

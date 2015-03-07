@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 12 Feb 2015 12:22:00 +0100</lastBuildDate><item><title>2014年的那些碎碎念。</title><link>dubuqingfeng.github.io/201502-2014.html</link><description>&lt;h6&gt;前言&lt;/h6&gt;
-&lt;p&gt;转眼之间大学已度一半有余，2014年没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，&lt;/p&gt;
-&lt;h6&gt;起&lt;/h6&gt;
-&lt;p&gt;这一年过早地体验到了不完美，遂想起小榕高数。&lt;/p&gt;
-&lt;h6&gt;承&lt;/h6&gt;
-&lt;h6&gt;转&lt;/h6&gt;
-&lt;h6&gt;合&lt;/h6&gt;
-&lt;h6&gt;后记&lt;/h6&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</guid><category>2014</category><category>年终总结</category></item><item><title>php实现一些站长的工具</title><link>dubuqingfeng.github.io/201502-php-zhanzhang.html</link><description>&lt;h4&gt;0x01 前言&lt;/h4&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 07 Mar 2015 11:00:00 +0100</lastBuildDate><item><title>基于XXX的初步设计</title><link>dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
+&lt;p&gt;RFID技术，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;RFID 定位模块&lt;/p&gt;
+&lt;p&gt;RFID 标签&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;分为主动式和被动式两种，主动式又称为有源标签，主动向读写器发送射频信号，被动式标签不带电池，又称为无源标签，其发射电波及内部所需能量来自读写器产生的电磁波，&lt;/p&gt;
+&lt;h5&gt;0x02 网页端显示&lt;/h5&gt;
+&lt;p&gt;通过自己设计的地图模型，以反映现实的具体环境，初期进行2D地图的模拟，逐步发展到2.5D，3D。&lt;/p&gt;
+&lt;h5&gt;0x03 微信公众号的对接&lt;/h5&gt;
+&lt;p&gt;使用weiphp开源程序进行微信公众平台的对接，可以搭设一些后台。通过实时传回的数据进行小车的定位显示。&lt;/p&gt;
+&lt;h5&gt;0x04 Q&amp;amp;A&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Question:定位的相关技术及对比？&lt;/p&gt;
+&lt;p&gt;Question:读写器与主控的连接方式&lt;/p&gt;
+&lt;p&gt;Question:有源标签的信号折射问题.&lt;/p&gt;
+&lt;p&gt;Question:读写器天线节点的布置。&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:,2015-03-06:dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</guid><category>电子设计</category><category>RFID</category></item><item><title>git-fork项目后与原项目进行同步</title><link>dubuqingfeng.github.io/201503-git-fork-synchronized.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.首先clone自己，从git获取自己仓库的内容。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git clone https://github.com/xxx.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2.添加远程仓库
+添加远程仓库的别名，获取远程仓库的内容并合并。如果有冲突则需要手动解决冲突。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git remote add username https://github.com/xxx.git
+git fetch username
+git merge username/master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3.提交改动，推到远程的master分支。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git commit -m &amp;quot;merge from username-xx&amp;quot;
+git push -u origin master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;4.查看本地仓库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git remote -v
+git branch -a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x02 git协同命令&lt;/h5&gt;
+&lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
+&lt;p&gt;http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item><item><title>2014年的那些碎碎念。</title><link>dubuqingfeng.github.io/201502-2014.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;转眼之间大学已度一半有余，没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，从建立社团，到建立小组，以及各方面的为人处世，慢慢地提高自己，并且在所学领域希望也可以有一定的思考。&lt;/p&gt;
+&lt;h5&gt;0x02 起&lt;/h5&gt;
+&lt;h5&gt;0x03 承&lt;/h5&gt;
+&lt;p&gt;一开始“兴致勃勃”地去参加校学生会面试，面试网络中心，那时并不理解什么正装，只是随意的打扮，面试之时，尽力使自己不紧张，从社团慢慢开始介绍，到那次比赛，再到对计算机感兴趣，再到工作的想法，他们面试官也比较觉得特别，并且会说以后会联系，当初想去竞争这个职位，并不是想去得到一官半职，而是想对社团搞活动的时候也有所帮助，还可以去培养一些网络或者网站方面的人才。后来他们让做学生会网站，当时想法是通过织梦cms仿一套模板，然后将这托管到网络中心，后来了解到网络中心一般也不给这权限，当时也想也对，如果有个远程执行代码的漏洞，getshell，进一步提权，然后可以控制内网主机，织梦在后台可以直接上传文件而getshell，并且逐步开始接触CSS，去了解那些盒子模型，以及一些浮动等的基础知识，然后一知半解的去看超越css，css设计之禅等书籍，&lt;/p&gt;
+&lt;h5&gt;0x04 转&lt;/h5&gt;
+&lt;h5&gt;0x05 合&lt;/h5&gt;
+&lt;h5&gt;0x06 后记&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</guid><category>2014</category><category>年终总结</category></item><item><title>php实现一些站长的工具</title><link>dubuqingfeng.github.io/201502-php-zhanzhang.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。&lt;/p&gt;
-&lt;h4&gt;0x02 计划与环境搭建&lt;/h4&gt;
+&lt;h5&gt;0x02 计划与环境搭建&lt;/h5&gt;
 &lt;p&gt;前端框架采用bootstrap，有一个比较方便的bootwatch，
 生产环境的php版本为5.2.17，很多框架的新版本在5.3以下的不太适用，因此先搭建一个相应版本的php环境进行测试，
 php要求性能的话，phalcon框架，是php的一个扩展&lt;/p&gt;
-&lt;h4&gt;0x03 whois&lt;/h4&gt;
+&lt;h5&gt;0x03 whois&lt;/h5&gt;
 &lt;p&gt;whois功能需要根据域名后缀，来连接一些whois服务器进行查询，&lt;/p&gt;
-&lt;h4&gt;0x04 ip查询&lt;/h4&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:11:11 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-php-zhanzhang.html</guid><category>php</category><category>whois</category><category>seo</category></item><item><title>文章标题</title><link>dubuqingfeng.github.io/2015-create-blog.html</link><description>&lt;p&gt;这是搭建pelican的第一篇文章&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>
+&lt;h5&gt;0x04 ip查询&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:11:11 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/201502-php-zhanzhang.html</guid><category>php</category><category>whois</category><category>seo</category></item><item><title>Hello,World!</title><link>dubuqingfeng.github.io/2015-create-blog.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
+&lt;p&gt;Linux(Centos)&lt;/p&gt;
+&lt;p&gt;Windows&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x02 写作环境&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Markdown&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x03 修改主题&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dubuqingfeng&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x04 插件配置&lt;/h5&gt;
+&lt;h5&gt;0x05 程序维护&lt;/h5&gt;
+&lt;h5&gt;0x06 域名等服务配置&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>

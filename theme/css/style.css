@@ -24,6 +24,7 @@ nav {
 }
 .card .card-content {
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 .container .template-content-page {
   /*margin-top: 64px;*/
