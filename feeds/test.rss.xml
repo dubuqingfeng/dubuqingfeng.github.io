@@ -2,6 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/test.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 10 Feb 2015 12:11:00 +0100</lastBuildDate><item><title>Hello,World!</title><link>dubuqingfeng.github.io/2015-create-blog.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Virtualenv&lt;/p&gt;
+&lt;p&gt;sudo pip install virtualenv&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Linux(Centos)&lt;/p&gt;
 &lt;p&gt;Windows&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -9,10 +13,37 @@
 &lt;blockquote&gt;
 &lt;p&gt;Markdown&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;主要采取一款开源在线的markdown编辑器，并计划在其基础上进行改进，使其更加符合个人习惯。&lt;/p&gt;
 &lt;h5&gt;0x03 修改主题&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Dubuqingfeng&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;主题在bootstrap的样式和最近的material design材料样式之间纠结，在看了pelican的bootstrap的主题以后，想自己写一个主题，于是就去找关于material design设计的网站方面的资料，一开始谷歌推出这种设计语言的时候，大量应用于安卓应用，以摆脱应用风格不统一的问题，一些谷歌web网页也采取了这种设计。找到了多种设计框架，有material for bootstrap，materialize，...&lt;/p&gt;
+&lt;p&gt;然后看了这两个官网，觉得materialize更简单，并且有相关实例，文档不难看懂，弄出的效果也接近material design。所以先用这种尝试写博客主题。写的时候，主要参考pelican文档里&lt;a href="http://www.baidu.com"&gt;主题编写&lt;/a&gt;部分，进行相关样式及模板的修改。&lt;/p&gt;
+&lt;p&gt;在templates文件夹下，有base.html文件，其他继承这个文件，并且模板中还可以包含其他文件。设置或者读取常量可以在pelicanconf.py中配置。&lt;/p&gt;
 &lt;h5&gt;0x04 插件配置&lt;/h5&gt;
+&lt;p&gt;目前主要使用了&lt;a href=""&gt;sitemap&lt;/a&gt;，&lt;a href=""&gt;gravatar&lt;/a&gt;这两个插件，以后采用新插件的时候，还会补充。&lt;/p&gt;
 &lt;h5&gt;0x05 程序维护&lt;/h5&gt;
-&lt;h5&gt;0x06 域名等服务配置&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>
+&lt;p&gt;pelican使用jinja2进行模板渲染，需要定期查看是否有新版本。
+jinja2
+flask
+Frozen-Flask
+相关系统：
+Cactus&lt;/p&gt;
+&lt;h5&gt;0x06 域名等服务配置&lt;/h5&gt;
+&lt;p&gt;因blog放在github pages上，所以域名绑定可以在目录下建立名为CNAME的文件，里面保存顶级域名。然后域名A记录指向dubuqingfeng.github.io&lt;/p&gt;
+&lt;p&gt;SSL证书配置？&lt;/p&gt;
+&lt;p&gt;因blog为静态的，也不需要涉及后台的操作，所以https加密显得不是特别重要。&lt;/p&gt;
+&lt;p&gt;RSS的配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# Feed generation is usually not desired when developing
+FEED_RSS = u&amp;quot;feeds/all.rss.xml&amp;quot;
+CATEGORY_FEED_RSS=u&amp;quot;feeds/%s.rss.xml&amp;quot;
+FEED_ALL_ATOM = &amp;#39;feeds/all.atom.xml&amp;#39;
+CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED_ATOM = None
+AUTHOR_FEED_ATOM = None
+AUTHOR_FEED_RSS = None
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>

@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - 电子设计</title>
+  <title>基于LM3S615的解魔方机器人详细思考 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -39,8 +39,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="#"><i class="mdi-action-loyalty"></i></a><a href="#">电子设计</a> </div>              </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<div class="collapsible-header"><a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于LM3S615的解魔方机器人详细思考</a>              </div>
+              <div class="collapsible-body"><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android和控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p></div>
             </li>
           </ul>
         </div>
@@ -48,21 +48,18 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" class="black-text flow-text" id="title">基于LM3S615的解魔方机器人组装调试</a></span>
-      <p><p>本文在机械与电路部分的初步设计之下，进行一些主控板与硬件器件的辨析、连接与调试。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-24 14:23:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
       <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-Xiangxisikao.html" class="black-text flow-text" id="title">基于LM3S615的解魔方机器人详细思考</a></span>
-      <p><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android和控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
+      <h5>0x01 显示屏大显部分</h5>
+<p>常见的魔方比赛可以</p>
+<h5>0x02 系统设计框图设计</h5>
+<p>主控板采取官方平台LM3S615平台，其供电采取电源适配器转3.3V(5V)，</p>
+<h5>0x03 系统流程图设计</h5>
+<p>首先需要采集魔方，采集颜色信息，将其转换为矩阵表示。然后进行算法求解，计算出算法以后，通过蓝牙等适配器将求解步骤传到下位机，然后下位机连接好魔方，进行控制舵机进行旋转。</p>
+<h5>0x04 电路板设计</h5>
+<p>电路板部分涉及到了通用版。</p>
+<h5>0x05 材料的选择</h5>
+<p>1.魔方：采用5.7CM的标准魔方，以顺滑和容错为标准，适当调整螺丝。
+2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。</p>	
     </div>
     <div class="card-action">
       <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-20 12:50:00</a>
@@ -71,29 +68,26 @@
 </div>
 <div class="section">
   <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-start.html" class="black-text flow-text" id="title">基于XXX的解魔方机器人初步设计</a></span>
-      <p><p>本文主要写了一种解魔方机器人的初步设计，基于Android，和xxx控制板，可以扩展到Arduino、树莓派等，或者直接通过舵机控制板，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-08 16:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
   </div>
 </div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-RFID-RTLS-RSSI-start.html" class="black-text flow-text" id="title">基于XXX的初步设计</a></span>
-      <p><p>这个项目一开始是想区域性物流定位，主要使用了RFID定位技术，实现实时定位，并且通过网络后台，同步上传数据到互联网，以至于连入互联网的设备可以看到标签的移动方向及轨迹等。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-06 19:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/rfid.html">RFID</a>    </div>
-  </div>
-</div>
-
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -106,7 +100,7 @@
                 <div class="card-action">
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
-                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
@@ -176,7 +170,7 @@
         <div class="card-action">
           <ul class="">
             <li ><a href="/category/2014.html">dubuqingfeng</a></li>
-            <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
+            <li class="active"><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
             <li ><a href="/category/github.html">dubuqingfeng</a></li>
             <li ><a href="/category/php.html">dubuqingfeng</a></li>
             <li ><a href="/category/test.html">dubuqingfeng</a></li>

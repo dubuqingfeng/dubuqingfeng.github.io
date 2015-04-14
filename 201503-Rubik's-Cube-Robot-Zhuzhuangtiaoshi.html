@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - 电子设计</title>
+  <title>基于LM3S615的解魔方机器人组装调试 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -39,8 +39,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="#"><i class="mdi-action-loyalty"></i></a><a href="#">电子设计</a> </div>              </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<div class="collapsible-header"><a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于LM3S615的解魔方机器人组装调试</a>              </div>
+              <div class="collapsible-body"><p>本文在机械与电路部分的初步设计之下，进行一些主控板与硬件器件的辨析、连接与调试。</p></div>
             </li>
           </ul>
         </div>
@@ -49,8 +49,31 @@
   <div class="card z-depth-1">
     <div class="card-content black-text">
       <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" class="black-text flow-text" id="title">基于LM3S615的解魔方机器人组装调试</a></span>
-      <p><p>本文在机械与电路部分的初步设计之下，进行一些主控板与硬件器件的辨析、连接与调试。</p>
-	  </p>
+      <h5>0x01 LM3S615</h5>
+<p>此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在<a href="http://download"></a>有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。</p>
+<h5>0x02 TTL与RS-232</h5>
+<p>波特率</p>
+<h5>0x03 GPIO</h5>
+<p>第一次接触GPIO是在树莓派上，可以利用其进行一些输入或者输出的控制。</p>
+<h5>0x04 舵机控制板</h5>
+<p>采用的是普通Arduino24路舵机控制板V4.21，可以通过单片机、Arduino、蓝牙模块等控制舵机。详细说明在<a href=""></a>。</p>
+<p>舵机控制板如图所示，电源，中间可以使用蓝牙模块进行控制，预留了RXD、TXD、GND以及3.3V或5V</p>
+<h5>0x05 UART串口</h5>
+<h5>0x06 系统控制框图</h5>
+<p>因为甘特图markdown解析器可能不支持，系统控制框图如图所示。</p>
+<h5>0x06 整体结构设计</h5>
+<h5>0x07 机械手的设计</h5>
+<p>CAD截面图如图所示，使用亚克力板进行切割制作</p>
+<h5>0x08 主舵机导轨的设计</h5>
+<h5>0x09 从舵机的处理</h5>
+<h5>0x10 舵机控制板与舵机的测试</h5>
+<p>舵机控制板首先需要考虑电源供电的问题，因为舵机电源需要5V的，是否共地，以及舵机的电流等。</p>
+<p>舵机部分供电采取DC直流5V，</p>
+<p>舵机控制板，先采取笔记本电脑使用usb转串口模块连接，然后利用一些上位机程序，控制舵机的一定角度的旋转，</p>
+<p>舵机控制板的一些指令集：</p>
+<h5>0x11 蓝牙与舵机控制板的连接测试</h5>
+<h5>0x100 参考文献</h5>
+<p>《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)</p>	
     </div>
     <div class="card-action">
       <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-24 14:23:00</a>
@@ -59,41 +82,26 @@
 </div>
 <div class="section">
   <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-Xiangxisikao.html" class="black-text flow-text" id="title">基于LM3S615的解魔方机器人详细思考</a></span>
-      <p><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android和控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-20 12:50:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
   </div>
 </div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-start.html" class="black-text flow-text" id="title">基于XXX的解魔方机器人初步设计</a></span>
-      <p><p>本文主要写了一种解魔方机器人的初步设计，基于Android，和xxx控制板，可以扩展到Arduino、树莓派等，或者直接通过舵机控制板，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-08 16:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-RFID-RTLS-RSSI-start.html" class="black-text flow-text" id="title">基于XXX的初步设计</a></span>
-      <p><p>这个项目一开始是想区域性物流定位，主要使用了RFID定位技术，实现实时定位，并且通过网络后台，同步上传数据到互联网，以至于连入互联网的设备可以看到标签的移动方向及轨迹等。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-06 19:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/rfid.html">RFID</a>    </div>
-  </div>
-</div>
-
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -106,7 +114,7 @@
                 <div class="card-action">
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
-                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
@@ -176,7 +184,7 @@
         <div class="card-action">
           <ul class="">
             <li ><a href="/category/2014.html">dubuqingfeng</a></li>
-            <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
+            <li class="active"><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
             <li ><a href="/category/github.html">dubuqingfeng</a></li>
             <li ><a href="/category/php.html">dubuqingfeng</a></li>
             <li ><a href="/category/test.html">dubuqingfeng</a></li>

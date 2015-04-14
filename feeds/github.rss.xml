@@ -29,5 +29,10 @@ git branch -a
 
 
 &lt;h5&gt;0x02 git协同命令&lt;/h5&gt;
+&lt;p&gt;当使用git进行协作开发的时候，可以设置好几个分支，以主分支master为开发版，Release分支为发行版。&lt;/p&gt;
 &lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
-&lt;p&gt;http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item></channel></rss>
+&lt;blockquote&gt;
+&lt;p&gt;当某个人fork项目后，并推送改动后如何处理？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。
+http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item></channel></rss>
