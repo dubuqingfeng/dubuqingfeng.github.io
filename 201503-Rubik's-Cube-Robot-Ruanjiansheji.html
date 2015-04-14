@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - fork</title>
+  <title>基于XXX的解魔方机器人软件设计与实现 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -39,8 +39,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="#"><i class="mdi-action-loyalty"></i></a><a href="#">fork</a> </div>              </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<div class="collapsible-header"><a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于XXX的解魔方机器人软件设计与实现</a>              </div>
+              <div class="collapsible-body"><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android，和xxx控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p></div>
             </li>
           </ul>
         </div>
@@ -48,16 +48,119 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201503-git-fork-synchronized.html" class="black-text flow-text" id="title">git-fork项目后与原项目进行同步</a></span>
-      <p><p>每fork一个项目后，当进行改动，然后push上去以后，如何进行保持与原作者的同步，以及git的一些协同命令和Pull Request。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" class="black-text flow-text" id="title">基于XXX的解魔方机器人软件设计与实现</a></span>
+      <h5>0x01 Android上位机设计部分</h5>
+<p>常见的魔方比赛可以</p>
+<h5>0x02 Android代码思路</h5>
+<h5>0x03 Android软件测试</h5>
+<h5>0x04 Arduino测试代码思路</h5>
+<p>首先通过官方示例程序Knob和Sweep测试舵机运行情况</p>
+<div class="highlight"><pre><span class="cm">/* </span>
+<span class="cm"> Controlling a servo position using a potentiometer (variable resistor) </span>
+<span class="cm"> by Michal Rinott &lt;http://people.interaction-ivrea.it/m.rinott&gt;</span>
+
+<span class="cm"> modified on 8 Nov 2013</span>
+<span class="cm"> by Scott Fitzgerald</span>
+<span class="cm"> http://arduino.cc/en/Tutorial/Knob</span>
+<span class="cm">*/</span>
+<span class="cp">#include &lt;Servo.h&gt;</span>
+<span class="n">Servo</span> <span class="n">myservo</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo</span>
+<span class="kt">int</span> <span class="n">potpin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// analog pin used to connect the potentiometer</span>
+<span class="kt">int</span> <span class="n">val</span><span class="p">;</span>    <span class="c1">// variable to read the value from the analog pin</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// attaches the servo on pin 9 to the servo object</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="n">val</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">potpin</span><span class="p">);</span>            <span class="c1">// reads the value of the potentiometer (value between 0 and 1023) </span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>     <span class="c1">// scale it to use it with the servo (value between 0 and 180) </span>
+  <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>                  <span class="c1">// sets the servo position according to the scaled value </span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                           <span class="c1">// waits for the servo to get there </span>
+<span class="p">}</span>
+
+<span class="cm">/* Sweep</span>
+<span class="cm"> by BARRAGAN &lt;http://barraganstudio.com&gt; </span>
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> modified 8 Nov 2013</span>
+<span class="cm"> by Scott Fitzgerald</span>
+<span class="cm"> http://arduino.cc/en/Tutorial/Sweep</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include &lt;Servo.h&gt;</span>
+
+<span class="n">Servo</span> <span class="n">myservo</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo </span>
+                <span class="c1">// twelve servo objects can be created on most boards</span>
+<span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// variable to store the servo position </span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// attaches the servo on pin 9 to the servo object </span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="k">for</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// goes from 0 degrees to 180 degrees </span>
+  <span class="p">{</span>                                  <span class="c1">// in steps of 1 degree </span>
+    <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>              <span class="c1">// tell servo to go to position in variable &#39;pos&#39; </span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                       <span class="c1">// waits 15ms for the servo to reach the position </span>
+  <span class="p">}</span> 
+  <span class="k">for</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">pos</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>     <span class="c1">// goes from 180 degrees to 0 degrees </span>
+  <span class="p">{</span>
+    <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>              <span class="c1">// tell servo to go to position in variable &#39;pos&#39; </span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                       <span class="c1">// waits 15ms for the servo to reach the position </span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<h5>0x05 Arduino代码</h5>
+<p>Arduino代码部分在github上也可找到，</p>
+<blockquote>
+<p>使用串口测试成对舵机的代码--&gt;DoubleServo</p>
+<p>约定一些操作码和公式进行方便控制舵机的代码</p>
+</blockquote>
+<h5>0x05 计算解法公式</h5>
+<p>涉及到魔方解法部分，</p>
+<h5>0x06 蓝牙发送操作码</h5>
+<p>分为普通公式与特定操作码部分，普通公式主要为使用二阶段算法计算出来的解法公式，并且约定带+号为顺时针旋转，带-号为逆时针旋转，特定操作码约定一些特定的舵机控制操作，主要以下列表所示：</p>
+<blockquote>
+<p>全部还原固定角度</p>
+<p>成对舵机转动固定角度</p>
+<p>单个舵机转动固定角度</p>
+<p>从舵机进行转动，使机械臂进行前进与后退操作</p>
+</blockquote>
+<h5>0x07 魔方解法操作对应舵机动作分析</h5>
+<p>因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。</p>
+<p>R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。</p>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/github.html" onclick="">2015-03-04 12:22:00</a>
-<a href="/tag/git.html">git</a><a href="/tag/fork.html">fork</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-04-10 16:25:00</a>
+<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -70,7 +173,7 @@
                 <div class="card-action">
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
-                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
@@ -140,7 +243,7 @@
         <div class="card-action">
           <ul class="">
             <li ><a href="/category/2014.html">dubuqingfeng</a></li>
-            <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
+            <li class="active"><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
             <li ><a href="/category/github.html">dubuqingfeng</a></li>
             <li ><a href="/category/php.html">dubuqingfeng</a></li>
             <li ><a href="/category/test.html">dubuqingfeng</a></li>

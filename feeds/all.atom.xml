@@ -1,5 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-03-24T22:12:00+01:00</updated><entry><title>基于LM3S615的解魔方机器人组装调试</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-24:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-04-10T20:18:00+02:00</updated><entry><title>基于XXX的解魔方机器人软件设计与实现</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" rel="alternate"></link><updated>2015-04-10T20:18:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-04-10:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</id><summary type="html">&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
+&lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
+&lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;
+&lt;h5&gt;0x04 Arduino测试代码思路&lt;/h5&gt;
+&lt;p&gt;首先通过官方示例程序Knob和Sweep测试舵机运行情况&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* &lt;/span&gt;
+&lt;span class="cm"&gt; Controlling a servo position using a potentiometer (variable resistor) &lt;/span&gt;
+&lt;span class="cm"&gt; by Michal Rinott &amp;lt;http://people.interaction-ivrea.it/m.rinott&amp;gt;&lt;/span&gt;
+
+&lt;span class="cm"&gt; modified on 8 Nov 2013&lt;/span&gt;
+&lt;span class="cm"&gt; by Scott Fitzgerald&lt;/span&gt;
+&lt;span class="cm"&gt; http://arduino.cc/en/Tutorial/Knob&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+&lt;span class="cp"&gt;#include &amp;lt;Servo.h&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// create servo object to control a servo&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;potpin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// analog pin used to connect the potentiometer&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="c1"&gt;// variable to read the value from the analog pin&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;// attaches the servo on pin 9 to the servo object&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt; 
+  &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;analogRead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;potpin&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;            &lt;span class="c1"&gt;// reads the value of the potentiometer (value between 0 and 1023) &lt;/span&gt;
+  &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1023&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;     &lt;span class="c1"&gt;// scale it to use it with the servo (value between 0 and 180) &lt;/span&gt;
+  &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                  &lt;span class="c1"&gt;// sets the servo position according to the scaled value &lt;/span&gt;
+  &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                           &lt;span class="c1"&gt;// waits for the servo to get there &lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="cm"&gt;/* Sweep&lt;/span&gt;
+&lt;span class="cm"&gt; by BARRAGAN &amp;lt;http://barraganstudio.com&amp;gt; &lt;/span&gt;
+&lt;span class="cm"&gt; This example code is in the public domain.&lt;/span&gt;
+
+&lt;span class="cm"&gt; modified 8 Nov 2013&lt;/span&gt;
+&lt;span class="cm"&gt; by Scott Fitzgerald&lt;/span&gt;
+&lt;span class="cm"&gt; http://arduino.cc/en/Tutorial/Sweep&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+&lt;span class="cp"&gt;#include &amp;lt;Servo.h&amp;gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// create servo object to control a servo &lt;/span&gt;
+                &lt;span class="c1"&gt;// twelve servo objects can be created on most boards&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="c1"&gt;// variable to store the servo position &lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt; 
+  &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;// attaches the servo on pin 9 to the servo object &lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt; 
+  &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// goes from 0 degrees to 180 degrees &lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;                                  &lt;span class="c1"&gt;// in steps of 1 degree &lt;/span&gt;
+    &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;              &lt;span class="c1"&gt;// tell servo to go to position in variable &amp;#39;pos&amp;#39; &lt;/span&gt;
+    &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                       &lt;span class="c1"&gt;// waits 15ms for the servo to reach the position &lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt; 
+  &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="o"&gt;-=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="c1"&gt;// goes from 180 degrees to 0 degrees &lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;              &lt;span class="c1"&gt;// tell servo to go to position in variable &amp;#39;pos&amp;#39; &lt;/span&gt;
+    &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                       &lt;span class="c1"&gt;// waits 15ms for the servo to reach the position &lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt; 
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x05 Arduino代码&lt;/h5&gt;
+&lt;p&gt;Arduino代码部分在github上也可找到，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用串口测试成对舵机的代码--&amp;gt;DoubleServo&lt;/p&gt;
+&lt;p&gt;约定一些操作码和公式进行方便控制舵机的代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x05 计算解法公式&lt;/h5&gt;
+&lt;p&gt;涉及到魔方解法部分，&lt;/p&gt;
+&lt;h5&gt;0x06 蓝牙发送操作码&lt;/h5&gt;
+&lt;p&gt;分为普通公式与特定操作码部分，普通公式主要为使用二阶段算法计算出来的解法公式，并且约定带+号为顺时针旋转，带-号为逆时针旋转，特定操作码约定一些特定的舵机控制操作，主要以下列表所示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;全部还原固定角度&lt;/p&gt;
+&lt;p&gt;成对舵机转动固定角度&lt;/p&gt;
+&lt;p&gt;单个舵机转动固定角度&lt;/p&gt;
+&lt;p&gt;从舵机进行转动，使机械臂进行前进与后退操作&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x07 魔方解法操作对应舵机动作分析&lt;/h5&gt;
+&lt;p&gt;因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。&lt;/p&gt;
+&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人组装调试</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-24:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
 &lt;p&gt;此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在&lt;a href="http://download"&gt;&lt;/a&gt;有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。&lt;/p&gt;
 &lt;h5&gt;0x02 TTL与RS-232&lt;/h5&gt;
 &lt;p&gt;波特率&lt;/p&gt;
@@ -22,6 +105,7 @@
 &lt;p&gt;舵机控制板，先采取笔记本电脑使用usb转串口模块连接，然后利用一些上位机程序，控制舵机的一定角度的旋转，&lt;/p&gt;
 &lt;p&gt;舵机控制板的一些指令集：&lt;/p&gt;
 &lt;h5&gt;0x11 蓝牙与舵机控制板的连接测试&lt;/h5&gt;
+&lt;p&gt;首先需要考虑蓝牙模块供电问题，&lt;/p&gt;
 &lt;h5&gt;0x100 参考文献&lt;/h5&gt;
 &lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人详细思考</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Xiangxisikao.html" rel="alternate"></link><updated>2015-03-20T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-20:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Xiangxisikao.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
