@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/test.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 10 Feb 2015 12:11:00 +0100</lastBuildDate><item><title>Hello,World!</title><link>dubuqingfeng.github.io/2015-create-blog.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/test.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 10 Feb 2015 12:11:00 +0100</lastBuildDate><item><title>Hello,World!</title><link>http://dbqf.xyz/2015-create-blog.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -46,4 +46,4 @@ AUTHOR_FEED_RSS = None
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>
+&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-02-10:2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>

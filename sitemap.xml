@@ -4,231 +4,231 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>dubuqingfeng.github.io/</loc>
-<lastmod>2015-05-24T14:20:18-00:00</lastmod>
+<loc>http://dbqf.xyz/</loc>
+<lastmod>2015-05-25T18:18:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/archives.html</loc>
-<lastmod>2015-05-24T14:20:18-00:00</lastmod>
+<loc>http://dbqf.xyz/archives.html</loc>
+<lastmod>2015-05-25T18:18:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tags.html</loc>
-<lastmod>2015-05-24T14:20:18-00:00</lastmod>
+<loc>http://dbqf.xyz/tags.html</loc>
+<lastmod>2015-05-25T18:18:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/categories.html</loc>
-<lastmod>2015-05-24T14:20:18-00:00</lastmod>
+<loc>http://dbqf.xyz/categories.html</loc>
+<lastmod>2015-05-25T18:18:00-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-yixiezongjie.html</loc>
+<loc>http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html</loc>
 <lastmod>2015-04-30T20:12:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-houxukuozhan.html</loc>
+<loc>http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html</loc>
 <lastmod>2015-04-20T20:12:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</loc>
+<loc>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</loc>
 <lastmod>2015-04-10T20:18:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</loc>
+<loc>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</loc>
 <lastmod>2015-03-24T22:12:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Xiangxisikao.html</loc>
+<loc>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Xiangxisikao.html</loc>
 <lastmod>2015-03-20T20:12:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-start.html</loc>
+<loc>http://dbqf.xyz/201503-Rubik's-Cube-Robot-start.html</loc>
 <lastmod>2015-03-08T20:12:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</loc>
+<loc>http://dbqf.xyz/201503-RFID-RTLS-RSSI-start.html</loc>
 <lastmod>2015-03-07T11:00:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201503-git-fork-synchronized.html</loc>
+<loc>http://dbqf.xyz/201503-git-fork-synchronized.html</loc>
 <lastmod>2015-03-04T12:22:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201502-2014.html</loc>
+<loc>http://dbqf.xyz/201502-2014.html</loc>
 <lastmod>2015-02-12T12:22:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/201502-php-zhanzhang.html</loc>
+<loc>http://dbqf.xyz/201502-php-zhanzhang.html</loc>
 <lastmod>2015-02-12T12:11:11+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/2015-create-blog.html</loc>
+<loc>http://dbqf.xyz/2015-create-blog.html</loc>
 <lastmod>2015-02-10T12:11:00+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/category/2014.html</loc>
+<loc>http://dbqf.xyz/category/2014.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/category/dian-zi-she-ji.html</loc>
+<loc>http://dbqf.xyz/category/dian-zi-she-ji.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/category/github.html</loc>
+<loc>http://dbqf.xyz/category/github.html</loc>
 <lastmod>2015-03-04T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/category/php.html</loc>
+<loc>http://dbqf.xyz/category/php.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/category/test.html</loc>
+<loc>http://dbqf.xyz/category/test.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/fork.html</loc>
+<loc>http://dbqf.xyz/tag/fork.html</loc>
 <lastmod>2015-03-04T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/pelican.html</loc>
+<loc>http://dbqf.xyz/tag/pelican.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/git.html</loc>
+<loc>http://dbqf.xyz/tag/git.html</loc>
 <lastmod>2015-03-04T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/whois.html</loc>
+<loc>http://dbqf.xyz/tag/whois.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/dian-zi-she-ji.html</loc>
+<loc>http://dbqf.xyz/tag/dian-zi-she-ji.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/rfid.html</loc>
+<loc>http://dbqf.xyz/tag/rfid.html</loc>
 <lastmod>2015-03-07T11:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/github-pages.html</loc>
+<loc>http://dbqf.xyz/tag/github-pages.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/jie-mo-fang-ji-qi-ren.html</loc>
+<loc>http://dbqf.xyz/tag/jie-mo-fang-ji-qi-ren.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/nian-zhong-zong-jie.html</loc>
+<loc>http://dbqf.xyz/tag/nian-zhong-zong-jie.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/seo.html</loc>
+<loc>http://dbqf.xyz/tag/seo.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/2014.html</loc>
+<loc>http://dbqf.xyz/tag/2014.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/tag/php.html</loc>
+<loc>http://dbqf.xyz/tag/php.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
-<loc>dubuqingfeng.github.io/author/admin.html</loc>
+<loc>http://dbqf.xyz/author/admin.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>

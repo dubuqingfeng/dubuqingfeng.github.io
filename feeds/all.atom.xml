@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-04-30T20:12:00+02:00</updated><entry><title>基于XXX的解魔方机器人一些总结</title><link href="dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-yixiezongjie.html" rel="alternate"></link><updated>2015-04-30T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-04-30:dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-yixiezongjie.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人后续扩展</title><link href="dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-houxukuozhan.html" rel="alternate"></link><updated>2015-04-20T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-04-20:dubuqingfeng.github.io/201504-Rubik's-Cube-Robot-houxukuozhan.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人软件设计与实现</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" rel="alternate"></link><updated>2015-04-10T20:18:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-04-10:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</id><summary type="html">&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="http://dbqf.xyz/" rel="alternate"></link><link href="http://dbqf.xyz/feeds/all.atom.xml" rel="self"></link><id>http://dbqf.xyz/</id><updated>2015-04-30T20:12:00+02:00</updated><entry><title>基于XXX的解魔方机器人一些总结</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html" rel="alternate"></link><updated>2015-04-30T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-30:201504-Rubik's-Cube-Robot-yixiezongjie.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人后续扩展</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html" rel="alternate"></link><updated>2015-04-20T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-20:201504-Rubik's-Cube-Robot-houxukuozhan.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人软件设计与实现</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" rel="alternate"></link><updated>2015-04-10T20:18:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-10:201503-Rubik's-Cube-Robot-Ruanjiansheji.html</id><summary type="html">&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
 &lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;
@@ -84,7 +84,7 @@
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 魔方解法操作对应舵机动作分析&lt;/h5&gt;
 &lt;p&gt;因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。&lt;/p&gt;
-&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人组装调试</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-24:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
+&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人组装调试</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-24:201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
 &lt;p&gt;此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在&lt;a href="http://download"&gt;&lt;/a&gt;有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。&lt;/p&gt;
 &lt;h5&gt;0x02 TTL与RS-232&lt;/h5&gt;
 &lt;p&gt;波特率&lt;/p&gt;
@@ -109,7 +109,7 @@
 &lt;h5&gt;0x11 蓝牙与舵机控制板的连接测试&lt;/h5&gt;
 &lt;p&gt;首先需要考虑蓝牙模块供电问题，&lt;/p&gt;
 &lt;h5&gt;0x100 参考文献&lt;/h5&gt;
-&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人详细思考</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Xiangxisikao.html" rel="alternate"></link><updated>2015-03-20T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-20:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-Xiangxisikao.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人详细思考</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Xiangxisikao.html" rel="alternate"></link><updated>2015-03-20T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-20:201503-Rubik's-Cube-Robot-Xiangxisikao.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 系统设计框图设计&lt;/h5&gt;
 &lt;p&gt;主控板采取官方平台LM3S615平台，其供电采取电源适配器转3.3V(5V)，&lt;/p&gt;
@@ -119,7 +119,7 @@
 &lt;p&gt;电路板部分涉及到了通用版。&lt;/p&gt;
 &lt;h5&gt;0x05 材料的选择&lt;/h5&gt;
 &lt;p&gt;1.魔方：采用5.7CM的标准魔方，以顺滑和容错为标准，适当调整螺丝。
-2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人初步设计</title><link href="dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-start.html" rel="alternate"></link><updated>2015-03-08T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-08:dubuqingfeng.github.io/201503-Rubik's-Cube-Robot-start.html</id><summary type="html">&lt;h5&gt;0x01 材料&lt;/h5&gt;
+2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人初步设计</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-start.html" rel="alternate"></link><updated>2015-03-08T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-08:201503-Rubik's-Cube-Robot-start.html</id><summary type="html">&lt;h5&gt;0x01 材料&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Android手机(摄像头正常)&lt;/li&gt;
 &lt;li&gt;魔方(5.7cm,非地摊货)&lt;/li&gt;
@@ -211,7 +211,7 @@
 &lt;li&gt;3.主要功能为解魔方操作，识别魔方，计时等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5&gt;0x10 乐高机器人与之的辨析&lt;/h5&gt;
-&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的初步设计</title><link href="dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html" rel="alternate"></link><updated>2015-03-07T11:00:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-06:dubuqingfeng.github.io/201503-RFID-RTLS-RSSI-start.html</id><summary type="html">&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
+&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的初步设计</title><link href="http://dbqf.xyz/201503-RFID-RTLS-RSSI-start.html" rel="alternate"></link><updated>2015-03-07T11:00:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-06:201503-RFID-RTLS-RSSI-start.html</id><summary type="html">&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
 &lt;p&gt;RFID技术，无线电频率识别，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;RFID 定位模块&lt;/p&gt;
@@ -286,7 +286,7 @@
 &lt;p&gt;《RFID与传感器网络：架构、协议、安全与集成》(机械工业出版社)第10，19章&lt;/p&gt;
 &lt;p&gt;《UHF RFID标签天线设计、仿真及实践》(电子工业出版社)&lt;/p&gt;
 &lt;p&gt;《无线射频识别(RFID)技术基础》(北京航空航天大学出版社)&lt;/p&gt;
-&lt;p&gt;万方31&lt;/p&gt;</summary><category term="电子设计"></category><category term="RFID"></category></entry><entry><title>git-fork项目后与原项目进行同步</title><link href="dubuqingfeng.github.io/201503-git-fork-synchronized.html" rel="alternate"></link><updated>2015-03-04T12:22:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-03-04:dubuqingfeng.github.io/201503-git-fork-synchronized.html</id><summary type="html">&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
+&lt;p&gt;万方31&lt;/p&gt;</summary><category term="电子设计"></category><category term="RFID"></category></entry><entry><title>git-fork项目后与原项目进行同步</title><link href="http://dbqf.xyz/201503-git-fork-synchronized.html" rel="alternate"></link><updated>2015-03-04T12:22:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-04:201503-git-fork-synchronized.html</id><summary type="html">&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -316,13 +316,37 @@ git branch -a
 
 
 &lt;h5&gt;0x02 git协同命令&lt;/h5&gt;
+&lt;p&gt;如果是个人产品，不是那种产品需要上线的服务。&lt;/p&gt;
 &lt;p&gt;当使用git进行协作开发的时候，可以设置好几个分支，以主分支master为开发版，Release分支为发行版。&lt;/p&gt;
+&lt;p&gt;而产品类型的git协作时，主分支只用来分布重大版本，日常开发应该在另一条分支上完成。我们把开发用的分支，叫做Develop。&lt;/p&gt;
+&lt;p&gt;Git创建Develop分支的命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git checkout -b develop master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;将Develop分支发布到Master分支的命令：&lt;/p&gt;
+&lt;p&gt;切换到Master分支&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git checkout master
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;对Develop分支进行合并&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git merge --no-ff develop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。&lt;/p&gt;
+&lt;p&gt;其他分支：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;功能（feature）分支&lt;/li&gt;
+&lt;li&gt;预发布（release）分支&lt;/li&gt;
+&lt;li&gt;修补bug（fixbug）分支&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;当某个人fork项目后，并推送改动后如何处理？&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。
-http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</summary><category term="git"></category><category term="fork"></category></entry><entry><title>2014年的那些碎碎念。</title><link href="dubuqingfeng.github.io/201502-2014.html" rel="alternate"></link><updated>2015-02-12T12:22:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-12:dubuqingfeng.github.io/201502-2014.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。&lt;/p&gt;</summary><category term="git"></category><category term="fork"></category></entry><entry><title>2014年的那些碎碎念。</title><link href="http://dbqf.xyz/201502-2014.html" rel="alternate"></link><updated>2015-02-12T12:22:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-02-12:201502-2014.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;转眼之间大学已度一半有余，没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，从建立社团，到建立小组，以及各方面的为人处世，慢慢地提高自己，并且在所学领域希望也可以有一定的思考。&lt;/p&gt;
 &lt;h5&gt;0x02 起&lt;/h5&gt;
 &lt;p&gt;寒假里学习php代码审计以及一些安全方面基础部分的知识，假期结束后，和一些同学一块讨论去做三维的农大地图，使用3dmax或者maya进行绘制模型，后来也许因为分歧等原因，退出了相关活动，另外自己设备的落后也跟不上他们，还是他们弄吧。安心做做其他方面的事情，去试着写写书，在读者的角度，多弄一些图片，然后积累自己的这一方面的经验。&lt;/p&gt;
@@ -352,7 +376,7 @@ http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</summary><category term
 &lt;p&gt;团队的协调问题。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 部分关键词&lt;/h5&gt;
-&lt;p&gt;挂科，三维农大，学生会网站，社团活动，图书馆网站，移动互联网创业，wifi，nfc安全，饭盒网，四轴飞行器，移动互联网比赛，联想茄子快传，搜狐快站……&lt;/p&gt;</summary><category term="2014"></category><category term="年终总结"></category></entry><entry><title>php实现一些站长的工具</title><link href="dubuqingfeng.github.io/201502-php-zhanzhang.html" rel="alternate"></link><updated>2015-02-12T12:11:11+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-12:dubuqingfeng.github.io/201502-php-zhanzhang.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;挂科，三维农大，学生会网站，社团活动，图书馆网站，移动互联网创业，wifi，nfc安全，饭盒网，四轴飞行器，移动互联网比赛，联想茄子快传，搜狐快站……&lt;/p&gt;</summary><category term="2014"></category><category term="年终总结"></category></entry><entry><title>php实现一些站长的工具</title><link href="http://dbqf.xyz/201502-php-zhanzhang.html" rel="alternate"></link><updated>2015-02-12T12:11:11+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-02-12:201502-php-zhanzhang.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。&lt;/p&gt;
 &lt;h5&gt;0x02 计划与环境搭建&lt;/h5&gt;
 &lt;p&gt;前端框架采用bootstrap，有一个比较方便的bootwatch，
@@ -360,7 +384,7 @@ http://taoyuanxiaoqi.com/2015/01/12/apkshell1/&lt;/p&gt;</summary><category term
 php要求性能的话，phalcon框架，是php的一个扩展&lt;/p&gt;
 &lt;h5&gt;0x03 whois&lt;/h5&gt;
 &lt;p&gt;whois功能需要根据域名后缀，来连接一些whois服务器进行查询，&lt;/p&gt;
-&lt;h5&gt;0x04 ip查询&lt;/h5&gt;</summary><category term="php"></category><category term="whois"></category><category term="seo"></category></entry><entry><title>Hello,World!</title><link href="dubuqingfeng.github.io/2015-create-blog.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-10:dubuqingfeng.github.io/2015-create-blog.html</id><summary type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+&lt;h5&gt;0x04 ip查询&lt;/h5&gt;</summary><category term="php"></category><category term="whois"></category><category term="seo"></category></entry><entry><title>Hello,World!</title><link href="http://dbqf.xyz/2015-create-blog.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-02-10:2015-create-blog.html</id><summary type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
 &lt;/blockquote&gt;

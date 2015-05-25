@@ -7,9 +7,10 @@
   <title>独步清风's blog - 电子设计</title>
 
   <!-- CSS  -->
-  <link href="/theme/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
   <!-- Top-navigation -->
@@ -160,18 +161,18 @@
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
                 </div>
               </div>
             </div>
@@ -185,18 +186,18 @@
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
                 </div>
               </div>
             </div>
@@ -205,29 +206,39 @@
 <div class="section">
   <div class="card-panel z-depth-1">
     <div class="card black-text sidebar-title">
-      <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">GitHub</a></span>
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
     </div>
     <div class="row valign-wrapper">
       <div class="col s12">
         <div class="card-action">
-          <ul class="">
-            <li ><a href="/category/2014.html">dubuqingfeng</a></li>
-            <li ><a href="/category/dian-zi-she-ji.html">dubuqingfeng</a></li>
-            <li ><a href="/category/github.html">dubuqingfeng</a></li>
-            <li ><a href="/category/php.html">dubuqingfeng</a></li>
-            <li ><a href="/category/test.html">dubuqingfeng</a></li>
+          <ul class="" id="gh_repos">
+			<li class="loading">Status updating...</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-    <!-- <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
-        <div id="gh_repos">
-            <p class="list-group-item">Status updating...</p>
-        </div>
-    </li> -->
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = 'http://dbqf.xyz/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"> </script>
+</div>
         <div class="section">
           <div class="card-panel z-depth-1">
             <div class="card black-text sidebar-title">
@@ -280,10 +291,10 @@
     </div>
   </footer>
   <!--  Scripts-->
-  <script src="/theme/js/jquery-1.11.2.min.js"></script>
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/materialize.js"></script>
+  
+  <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>
