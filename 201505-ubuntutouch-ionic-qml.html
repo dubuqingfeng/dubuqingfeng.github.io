@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - php</title>
+  <title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -50,8 +50,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="#"><i class="mdi-action-loyalty"></i></a><a href="#">php</a> </div>              </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<div class="collapsible-header"><a href="/category/kua-ping-tai-kai-fa.html"><i class="mdi-action-subject"></i>【跨平台开发】</a><a href="#">--ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</a>              </div>
+              <div class="collapsible-body"><p>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</p></div>
             </li>
           </ul>
         </div>
@@ -59,16 +59,63 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/201502-php-zhanzhang.html" class="black-text flow-text" id="title">php实现一些站长的工具</a></span>
-      <p><p>近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/201505-ubuntutouch-ionic-qml.html" class="black-text flow-text" id="title">ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</a></span>
+      <h5>0x01 前言</h5>
+<p>人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。</p>
+<h5>0x02 ubuntu sdk</h5>
+<p>ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。</p>
+<div class="highlight"><pre>apt-get update &amp;&amp; apt-get dist-upgrade
+apt-get install ubuntu-sdk
+</pre></div>
+
+
+<h5>0x03 ubuntu touch</h5>
+<p>作为ubuntu在手机端的产品，据说魅族也要联合推出手机，相类似的有Firefox OS、Salish……，主要开发方式有QT原生、HTML5、Scope，应该也可以用go、python进行开发，鉴于HTML5开发手机应用的不成熟，尤其是这种非安卓、iOS的，能想到的也就是用phoneGap构建，相对来说，展示类应用，用HTML5开发效率高。</p>
+<p>相对Android来说，ubuntu touch感觉风格较统一，有便利的边缘交互模式，但是只靠这几点去赢得市场，在应用为王的移动互联网时代中比较难。一个用户，尤其是80后，90后，00后，系统上连微信、QQ都没有，比较难将其做为主力机。</p>
+<p>PS：
+1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。</p>
+<h5>0x04 QML</h5>
+<h5>0x05 ionic</h5>
+<p>ionic的安装</p>
+<div class="highlight"><pre>  $ npm install -g cordova ionic
+</pre></div>
+
+
+<p>Ionic in Action
+一些AngularJS入门资料
+AngularJS入门教程
+AngularJS权威教程
+用AngularJS开发下一代Web应用</p>
+<h5>0x100 参考资料</h5>
+<p>AngularJS</p>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/php.html" onclick="">2015-02-12 12:11:11</a>
-<a href="/tag/php.html">php</a><a href="/tag/whois.html">whois</a><a href="/tag/seo.html">seo</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
+<a href="/tag/ubuntu-sdk.html">ubuntu sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -83,7 +130,7 @@
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li class="active"><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
@@ -133,7 +180,10 @@
               <div class="col s12">
                 <div class="card-action">
 				<ul class="">
-						<li><a href="/">二月 2015 (1)</a></li>
+						<li><a href="/">五月 2015 (2)</a></li>
+						<li><a href="/">四月 2015 (3)</a></li>
+						<li><a href="/">三月 2015 (5)</a></li>
+						<li><a href="/">二月 2015 (3)</a></li>
                 </div>
               </div>
             </div>

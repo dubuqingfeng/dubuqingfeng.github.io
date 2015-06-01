@@ -21,9 +21,9 @@
       <ul class="right hide-on-med-and-down">
 		<li>
 			<div class="black-text">
-				<form>
+				<form onsubmit="return dispatch()">
 					<div class="input-field">
-						<input type="search" id="search-field" class="field" required maxlength="">
+						<input type="search" id="search-field" class="field" required maxlength="" name="q">
 						<label for="search-field" class="right"><i class="mdi-action-search black-text"></i></label>
 					</div>
 				</form>
@@ -60,6 +60,8 @@
 <div class="section">
 	<div class="z-depth-1">
 		<ul class="collection">
+      <li class="collection-item dismissable"><div>Linux VPS一些配置 -- 2015-05-16 12:53:00<a href="/201505-vps-base-setting.html" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
+      <li class="collection-item dismissable"><div>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记 -- 2015-05-12 09:21:00<a href="/201505-ubuntutouch-ionic-qml.html" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
       <li class="collection-item dismissable"><div>基于XXX的解魔方机器人一些总结 -- 2015-04-30 16:22:00<a href="/201504-Rubik's-Cube-Robot-yixiezongjie.html" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
       <li class="collection-item dismissable"><div>基于XXX的解魔方机器人后续扩展 -- 2015-04-20 16:22:00<a href="/201504-Rubik's-Cube-Robot-houxukuozhan.html" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
       <li class="collection-item dismissable"><div>基于XXX的解魔方机器人软件设计与实现 -- 2015-04-10 16:25:00<a href="/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" class="secondary-content"><i class="mdi-content-send"></i></a></div></li>
@@ -88,6 +90,8 @@
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                   </ul>
@@ -104,18 +108,24 @@
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
                     <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/ubuntu-sdk.html">ubuntu sdk</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/git.html">git</a>
                 </div>
               </div>
             </div>
@@ -130,6 +140,7 @@
               <div class="col s12">
                 <div class="card-action">
 				<ul class="">
+						<li><a href="/">五月 2015 (2)</a></li>
 						<li><a href="/">四月 2015 (3)</a></li>
 						<li><a href="/">三月 2015 (5)</a></li>
 						<li><a href="/">二月 2015 (3)</a></li>
@@ -153,7 +164,6 @@
       </div>
     </div>
   </div>
-
 <script type="text/javascript">
 $(document).ready(function () {
     if (!window.jXHR) {
@@ -183,7 +193,7 @@ $(document).ready(function () {
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                    <li><a href="http://getpelican.com/">Changyanlong</a></li>
+                    <li><a href="http://smartki.sinaapp.com">Changyanlong</a></li>
                     <li><a href="http://python.org/">1433</a></li>
                     <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
                     <li><a href="#"></a></li>

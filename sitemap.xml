@@ -5,30 +5,44 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://dbqf.xyz/</loc>
-<lastmod>2015-05-25T20:04:23-00:00</lastmod>
+<lastmod>2015-06-01T11:18:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://dbqf.xyz/archives.html</loc>
-<lastmod>2015-05-25T20:04:23-00:00</lastmod>
+<lastmod>2015-06-01T11:18:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://dbqf.xyz/tags.html</loc>
-<lastmod>2015-05-25T20:04:23-00:00</lastmod>
+<lastmod>2015-06-01T11:18:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://dbqf.xyz/categories.html</loc>
-<lastmod>2015-05-25T20:04:23-00:00</lastmod>
+<lastmod>2015-06-01T11:18:19-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://dbqf.xyz/201505-vps-base-setting.html</loc>
+<lastmod>2015-05-17T12:15:00+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
+</url>
+
+<url>
+<loc>http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html</loc>
+<lastmod>2015-05-12T12:26:00+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -130,6 +144,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://dbqf.xyz/category/kua-ping-tai-kai-fa.html</loc>
+<lastmod>2015-05-12T12:26:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://dbqf.xyz/category/linux.html</loc>
+<lastmod>2015-05-17T12:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://dbqf.xyz/category/php.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -172,6 +200,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://dbqf.xyz/tag/vps.html</loc>
+<lastmod>2015-05-17T12:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://dbqf.xyz/tag/ionic.html</loc>
+<lastmod>2015-05-12T12:26:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://dbqf.xyz/tag/dian-zi-she-ji.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -193,6 +235,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://dbqf.xyz/tag/ubuntu-touch.html</loc>
+<lastmod>2015-05-12T12:26:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://dbqf.xyz/tag/jie-mo-fang-ji-qi-ren.html</loc>
 <lastmod>2015-04-30T20:12:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -200,8 +249,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://dbqf.xyz/tag/qml.html</loc>
+<lastmod>2015-05-12T12:26:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://dbqf.xyz/tag/nian-zhong-zong-jie.html</loc>
 <lastmod>2015-02-12T12:22:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://dbqf.xyz/tag/linux.html</loc>
+<lastmod>2015-05-17T12:15:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -228,8 +291,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://dbqf.xyz/tag/ubuntu-sdk.html</loc>
+<lastmod>2015-05-12T12:26:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://dbqf.xyz/author/admin.html</loc>
-<lastmod>2015-04-30T20:12:00+00:09</lastmod>
+<lastmod>2015-05-17T12:15:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

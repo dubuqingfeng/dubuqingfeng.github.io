@@ -1,5 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 30 Apr 2015 20:12:00 +0200</lastBuildDate><item><title>基于XXX的解魔方机器人一些总结</title><link>http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 17 May 2015 12:15:00 +0200</lastBuildDate><item><title>Linux VPS一些配置</title><link>http://dbqf.xyz/201505-vps-base-setting.html</link><description>&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
+&lt;p&gt;一般ssh是开放的，容易受到攻击或者爆破等行为。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;#vi /etc/ssh/sshd_config
+
+#Port 22             //先把22注释掉
+
+Port 2754            //添加一个新的端口
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;重启ssh服务&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service sshd restart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x02 使用密钥登录而不是密码&lt;/h5&gt;
+&lt;p&gt;在一个自用的vps上，避免使用密码登录，妥善保管好密钥，可以提高一定的安全性。&lt;/p&gt;
+&lt;p&gt;一开始使用Xshell的密钥生成工具，在工具选项卡中，有新建用户密钥生成向导，选择RSA，密钥长度为2048位，下一步输入私钥密码，涉及到了非对称加密，详细原理以后再进行分析，生成了pub格式的公钥。&lt;/p&gt;
+&lt;p&gt;将我们生成的pub公钥文件上传到/root/.ssh文件夹下面（如果没有我们需要创建），然后我们需要将id_rsa_2048.pub重命名为authorized_keys 并且用chmod 600 authorized_keys设置权限。&lt;/p&gt;
+&lt;p&gt;找到/etc/ssh/sshd_config ，把RSAAuthentication和PubkeyAuthentication两行前面的#注释去掉。&lt;/p&gt;
+&lt;p&gt;重启sshd服务的另一种方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Debian/Ubuntu执行：/etc/init.d/ssh restart
+CentOS执行：/etc/init.d/sshd restart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;禁止密码登录：&lt;/p&gt;
+&lt;p&gt;vi /etc/ssh/sshd_config文件，找到PasswordAuthentication后面的yes改成no。&lt;/p&gt;
+&lt;h5&gt;0x03 查看登录日志&lt;/h5&gt;
+&lt;p&gt;首先进入日志目录：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd /var/log
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查看ssh用户的登录日志：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;less secure
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查看登录成功的ip信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;last
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查看登录失败的ip信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;lastb
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x04 配置shadowsocks&lt;/h5&gt;
+&lt;p&gt;安装setuptools&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y python-setuptools
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装完毕后，easy_install命令就可以使用了。&lt;/p&gt;
+&lt;p&gt;安装pip，默认安装到/usr/bin目录下。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;easy_install pip
+pip install shadowsocks
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;创建shadowsocks的配置文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vi /etc/shadowsocks.json
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;内容如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{
+        &amp;quot;server&amp;quot;:&amp;quot;your_server_ip&amp;quot;,
+        &amp;quot;server_port&amp;quot;:8989,
+        &amp;quot;local_address&amp;quot;: &amp;quot;127.0.0.1&amp;quot;,
+        &amp;quot;local_port&amp;quot;:1080,
+        &amp;quot;password&amp;quot;:&amp;quot;yourpassword&amp;quot;,
+        &amp;quot;timeout&amp;quot;:600,
+        &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;,
+        &amp;quot;fast_open&amp;quot;: false,
+        &amp;quot;workers&amp;quot;: 1
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装 gevent可以提高 Shadowsocks的性能。CentOS下安装gevent依赖libevent和greenlet。&lt;/p&gt;
+&lt;p&gt;安装libevent：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;yum install -y libevent
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装greenlet：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install greenlet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装gevent：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install gevent
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行shadowsocks服务端：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ssserver -c /etc/shadowsocks.json
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果想在后台一直运行Shadowsocks，启动命令如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;nohup ssserver -c /etc/shadowsocks.json &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;防火墙的设置&lt;/p&gt;
+&lt;p&gt;编辑防火墙配置文件/etc/sysconfig/iptables，将服务器端口（server_port）放行。
+新增一条防火墙规则：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-A INPUT -m state --state NEW -m tcp -p tcp --dport 8989 -j ACCEPT
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;重启防火墙iptables：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service iptables restart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x05 Koding环境配置pelican简记&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-pip
+pip install pelican
+sudo apt-get install python-virtualenv
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 17 May 2015 12:15:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-16:201505-vps-base-setting.html</guid><category>Linux</category><category>vps</category></item><item><title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</title><link>http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。&lt;/p&gt;
+&lt;h5&gt;0x02 ubuntu sdk&lt;/h5&gt;
+&lt;p&gt;ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;apt-get update &amp;amp;&amp;amp; apt-get dist-upgrade
+apt-get install ubuntu-sdk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x03 ubuntu touch&lt;/h5&gt;
+&lt;p&gt;作为ubuntu在手机端的产品，据说魅族也要联合推出手机，相类似的有Firefox OS、Salish……，主要开发方式有QT原生、HTML5、Scope，应该也可以用go、python进行开发，鉴于HTML5开发手机应用的不成熟，尤其是这种非安卓、iOS的，能想到的也就是用phoneGap构建，相对来说，展示类应用，用HTML5开发效率高。&lt;/p&gt;
+&lt;p&gt;相对Android来说，ubuntu touch感觉风格较统一，有便利的边缘交互模式，但是只靠这几点去赢得市场，在应用为王的移动互联网时代中比较难。一个用户，尤其是80后，90后，00后，系统上连微信、QQ都没有，比较难将其做为主力机。&lt;/p&gt;
+&lt;p&gt;PS：
+1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。&lt;/p&gt;
+&lt;h5&gt;0x04 QML&lt;/h5&gt;
+&lt;h5&gt;0x05 ionic&lt;/h5&gt;
+&lt;p&gt;ionic的安装&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;  $ npm install -g cordova ionic
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Ionic in Action
+一些AngularJS入门资料
+AngularJS入门教程
+AngularJS权威教程
+用AngularJS开发下一代Web应用&lt;/p&gt;
+&lt;h5&gt;0x100 参考资料&lt;/h5&gt;
+&lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 12:26:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</guid><category>ubuntu sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item><item><title>基于XXX的解魔方机器人一些总结</title><link>http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 30 Apr 2015 20:12:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-04-30:201504-Rubik's-Cube-Robot-yixiezongjie.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于XXX的解魔方机器人后续扩展</title><link>http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 20:12:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-04-20:201504-Rubik's-Cube-Robot-houxukuozhan.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于XXX的解魔方机器人软件设计与实现</title><link>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
