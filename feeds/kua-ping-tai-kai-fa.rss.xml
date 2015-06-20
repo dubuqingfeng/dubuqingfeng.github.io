@@ -21,9 +21,11 @@ apt-get install ubuntu-sdk
 
 
 &lt;p&gt;Ionic in Action
-一些AngularJS入门资料
-AngularJS入门教程
-AngularJS权威教程
-用AngularJS开发下一代Web应用&lt;/p&gt;
+一些AngularJS入门资料&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AngularJS入门教程&lt;/p&gt;
+&lt;p&gt;AngularJS权威教程&lt;/p&gt;
+&lt;p&gt;用AngularJS开发下一代Web应用&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h5&gt;0x100 参考资料&lt;/h5&gt;
 &lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 12:26:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</guid><category>ubuntu sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item></channel></rss>

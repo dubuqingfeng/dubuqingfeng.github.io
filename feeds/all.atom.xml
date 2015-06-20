@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="http://dbqf.xyz/" rel="alternate"></link><link href="http://dbqf.xyz/feeds/all.atom.xml" rel="self"></link><id>http://dbqf.xyz/</id><updated>2015-05-17T12:15:00+02:00</updated><entry><title>Linux VPS一些配置</title><link href="http://dbqf.xyz/201505-vps-base-setting.html" rel="alternate"></link><updated>2015-05-17T12:15:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-05-16:201505-vps-base-setting.html</id><summary type="html">&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="http://dbqf.xyz/" rel="alternate"></link><link href="http://dbqf.xyz/feeds/all.atom.xml" rel="self"></link><id>http://dbqf.xyz/</id><updated>2015-05-17T12:15:00+02:00</updated><entry><title>Linux VPS的一些配置</title><link href="http://dbqf.xyz/201505-vps-base-setting.html" rel="alternate"></link><updated>2015-05-17T12:15:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-05-16:201505-vps-base-setting.html</id><summary type="html">&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
 &lt;p&gt;一般ssh是开放的，容易受到攻击或者爆破等行为。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;#vi /etc/ssh/sshd_config
 
@@ -16,9 +16,17 @@ Port 2754            //添加一个新的端口
 
 &lt;h5&gt;0x02 使用密钥登录而不是密码&lt;/h5&gt;
 &lt;p&gt;在一个自用的vps上，避免使用密码登录，妥善保管好密钥，可以提高一定的安全性。&lt;/p&gt;
-&lt;p&gt;一开始使用Xshell的密钥生成工具，在工具选项卡中，有新建用户密钥生成向导，选择RSA，密钥长度为2048位，下一步输入私钥密码，涉及到了非对称加密，详细原理以后再进行分析，生成了pub格式的公钥。&lt;/p&gt;
+&lt;p&gt;一开始使用Xshell的密钥生成工具，在工具选项卡中，有新建用户密钥生成向导，选择RSA，密钥长度为2048位，下一步输入私钥密码，涉及到了非对称加密，详细原理正在读《深入浅出密码学》，一些RSA算法，在256位密钥以上进行蛮力攻击时耗费时间较长。生成了pub格式的公钥。&lt;/p&gt;
 &lt;p&gt;将我们生成的pub公钥文件上传到/root/.ssh文件夹下面（如果没有我们需要创建），然后我们需要将id_rsa_2048.pub重命名为authorized_keys 并且用chmod 600 authorized_keys设置权限。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;chmod 600 /root/.ssh/authorized_keys
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;找到/etc/ssh/sshd_config ，把RSAAuthentication和PubkeyAuthentication两行前面的#注释去掉。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vi /etc/ssh/sshd_config
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;重启sshd服务的另一种方法：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Debian/Ubuntu执行：/etc/init.d/ssh restart
 CentOS执行：/etc/init.d/sshd restart
@@ -26,7 +34,11 @@ CentOS执行：/etc/init.d/sshd restart
 
 
 &lt;p&gt;禁止密码登录：&lt;/p&gt;
-&lt;p&gt;vi /etc/ssh/sshd_config文件，找到PasswordAuthentication后面的yes改成no。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;vi /etc/ssh/sshd_config 文件
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;找到PasswordAuthentication后面的yes改成no。&lt;/p&gt;
 &lt;h5&gt;0x03 查看登录日志&lt;/h5&gt;
 &lt;p&gt;首先进入日志目录：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;cd /var/log
@@ -81,6 +93,7 @@ pip install shadowsocks
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;一些优化：&lt;/p&gt;
 &lt;p&gt;安装 gevent可以提高 Shadowsocks的性能。CentOS下安装gevent依赖libevent和greenlet。&lt;/p&gt;
 &lt;p&gt;安装libevent：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;yum install -y libevent
@@ -119,11 +132,50 @@ pip install shadowsocks
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;使用docker部署shadowsocks服务。&lt;/p&gt;
+&lt;p&gt;1.安装并测试Docker，可以参考官方文档。或者是《Docker入门与实践》安装一节。&lt;/p&gt;
+&lt;p&gt;2.拉取镜像&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;docker pull index.alauda.cn/dubuqingfeng/ubuntu-shadowsocks
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;3.运行容器&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;docker run -d -p 1984:1984 index.alauda.cn/dubuqingfeng/ubuntu-shadowsocks -p 1984 -k sspassword -m aes-256-cfb
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;1984即为服务器端口。&lt;/p&gt;
+&lt;p&gt;sspassword为连接密码，自行更换。&lt;/p&gt;
+&lt;p&gt;aes-256-cfb为加密方式。&lt;/p&gt;
+&lt;p&gt;也可以使用-c /etc/shadowsocks.json参数。&lt;/p&gt;
+&lt;p&gt;4.测试运行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;docker ps -a
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果出现up即为安装成功。&lt;/p&gt;
+&lt;p&gt;Centos7版本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;docker pull index.alauda.cn/dubuqingfeng/centos7-shadowsocks
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行容器&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;docker run -d -p 1984:1984 index.alauda.cn/dubuqingfeng/centos7-shadowsocks -p 1984 -k sspassword -m aes-256-cfb
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h5&gt;0x05 Koding环境配置pelican简记&lt;/h5&gt;
+&lt;p&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-pip
 pip install pelican
 sudo apt-get install python-virtualenv
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Linux"></category><category term="vps"></category></entry><entry><title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</title><link href="http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html" rel="alternate"></link><updated>2015-05-12T12:26:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x06 后记&lt;/h5&gt;
+&lt;p&gt;需要进一步学习SSH协议，Linux服务器管理，密码学，sock5代理，iptables。&lt;/p&gt;
+&lt;p&gt;路漫漫，盖余之勤且艰若此。&lt;/p&gt;
+&lt;p&gt;专注地做好每一件事。&lt;/p&gt;</summary><category term="Linux"></category><category term="vps"></category></entry><entry><title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</title><link href="http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html" rel="alternate"></link><updated>2015-05-12T12:26:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。&lt;/p&gt;
 &lt;h5&gt;0x02 ubuntu sdk&lt;/h5&gt;
 &lt;p&gt;ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。&lt;/p&gt;
@@ -145,14 +197,16 @@ apt-get install ubuntu-sdk
 
 
 &lt;p&gt;Ionic in Action
-一些AngularJS入门资料
-AngularJS入门教程
-AngularJS权威教程
-用AngularJS开发下一代Web应用&lt;/p&gt;
+一些AngularJS入门资料&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AngularJS入门教程&lt;/p&gt;
+&lt;p&gt;AngularJS权威教程&lt;/p&gt;
+&lt;p&gt;用AngularJS开发下一代Web应用&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h5&gt;0x100 参考资料&lt;/h5&gt;
-&lt;p&gt;AngularJS&lt;/p&gt;</summary><category term="ubuntu sdk"></category><category term="ubuntu touch"></category><category term="qml"></category><category term="ionic"></category></entry><entry><title>基于XXX的解魔方机器人一些总结</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html" rel="alternate"></link><updated>2015-04-30T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-30:201504-Rubik's-Cube-Robot-yixiezongjie.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人后续扩展</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html" rel="alternate"></link><updated>2015-04-20T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-20:201504-Rubik's-Cube-Robot-houxukuozhan.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人软件设计与实现</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" rel="alternate"></link><updated>2015-04-10T20:18:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-10:201503-Rubik's-Cube-Robot-Ruanjiansheji.html</id><summary type="html">&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+&lt;p&gt;AngularJS&lt;/p&gt;</summary><category term="ubuntu sdk"></category><category term="ubuntu touch"></category><category term="qml"></category><category term="ionic"></category></entry><entry><title>基于Arduino的解魔方机器人一些总结</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html" rel="alternate"></link><updated>2015-04-30T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-30:201504-Rubik's-Cube-Robot-yixiezongjie.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于Arduino的解魔方机器人后续扩展</title><link href="http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html" rel="alternate"></link><updated>2015-04-20T20:12:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-20:201504-Rubik's-Cube-Robot-houxukuozhan.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于Arduino的解魔方机器人软件设计与实现</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html" rel="alternate"></link><updated>2015-04-10T20:18:00+02:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-04-10:201503-Rubik's-Cube-Robot-Ruanjiansheji.html</id><summary type="html">&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
 &lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;
@@ -235,7 +289,7 @@ AngularJS权威教程
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 魔方解法操作对应舵机动作分析&lt;/h5&gt;
 &lt;p&gt;因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。&lt;/p&gt;
-&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人组装调试</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-24:201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
+&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于Arduino的解魔方机器人组装调试</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html" rel="alternate"></link><updated>2015-03-24T22:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-24:201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</id><summary type="html">&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
 &lt;p&gt;此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在&lt;a href="http://download"&gt;&lt;/a&gt;有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。&lt;/p&gt;
 &lt;h5&gt;0x02 TTL与RS-232&lt;/h5&gt;
 &lt;p&gt;波特率&lt;/p&gt;
@@ -260,7 +314,7 @@ AngularJS权威教程
 &lt;h5&gt;0x11 蓝牙与舵机控制板的连接测试&lt;/h5&gt;
 &lt;p&gt;首先需要考虑蓝牙模块供电问题，&lt;/p&gt;
 &lt;h5&gt;0x100 参考文献&lt;/h5&gt;
-&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于LM3S615的解魔方机器人详细思考</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Xiangxisikao.html" rel="alternate"></link><updated>2015-03-20T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-20:201503-Rubik's-Cube-Robot-Xiangxisikao.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于Arduino的解魔方机器人详细思考</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-Xiangxisikao.html" rel="alternate"></link><updated>2015-03-20T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-20:201503-Rubik's-Cube-Robot-Xiangxisikao.html</id><summary type="html">&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 系统设计框图设计&lt;/h5&gt;
 &lt;p&gt;主控板采取官方平台LM3S615平台，其供电采取电源适配器转3.3V(5V)，&lt;/p&gt;
@@ -270,7 +324,7 @@ AngularJS权威教程
 &lt;p&gt;电路板部分涉及到了通用版。&lt;/p&gt;
 &lt;h5&gt;0x05 材料的选择&lt;/h5&gt;
 &lt;p&gt;1.魔方：采用5.7CM的标准魔方，以顺滑和容错为标准，适当调整螺丝。
-2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于XXX的解魔方机器人初步设计</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-start.html" rel="alternate"></link><updated>2015-03-08T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-08:201503-Rubik's-Cube-Robot-start.html</id><summary type="html">&lt;h5&gt;0x01 材料&lt;/h5&gt;
+2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</summary><category term="电子设计"></category><category term="解魔方机器人"></category></entry><entry><title>基于Arduino的解魔方机器人初步设计</title><link href="http://dbqf.xyz/201503-Rubik's-Cube-Robot-start.html" rel="alternate"></link><updated>2015-03-08T20:12:00+01:00</updated><author><name>admin</name></author><id>tag:dbqf.xyz,2015-03-08:201503-Rubik's-Cube-Robot-start.html</id><summary type="html">&lt;h5&gt;0x01 材料&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Android手机(摄像头正常)&lt;/li&gt;
 &lt;li&gt;魔方(5.7cm,非地摊货)&lt;/li&gt;
