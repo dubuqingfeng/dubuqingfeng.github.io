@@ -25,25 +25,24 @@
   <!-- Top-navigation -->
   <nav class="lighten-5" role="navigation">
     <div class="container nav-wrapper">
-      <a id="logo-container" href="http://dubuqingfeng.github.io" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
-
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
       <ul class="right hide-on-med-and-down">
-		<li>
-			<div class="black-text">
-				<form onsubmit="return dispatch()">
-					<div class="input-field">
-						<input type="search" id="search-field" class="field" required maxlength="" name="q">
-						<label for="search-field" class="right"><i class="mdi-action-search black-text"></i></label>
-					</div>
-				</form>
-			</div>
-		</li>
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+                <label for="search-field" class="right"><i class="mdi-action-search black-text"></i></label>
+              </div>
+            </form>
+          </div>
+        </li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
         <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">Github</span></a></li>
       </ul>
-      <!--><ul class="right hide-on-large-only">
+      <ul class="right hide-on-large-only">
         <li><a class="waves-effect waves-light" href="#"><i class="mdi-action-search black-text"></i></a></li>
-      </ul><-->
+      </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -60,7 +59,7 @@
           <ul class="collapsible" data-collapsible="accordion">
             <li>
 <div class="collapsible-header"><a href="/category/android.html"><i class="mdi-action-subject"></i>【Android】</a><a href="#">--如何使用PreferenceFragment方便地完成设置界面</a>              </div>
-              <div class="collapsible-body"><p>利用PreferenceFragment快速完成设置界面以及思考。</p></div>
+              <div class="collapsible-body"><p>利用PreferenceFragment快速完成设置界面以及一些思考。</p></div>
             </li>
           </ul>
         </div>
@@ -71,8 +70,8 @@
       <span class="card-title black-text"><a href="/201506-android-Preference-fragment.html" class="black-text flow-text" id="title">如何使用PreferenceFragment方便地完成设置界面</a></span>
       <h5>0x01 前言</h5>
 <p>在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。</p>
-<p>在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。</p>
-<p>以及一些配置。</p>
+<p>在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
+以及一些配置。</p>
 <h5>0x02 浅析</h5>
 <p>PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。</p>
 <h5>0x03 完成步骤</h5>
@@ -164,12 +163,12 @@ prefEditText.setText(my_edittext_preference);
 <h5>0x04 Preference类</h5>
 <p>前几天在SIMS(学生信息管理系统)项目中，涉及到了Preference这个类，当时可以通过输入输出流进行与文件的交互。</p>
 <h5>0x05 思考</h5>
-<p>其PreferenceFragment文件源码地址在：<a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java">googlesource</a>，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些<a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment">示例代码</a>，</p>
-<h5>0x0100 参考链接</h5>
-<p><a href="http://developer.android.com/guide/topics/ui/settings.html">Settings</a></p>
+<p>其PreferenceFragment文件源码地址在：<a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java">GoogleSource</a>，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些<a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment">示例代码</a>，</p>
+<h5>0x06 参考链接</h5>
+<p><a href="http://developer.android.com/guide/topics/ui/settings.html">settings</a></p>
 <p><a href="http://developer.android.com/reference/android/preference/PreferenceFragment.html">官方文档</a></p>
-<p><a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html">Using PreferenceFragment to Store User Preferences</a></p>
-<p><a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment">Settings with PreferenceFragment</a></p>	
+<p><a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html">Using PreferenceFragment to store user preferences</a></p>
+<p><a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment">Settings-with-PreferenceFragment</a></p>	
     </div>
     <div class="card-action">
       <a class="orange-text text-accent-2" href="/category/android.html" onclick="">2015-06-06 12:13:00</a>
@@ -231,26 +230,27 @@ prefEditText.setText(my_edittext_preference);
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/ubuntu-sdk.html">ubuntu sdk</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
                 </div>
               </div>
             </div>
@@ -264,17 +264,66 @@ prefEditText.setText(my_edittext_preference);
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-				<ul class="">
-						<li><a href="/">六月 2015 (1)</a></li>
-						<li><a href="/">五月 2015 (2)</a></li>
-						<li><a href="/">四月 2015 (3)</a></li>
-						<li><a href="/">三月 2015 (5)</a></li>
-						<li><a href="/">二月 2015 (3)</a></li>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
 <div class="section">
   <div class="card-panel z-depth-1">
     <div class="card black-text sidebar-title">
@@ -284,18 +333,19 @@ prefEditText.setText(my_edittext_preference);
       <div class="col s12">
         <div class="card-action">
           <ul class="" id="gh_repos">
-			<li class="loading">Status updating...</li>
+			<li class="loading">状态更新中...</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
 <script type="text/javascript">
 $(document).ready(function () {
     if (!window.jXHR) {
         var jxhr = document.createElement('script');
         jxhr.type = 'text/javascript';
-        jxhr.src = 'http://dbqf.xyz/theme/js/jXHR.js';
+        jxhr.src = 'dubuqingfeng.github.io/theme/js/jXHR.js';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(jxhr, s);
     }
@@ -319,8 +369,8 @@ $(document).ready(function () {
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                    <li><a href="http://smartki.sinaapp.com">Changyanlong</a></li>
-                    <li><a href="http://1433.sinaapp.com">1433</a></li>
+                    <li><a href="http://getpelican.com/">Pelican</a></li>
+                    <li><a href="http://python.org/">1433</a></li>
                     <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
                     <li><a href="#"></a></li>
                   </ul>

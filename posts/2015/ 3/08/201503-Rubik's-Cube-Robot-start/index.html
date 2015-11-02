@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>基于Arduino的解魔方机器人初步设计 - 独步清风's blog</title>
+
+  <!-- CSS  -->
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?76712397de583de526f98e457deb2a7d";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body>
+  <!-- Top-navigation -->
+  <nav class="lighten-5" role="navigation">
+    <div class="container nav-wrapper">
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+                <label for="search-field" class="right"><i class="mdi-action-search black-text"></i></label>
+              </div>
+            </form>
+          </div>
+        </li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">Github</span></a></li>
+      </ul>
+      <ul class="right hide-on-large-only">
+        <li><a class="waves-effect waves-light" href="#"><i class="mdi-action-search black-text"></i></a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng"><span class="blue-grey-text text-darken-4">Github</span></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu black-text"></i></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row template-content-page">
+      <div class="col s12 m8 l9">
+        <!-- Breadcrumb -->
+        <div class="section">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+<div class="collapsible-header"><a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于Arduino的解魔方机器人初步设计</a>              </div>
+              <div class="collapsible-body"><p>本文主要写了一种解魔方机器人的初步设计，基于Android和博创Arm控制板，可以扩展到树莓派等，或者直接通过舵机控制板，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p></div>
+            </li>
+          </ul>
+        </div>
+        <!-- Article Lists -->
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content black-text">
+      <span class="card-title black-text"><a href="/posts/2015/ 3/08/201503-Rubik's-Cube-Robot-start/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人初步设计</a></span>
+      <h5>0x01 材料</h5>
+<ul>
+<li>Android手机(摄像头正常)</li>
+<li>魔方(5.7cm,非地摊货)</li>
+<li>亚克力板(充当底板部分以及部分机械手)</li>
+<li>舵机(因采取四向导轨式，所以大致需要8个舵机)</li>
+<li>舵机控制板？</li>
+<li>xxx控制板。</li>
+<li>开发用的计算机一台(配置好安卓开发环境，以及keil等，本次采用android studio)</li>
+<li>光滑小轮</li>
+<li>螺丝</li>
+</ul>
+<h5>0x02 整体结构</h5>
+<p>整体主要有四种结构。</p>
+<blockquote>
+<p>四向推进式</p>
+</blockquote>
+<p>大部分的解魔方机器人都是这种结构，基本不需要考虑魔方重力的影响，但是需要的舵机较多，控制也较为稳定，机械手的设计只需要考虑与魔方的配合，以及与舵机的连接。示例项目为</p>
+<blockquote>
+<p>垂直手臂式</p>
+</blockquote>
+<p>这种结构主要是将两个机械手垂直，魔方斜向控制，可以采用4个舵机，示例项目为<a href="http://www.baidu.com">u</a></p>
+<blockquote>
+<p>单向旋转式</p>
+</blockquote>
+<p>这种结构主要旋转的是正反一个方向或者是，大部分的乐高机器人采取这种。</p>
+<blockquote>
+<p>内嵌中心块式</p>
+</blockquote>
+<p>这种结构在解魔方速度上占优势，在有良好的解魔方算法后，可以达到秒级解魔方，有个视频采取这种结构的，只用了两三秒，不需要太多考虑伸缩或者推进。</p>
+<blockquote>
+<p>设计出的结构</p>
+</blockquote>
+<p>结构需要同时考虑速度和性能，单向的需要旋转好几次，实际步骤稍微有点多，最快也大致三十秒，慢的也有七八分钟，由于速度上不占优势，所以没考虑这种结构；垂直手臂虽然相对于那种的结构稍微好点，但是机械手的设计还和魔方的重力有关系，重力和魔方与机械手的接触力的合力向下，由于机械部分不是很熟，感觉设计出的机械手不能在转魔方的时候承担重力的分力，也没太多考虑这种结构；内嵌中心块可能需要破坏魔方的结构，并且机械手需要另外找材料，切合度没有太多把握，可能需要将魔方的中心块卸下来，软件算法需要对应好魔方的配色，虽然解法较快，不需要推进后退所需的时间，但是也没太多地去考虑这种结构，</p>
+<p>最后得出的结构为四向导轨式的，然后在机械臂的推进部分与底盘连接的地方又有两种结构，一种类似于导轨式的滑动，另一种配置好塑料条，利用中间的孔将钢轴插入，前进后退。这时需要考虑材料的问题。</p>
+<p>四方给进轴为解魔方的主操作部分，给进轴由旋转主舵机和伸进从舵机两部分组成。主控由exp-xxx组成，后期可以改为arduino或者树莓派，arduino可以进一步降低成本，采用Android手机摄像头作为颜色采集和识别设备。</p>
+<p>整体设计框图：</p>
+<p>闭环控制模型：</p>
+<h5>0x03 机械手结构</h5>
+<h5>0x04 机械臂结构</h5>
+<p>机械臂大致有两种结构，一种是导轨式，另一种利用塑料条辅助进行推进伸缩。</p>
+<h5>0x05 软件算法方面设计</h5>
+<p>软件算法方面，由于计算的是手机的CPU，所以可以有几种思路，先进行类似于字典的大规模匹配，计算出最优解，或者是通过算法计算，计算出18-24步范围解，曾经魔方有一个上帝之数，为20，称任意打乱的魔方最少需要20步可以还原。同时考虑解魔方机器人每秒几步，统计出步数与时间，从而优化结构，升级舵机可以提高解魔方的速度。</p>
+<p>在得到魔方各面的颜色信息后，是先通过数据库进行匹配还是通过算法进行计算，这里有性能方面的问题。</p>
+<p>魔方解法方面，有一个二阶段算法，可以达到22左右的步数，并且较短时间可以计算出来。</p>
+<h5>0x06 软件摄像头部分及采集识别算法设计</h5>
+<p>app软件采集部分，利用手机后置摄像头，可以前期规定魔方的九个方块范围，后期想办法达到自动识别魔方方形，识别完方形以后，进行颜色的识别。</p>
+<p>颜色识别主要使用HSL色彩系，区别于传统的RGB色彩系，HSL更适合识别相关颜色。并且同时注意部分魔方的橙色黄色红色较为相近，注意分别。</p>
+<h5>0x07 材料的选择部分</h5>
+<blockquote>
+<p>魔方</p>
+</blockquote>
+<p>魔方采取5.7cm的三阶魔方，因为需要一定的顺滑度，因此不考虑普通的地摊三阶魔方进行主要测试，推荐大雁、国甲、圣手等牌子的魔方，魔方主要需要一定的顺滑度和容错度。</p>
+<blockquote>
+<p>舵机</p>
+</blockquote>
+<p>舵机的选择，舵机主要采用金属舵机，其他类型的舵机有步进、减速、塑料等，主舵机负责旋转部分，要求的速度和扭矩都比从舵机要求要高，并且需要180度大扭动。以配合进行U2类型的旋转(魔方旋转术语，为上层顺时针旋转180度。)</p>
+<p>从舵机部分，要求扭矩大于3.0Kg/cm，</p>
+<h5>0x08 下位机控制部分</h5>
+<blockquote>
+<p>测试舵机</p>
+</blockquote>
+<p>主舵机的连接测试。</p>
+<p>从舵机的连接arduino测试。</p>
+<blockquote>
+<p>电路部分整体设计</p>
+</blockquote>
+<p>控制板：</p>
+<p>仿真器：</p>
+<p>稳压模块：</p>
+<p>舵机：保证6V电压</p>
+<h5>0x09 安卓手机软件设计部分</h5>
+<p>整体采用material design设计，使用Axure等的进行原型设计，</p>
+<blockquote>
+<p>主要有以下几个功能：</p>
+</blockquote>
+<ul>
+<li>1.摄像头识别魔方，计算解法，并通过串口传给下位机。</li>
+<li>2.指定或随机打乱公式打乱魔方。</li>
+<li>3.将魔方打出一定的花样，如一定摆放的I Love U，相对来说，高阶好摆图案。</li>
+<li>4.将解魔方所用时间如何显示到大显上。</li>
+<li>5.当三阶魔方完善以后扩展到二阶、四阶、五阶等魔方。</li>
+</ul>
+<blockquote>
+<p>关于界面方面的设计：</p>
+</blockquote>
+<ul>
+<li>1.采用material design设计，体现阴影等元素，采取滑动侧边栏，主界面分为三个选项卡:速解魔方，复原历史，计时复原。速解魔方有连接状态显示，蓝牙连接按钮，扫描摄像头，</li>
+<li>2.主要是使用户点击要少，</li>
+<li>3.主要功能为解魔方操作，识别魔方，计时等。</li>
+</ul>
+<h5>0x10 乐高机器人与之的辨析</h5>
+<p>乐高也有解魔方机器人，并且有专门的颜色传感器，</p>	
+    </div>
+    <div class="card-action">
+      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-08 16:22:00</a>
+<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+      </div>
+      <div class="col s12 m4 l3">
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/categories.html" class="black-text flow-text" id="title">分类</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li ><a href="/category/2014.html">【2014】</a></li>
+                    <li ><a href="/category/android.html">【Android】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li ><a href="/category/docker.html">【Docker】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
+                    <li ><a href="/category/php.html">【php】</a></li>
+                    <li ><a href="/category/test.html">【test】</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">标签</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/cnutcon.html">CnutCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/archives.html" class="black-text flow-text" id="title">归档</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人标签／个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/cnutcon.html">CnutCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div class="section">
+  <div class="card-panel z-depth-1">
+    <div class="card black-text sidebar-title">
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
+    </div>
+    <div class="row valign-wrapper">
+      <div class="col s12">
+        <div class="card-action">
+          <ul class="" id="gh_repos">
+			<li class="loading">状态更新中...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"> </script>
+</div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="" class="black-text flow-text" id="title">链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li><a href="http://getpelican.com/">Pelican</a></li>
+                    <li><a href="http://python.org/">1433</a></li>
+                    <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer z-depth-2">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col l12 s12">
+          <a href="#top"><button class="btn waves-effect waves-light blue darken-3 right" alt="Back To Top">Top
+          </button></a>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Support
+          </button>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Projects
+          </button>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">About
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright z-depth-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-small-only">
+            Powered by <a class="amber-text text-darken-4" href="http://getpelican.com" target="_blank">Pelican</a>. <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-med-and-up">
+            <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  
+  <script src="/theme/js/ma.js"></script>
+  <script src="/theme/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/theme/js/highlight.pack.js"></script>
+  </body>
+</html>

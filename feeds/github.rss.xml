@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/github.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 04 Mar 2015 12:22:00 +0100</lastBuildDate><item><title>git-fork项目后与原项目进行同步</title><link>http://dbqf.xyz/201503-git-fork-synchronized.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/github.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 04 Mar 2015 12:22:00 +0100</lastBuildDate><item><title>git-fork项目后与原项目进行同步</title><link>dubuqingfeng.github.io/posts/2015/%203/04/201503-git-fork-synchronized/index.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -48,15 +48,13 @@ git branch -a
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。&lt;/p&gt;
-&lt;p&gt;其他分支：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;功能（feature）分支&lt;/li&gt;
-&lt;li&gt;预发布（release）分支&lt;/li&gt;
-&lt;li&gt;修补bug（fixbug）分支&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。
+其他分支：&lt;/p&gt;
+&lt;p&gt;功能（feature）分支&lt;/p&gt;
+&lt;p&gt;预发布（release）分支&lt;/p&gt;
+&lt;p&gt;修补bug（fixbug）分支&lt;/p&gt;
 &lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;当某个人fork项目后，并推送改动后如何处理？&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-04:201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item></channel></rss>
+&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/posts/2015/ 3/04/201503-git-fork-synchronized/index.html</guid><category>git</category><category>fork</category></item></channel></rss>

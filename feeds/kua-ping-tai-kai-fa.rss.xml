@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/kua-ping-tai-kai-fa.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 12 May 2015 12:26:00 +0200</lastBuildDate><item><title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</title><link>http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/kua-ping-tai-kai-fa.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 12 May 2015 09:13:00 +0200</lastBuildDate><item><title>Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</title><link>dubuqingfeng.github.io/posts/2015/%205/12/201505-ubuntutouch-ionic-qml/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。&lt;/p&gt;
 &lt;h5&gt;0x02 ubuntu sdk&lt;/h5&gt;
 &lt;p&gt;ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。&lt;/p&gt;
@@ -11,21 +11,17 @@ apt-get install ubuntu-sdk
 &lt;h5&gt;0x03 ubuntu touch&lt;/h5&gt;
 &lt;p&gt;作为ubuntu在手机端的产品，据说魅族也要联合推出手机，相类似的有Firefox OS、Salish……，主要开发方式有QT原生、HTML5、Scope，应该也可以用go、python进行开发，鉴于HTML5开发手机应用的不成熟，尤其是这种非安卓、iOS的，能想到的也就是用phoneGap构建，相对来说，展示类应用，用HTML5开发效率高。&lt;/p&gt;
 &lt;p&gt;相对Android来说，ubuntu touch感觉风格较统一，有便利的边缘交互模式，但是只靠这几点去赢得市场，在应用为王的移动互联网时代中比较难。一个用户，尤其是80后，90后，00后，系统上连微信、QQ都没有，比较难将其做为主力机。&lt;/p&gt;
-&lt;p&gt;PS：
-1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。&lt;/p&gt;
+&lt;p&gt;PS： 1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。&lt;/p&gt;
 &lt;h5&gt;0x04 QML&lt;/h5&gt;
 &lt;h5&gt;0x05 ionic&lt;/h5&gt;
 &lt;p&gt;ionic的安装&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;  $ npm install -g cordova ionic
+&lt;div class="highlight"&gt;&lt;pre&gt; $ npm install -g cordova ionic
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Ionic in Action
-一些AngularJS入门资料&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;Ionic in Action 一些AngularJS入门资料&lt;/p&gt;
 &lt;p&gt;AngularJS入门教程&lt;/p&gt;
 &lt;p&gt;AngularJS权威教程&lt;/p&gt;
 &lt;p&gt;用AngularJS开发下一代Web应用&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h5&gt;0x100 参考资料&lt;/h5&gt;
-&lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 12:26:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</guid><category>ubuntu sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item></channel></rss>
+&lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 09:13:00 +0200</pubDate><guid>tag:,2015-05-12:dubuqingfeng.github.io/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html</guid><category>ubuntu</category><category>sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item></channel></rss>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>基于Arduino的解魔方机器人软件设计与实现 - 独步清风's blog</title>
+
+  <!-- CSS  -->
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?76712397de583de526f98e457deb2a7d";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body>
+  <!-- Top-navigation -->
+  <nav class="lighten-5" role="navigation">
+    <div class="container nav-wrapper">
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+                <label for="search-field" class="right"><i class="mdi-action-search black-text"></i></label>
+              </div>
+            </form>
+          </div>
+        </li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">Github</span></a></li>
+      </ul>
+      <ul class="right hide-on-large-only">
+        <li><a class="waves-effect waves-light" href="#"><i class="mdi-action-search black-text"></i></a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng"><span class="blue-grey-text text-darken-4">Github</span></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu black-text"></i></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row template-content-page">
+      <div class="col s12 m8 l9">
+        <!-- Breadcrumb -->
+        <div class="section">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+<div class="collapsible-header"><a href="/category/dian-zi-she-ji.html"><i class="mdi-action-subject"></i>【电子设计】</a><a href="#">--基于Arduino的解魔方机器人软件设计与实现</a>              </div>
+              <div class="collapsible-body"><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android，和xxx控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p></div>
+            </li>
+          </ul>
+        </div>
+        <!-- Article Lists -->
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content black-text">
+      <span class="card-title black-text"><a href="/posts/2015/ 4/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人软件设计与实现</a></span>
+      <h5>0x01 Android上位机设计部分</h5>
+<p>常见的魔方比赛可以</p>
+<h5>0x02 Android代码思路</h5>
+<h5>0x03 Android软件测试</h5>
+<h5>0x04 Arduino测试代码思路</h5>
+<p>首先通过官方示例程序Knob和Sweep测试舵机运行情况</p>
+<div class="highlight"><pre><span class="cm">/* </span>
+<span class="cm"> Controlling a servo position using a potentiometer (variable resistor) </span>
+<span class="cm"> by Michal Rinott &lt;http://people.interaction-ivrea.it/m.rinott&gt;</span>
+
+<span class="cm"> modified on 8 Nov 2013</span>
+<span class="cm"> by Scott Fitzgerald</span>
+<span class="cm"> http://arduino.cc/en/Tutorial/Knob</span>
+<span class="cm">*/</span>
+<span class="cp">#include &lt;Servo.h&gt;</span>
+<span class="n">Servo</span> <span class="n">myservo</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo</span>
+<span class="kt">int</span> <span class="n">potpin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// analog pin used to connect the potentiometer</span>
+<span class="kt">int</span> <span class="n">val</span><span class="p">;</span>    <span class="c1">// variable to read the value from the analog pin</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// attaches the servo on pin 9 to the servo object</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="n">val</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">potpin</span><span class="p">);</span>            <span class="c1">// reads the value of the potentiometer (value between 0 and 1023) </span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1023</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">);</span>     <span class="c1">// scale it to use it with the servo (value between 0 and 180) </span>
+  <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>                  <span class="c1">// sets the servo position according to the scaled value </span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                           <span class="c1">// waits for the servo to get there </span>
+<span class="p">}</span>
+
+<span class="cm">/* Sweep</span>
+<span class="cm"> by BARRAGAN &lt;http://barraganstudio.com&gt; </span>
+<span class="cm"> This example code is in the public domain.</span>
+
+<span class="cm"> modified 8 Nov 2013</span>
+<span class="cm"> by Scott Fitzgerald</span>
+<span class="cm"> http://arduino.cc/en/Tutorial/Sweep</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include &lt;Servo.h&gt;</span>
+
+<span class="n">Servo</span> <span class="n">myservo</span><span class="p">;</span>  <span class="c1">// create servo object to control a servo </span>
+                <span class="c1">// twelve servo objects can be created on most boards</span>
+<span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// variable to store the servo position </span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="n">myservo</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>  <span class="c1">// attaches the servo on pin 9 to the servo object </span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> 
+<span class="p">{</span> 
+  <span class="k">for</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// goes from 0 degrees to 180 degrees </span>
+  <span class="p">{</span>                                  <span class="c1">// in steps of 1 degree </span>
+    <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>              <span class="c1">// tell servo to go to position in variable &#39;pos&#39; </span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                       <span class="c1">// waits 15ms for the servo to reach the position </span>
+  <span class="p">}</span> 
+  <span class="k">for</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">180</span><span class="p">;</span> <span class="n">pos</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">pos</span><span class="o">-=</span><span class="mi">1</span><span class="p">)</span>     <span class="c1">// goes from 180 degrees to 0 degrees </span>
+  <span class="p">{</span>
+    <span class="n">myservo</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>              <span class="c1">// tell servo to go to position in variable &#39;pos&#39; </span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>                       <span class="c1">// waits 15ms for the servo to reach the position </span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<h5>0x05 Arduino代码</h5>
+<p>Arduino代码部分在github上也可找到，</p>
+<blockquote>
+<p>使用串口测试成对舵机的代码--&gt;DoubleServo</p>
+<p>约定一些操作码和公式进行方便控制舵机的代码</p>
+</blockquote>
+<h5>0x05 计算解法公式</h5>
+<p>涉及到魔方解法部分，</p>
+<h5>0x06 蓝牙发送操作码</h5>
+<p>分为普通公式与特定操作码部分，普通公式主要为使用二阶段算法计算出来的解法公式，并且约定带+号为顺时针旋转，带-号为逆时针旋转，特定操作码约定一些特定的舵机控制操作，主要以下列表所示：</p>
+<blockquote>
+<p>全部还原固定角度</p>
+<p>成对舵机转动固定角度</p>
+<p>单个舵机转动固定角度</p>
+<p>从舵机进行转动，使机械臂进行前进与后退操作</p>
+</blockquote>
+<h5>0x07 魔方解法操作对应舵机动作分析</h5>
+<p>因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。</p>
+<p>R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。</p>	
+    </div>
+    <div class="card-action">
+      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-04-10 16:25:00</a>
+<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+      </div>
+      <div class="col s12 m4 l3">
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/categories.html" class="black-text flow-text" id="title">分类</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li ><a href="/category/2014.html">【2014】</a></li>
+                    <li ><a href="/category/android.html">【Android】</a></li>
+                    <li class="active"><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li ><a href="/category/docker.html">【Docker】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
+                    <li ><a href="/category/php.html">【php】</a></li>
+                    <li ><a href="/category/test.html">【test】</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">标签</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/cnutcon.html">CnutCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/archives.html" class="black-text flow-text" id="title">归档</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人标签／个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/cnutcon.html">CnutCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div class="section">
+  <div class="card-panel z-depth-1">
+    <div class="card black-text sidebar-title">
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
+    </div>
+    <div class="row valign-wrapper">
+      <div class="col s12">
+        <div class="card-action">
+          <ul class="" id="gh_repos">
+			<li class="loading">状态更新中...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"> </script>
+</div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="" class="black-text flow-text" id="title">链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li><a href="http://getpelican.com/">Pelican</a></li>
+                    <li><a href="http://python.org/">1433</a></li>
+                    <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer z-depth-2">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col l12 s12">
+          <a href="#top"><button class="btn waves-effect waves-light blue darken-3 right" alt="Back To Top">Top
+          </button></a>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Support
+          </button>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Projects
+          </button>
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">About
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright z-depth-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-small-only">
+            Powered by <a class="amber-text text-darken-4" href="http://getpelican.com" target="_blank">Pelican</a>. <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-med-and-up">
+            <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  
+  <script src="/theme/js/ma.js"></script>
+  <script src="/theme/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/theme/js/highlight.pack.js"></script>
+  </body>
+</html>

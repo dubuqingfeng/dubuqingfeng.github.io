@@ -27,12 +27,12 @@ nav {
 .input-field {
   position: relative;
   min-width: 100px;
-	overflow: hidden;
+  overflow: hidden;
   margin-top: 1rem;
 }
 nav .input-field label {
-	top: 0;
-	left: 13.5rem; 
+  top: 0;
+  left: 13.5rem; 
 }
 .input-field .mdi-action-search {
 }

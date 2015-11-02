@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/android.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 07 Jun 2015 12:25:00 +0200</lastBuildDate><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>http://dbqf.xyz/201506-android-Preference-fragment.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/android.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 06 Jun 2015 12:13:00 +0200</lastBuildDate><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。&lt;/p&gt;
-&lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。&lt;/p&gt;
-&lt;p&gt;以及一些配置。&lt;/p&gt;
+&lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
+以及一些配置。&lt;/p&gt;
 &lt;h5&gt;0x02 浅析&lt;/h5&gt;
 &lt;p&gt;PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Interface definition for a callback to be invoked when a&lt;/span&gt;
+&lt;span class="cm"&gt; * {@link Preference} in the hierarchy rooted at this &lt;/span&gt;
+&lt;span class="cm"&gt; * {@link PreferenceScreen} is&lt;/span&gt;
+&lt;span class="cm"&gt; * clicked.&lt;/span&gt;
+&lt;span class="cm"&gt; *&lt;/span&gt;
+&lt;span class="cm"&gt; * @hide&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/span&gt;OnPreferenceTreeClickListener&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * Called when a preference in the tree rooted at this&lt;/span&gt;
+&lt;span class="cm"&gt;     * {@link PreferenceScreen} has been clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * &lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preferenceScreen The {@link PreferenceScreen} that the&lt;/span&gt;
+&lt;span class="cm"&gt;     *        preference is located in.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preference The preference that was clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return Whether the click was handled.&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;boolean&lt;span class="w"&gt; &lt;/span&gt;onPreferenceTreeClick&lt;span class="o"&gt;(&lt;/span&gt;PreferenceScreen&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;preferenceScreen&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Preference&lt;span class="w"&gt; &lt;/span&gt;preference&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h5&gt;0x03 完成步骤&lt;/h5&gt;
 &lt;p&gt;通过新建项目的方式：&lt;/p&gt;
-&lt;p&gt;在android-studio里，新建一个项目：PreferenceFragmentTest&lt;/p&gt;
+&lt;p&gt;在android-studio里，新建一个项目：PreferenceFragmentDemo&lt;/p&gt;
 &lt;p&gt;选择Blank Activity With Fragment，填写activity为SettingActivity。&lt;/p&gt;
-&lt;p&gt;修改fragment继承PreferenceFragment。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改fragment继承PreferenceFragment。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;新建一个xml文件，建立/res/xml/preferences.xml&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;PreferenceScreen&lt;/span&gt;
     &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
@@ -93,10 +117,14 @@ prefEditText.setText(my_edittext_preference);
 &lt;p&gt;preference-headers类&lt;/p&gt;
 &lt;h5&gt;0x04 Preference类&lt;/h5&gt;
 &lt;p&gt;前几天在SIMS(学生信息管理系统)项目中，涉及到了Preference这个类，当时可以通过输入输出流进行与文件的交互。&lt;/p&gt;
+&lt;p&gt;在Java里可以利用这个类进行一些配置信息的保存等。&lt;/p&gt;
+&lt;p&gt;详情可参考&lt;a href="https://github.com/DigDream/SIMS/blob/master/src/com/student/sb/utils/PropertiesUtils.java"&gt;PropertiesUtils&lt;/a&gt;的实现。&lt;/p&gt;
 &lt;h5&gt;0x05 思考&lt;/h5&gt;
-&lt;p&gt;其PreferenceFragment文件源码地址在：&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java"&gt;googlesource&lt;/a&gt;，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些&lt;a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment"&gt;示例代码&lt;/a&gt;，&lt;/p&gt;
-&lt;h5&gt;0x0100 参考链接&lt;/h5&gt;
-&lt;p&gt;&lt;a href="http://developer.android.com/guide/topics/ui/settings.html"&gt;Settings&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其PreferenceFragment文件源码地址在：&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java"&gt;GoogleSource&lt;/a&gt;，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些&lt;a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment"&gt;示例代码&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;并且文档里还介绍了android3.0以前如果想用PreferenceFragment怎么办，详细参考&lt;a href="http://developer.android.com/guide/topics/ui/settings.html#BackCompatHeaders"&gt;这个链接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;a href="源码分析"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;0x06 参考链接&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://developer.android.com/guide/topics/ui/settings.html"&gt;settings&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://developer.android.com/reference/android/preference/PreferenceFragment.html"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html"&gt;Using PreferenceFragment to Store User Preferences&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment"&gt;Settings with PreferenceFragment&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 07 Jun 2015 12:25:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-06-06:201506-android-Preference-fragment.html</guid><category>Android</category><category>PreferenceFragment</category></item></channel></rss>
+&lt;p&gt;&lt;a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html"&gt;Using PreferenceFragment to store user preferences&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment"&gt;Settings-with-PreferenceFragment&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 06 Jun 2015 12:13:00 +0200</pubDate><guid>tag:,2015-06-06:dubuqingfeng.github.io/posts/2015/ 6/06/201506-android-Preference-fragment/index.html</guid><category>Android</category><category>PreferenceFragment</category></item></channel></rss>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/android.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-06-06T12:13:00+02:00</updated><entry><title>如何使用PreferenceFragment方便地完成设置界面</title><link href="dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html" rel="alternate"></link><updated>2015-06-06T12:13:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-06-06:dubuqingfeng.github.io/posts/2015/ 6/06/201506-android-Preference-fragment/index.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。&lt;/p&gt;
+&lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
+以及一些配置。&lt;/p&gt;
+&lt;h5&gt;0x02 浅析&lt;/h5&gt;
+&lt;p&gt;PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Interface definition for a callback to be invoked when a&lt;/span&gt;
+&lt;span class="cm"&gt; * {@link Preference} in the hierarchy rooted at this &lt;/span&gt;
+&lt;span class="cm"&gt; * {@link PreferenceScreen} is&lt;/span&gt;
+&lt;span class="cm"&gt; * clicked.&lt;/span&gt;
+&lt;span class="cm"&gt; *&lt;/span&gt;
+&lt;span class="cm"&gt; * @hide&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/span&gt;OnPreferenceTreeClickListener&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * Called when a preference in the tree rooted at this&lt;/span&gt;
+&lt;span class="cm"&gt;     * {@link PreferenceScreen} has been clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * &lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preferenceScreen The {@link PreferenceScreen} that the&lt;/span&gt;
+&lt;span class="cm"&gt;     *        preference is located in.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preference The preference that was clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return Whether the click was handled.&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;boolean&lt;span class="w"&gt; &lt;/span&gt;onPreferenceTreeClick&lt;span class="o"&gt;(&lt;/span&gt;PreferenceScreen&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;preferenceScreen&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Preference&lt;span class="w"&gt; &lt;/span&gt;preference&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x03 完成步骤&lt;/h5&gt;
+&lt;p&gt;通过新建项目的方式：&lt;/p&gt;
+&lt;p&gt;在android-studio里，新建一个项目：PreferenceFragmentDemo&lt;/p&gt;
+&lt;p&gt;选择Blank Activity With Fragment，填写activity为SettingActivity。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改fragment继承PreferenceFragment。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;新建一个xml文件，建立/res/xml/preferences.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;PreferenceScreen&lt;/span&gt;
+    &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;PreferenceCategory&lt;/span&gt;
+        &lt;span class="na"&gt;android:title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;设置A&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;CheckBoxPreference&lt;/span&gt;
+            &lt;span class="na"&gt;android:key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;checkbox_preference&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;标题&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:summary=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;详细&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;/PreferenceCategory&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;PreferenceCategory&lt;/span&gt;
+        &lt;span class="na"&gt;android:title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;设置B&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;EditTextPreference&lt;/span&gt;
+            &lt;span class="na"&gt;android:key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;edittext_preference&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;标题&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:summary=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;详细&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:dialogTitle=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;对话框标题&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;/PreferenceCategory&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;/PreferenceScreen&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在SettingFragment中，通过addPreferencesFromResource(R.xml.preferences);加载上述的xml文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    addPreferencesFromResource(R.xml.preferences);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;设置项保存到哪了？SharedPreferences。在/data/data/应用包名/shared_prefs/应用包名_preferences.xml文件中，android:key即为键值名。&lt;/p&gt;
+&lt;p&gt;如何读取设置？通过SharedPreferences&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;SharedPreferences mySharedPreferences = PreferenceManager
+        .getDefaultSharedPreferences(this);
+
+boolean my_checkbox_preference = mySharedPreferences.getBoolean(
+        &amp;quot;checkbox_preference&amp;quot;, false);
+prefCheckBox.setChecked(my_checkbox_preference);
+
+String my_edittext_preference = mySharedPreferences.getString(
+        &amp;quot;edittext_preference&amp;quot;, &amp;quot;&amp;quot;);
+prefEditText.setText(my_edittext_preference);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;列表设置项的ListPreferences类：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;ListPreference
+      android:key=&amp;quot;list_preference&amp;quot;
+      android:title=&amp;quot;@string/标题&amp;quot;
+      android:dialogTitle=&amp;quot;@string/对话框标题&amp;quot;
+      android:entries=&amp;quot;@array/listArray&amp;quot;
+      android:entryValues=&amp;quot;@array/listValues&amp;quot; /&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;entries和entryValues从哪来？/res/values/array.xml或者/res/values/strings.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;resources&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;string-array&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;listArray&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;Headings&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;Headings and Details&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;All Data&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/string-array&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;string-array&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;listValues&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;1&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;2&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;item&amp;gt;&lt;/span&gt;3&lt;span class="nt"&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/string-array&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/resources&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;preference-headers类&lt;/p&gt;
+&lt;h5&gt;0x04 Preference类&lt;/h5&gt;
+&lt;p&gt;前几天在SIMS(学生信息管理系统)项目中，涉及到了Preference这个类，当时可以通过输入输出流进行与文件的交互。&lt;/p&gt;
+&lt;p&gt;在Java里可以利用这个类进行一些配置信息的保存等。&lt;/p&gt;
+&lt;p&gt;详情可参考&lt;a href="https://github.com/DigDream/SIMS/blob/master/src/com/student/sb/utils/PropertiesUtils.java"&gt;PropertiesUtils&lt;/a&gt;的实现。&lt;/p&gt;
+&lt;h5&gt;0x05 思考&lt;/h5&gt;
+&lt;p&gt;其PreferenceFragment文件源码地址在：&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java"&gt;GoogleSource&lt;/a&gt;，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些&lt;a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment"&gt;示例代码&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;并且文档里还介绍了android3.0以前如果想用PreferenceFragment怎么办，详细参考&lt;a href="http://developer.android.com/guide/topics/ui/settings.html#BackCompatHeaders"&gt;这个链接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;a href="源码分析"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;0x06 参考链接&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://developer.android.com/guide/topics/ui/settings.html"&gt;settings&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://developer.android.com/reference/android/preference/PreferenceFragment.html"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html"&gt;Using PreferenceFragment to store user preferences&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment"&gt;Settings-with-PreferenceFragment&lt;/a&gt;&lt;/p&gt;</summary><category term="Android"></category><category term="PreferenceFragment"></category></entry></feed>

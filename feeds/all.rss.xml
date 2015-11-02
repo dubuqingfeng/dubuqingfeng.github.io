@@ -1,15 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>http://dbqf.xyz/</link><description></description><atom:link href="http://dbqf.xyz/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 07 Jun 2015 12:25:00 +0200</lastBuildDate><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>http://dbqf.xyz/201506-android-Preference-fragment.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Aug 2015 20:23:00 +0200</lastBuildDate><item><title>CnutCon全球容器技术大会有感</title><link>dubuqingfeng.github.io/posts/2015/%208/30/201508-CnutCon-Docker-Beijing/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;作为容器技术的发展，自认为是互联网技术公司的基础设施架构的不可或缺的一部分，并且好多公司都在实践，并且创业公司也可以利用其加快开发，缩短构建部署等消耗的时间。&lt;/p&gt;
+&lt;p&gt;很少有像docker这样才推出两年多就很火的样子，并且拿到了好多投资，😃，作为变化很快的IT行业，不掌握点新技术，很难在竞争中生存下来。&lt;/p&gt;
+&lt;p&gt;并且Docker也适合进行弹性计算，毕竟一个容器启动是秒级别的，还可以作为持续集成等实践，统一开发和部署环境。(只需要一个Dockerfile或者yaml)&lt;/p&gt;
+&lt;h5&gt;0x02 前沿&lt;/h5&gt;
+&lt;p&gt;此次CNUTCon容器技术大会，聚集了像谷歌，百度，阿里，腾讯，360，京东等大公司，也不乏像Daocloud，灵雀云，时速云这类的创业公司。&lt;/p&gt;
+&lt;p&gt;不仅有像谷歌，RedHat这类的公司分享Docker容器技术的演化，以及还有Daocloud给的一些实践。&lt;/p&gt;
+&lt;p&gt;这些对于一些架构师，技术官，云平台工程师都是不容错过的，各大平台分享自己的平台演化之路，毕竟互联网公司需要的更多的是基础设施的稳定性，相互借鉴，互相交流。&lt;/p&gt;
+&lt;h5&gt;0x03 前奏&lt;/h5&gt;
+&lt;p&gt;晚上坐硬卧去北京，期间感受了硬卧的滋味，然后28号早上晚点了几十分钟到达了北京，然后乘地铁，倒到了十号线，在太阳宫，然后在周围找了半天，期间地图出现了些许问题，耽误了几十分钟，将近八点才到会场，然后在赞助商展演的地方刷了点小礼品。&lt;/p&gt;
+&lt;h5&gt;0x04 开场&lt;/h5&gt;
+&lt;p&gt;开场是由InfoQ官方的负责人员，郭蕾，霍泰稳(极客邦科技，InfoQ中国创始人兼CEO)，介绍了InfoQ的发展，与InfoQ和Docker的关系，毕竟整个大会大部分是在说docker及其相关，InfoQ很早的时候就推出了Docker专栏，并且推广过很多系列文章，以及还介绍了为什么举办此次会议。&lt;/p&gt;
+&lt;p&gt;插照片&lt;/p&gt;
+&lt;h5&gt;0x05 技术分享－28日上午&lt;/h5&gt;
+&lt;p&gt;首先是RedHat公司的副总裁，一种印度味的英语根本听不懂，也只能拍拍Slides，去感受RedHat对于Docker发展的贡献了。其中的软件定义一切，让想起了软件定义网络，都是一些不知所云的名词，需要学习的太多太多。&lt;/p&gt;
+&lt;p&gt;然后是CoreOS产品负责人，对于CoreOS的印象是版本号太奇葩，更新太快，会议第二天听了林帆的CoreOS实战以后，才有其他印象，想起来6月份，林帆还做过浏览器的镜像，一块还在灵雀云的发布会上见过。&lt;/p&gt;
+&lt;p&gt;他讲了K8S，这又是较新的名词了，听说是谷歌出的，谷歌出的大部分都是好东西，并且感觉有技术含量，其他的还是回去看PPT吧。&lt;/p&gt;
+&lt;p&gt;上午最后一个京东的分享容器之路，分享了一个秒杀的例子，秒杀在那几天的时候很消耗资源，但平时也用不着那么多资源，于是京东开始实践容器，并且说有10000+容器在线上运行，并且还在建设数据中心。&lt;/p&gt;
+&lt;p&gt;并且也讲述了在网络和存储两大问题上的解决方案。&lt;/p&gt;
+&lt;h5&gt;0x06 技术分享－28日下午&lt;/h5&gt;
+&lt;p&gt;28日下午就去了解决方案专场，分会场，开始听灵雀云CTO陈恺分享微服务架构的演变，从单片到三层结构，再到最近的微服务架构，一个应用的架构在不断的发生演变，以电商网站作为例子，并且最后宣传了下灵雀云，作为持续交付，容器托管的创业公司。&lt;/p&gt;
+&lt;p&gt;微服务作为近年流行的应用架构，重新定义了应用开发运维的方法。&lt;/p&gt;
+&lt;p&gt;时速云王磊分享了k8s打造容器云平台实践，也是作为国内CAAS创业的一部分。&lt;/p&gt;
+&lt;p&gt;华为梁辰晔分享了关于OCT容器开放测试项目的实践，是一套针对不同容器产品的统一测试框架，包含了容器标准测试、容器功能测试和容器性能测试。&lt;/p&gt;
+&lt;p&gt;七牛的联合创始人徐立，曾经写过go语言编程还是什么的书，听得听的睡着了，中午吃完饭就没睡觉，『不要为了Docker而Docker、为了微服务而微服务』，毕竟Docker在网络和存储方面并不是长处。&lt;/p&gt;
+&lt;p&gt;最后是SpeedyCloud，之前并没有听说过这个公司，在展台上打听的这是做云主机的一家公司，不过分享的大部分还是听不懂，回去慢慢啃PPT吧。&lt;/p&gt;
+&lt;p&gt;并且在群里说TAE的分享不错，阿里的容器实践，回去看视频和ppt吧。&lt;/p&gt;
+&lt;h5&gt;0x07 技术分享－29日上午&lt;/h5&gt;
+&lt;p&gt;首先是首日期待很久了的谷Dawn Chen讲k8s和borg设计哲学，还是一名女讲师呢，她讲了在谷歌有20亿＋的容器在运行，并且早在很久以前(大概十年前开始)就已经实践了容器相关技术，并且将了k8s作为容器管理的发展，分享了Kubernetes的架构，设计等内容。&lt;/p&gt;
+&lt;p&gt;相对来说，更对她的IT职场发展更感兴趣，作为一名女性，怎么在谷歌里成长的，这个完了可以作为例子，来激励或者鼓励自己罢。&lt;/p&gt;
+&lt;p&gt;然后是华为的线超博讲swarm，swarm又是啥，毕竟没有接触过，作为swarm的Maintainer，并且也在分享里说了swarm并不适合直接作为生产环境，目前还在开发测试当中。&lt;/p&gt;
+&lt;p&gt;最后是百度云平台负责人谢广军的分享百度云架构演化过程，从一开始的私有云实践到后来的公有云，开放云，如何支撑大量的资源进行调度。&lt;/p&gt;
+&lt;h5&gt;0x08 技术分享－29日下午&lt;/h5&gt;
+&lt;p&gt;中午遇到了几位灵雀云的工程师，并且在那讨论了关于灵雀云和容器docker的事，毕竟是作为开发者，总希望云平台对开发者便利，还有很多开发者对docker不了解或者是没听说过，记得灵雀云的用户群体是创业公司的，开发者还得有很多的学习docker的成本，并且在学习中还会遇到不少的坑，所以无论阿里云这类也好新浪云这类，又或是daocloud，灵雀云，时速云这种也罢，简化对于开发者上面的运维工作也很重要。&lt;/p&gt;
+&lt;p&gt;下午的培训专场首先是林帆的CoreOS应用实战，从CoreOS讲到了Rkt，也说了Docker与CoreOS之间的关系，听了会出来吃茶点，然后又去主会场正好Daocloud进行分布式云平台微服务实践，如何快速部署一些服务，并且用Daocloud作为演示。&lt;/p&gt;
+&lt;p&gt;最后是张磊的Kubernetes实战，作为浙大的科研人员，讲的感觉很深入浅出，并且也很有意思，值得分享。分享了关于集群管理的性能和利用率，如何进行大规模容器集群管理，以及Pod：容器化思维下的设计模式，k8s的原理。&lt;/p&gt;
+&lt;h5&gt;0x09 后记&lt;/h5&gt;
+&lt;p&gt;令人印象很深的是好几个讲师分享完了以后，都有好多人在其旁边去问问题也好，交流也罢，感觉气氛很好，在分会场也看到好多人在认真的做笔记，又或是拿着笔记本去实践，并且在浙大的张磊讲的时候还有好多人站的，第一天会议的时候也有很多人在后面站的。&lt;/p&gt;
+&lt;p&gt;感觉有些讲师的分享干货不少，一下很难全消化掉。尤其是TAE的，谷歌的，张磊的令人印象深，TAE作为阿里的，分享阿里云在容器方面要做的一些事，并且看上去也很厉害，这些是创业公司不可比拟的额。&lt;/p&gt;
+&lt;p&gt;张磊讲的深入浅出，(毕竟是受过高等教育的人,逃),并且其中也进行了答疑，作为浙大SEL实验室，并且也有新书要发售，Daocloud的孙宏亮也写了一本书《Docker源码分析》。&lt;/p&gt;
+&lt;p&gt;传统的虚拟化技术，会在不知不觉中被容器技术替代，在互联网公司里首先会普及容器技术，然后逐渐往非互联网行业渗透，虽然觉得这个时间会很长很长，但是不可不知的是容器技术不仅在现在，在未来都会是重点发展的一部分。&lt;/p&gt;
+&lt;h5&gt;0x10 附照及PPT视频链接&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://vdisk.weibo.com/s/A0GI9rYc1XqO/1441546316#devtoutiao.com/5738"&gt;PPT下载&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=""&gt;在线视频&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 30 Aug 2015 20:23:00 +0200</pubDate><guid>tag:,2015-08-30:dubuqingfeng.github.io/posts/2015/ 8/30/201508-CnutCon-Docker-Beijing/index.html</guid><category>CnutCon</category><category>Docker</category></item><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。&lt;/p&gt;
-&lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。&lt;/p&gt;
-&lt;p&gt;以及一些配置。&lt;/p&gt;
+&lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
+以及一些配置。&lt;/p&gt;
 &lt;h5&gt;0x02 浅析&lt;/h5&gt;
 &lt;p&gt;PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Interface definition for a callback to be invoked when a&lt;/span&gt;
+&lt;span class="cm"&gt; * {@link Preference} in the hierarchy rooted at this &lt;/span&gt;
+&lt;span class="cm"&gt; * {@link PreferenceScreen} is&lt;/span&gt;
+&lt;span class="cm"&gt; * clicked.&lt;/span&gt;
+&lt;span class="cm"&gt; *&lt;/span&gt;
+&lt;span class="cm"&gt; * @hide&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/span&gt;OnPreferenceTreeClickListener&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * Called when a preference in the tree rooted at this&lt;/span&gt;
+&lt;span class="cm"&gt;     * {@link PreferenceScreen} has been clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * &lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preferenceScreen The {@link PreferenceScreen} that the&lt;/span&gt;
+&lt;span class="cm"&gt;     *        preference is located in.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param preference The preference that was clicked.&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return Whether the click was handled.&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;boolean&lt;span class="w"&gt; &lt;/span&gt;onPreferenceTreeClick&lt;span class="o"&gt;(&lt;/span&gt;PreferenceScreen&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;preferenceScreen&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Preference&lt;span class="w"&gt; &lt;/span&gt;preference&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h5&gt;0x03 完成步骤&lt;/h5&gt;
 &lt;p&gt;通过新建项目的方式：&lt;/p&gt;
-&lt;p&gt;在android-studio里，新建一个项目：PreferenceFragmentTest&lt;/p&gt;
+&lt;p&gt;在android-studio里，新建一个项目：PreferenceFragmentDemo&lt;/p&gt;
 &lt;p&gt;选择Blank Activity With Fragment，填写activity为SettingActivity。&lt;/p&gt;
-&lt;p&gt;修改fragment继承PreferenceFragment。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改fragment继承PreferenceFragment。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;新建一个xml文件，建立/res/xml/preferences.xml&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;PreferenceScreen&lt;/span&gt;
     &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
@@ -93,19 +160,25 @@ prefEditText.setText(my_edittext_preference);
 &lt;p&gt;preference-headers类&lt;/p&gt;
 &lt;h5&gt;0x04 Preference类&lt;/h5&gt;
 &lt;p&gt;前几天在SIMS(学生信息管理系统)项目中，涉及到了Preference这个类，当时可以通过输入输出流进行与文件的交互。&lt;/p&gt;
+&lt;p&gt;在Java里可以利用这个类进行一些配置信息的保存等。&lt;/p&gt;
+&lt;p&gt;详情可参考&lt;a href="https://github.com/DigDream/SIMS/blob/master/src/com/student/sb/utils/PropertiesUtils.java"&gt;PropertiesUtils&lt;/a&gt;的实现。&lt;/p&gt;
 &lt;h5&gt;0x05 思考&lt;/h5&gt;
-&lt;p&gt;其PreferenceFragment文件源码地址在：&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java"&gt;googlesource&lt;/a&gt;，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些&lt;a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment"&gt;示例代码&lt;/a&gt;，&lt;/p&gt;
-&lt;h5&gt;0x0100 参考链接&lt;/h5&gt;
-&lt;p&gt;&lt;a href="http://developer.android.com/guide/topics/ui/settings.html"&gt;Settings&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其PreferenceFragment文件源码地址在：&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/preference/PreferenceFragment.java"&gt;GoogleSource&lt;/a&gt;，其中利用了ListView进行界面绘制。另外grepcode.com这个网站是个不错的查看android源代码(AOSP)的网站。以及还有一些&lt;a href="http://www.programcreek.com/java-api-examples/index.php?api=android.preference.PreferenceFragment"&gt;示例代码&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;并且文档里还介绍了android3.0以前如果想用PreferenceFragment怎么办，详细参考&lt;a href="http://developer.android.com/guide/topics/ui/settings.html#BackCompatHeaders"&gt;这个链接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;a href="源码分析"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;0x06 参考链接&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://developer.android.com/guide/topics/ui/settings.html"&gt;settings&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://developer.android.com/reference/android/preference/PreferenceFragment.html"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html"&gt;Using PreferenceFragment to Store User Preferences&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment"&gt;Settings with PreferenceFragment&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 07 Jun 2015 12:25:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-06-06:201506-android-Preference-fragment.html</guid><category>Android</category><category>PreferenceFragment</category></item><item><title>Linux VPS的一些配置</title><link>http://dbqf.xyz/201505-vps-base-setting.html</link><description>&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
+&lt;p&gt;&lt;a href="http://www.cs.dartmouth.edu/~campbell/cs65/lecture12/lecture12.html"&gt;Using PreferenceFragment to store user preferences&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/codepath/android_guides/wiki/Settings-with-PreferenceFragment"&gt;Settings-with-PreferenceFragment&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 06 Jun 2015 12:13:00 +0200</pubDate><guid>tag:,2015-06-06:dubuqingfeng.github.io/posts/2015/ 6/06/201506-android-Preference-fragment/index.html</guid><category>Android</category><category>PreferenceFragment</category></item><item><title>Linux VPS的一些配置</title><link>dubuqingfeng.github.io/posts/2015/%205/16/201505-vps-base-setting/index.html</link><description>&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
 &lt;p&gt;一般ssh是开放的，容易受到攻击或者爆破等行为。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;#vi /etc/ssh/sshd_config
 
 #Port 22             //先把22注释掉
+&lt;/pre&gt;&lt;/div&gt;
 
-Port 2754            //添加一个新的端口
+
+&lt;div class="highlight"&gt;&lt;pre&gt;Port 2754            //添加一个新的端口
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -129,16 +202,18 @@ Port 2754            //添加一个新的端口
 
 &lt;p&gt;重启sshd服务的另一种方法：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Debian/Ubuntu执行：/etc/init.d/ssh restart
+
 CentOS执行：/etc/init.d/sshd restart
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;禁止密码登录：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;vi /etc/ssh/sshd_config 文件
+
+找到PasswordAuthentication后面的yes改成no。
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;找到PasswordAuthentication后面的yes改成no。&lt;/p&gt;
 &lt;h5&gt;0x03 查看登录日志&lt;/h5&gt;
 &lt;p&gt;首先进入日志目录：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;cd /var/log
@@ -221,8 +296,7 @@ pip install shadowsocks
 
 
 &lt;p&gt;防火墙的设置&lt;/p&gt;
-&lt;p&gt;编辑防火墙配置文件/etc/sysconfig/iptables，将服务器端口（server_port）放行。
-新增一条防火墙规则：&lt;/p&gt;
+&lt;p&gt;编辑防火墙配置文件/etc/sysconfig/iptables，将服务器端口（server_port）放行。 新增一条防火墙规则：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;-A INPUT -m state --state NEW -m tcp -p tcp --dport 8989 -j ACCEPT
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -264,18 +338,21 @@ pip install shadowsocks
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h5&gt;0x05 Koding环境配置pelican简记&lt;/h5&gt;
-&lt;p&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。&lt;/p&gt;
+&lt;p&gt;0x05 Koding环境配置pelican简记&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-pip
 pip install pelican
 sudo apt-get install python-virtualenv
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h5&gt;0x06 后记&lt;/h5&gt;
+&lt;p&gt;0x06 后记&lt;/p&gt;
 &lt;p&gt;需要进一步学习SSH协议，Linux服务器管理，密码学，sock5代理，iptables。&lt;/p&gt;
 &lt;p&gt;路漫漫，盖余之勤且艰若此。&lt;/p&gt;
-&lt;p&gt;专注地做好每一件事。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 17 May 2015 12:15:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-16:201505-vps-base-setting.html</guid><category>Linux</category><category>vps</category></item><item><title>ubuntu sdk、ubuntu touch、qml、ionic开发入坑记</title><link>http://dbqf.xyz/201505-ubuntutouch-ionic-qml.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;专注地做好每一件事。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 16 May 2015 12:53:00 +0200</pubDate><guid>tag:,2015-05-16:dubuqingfeng.github.io/posts/2015/ 5/16/201505-vps-base-setting/index.html</guid><category>linux</category><category>vps</category></item><item><title>Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</title><link>dubuqingfeng.github.io/posts/2015/%205/12/201505-ubuntutouch-ionic-qml/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。&lt;/p&gt;
 &lt;h5&gt;0x02 ubuntu sdk&lt;/h5&gt;
 &lt;p&gt;ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。&lt;/p&gt;
@@ -287,26 +364,22 @@ apt-get install ubuntu-sdk
 &lt;h5&gt;0x03 ubuntu touch&lt;/h5&gt;
 &lt;p&gt;作为ubuntu在手机端的产品，据说魅族也要联合推出手机，相类似的有Firefox OS、Salish……，主要开发方式有QT原生、HTML5、Scope，应该也可以用go、python进行开发，鉴于HTML5开发手机应用的不成熟，尤其是这种非安卓、iOS的，能想到的也就是用phoneGap构建，相对来说，展示类应用，用HTML5开发效率高。&lt;/p&gt;
 &lt;p&gt;相对Android来说，ubuntu touch感觉风格较统一，有便利的边缘交互模式，但是只靠这几点去赢得市场，在应用为王的移动互联网时代中比较难。一个用户，尤其是80后，90后，00后，系统上连微信、QQ都没有，比较难将其做为主力机。&lt;/p&gt;
-&lt;p&gt;PS：
-1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。&lt;/p&gt;
+&lt;p&gt;PS： 1.前几天应用市场上发布了Web QQ，使用了Web App进行开发的。&lt;/p&gt;
 &lt;h5&gt;0x04 QML&lt;/h5&gt;
 &lt;h5&gt;0x05 ionic&lt;/h5&gt;
 &lt;p&gt;ionic的安装&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;  $ npm install -g cordova ionic
+&lt;div class="highlight"&gt;&lt;pre&gt; $ npm install -g cordova ionic
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Ionic in Action
-一些AngularJS入门资料&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;p&gt;Ionic in Action 一些AngularJS入门资料&lt;/p&gt;
 &lt;p&gt;AngularJS入门教程&lt;/p&gt;
 &lt;p&gt;AngularJS权威教程&lt;/p&gt;
 &lt;p&gt;用AngularJS开发下一代Web应用&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h5&gt;0x100 参考资料&lt;/h5&gt;
-&lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 12:26:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-05-12:201505-ubuntutouch-ionic-qml.html</guid><category>ubuntu sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item><item><title>基于Arduino的解魔方机器人一些总结</title><link>http://dbqf.xyz/201504-Rubik's-Cube-Robot-yixiezongjie.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 30 Apr 2015 20:12:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-04-30:201504-Rubik's-Cube-Robot-yixiezongjie.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人后续扩展</title><link>http://dbqf.xyz/201504-Rubik's-Cube-Robot-houxukuozhan.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 20:12:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-04-20:201504-Rubik's-Cube-Robot-houxukuozhan.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Ruanjiansheji.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+&lt;p&gt;AngularJS&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 12 May 2015 09:13:00 +0200</pubDate><guid>tag:,2015-05-12:dubuqingfeng.github.io/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html</guid><category>ubuntu</category><category>sdk</category><category>ubuntu touch</category><category>qml</category><category>ionic</category></item><item><title>基于arduino的解魔方机器人一些总结</title><link>dubuqingfeng.github.io/posts/2015/%204/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 30 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-30:dubuqingfeng.github.io/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于arduino的解魔方机器人后续扩展</title><link>dubuqingfeng.github.io/posts/2015/%204/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-20:dubuqingfeng.github.io/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>dubuqingfeng.github.io/posts/2015/%204/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
 &lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;
@@ -389,7 +462,7 @@ apt-get install ubuntu-sdk
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 魔方解法操作对应舵机动作分析&lt;/h5&gt;
 &lt;p&gt;因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。&lt;/p&gt;
-&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 10 Apr 2015 20:18:00 +0200</pubDate><guid>tag:dbqf.xyz,2015-04-10:201503-Rubik's-Cube-Robot-Ruanjiansheji.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人组装调试</title><link>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</link><description>&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
+&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 10 Apr 2015 20:18:00 +0200</pubDate><guid>tag:,2015-04-10:dubuqingfeng.github.io/posts/2015/ 4/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人组装调试</title><link>dubuqingfeng.github.io/posts/2015/%203/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</link><description>&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
 &lt;p&gt;此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在&lt;a href="http://download"&gt;&lt;/a&gt;有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。&lt;/p&gt;
 &lt;h5&gt;0x02 TTL与RS-232&lt;/h5&gt;
 &lt;p&gt;波特率&lt;/p&gt;
@@ -414,7 +487,7 @@ apt-get install ubuntu-sdk
 &lt;h5&gt;0x11 蓝牙与舵机控制板的连接测试&lt;/h5&gt;
 &lt;p&gt;首先需要考虑蓝牙模块供电问题，&lt;/p&gt;
 &lt;h5&gt;0x100 参考文献&lt;/h5&gt;
-&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 Mar 2015 22:12:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-24:201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人详细思考</title><link>http://dbqf.xyz/201503-Rubik's-Cube-Robot-Xiangxisikao.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 Mar 2015 22:12:00 +0100</pubDate><guid>tag:,2015-03-24:dubuqingfeng.github.io/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人详细思考</title><link>dubuqingfeng.github.io/posts/2015/%203/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 系统设计框图设计&lt;/h5&gt;
 &lt;p&gt;主控板采取官方平台LM3S615平台，其供电采取电源适配器转3.3V(5V)，&lt;/p&gt;
@@ -424,7 +497,7 @@ apt-get install ubuntu-sdk
 &lt;p&gt;电路板部分涉及到了通用版。&lt;/p&gt;
 &lt;h5&gt;0x05 材料的选择&lt;/h5&gt;
 &lt;p&gt;1.魔方：采用5.7CM的标准魔方，以顺滑和容错为标准，适当调整螺丝。
-2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 20 Mar 2015 20:12:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-20:201503-Rubik's-Cube-Robot-Xiangxisikao.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人初步设计</title><link>http://dbqf.xyz/201503-Rubik's-Cube-Robot-start.html</link><description>&lt;h5&gt;0x01 材料&lt;/h5&gt;
+2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 20 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-20:dubuqingfeng.github.io/posts/2015/ 3/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人初步设计</title><link>dubuqingfeng.github.io/posts/2015/%203/08/201503-Rubik's-Cube-Robot-start/index.html</link><description>&lt;h5&gt;0x01 材料&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Android手机(摄像头正常)&lt;/li&gt;
 &lt;li&gt;魔方(5.7cm,非地摊货)&lt;/li&gt;
@@ -516,7 +589,7 @@ apt-get install ubuntu-sdk
 &lt;li&gt;3.主要功能为解魔方操作，识别魔方，计时等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5&gt;0x10 乐高机器人与之的辨析&lt;/h5&gt;
-&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 08 Mar 2015 20:12:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-08:201503-Rubik's-Cube-Robot-start.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于XXX的初步设计</title><link>http://dbqf.xyz/201503-RFID-RTLS-RSSI-start.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
+&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 08 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-08:dubuqingfeng.github.io/posts/2015/ 3/08/201503-Rubik's-Cube-Robot-start/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于RFID的区域性物流定位的初步设计</title><link>dubuqingfeng.github.io/posts/2015/%203/06/201503-RFID-RTLS-RSSI-start/index.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
 &lt;p&gt;RFID技术，无线电频率识别，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;RFID 定位模块&lt;/p&gt;
@@ -581,6 +654,9 @@ apt-get install ubuntu-sdk
 &lt;h5&gt;0x08 Q&amp;amp;A&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Question:定位的相关技术及对比？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;蓝牙，WIFI，Zigbee&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Question:读写器与主控的连接方式&lt;/p&gt;
 &lt;p&gt;Question:有源标签的信号折射问题.&lt;/p&gt;
 &lt;p&gt;Question:读写器天线节点的布置。&lt;/p&gt;
@@ -590,8 +666,7 @@ apt-get install ubuntu-sdk
 &lt;p&gt;《单片机与计算机串口通信实践》第一部分，第二部分第3，4章(单片机，串口通信基础)&lt;/p&gt;
 &lt;p&gt;《RFID与传感器网络：架构、协议、安全与集成》(机械工业出版社)第10，19章&lt;/p&gt;
 &lt;p&gt;《UHF RFID标签天线设计、仿真及实践》(电子工业出版社)&lt;/p&gt;
-&lt;p&gt;《无线射频识别(RFID)技术基础》(北京航空航天大学出版社)&lt;/p&gt;
-&lt;p&gt;万方31&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-06:201503-RFID-RTLS-RSSI-start.html</guid><category>电子设计</category><category>RFID</category></item><item><title>git-fork项目后与原项目进行同步</title><link>http://dbqf.xyz/201503-git-fork-synchronized.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
+&lt;p&gt;《无线射频识别(RFID)技术基础》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:,2015-03-06:dubuqingfeng.github.io/posts/2015/ 3/06/201503-RFID-RTLS-RSSI-start/index.html</guid><category>电子设计</category><category>RFID</category></item><item><title>git-fork项目后与原项目进行同步</title><link>dubuqingfeng.github.io/posts/2015/%203/04/201503-git-fork-synchronized/index.html</link><description>&lt;h5&gt;0x01 与原项目进行同步&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -640,18 +715,16 @@ git branch -a
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。&lt;/p&gt;
-&lt;p&gt;其他分支：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;功能（feature）分支&lt;/li&gt;
-&lt;li&gt;预发布（release）分支&lt;/li&gt;
-&lt;li&gt;修补bug（fixbug）分支&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。
+其他分支：&lt;/p&gt;
+&lt;p&gt;功能（feature）分支&lt;/p&gt;
+&lt;p&gt;预发布（release）分支&lt;/p&gt;
+&lt;p&gt;修补bug（fixbug）分支&lt;/p&gt;
 &lt;h5&gt;0x03 Pull Request&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;当某个人fork项目后，并推送改动后如何处理？&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-03-04:201503-git-fork-synchronized.html</guid><category>git</category><category>fork</category></item><item><title>2014年的那些碎碎念。</title><link>http://dbqf.xyz/201502-2014.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 04 Mar 2015 12:22:00 +0100</pubDate><guid>tag:,2015-03-04:dubuqingfeng.github.io/posts/2015/ 3/04/201503-git-fork-synchronized/index.html</guid><category>git</category><category>fork</category></item><item><title>2014年的那些碎碎念。</title><link>dubuqingfeng.github.io/posts/2015/%202/12/201502-2014/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;转眼之间大学已度一半有余，没有了刚来大学的不习惯，逐渐地在寻找自己的那一只方向，从建立社团，到建立小组，以及各方面的为人处世，慢慢地提高自己，并且在所学领域希望也可以有一定的思考。&lt;/p&gt;
 &lt;h5&gt;0x02 起&lt;/h5&gt;
 &lt;p&gt;寒假里学习php代码审计以及一些安全方面基础部分的知识，假期结束后，和一些同学一块讨论去做三维的农大地图，使用3dmax或者maya进行绘制模型，后来也许因为分歧等原因，退出了相关活动，另外自己设备的落后也跟不上他们，还是他们弄吧。安心做做其他方面的事情，去试着写写书，在读者的角度，多弄一些图片，然后积累自己的这一方面的经验。&lt;/p&gt;
@@ -681,7 +754,7 @@ git branch -a
 &lt;p&gt;团队的协调问题。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 部分关键词&lt;/h5&gt;
-&lt;p&gt;挂科，三维农大，学生会网站，社团活动，图书馆网站，移动互联网创业，wifi，nfc安全，饭盒网，四轴飞行器，移动互联网比赛，联想茄子快传，搜狐快站……&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-02-12:201502-2014.html</guid><category>2014</category><category>年终总结</category></item><item><title>php实现一些站长的工具</title><link>http://dbqf.xyz/201502-php-zhanzhang.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;挂科，三维农大，学生会网站，社团活动，图书馆网站，移动互联网创业，wifi，nfc安全，饭盒网，四轴飞行器，移动互联网比赛，联想茄子快传，搜狐快站……&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:22:00 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/posts/2015/ 2/12/201502-2014/index.html</guid><category>2014</category><category>年终总结</category></item><item><title>php实现一些站长的工具</title><link>dubuqingfeng.github.io/posts/2015/%202/12/201502-php-zhanzhang/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。&lt;/p&gt;
 &lt;h5&gt;0x02 计划与环境搭建&lt;/h5&gt;
 &lt;p&gt;前端框架采用bootstrap，有一个比较方便的bootwatch，
@@ -689,36 +762,47 @@ git branch -a
 php要求性能的话，phalcon框架，是php的一个扩展&lt;/p&gt;
 &lt;h5&gt;0x03 whois&lt;/h5&gt;
 &lt;p&gt;whois功能需要根据域名后缀，来连接一些whois服务器进行查询，&lt;/p&gt;
-&lt;h5&gt;0x04 ip查询&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:11:11 +0100</pubDate><guid>tag:dbqf.xyz,2015-02-12:201502-php-zhanzhang.html</guid><category>php</category><category>whois</category><category>seo</category></item><item><title>Hello,World!</title><link>http://dbqf.xyz/2015-create-blog.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+&lt;h5&gt;0x04 ip查询&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 12 Feb 2015 12:11:11 +0100</pubDate><guid>tag:,2015-02-12:dubuqingfeng.github.io/posts/2015/ 2/12/201502-php-zhanzhang/index.html</guid><category>php</category><category>whois</category><category>seo</category></item><item><title>Hello,World!</title><link>dubuqingfeng.github.io/posts/2015/%202/10/2015-create-blog/index.html</link><description>&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Virtualenv&lt;/p&gt;
-&lt;p&gt;sudo pip install virtualenv&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Virtualenv
+
+sudo pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;blockquote&gt;
-&lt;p&gt;Linux(Centos)&lt;/p&gt;
-&lt;p&gt;Windows&lt;/p&gt;
+&lt;p&gt;MAC&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install pelican markdown
+
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h5&gt;0x02 写作环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Markdown&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;主要采取一款开源在线的markdown编辑器，并计划在其基础上进行改进，使其更加符合个人习惯。&lt;/p&gt;
+&lt;p&gt;地址在:&lt;a href="http://sxaulab.sinaapp.com/"&gt;这里&lt;/a&gt;&lt;/p&gt;
 &lt;h5&gt;0x03 修改主题&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Dubuqingfeng&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;主题在bootstrap的样式和最近的material design材料样式之间纠结，在看了pelican的bootstrap的主题以后，想自己写一个主题，于是就去找关于material design设计的网站方面的资料，一开始谷歌推出这种设计语言的时候，大量应用于安卓应用，以摆脱应用风格不统一的问题，一些谷歌web网页也采取了这种设计。找到了多种设计框架，有material for bootstrap，materialize，...&lt;/p&gt;
-&lt;p&gt;然后看了这两个官网，觉得materialize更简单，并且有相关实例，文档不难看懂，弄出的效果也接近material design。所以先用这种尝试写博客主题。写的时候，主要参考pelican文档里&lt;a href="http://www.baidu.com"&gt;主题编写&lt;/a&gt;部分，进行相关样式及模板的修改。&lt;/p&gt;
+&lt;p&gt;然后看了这两个官网，觉得materialize更简单，并且有相关实例，文档不难看懂，弄出的效果也接近material design。所以先用这种尝试写博客主题。写的时候，主要参考pelican文档里&lt;a href="http://pelican-docs-zh-cn.readthedocs.org/en/latest/themes.html"&gt;主题编写&lt;/a&gt;部分，进行相关样式及模板的修改。&lt;/p&gt;
 &lt;p&gt;在templates文件夹下，有base.html文件，其他继承这个文件，并且模板中还可以包含其他文件。设置或者读取常量可以在pelicanconf.py中配置。&lt;/p&gt;
+&lt;p&gt;主题源码都在&lt;a href="https://github.com/sxau-web-team/MaterialDesignPelicanTheme"&gt;这里&lt;/a&gt;，其中包含了用到的插件，以及个人博客的配置。&lt;/p&gt;
 &lt;h5&gt;0x04 插件配置&lt;/h5&gt;
-&lt;p&gt;目前主要使用了&lt;a href=""&gt;sitemap&lt;/a&gt;，&lt;a href=""&gt;gravatar&lt;/a&gt;这两个插件，以后采用新插件的时候，还会补充。&lt;/p&gt;
+&lt;p&gt;目前主要使用了&lt;a href="https://github.com/sxau-web-team/MaterialDesignPelicanTheme/tree/master/pelican-plugins/sitemap"&gt;sitemap&lt;/a&gt;，&lt;a href="https://github.com/sxau-web-team/MaterialDesignPelicanTheme/tree/master/pelican-plugins/gravatar"&gt;gravatar&lt;/a&gt;这两个插件，以后采用新插件的时候，还会补充。&lt;/p&gt;
 &lt;h5&gt;0x05 程序维护&lt;/h5&gt;
-&lt;p&gt;pelican使用jinja2进行模板渲染，需要定期查看是否有新版本。
-jinja2
-flask
-Frozen-Flask
-相关系统：
+&lt;p&gt;pelican使用jinja2进行模板渲染，需要定期查看是否有新版本。&lt;/p&gt;
+&lt;p&gt;jinja2&lt;/p&gt;
+&lt;p&gt;flask&lt;/p&gt;
+&lt;p&gt;Frozen-Flask&lt;/p&gt;
+&lt;p&gt;相关系统：
 Cactus&lt;/p&gt;
 &lt;h5&gt;0x06 域名等服务配置&lt;/h5&gt;
 &lt;p&gt;因blog放在github pages上，所以域名绑定可以在目录下建立名为CNAME的文件，里面保存顶级域名。然后域名A记录指向dubuqingfeng.github.io&lt;/p&gt;
@@ -736,4 +820,4 @@ AUTHOR_FEED_RSS = None
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:dbqf.xyz,2015-02-10:2015-create-blog.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>
+&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 10 Feb 2015 12:11:00 +0100</pubDate><guid>tag:,2015-02-10:dubuqingfeng.github.io/posts/2015/ 2/10/2015-create-blog/index.html</guid><category>github pages</category><category>pelican</category></item></channel></rss>
