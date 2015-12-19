@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/dian-zi-she-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 30 Apr 2015 16:22:00 +0200</lastBuildDate><item><title>基于arduino的解魔方机器人一些总结</title><link>dubuqingfeng.github.io/posts/2015/%204/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 30 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-30:dubuqingfeng.github.io/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于arduino的解魔方机器人后续扩展</title><link>dubuqingfeng.github.io/posts/2015/%204/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
-&lt;p&gt;常见的魔方比赛可以&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-20:dubuqingfeng.github.io/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>dubuqingfeng.github.io/posts/2015/%204/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/dian-zi-she-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Jul 2015 21:41:00 +0200</lastBuildDate><item><title>基于arduino的解魔方机器人一些总结</title><link>dubuqingfeng.github.io/posts/2015/%204/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</link><description>&lt;h5&gt;0x01 期间的一些问题&lt;/h5&gt;
+&lt;p&gt;解魔方机器人，最初只是大一的一个想法，然后那会调研了下，成本需要两三k，并且是动力老男孩的那种版本，印象中其他类型的解魔方机器人需要的动手能力比较强。&lt;/p&gt;
+&lt;p&gt;在毕昇杯想项目的过程中，本来有一个区域性物流定位的项目，但是相关基础是在不好，并没有相关思路，所以同时也在构思其他项目，在一次睡梦中，想到了解魔方机器人，想到了现在的原型，并且在寒假中开始搜集资料，整理思路。&lt;/p&gt;
+&lt;p&gt;在刚开始的时候，遇到了一些问题。&lt;/p&gt;
+&lt;p&gt;首先是材料选择的问题，因为并没有相关经验，也没有找到前人的经验，所以在底座和滑动的选择上，建立了好几个相关方案。&lt;/p&gt;
+&lt;h5&gt;0x02 期间的一些收获&lt;/h5&gt;
+&lt;p&gt;在期间，王总也在割板子的过程中受了几次伤；也好几次在晚上十一点熄灯以后进行一些业务和技术上的讨论。&lt;/p&gt;
+&lt;h5&gt;0x03 无可置换的控制板&lt;/h5&gt;
+&lt;h5&gt;0x04 博创杯参赛小记&lt;/h5&gt;
+&lt;h5&gt;0x05 博创杯见闻&lt;/h5&gt;
+&lt;h5&gt;0x06 嵌入式回顾&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 28 Jul 2015 21:41:00 +0200</pubDate><guid>tag:,2015-04-30:dubuqingfeng.github.io/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于arduino的解魔方机器人后续扩展</title><link>dubuqingfeng.github.io/posts/2015/%204/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</link><description>&lt;h5&gt;0x01 Android软件上的扩展&lt;/h5&gt;
+&lt;p&gt;Android上的控制软件，&lt;/p&gt;
+&lt;h5&gt;0x02 Arduino主控的扩展&lt;/h5&gt;
+&lt;h5&gt;0x03 在图像处理方面的扩展&lt;/h5&gt;
+&lt;h5&gt;0x04 蓝牙WIFI方面的扩展&lt;/h5&gt;
+&lt;h5&gt;0x05 主控板的扩展&lt;/h5&gt;
+&lt;h5&gt;0x06 树莓派的扩展&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-20:dubuqingfeng.github.io/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>dubuqingfeng.github.io/posts/2015/%204/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
 &lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;

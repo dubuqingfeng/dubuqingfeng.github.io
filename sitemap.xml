@@ -5,30 +5,37 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/</loc>
-<lastmod>2015-11-02T11:52:25-00:00</lastmod>
+<lastmod>2015-12-19T14:14:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/archives.html</loc>
-<lastmod>2015-11-02T11:52:25-00:00</lastmod>
+<lastmod>2015-12-19T14:14:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/tags.html</loc>
-<lastmod>2015-11-02T11:52:25-00:00</lastmod>
+<lastmod>2015-12-19T14:14:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/categories.html</loc>
-<lastmod>2015-11-02T11:52:25-00:00</lastmod>
+<lastmod>2015-12-19T14:14:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
+</url>
+
+<url>
+<loc>dubuqingfeng.github.io/posts/2015/12/18/201512-bugtags-feedback/index.html</loc>
+<lastmod>2015-12-19T01:34:00+01:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -61,7 +68,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</loc>
-<lastmod>2015-04-30T16:22:00+02:00</lastmod>
+<lastmod>2015-07-28T21:41:00+02:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -151,8 +158,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>dubuqingfeng.github.io/category/bugtags.html</loc>
+<lastmod>2015-12-19T01:34:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>dubuqingfeng.github.io/category/dian-zi-she-ji.html</loc>
-<lastmod>2015-04-30T16:22:00+00:09</lastmod>
+<lastmod>2015-07-28T21:41:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -207,6 +221,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>dubuqingfeng.github.io/tag/bugtags.html</loc>
+<lastmod>2015-12-19T01:34:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>dubuqingfeng.github.io/tag/qml.html</loc>
 <lastmod>2015-05-12T09:21:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -244,6 +265,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dubuqingfeng.github.io/tag/whois.html</loc>
 <lastmod>2015-02-12T12:11:11+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>dubuqingfeng.github.io/tag/bugguan-li.html</loc>
+<lastmod>2015-12-19T01:34:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -292,7 +320,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/tag/dian-zi-she-ji.html</loc>
-<lastmod>2015-04-30T16:22:00+00:09</lastmod>
+<lastmod>2015-07-28T21:41:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -334,7 +362,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/tag/jie-mo-fang-ji-qi-ren.html</loc>
-<lastmod>2015-04-30T16:22:00+00:09</lastmod>
+<lastmod>2015-07-28T21:41:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -362,7 +390,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/author/admin.html</loc>
-<lastmod>2015-08-30T20:23:00+00:09</lastmod>
+<lastmod>2015-12-19T01:34:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

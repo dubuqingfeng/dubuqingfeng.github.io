@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog</title>
+  <title>Bugtags使用感触 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -58,8 +58,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="http://dbqf.xyz"><i class="mdi-action-home"></i>首页</a></div>              </div>
-              <div class="collapsible-body"><p>This is index...</p></div>
+<div class="collapsible-header"><a href="/category/bugtags.html"><i class="mdi-action-subject"></i>【Bugtags】</a><a href="#">--Bugtags使用感触</a>              </div>
+              <div class="collapsible-body"><p>前两天去了全球容器技术大会，讨论容器技术的现在与未来。大会主要面向对容器技术感兴趣的中高端的人员，不乏很多互联网技术公司的人，都在学习如何建设新的基础设施架构。</p></div>
             </li>
           </ul>
         </div>
@@ -68,8 +68,58 @@
   <div class="card z-depth-1">
     <div class="card-content black-text">
       <span class="card-title black-text"><a href="/posts/2015/12/18/201512-bugtags-feedback/index.html" class="black-text flow-text" id="title">Bugtags使用感触</a></span>
-      <p><p>前两天去了全球容器技术大会，讨论容器技术的现在与未来。大会主要面向对容器技术感兴趣的中高端的人员，不乏很多互联网技术公司的人，都在学习如何建设新的基础设施架构。</p>
-	  </p>
+      <h5>0x01   前言、</h5>
+<p>写在Bugtags上线Crash发生趋势之际，以及英语四级前夜。仅感触，无其他。</p>
+<h5>0x02   起缘、</h5>
+<p>在9月份的时候，开学之际，随着Codekk微信号推送了一条名为“移动应用Bug快速反馈利器”的消息，工欲善其事，必先利其器。看完介绍了以后，不禁感觉眼前一亮，和以前接触的crash收集工具有点不一样，并且也听说过一些摇一摇进行反馈的功能。</p>
+<p>这个主要是一个类似于外包的项目，应用内容是大学内app社交、社区等形式，其中整体APP需要一个良好的架构，以及完善的测试（然而并没有测试），只好在边开发边测试。</p>
+<p>最初我们在应用开发上，采用的git版本控制，主要两个人进行开发，并没有测试妹纸。（最初找了一个“设计师”同学），在经理提出项目需求和改进时，往往通过经理去告诉给另外一个人，然后另一个人进行评估，直接在代码里进行修改，并且没有记录，整个过程并不透明。后来经理会找张纸记录一些问题，解决了打个对勾，但是这还是不好管理，并且对于机型的不确定性，以及Bug的难复现，降低了一些效率。</p>
+<p>此处应该有图片：</p>
+<p><img class="responsive-img" src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201512-bugtags-feedback-01.jpg"></p>
+<p>在公众号信息里，展示了提交Bug的流程，然后试着集成了一下sdk，整体集成的过程并不麻烦，很快感受到了效果，并推荐给了另一位开发。</p>
+<p>在接入以后，熟悉了提交Bug的方式，感觉相见恨晚，很适合经理在提哪有问题，哪需要改进。</p>
+<h5>0x03   成长、</h5>
+<p>在接入应用以后，效率上感觉到了一些方便，但是就发现了一些问题，比如那会会一直邮件收到提醒，并提了工单，在QQ群里也进行了咨询，并且收到了这个问题正在解决中，会在下周上线。</p>
+<p>并且Bugtags提交Bug时，整体流程并不麻烦。</p>
+<p>令人感到欣慰的是，Bugtags团队的迭代，使得Bugtags不断的完善，随着使用中，逐渐上线了以下几个特性：</p>
+<blockquote>
+<p>增加几种标签状态和类型。</p>
+<p>区别了开发人员和提交Bug人员</p>
+<p>可以批量修改状态和删除标签</p>
+<p>Crash可以抓到截图</p>
+<p>支持了导出功能</p>
+<p>增加匿名提交</p>
+<p>添加了批量邀请成员等功能</p>
+<p>……</p>
+</blockquote>
+<p>在团队的不断迭代开发应用的过程中，收到了很多经理的提的标签，经常一天提十几条，如果按照往常的列出清单，然后一个一个去解决，会浪费很多时间和效率。</p>
+<p>应用也在fir.im内测，不断的去完善，提高着自己的开发技能，奔溃影响机型数从最初的少量的几台手机在逐渐增加。</p>
+<p>此处应该有图片：</p>
+<p><img class="responsive-img" src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201512-bugtags-feedback-02.jpg"></p>
+<h5>0x04   伴随、</h5>
+<p>在使用的过程中，提交的问题越来越多，收到的标签也越来越多，毕竟是一个APP应用，从0.1到0.9的过程（0.1指接入时已经开发了一个简单原型）。</p>
+<p>一张现在的统计，标签已经不少了，此处继续应该有图片：</p>
+<p><img class="responsive-img" src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201512-bugtags-feedback-03.jpg"></p>
+<p>问题界面：</p>
+<p><img class="responsive-img" src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201512-bugtags-feedback-04.jpg"></p>
+<p>随着不断的使用，发觉提高了不少效率，在这将近三个月的相处之中，感受到了Bugtags团队的不懈努力，感受到了对开发与测试的关注。</p>
+<p>并且现在也提供了一些可视化的数据，来表达测试的效果，以及应用的完善程度。</p>
+<p>在上线以后，我们也重点关注了一些Crash，并且Crash相对于以前来说，更加好复现，并且对其进行了改进，优化应用的性能，提升了一些用户体验。</p>
+<p>因为机型和系统不同，作为一个android开发者，不可避免地会遇到很多Crash，当用户遇到了以后，作为开发也很无奈，毕竟比较难复现，有了Bugtags了以后，可以及时地统计机型，系统版本，以及用户所执行的步骤，现在最近又上线了Crash的发生趋势，可以让开发专注于近期发生频率高的Crash进行改进。</p>
+<p>此处应该有图片：</p>
+<p><img class="responsive-img" src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201512-bugtags-feedback-05.jpg"></p>
+<p>在今年的华北五省计算机应用大赛的答辩现场，也给评委们简单介绍了一下这个Bug管理平台，提高了一些开发效率。</p>
+<h5>0x05   后记、</h5>
+<p>你们的测试妹子、霸道产品、老板肯定需要它很久了，爱他恨他就转给他。</p>
+<p>在Bugtags之前，并不知道有相关的Bug管理平台，作为一名开发者，Bugtags是值得推荐的。</p>
+<p>最后提几点意见（其中有些不知道中肯与否）：</p>
+<blockquote>
+<p>开发android studio插件，实现可以收到紧急标签会提醒。</p>
+<p>开发android客户端，实现可以移动管理标签状态。</p>
+<p>开放一些api，实现自定义配置</p>
+<p>希望可以提供一些移动应用测试，例如monkey之类的实践。</p>
+<p>如果是非Wi-Fi环境下，提供一些流量方面的统计。</p>
+</blockquote>	
     </div>
     <div class="card-action">
       <a class="orange-text text-accent-2" href="/category/bugtags.html" onclick="">2015-12-18 23:22:00</a>
@@ -78,120 +128,25 @@
 </div>
 <div class="section">
   <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 8/30/201508-CnutCon-Docker-Beijing/index.html" class="black-text flow-text" id="title">CnutCon全球容器技术大会有感</a></span>
-      <p><p>前两天去了全球容器技术大会，讨论容器技术的现在与未来。大会主要面向对容器技术感兴趣的中高端的人员，不乏很多互联网技术公司的人，都在学习如何建设新的基础设施架构。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/docker.html" onclick="">2015-08-30 19:22:00</a>
-<a href="/tag/cnutcon.html">CnutCon</a><a href="/tag/docker.html">Docker</a>    </div>
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
   </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 6/06/201506-android-Preference-fragment/index.html" class="black-text flow-text" id="title">如何使用PreferenceFragment方便地完成设置界面</a></span>
-      <p><p>在android中，利用PreferenceFragment快速完成设置界面以及一些思考。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/android.html" onclick="">2015-06-06 12:13:00</a>
-<a href="/tag/android.html">Android</a><a href="/tag/preferencefragment.html">PreferenceFragment</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 5/16/201505-vps-base-setting/index.html" class="black-text flow-text" id="title">Linux VPS的一些配置</a></span>
-      <p><p>对于Linux的VPS的一些基础设置，例如更换端口，加强登录验证，日志的记录，shadowsocks的安装，shadowsocks的优化等。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/linux.html" onclick="">2015-05-16 12:53:00</a>
-<a href="/tag/linux.html">linux</a><a href="/tag/vps.html">vps</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html" class="black-text flow-text" id="title">Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</a></span>
-      <p><p>对于一些其他平台，或者是跨平台的应用，例如ubuntu touch平台、其可利用ubuntu sdk及qml进行开发，以及跨平台移动开发框架ionic基于angularJS，本文叙述了一些入坑记录。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
-<a href="/tag/ubuntu.html">ubuntu</a><a href="/tag/sdk.html">sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html" class="black-text flow-text" id="title">基于arduino的解魔方机器人一些总结</a></span>
-      <p><p>在解魔方机器人制作之后的一些总结性的文字，利于以后回忆，并且有所回顾和思考。以及其在博创杯上的展示，升级等。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-04-30 16:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html" class="black-text flow-text" id="title">基于arduino的解魔方机器人后续扩展</a></span>
-      <p><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android和控制板，后期可以扩展到树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-04-20 16:22:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 4/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人软件设计与实现</a></span>
-      <p><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android，和xxx控制板，后期可以扩展到Arduino,树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-04-10 16:25:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人组装调试</a></span>
-      <p><p>本文在机械与电路部分的初步设计之下，进行一些主控板与硬件器件的辨析、连接与调试。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-24 14:23:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-<div class="section">
-  <div class="card z-depth-1">
-    <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 3/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人详细思考</a></span>
-      <p><p>本文在上一篇解魔方机器人初步设计的基础上进行的详细设计，基于Android和控制板，后期可以扩展到树莓派等，后期会陆续开源，从材料结构，到算法控制等的一些简单设计。</p>
-	  </p>
-    </div>
-    <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-20 12:50:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
-  </div>
-</div>
-
-<div class="section">
-  <ul class="pagination">
-	  <li class="disabled"><a href="#"><i class="mdi-navigation-chevron-left"></i></a></li>
-	  <li class="active waves-effect"><a href="/index.html">1</a></li>
-	  <li class=" waves-effect"><a href="/index2.html">2</a></li>
-	  <li class="waves-effect"><a href="/index2.html"><i class="mdi-navigation-chevron-right"></i></a></li>
-  </ul>
 </div>
       </div>
       <div class="col s12 m4 l3">
@@ -206,7 +161,7 @@
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/android.html">【Android】</a></li>
-                    <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
+                    <li class="active"><a href="/category/bugtags.html">【Bugtags】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/docker.html">【Docker】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
