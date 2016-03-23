@@ -458,7 +458,7 @@ apt-get install ubuntu-sdk
 &lt;span class="cm"&gt; by Scott Fitzgerald&lt;/span&gt;
 &lt;span class="cm"&gt; http://arduino.cc/en/Tutorial/Knob&lt;/span&gt;
 &lt;span class="cm"&gt;*/&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;Servo.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Servo.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// create servo object to control a servo&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;potpin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// analog pin used to connect the potentiometer&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;    &lt;span class="c1"&gt;// variable to read the value from the analog pin&lt;/span&gt;
@@ -483,7 +483,7 @@ apt-get install ubuntu-sdk
 &lt;span class="cm"&gt; http://arduino.cc/en/Tutorial/Sweep&lt;/span&gt;
 &lt;span class="cm"&gt;*/&lt;/span&gt;
 
-&lt;span class="cp"&gt;#include &amp;lt;Servo.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;Servo.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="n"&gt;Servo&lt;/span&gt; &lt;span class="n"&gt;myservo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// create servo object to control a servo &lt;/span&gt;
                 &lt;span class="c1"&gt;// twelve servo objects can be created on most boards&lt;/span&gt;
