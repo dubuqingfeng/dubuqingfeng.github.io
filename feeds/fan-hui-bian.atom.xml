@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/fan-hui-bian.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2014-07-24T15:42:00+02:00</updated><entry><title>c程序的启动过程的反汇编分析</title><link href="dubuqingfeng.github.io/posts/2014/%207/24/201407-reverse-disassemble-c-main/index.html" rel="alternate"></link><updated>2014-07-24T15:42:00+02:00</updated><author><name>admin</name></author><id>tag:,2014-07-24:dubuqingfeng.github.io/posts/2014/ 7/24/201407-reverse-disassemble-c-main/index.html</id><summary type="html">&lt;h5&gt;0x01  工具准备&lt;/h5&gt;
+&lt;p&gt;1.最简c代码一只&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;int main()
+{
+    return 0;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2.ollydbg&lt;/p&gt;
+&lt;p&gt;3.VC++6.0&lt;/p&gt;
+&lt;p&gt;4.GCC（mingw）&lt;/p&gt;
+&lt;h5&gt;0x02  代码分析&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;int main()
+{
+    return 0;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在gcc下，添加-nostdlib编译选项，即链接器不链接标准库，会提示以下错误信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;D:\Backup\我的文档\src&amp;gt;gcc main.c -nostdlib-o main.exe
+C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\ccmSU3wr.o:main.c:(.text+0x9): undefined reference to `__main’
+collect2.exe: error: ld returned 1 exit status
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;关于-nostdlib编译选项，只有命令行指定的项才传递给链接器。标准启动文件和库都不会传递给链接器。该选项隐式打开选项-nostartfiles 和-nodefaultlibs。该选项也可以写作–no-standard-libraries。&lt;/p&gt;
+&lt;p&gt;在gcc执行汇编之后，在链接部分，当只打开选项-nostartfiles时，结果正常，未出现错误信息。而在-nodefaultlibs选项中，提示很多错误信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://1433-wordpress.stor.sinaapp.com/uploads/2014/07/2014-06-14_191805.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;说明main函数，依赖了一些系统标准库文件，在链接的时候，需要到了一些函数，例如pre_cpp_init、check_managed_app、pre_c_init、_tmainCRTStartup、_InterlockedCompareExchangePointer、duplicate_ppstrings、WinMainCRTStartup、mainCRTStartup、_mingw_prepare_except_fr_msvcr80_and_higher….&lt;/p&gt;
+&lt;p&gt;汇编里面的_main就是C语言里面的main，是因为汇编器和C编译器对符号的命名差一个下划线。&lt;/p&gt;
+&lt;p&gt;链接器会在系统标准库文件，类似于/lib/crt2.o的文件中，寻找_start符号，然后在_start中执行创建堆对象，栈，打开系统预先提供的设备，将argv,argc参数传入main函数，然后调用main函数。&lt;/p&gt;
+&lt;h5&gt;0x03  vc main函数反汇编分析&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;    &lt;span class="n"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;    &lt;span class="o"&gt;{&lt;/span&gt;
+&lt;span class="mi"&gt;00401010&lt;/span&gt;   &lt;span class="n"&gt;push&lt;/span&gt;        &lt;span class="n"&gt;ebp&lt;/span&gt;   &lt;span class="c1"&gt;//在堆栈上保存EBP&lt;/span&gt;
+&lt;span class="mi"&gt;00401011&lt;/span&gt;   &lt;span class="n"&gt;mov&lt;/span&gt;         &lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;esp&lt;/span&gt; &lt;span class="c1"&gt;//将堆栈当前位置给EBP，以在堆栈结构中存储值时的参考点&lt;/span&gt;
+&lt;span class="mi"&gt;00401013&lt;/span&gt;   &lt;span class="n"&gt;sub&lt;/span&gt;         &lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="c1"&gt;//分配空间&lt;/span&gt;
+&lt;span class="mi"&gt;00401016&lt;/span&gt;   &lt;span class="n"&gt;push&lt;/span&gt;        &lt;span class="n"&gt;ebx&lt;/span&gt;  &lt;span class="c1"&gt;//保存数据段值&lt;/span&gt;
+&lt;span class="mi"&gt;00401017&lt;/span&gt;   &lt;span class="n"&gt;push&lt;/span&gt;        &lt;span class="n"&gt;esi&lt;/span&gt; &lt;span class="c1"&gt;//源地址指针&lt;/span&gt;
+&lt;span class="mi"&gt;00401018&lt;/span&gt;   &lt;span class="n"&gt;push&lt;/span&gt;        &lt;span class="n"&gt;edi&lt;/span&gt; &lt;span class="c1"&gt;//目的地址指针&lt;/span&gt;
+&lt;span class="mi"&gt;00401019&lt;/span&gt;   &lt;span class="n"&gt;lea&lt;/span&gt;         &lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="o"&gt;,[&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;40&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;//装入有效地址，用来得到局部变量和函数参数的指针。这里[ebp-40h]就是基地址再向下偏移40h，就是前面说的为本地变量留出的空间的起始地址；将这个值装载入edi寄存器，从而得到局部变量的地址&lt;/span&gt;
+&lt;span class="mi"&gt;0040101&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;   &lt;span class="n"&gt;mov&lt;/span&gt;         &lt;span class="n"&gt;ecx&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="c1"&gt;//在ecx寄存器存储10h&lt;/span&gt;
+&lt;span class="mi"&gt;00401021&lt;/span&gt;   &lt;span class="n"&gt;mov&lt;/span&gt;         &lt;span class="n"&gt;eax&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;CCCCCCCCh&lt;/span&gt;
+&lt;span class="mi"&gt;00401026&lt;/span&gt;   &lt;span class="n"&gt;rep&lt;/span&gt; &lt;span class="n"&gt;stos&lt;/span&gt;    &lt;span class="n"&gt;dword&lt;/span&gt; &lt;span class="n"&gt;ptr&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;edi&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;//初始化局部变量空间,ds:[edi]&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="mi"&gt;00401028&lt;/span&gt;   &lt;span class="n"&gt;xor&lt;/span&gt;         &lt;span class="n"&gt;eax&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;eax&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="mi"&gt;0040102&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;   &lt;span class="n"&gt;pop&lt;/span&gt;         &lt;span class="n"&gt;edi&lt;/span&gt; &lt;span class="c1"&gt;//恢复所有寄存器的值&lt;/span&gt;
+&lt;span class="mi"&gt;0040102&lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;   &lt;span class="n"&gt;pop&lt;/span&gt;         &lt;span class="n"&gt;esi&lt;/span&gt;
+&lt;span class="mi"&gt;0040102&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;   &lt;span class="n"&gt;pop&lt;/span&gt;         &lt;span class="n"&gt;ebx&lt;/span&gt;
+&lt;span class="mi"&gt;0040102&lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;   &lt;span class="n"&gt;mov&lt;/span&gt;         &lt;span class="n"&gt;esp&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ebp&lt;/span&gt; &lt;span class="c1"&gt;//恢复堆栈&lt;/span&gt;
+&lt;span class="mi"&gt;0040102&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;   &lt;span class="n"&gt;pop&lt;/span&gt;         &lt;span class="n"&gt;ebp&lt;/span&gt;
+&lt;span class="mi"&gt;00401030&lt;/span&gt;   &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="c1"&gt;//返回到源EIP地址&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vc查看调用栈，可以看到在main函数之前，系统还启动了mainCRTStartup函数，这个函数是控制台环境下多字节编码的启动函数。在kernel32.dll中地址7c816fd7处调用了mainCRTStartup函数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;main() line 2
+mainCRTStartup() line 206 + 25 bytes
+KERNEL32! 7c816fd7()
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x04 ollydbg反汇编分析&lt;/h5&gt;
+&lt;p&gt;Od载入，如图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://1433-wordpress.stor.sinaapp.com/uploads/2014/07/2014-06-14_201002.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;堆栈窗口如图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://1433-wordpress.stor.sinaapp.com/uploads/2014/07/2014-06-14_201011.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;通过堆栈，可以看到kelnel32调用了入口函数(mainCRTStartup)，对于od来说，main函数并不是Entry point，而是mainCRTStartup函数。&lt;/p&gt;
+&lt;p&gt;一直单步，单步到00401146处，od分析为调用GetVersion函数，获取当前运行平台的版本号，因为是控制台程序，所以获取版本号为ms-dos的版本信息。&lt;/p&gt;
+&lt;p&gt;继续单步，单步到0040119E处，单步进入，可以看到有HeapCreate申请堆空间函数，大小由传递的参数决定，并且该call里有HeapDestroy销毁堆函数。因此0040119E为初始化堆空间，如图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://1433-wordpress.stor.sinaapp.com/uploads/2014/07/2014-06-14_202017.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;在004011C0处，od分析为GetCommandLineA函数，获取命令行参数信息的首地址。&lt;/p&gt;
+&lt;p&gt;进入下面的那个call后，可以看到GetEnvironmentStringsW和GetEnvironmentStrings函数，获取环境变量的首地址，如图所示。以Unicode编码形式返回到寄存器和堆栈中，最后采用WideCharToMultiByte函数将Unicode字符串到一个多字节字符串&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://1433-wordpress.stor.sinaapp.com/uploads/2014/07/2014-06-14_202855.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;并且后续有参数分析的一些函数，环境变量信息分析，从而得到main函数所需的参数，然后在00402D4B位置，将参数传到main函数中，从而执行main函数中的内容。&lt;/p&gt;
+&lt;h5&gt;0x05 后记&lt;/h5&gt;
+&lt;p&gt;最近在阅读《c++反汇编与逆向分析技术揭秘》，在阅读到第三章认识启动函数，找到用户入口时，得知main函数之前系统要做一些准备工作，再加上上学期学的C语言程序入口函数不是main函数，而是_start函数，这不禁引发了一些思考，到底编译器在编译和系统执行程序的时候发生了什么，因此想以实例进行一定的分析。在思考的过程中，有些涉及到了编译器的知识，包括它如何工作的，汇编之后又是如何链接的，这一部分内容不太熟悉，这一方面得掌握编译原理的知识，还得学习编译器的相关内容。那些东西还没学，因此不免有一些缺憾。了解反汇编的一些内容，可以更深层次的理解相对底层的一些东西，包括栈，堆和寄存器的数据交换。另外并未使用到神器IDA，利用IDA会更好地静态分析一些函数。&lt;/p&gt;</summary><category term="C"></category><category term="反汇编"></category></entry></feed>
