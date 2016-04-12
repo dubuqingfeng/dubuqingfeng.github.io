@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/chromebook.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2014-10-19T12:42:00+02:00</updated><entry><title>chromebook的ubuntu安装和软件配置</title><link href="dubuqingfeng.github.io/posts/2014/10/19/201410-chromebook-install-ubuntu/index.html" rel="alternate"></link><updated>2014-10-19T12:42:00+02:00</updated><author><name>admin</name></author><id>tag:,2014-10-19:dubuqingfeng.github.io/posts/2014/10/19/201410-chromebook-install-ubuntu/index.html</id><summary type="html">&lt;h5&gt;0x01 安装系统&lt;/h5&gt;
+&lt;p&gt;需进入开发者模式，在关机状态下，按住Esc+F3（刷新）+电源键，启动Chromebook，看到ChromeOS系统损坏的界面以后（顺带一提，按方向键可以切换成不同的语 音；需要重装ChromeOS的话就在这个界面里插入ChromeOS恢复U盘，google下载）按Ctrl+D，系统提示是否确认要进入开发者模式，回车确认。然后等待系统重启，第一次重启会显示修复系统，耐心等待就可以了，从此系统就进入开发者模式。注意一旦开启开发者模式，开机界面都会显示一个警告界面。要么等待 30秒后系统自动启动，要么按Ctrl+D跳过等待时间。切记不可以按空格键，否则ChromeOS就自动关闭开发者模式了！&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+进入开发者模式的ChromeOS，不要登录google帐号。保持网络连通（我使用了手机usb分享网络，一开始还没研究翻墙），在登录界面按Ctrl+Alt+F2，切换到命令行界面。用chronos帐号登录，不需要密码。紧接着输入curl -L -O http://goo.gl/9sgchs下载脚本，然后sudo bash 9sgchs 执行脚本，保持网络畅通。&lt;/p&gt;
+&lt;h5&gt;0x02 安装软件&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get update
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装emacs&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install emacs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;设置utf8&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo gedit /etc/default/locale
+LANG=”en_US.UTF-8″
+sudo gedit /etc/environment
+LANG=”en_US.UTF-8″
+LANGUAGE=”zh_CN:zh:en_US:en”
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装Apache2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install apache2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装PHP5&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install php5 libapache2-mod-php5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;重启Apache2&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo /etc/init.d/apache2 restart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装mysql&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install mysql-server
+sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;添加phpmyadmin链接&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo ln -s /usr/share/phpmyadmin /var/www/html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装chrome&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i google-chrome-stable_current_amd64.deb
+apt-get install -f
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装git&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install git
+#git config --global user.name “dubuqingfeng”
+#git config --global user.email “1135326346@qq.com”
+#cd ~/.ssh
+#ssh-keygen -t rsa -C &amp;quot;1135326346@qq.com&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装java&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;cd /usr/lib
+mkdir jdk
+tar xvzf jdk-8u45-linux-x64.tar.gz
+cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
+#gedit /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装adt，android-studio&lt;/p&gt;
+&lt;p&gt;安装有道词典&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x03 一些备份内容&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;pelican的博客&lt;/li&gt;
+&lt;li&gt;android项目文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;0x04 链接&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/dubuqingfeng/c0c42a4805bee049321c#file-ubuntu-install-software-sh-L48"&gt;Gist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dubuqingfeng/Chromebook-For-Chinese"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="chromebook"></category><category term="ubuntu"></category></entry></feed>

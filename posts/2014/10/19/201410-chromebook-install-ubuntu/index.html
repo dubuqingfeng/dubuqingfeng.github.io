@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>【跨平台开发】 - 独步清风's blog</title>
+  <title>chromebook的ubuntu安装和软件配置 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -58,9 +58,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="http://dbqf.xyz"><i class="mdi-action-subject"></i>【跨平台开发】</a></div>
-              </div>
-              <div class="collapsible-body"><p>This is category...</p></div>
+<div class="collapsible-header"><a href="/category/chromebook.html"><i class="mdi-action-subject"></i>【chromebook】</a><a href="#">--chromebook的ubuntu安装和软件配置</a>              </div>
+              <div class="collapsible-body"><p>在入手了chromebook以后，原生的ChromeOS满足不了平时的需要，所以需要安装一些其它的系统，在贴吧等的指引下，安装配置好了ubuntu，记录一下安装的过程和软件。</p></div>
             </li>
           </ul>
         </div>
@@ -68,16 +67,125 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html" class="black-text flow-text" id="title">Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</a></span>
-      <p><p>对于一些其他平台，或者是跨平台的应用，例如ubuntu touch平台、其可利用ubuntu sdk及qml进行开发，以及跨平台移动开发框架ionic基于angularJS，本文叙述了一些入坑记录。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/posts/2014/10/19/201410-chromebook-install-ubuntu/index.html" class="black-text flow-text" id="title">chromebook的ubuntu安装和软件配置</a></span>
+      <h5>0x01 安装系统</h5>
+<p>需进入开发者模式，在关机状态下，按住Esc+F3（刷新）+电源键，启动Chromebook，看到ChromeOS系统损坏的界面以后（顺带一提，按方向键可以切换成不同的语 音；需要重装ChromeOS的话就在这个界面里插入ChromeOS恢复U盘，google下载）按Ctrl+D，系统提示是否确认要进入开发者模式，回车确认。然后等待系统重启，第一次重启会显示修复系统，耐心等待就可以了，从此系统就进入开发者模式。注意一旦开启开发者模式，开机界面都会显示一个警告界面。要么等待 30秒后系统自动启动，要么按Ctrl+D跳过等待时间。切记不可以按空格键，否则ChromeOS就自动关闭开发者模式了！</p>
+<p><br>
+进入开发者模式的ChromeOS，不要登录google帐号。保持网络连通（我使用了手机usb分享网络，一开始还没研究翻墙），在登录界面按Ctrl+Alt+F2，切换到命令行界面。用chronos帐号登录，不需要密码。紧接着输入curl -L -O http://goo.gl/9sgchs下载脚本，然后sudo bash 9sgchs 执行脚本，保持网络畅通。</p>
+<h5>0x02 安装软件</h5>
+<div class="highlight"><pre>sudo apt-get update
+</pre></div>
+
+
+<p>安装emacs</p>
+<div class="highlight"><pre>sudo apt-get install emacs
+</pre></div>
+
+
+<p>设置utf8</p>
+<div class="highlight"><pre>sudo gedit /etc/default/locale
+LANG=”en_US.UTF-8″
+sudo gedit /etc/environment
+LANG=”en_US.UTF-8″
+LANGUAGE=”zh_CN:zh:en_US:en”
+</pre></div>
+
+
+<p>安装Apache2</p>
+<div class="highlight"><pre>sudo apt-get install apache2
+</pre></div>
+
+
+<p>安装PHP5</p>
+<div class="highlight"><pre>sudo apt-get install php5 libapache2-mod-php5
+</pre></div>
+
+
+<p>重启Apache2</p>
+<div class="highlight"><pre>sudo /etc/init.d/apache2 restart
+</pre></div>
+
+
+<p>安装mysql</p>
+<div class="highlight"><pre>sudo apt-get install mysql-server
+sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
+</pre></div>
+
+
+<p>添加phpmyadmin链接</p>
+<div class="highlight"><pre>sudo ln -s /usr/share/phpmyadmin /var/www/html
+</pre></div>
+
+
+<p>安装chrome</p>
+<div class="highlight"><pre>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i google-chrome-stable_current_amd64.deb
+apt-get install -f
+</pre></div>
+
+
+<p>安装git</p>
+<div class="highlight"><pre>apt-get install git
+#git config --global user.name “dubuqingfeng”
+#git config --global user.email “1135326346@qq.com”
+#cd ~/.ssh
+#ssh-keygen -t rsa -C &quot;1135326346@qq.com&quot;
+</pre></div>
+
+
+<p>安装java</p>
+<div class="highlight"><pre>cd /usr/lib
+mkdir jdk
+tar xvzf jdk-8u45-linux-x64.tar.gz
+cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
+#gedit /etc/profile
+</pre></div>
+
+
+<p>安装adt，android-studio</p>
+<p>安装有道词典</p>
+<div class="highlight"><pre>wget http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb
+</pre></div>
+
+
+<h5>0x03 一些备份内容</h5>
+<ul>
+<li>pelican的博客</li>
+<li>android项目文件</li>
+</ul>
+<h5>0x04 链接</h5>
+<ul>
+<li><a href="https://gist.github.com/dubuqingfeng/c0c42a4805bee049321c#file-ubuntu-install-software-sh-L48">Gist</a></li>
+<li><a href="https://github.com/dubuqingfeng/Chromebook-For-Chinese">GitHub</a></li>
+</ul>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
-<a href="/tag/ubuntu.html">ubuntu</a><a href="/tag/sdk.html">sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/chromebook.html" onclick="">2014-10-19 12:41:00</a>
+<a href="/tag/chromebook.html">chromebook</a><a href="/tag/ubuntu.html">ubuntu</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -92,12 +200,12 @@
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/android.html">【Android】</a></li>
                     <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
-                    <li ><a href="/category/chromebook.html">【chromebook】</a></li>
+                    <li class="active"><a href="/category/chromebook.html">【chromebook】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/docker.html">【Docker】</a></li>
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li class="active"><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
@@ -161,7 +269,16 @@
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
+                      <li><a href="/posts/2014/ 6/index.html">六月 2014 (2)</a></li>
                   </ul>
                 </div>
               </div>
