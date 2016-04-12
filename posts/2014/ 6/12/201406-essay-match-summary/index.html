@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>git-fork项目后与原项目进行同步 - 独步清风's blog</title>
+  <title>计算机趣味知识竞赛活动总结 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -58,8 +58,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="collapsible-header"><a href="/category/github.html"><i class="mdi-action-subject"></i>【github】</a><a href="#">--git-fork项目后与原项目进行同步</a>              </div>
-              <div class="collapsible-body"><p>每fork一个项目后，当进行改动，然后push上去以后，如何进行保持与原作者的同步，以及git的一些协同命令和Pull Request。</p></div>
+<div class="collapsible-header"><a href="/category/sui-bi.html"><i class="mdi-action-subject"></i>【随笔】</a><a href="#">--计算机趣味知识竞赛活动总结</a>              </div>
+              <div class="collapsible-body"><p>作为社团一次活动的总结性文字，作为自我总结也好，回顾活动也罢。</p></div>
             </li>
           </ul>
         </div>
@@ -67,70 +67,25 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 3/04/201503-git-fork-synchronized/index.html" class="black-text flow-text" id="title">git-fork项目后与原项目进行同步</a></span>
-      <h5>0x01 与原项目进行同步</h5>
-<blockquote>
-<p>在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。</p>
-</blockquote>
-<p>1.首先clone自己，从git获取自己仓库的内容。</p>
-<div class="highlight"><pre>git clone https://github.com/xxx.git
-</pre></div>
-
-
-<p>2.添加远程仓库
-添加远程仓库的别名，获取远程仓库的内容并合并。如果有冲突则需要手动解决冲突。</p>
-<div class="highlight"><pre>git remote add username https://github.com/xxx.git
-git fetch username
-git merge username/master
-</pre></div>
-
-
-<p>3.提交改动，推到远程的master分支。</p>
-<div class="highlight"><pre>git commit -m &quot;merge from username-xx&quot;
-git push -u origin master
-</pre></div>
-
-
-<p>4.查看本地仓库</p>
-<div class="highlight"><pre>git remote -v
-git branch -a
-</pre></div>
-
-
-<h5>0x02 git协同命令</h5>
-<p>如果是个人产品，不是那种产品需要上线的服务。</p>
-<p>当使用git进行协作开发的时候，可以设置好几个分支，以主分支master为开发版，Release分支为发行版。</p>
-<p>而产品类型的git协作时，主分支只用来分布重大版本，日常开发应该在另一条分支上完成。我们把开发用的分支，叫做Develop。</p>
-<p>Git创建Develop分支的命令：</p>
-<div class="highlight"><pre>git checkout -b develop master
-</pre></div>
-
-
-<p>将Develop分支发布到Master分支的命令：</p>
-<p>切换到Master分支</p>
-<div class="highlight"><pre>git checkout master
-</pre></div>
-
-
-<p>对Develop分支进行合并</p>
-<div class="highlight"><pre>git merge --no-ff develop
-</pre></div>
-
-
-<p>默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。
-其他分支：</p>
-<p>功能（feature）分支</p>
-<p>预发布（release）分支</p>
-<p>修补bug（fixbug）分支</p>
-<h5>0x03 Pull Request</h5>
-<blockquote>
-<p>当某个人fork项目后，并推送改动后如何处理？</p>
-</blockquote>
-<p>这时会收到一个open的Pull Request，然后决定是否合并，不合并可以忽略。</p>	
+      <span class="card-title black-text"><a href="/posts/2014/ 6/12/201406-essay-match-summary/index.html" class="black-text flow-text" id="title">计算机趣味知识竞赛活动总结</a></span>
+      <p><br>
+在一个农业大学，计算机方面发展不太好，大多数学生并不对计算机感兴趣，如何激发社团成员对计算机的兴趣，社团活动需要一定的变化。上学期让学有余力的同学进行讲课等活动，渴望更多同学激发兴趣，一块学习，可是效果却不如人意，大部分的人不听，就好像和他们毫不相干，我们更不会讲和上课老师讲的相似的内容，基本也是我们讲课人员精心备过课的，还有部分人听不懂，我们讲的也很基础，很简单。不会也应该积极提问，我们都很耐心的教的。因此需要活动形式的改变。</p>
+<p><br>
+面对各大高校积极筹办各类计算机比赛，如信息安全，acm算法，程序设计，图像设计，网络安全等类的比赛，最近中北大学也进行过比赛。咱们大学，在计算机方向发展的人还是较少，老师有时讲的很无趣，自学的人较少，且自学程度较浅，更何况没信息安全专业，没那方面的人才，以及也没有做acm算法类的，这又可以算到硬件方面也跟不上，没有相关的创新实验室，所以在咱们大学办高级点的计算机比赛实为困难，没人会那些比赛内容，办设计类的比赛需要前期投入许多，因此只能尝试计算机基础性知识比赛。</p>
+<p><br>
+社团是由兴趣爱好产生的。这个比赛初赛采取每个班出人的形式，一方面班长对本班计算机爱好者也有一定了解，另一方面，那些爱好者为了班级荣誉也好而去参加初赛，比自愿的形式较好。</p>
+<p><br>
+决赛的时候，由于准备不充分，没有相关经验，并没实际见过类似比赛，所以不能尽某些人的满意，一方面我们也在思考农业大学发展计算机比赛是否发展的下去，是否能为以后的信息化讲座等做好铺垫。</p>
+<p><br>
+还有策划书感觉不太完善，那会是电子设计创新社负责策划书。</p>
+<p><br>
+这类型的比赛，说重视也不重视，说不重视也有点重视。总之，每班出三个人也去不了，自愿的就更少了，去的人整体水平并不高，因此这类型的比赛也发展不起来。像计算机方面的比赛还是很多的，例如网络攻防，acm算法，网页设计等。比计算机基础知识的比赛难的还有很多，但是大学里没几个研究这方面的内容，是很难办得起的。</p>
+<p><br>
+高校应该更好地培养同学们的兴趣，而不应该扼杀兴趣。以前对教学工作的印象是一个老头在无聊地讲着PPT，来了以后，虽然比老头更年轻点，但是扼杀兴趣的能力依然很厉害。反而限制同学们的思维自由，言论自由。</p>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/github.html" onclick="">2015-03-04 12:22:00</a>
-<a href="/tag/git.html">git</a><a href="/tag/fork.html">fork</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/sui-bi.html" onclick="">2014-06-12 17:22:00</a>
+<a href="/tag/sui-bi.html">随笔</a>    </div>
   </div>
 </div>
 <div class="section">
@@ -172,11 +127,11 @@ git branch -a
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
                     <li ><a href="/category/docker.html">【Docker】</a></li>
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
-                    <li class="active"><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
                     <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/php.html">【php】</a></li>
-                    <li ><a href="/category/sui-bi.html">【随笔】</a></li>
+                    <li class="active"><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                   </ul>
                 </div>
