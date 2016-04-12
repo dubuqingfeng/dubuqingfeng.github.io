@@ -1,5 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 19 Dec 2015 01:34:00 +0100</lastBuildDate><item><title>Bugtags使用感触</title><link>dubuqingfeng.github.io/posts/2015/12/18/201512-bugtags-feedback/index.html</link><description>&lt;h5&gt;0x01   前言、&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 12 Mar 2016 20:42:00 +0100</lastBuildDate><item><title>一些软件源的收集</title><link>dubuqingfeng.github.io/posts/2016/%203/12/201603-some-sources/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;在国内的大环境下，一些软件使用官方源会有很大的延迟，而使用国内搭建的同步官方源的话，速度会提升很多的，因此，本文总结一些常用的软件源，并不定期更新。&lt;/p&gt;
+&lt;h5&gt;0x02 Linux&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mirrors.tuna.tsinghua.edu.cn/"&gt;清华源&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mirrors.ustc.edu.cn/"&gt;中科大&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.aliyun.com/"&gt;阿里云&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://free.nchc.org.tw/pmwiki/index.php?n=FSLab.MirrorLists"&gt;自由軟體實驗室&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mirrors.cqu.edu.cn/"&gt;重庆大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.zju.edu.cn/"&gt;浙大镜像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.opencas.cn/"&gt;中科院&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.163.com/"&gt;网易&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.sohu.com/"&gt;搜狐&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirror.bit.edu.cn/web/"&gt;北京理工大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirror.bjtu.edu.cn/cn/"&gt;北京交通大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.xmu.edu.cn/"&gt;厦门大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.hust.edu.cn/"&gt;华中科技大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.linuxstory.org/"&gt;Linuxstory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.yun-idc.com/"&gt;首都在线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ftp.sjtu.edu.cn/"&gt;上海交通大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirror.lzu.edu.cn/"&gt;兰州大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://run.hit.edu.cn/html/"&gt;哈尔滨工业大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.jlu.edu.cn/"&gt;吉林大学&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mirrors.duohuo.org/"&gt;南信大多火工作室&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.jstvu.edu.cn/"&gt;江苏开放大学&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8"&gt;Ubuntu官方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.deepin.org/mirror.html"&gt;Deepin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/"&gt;archlinux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以ubuntu为例，需要编辑&lt;strong&gt;/etc/apt/sources.list&lt;/strong&gt;文件&lt;/p&gt;
+&lt;h5&gt;0x03 Docker&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker/"&gt;清华源&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://get.daocloud.io/"&gt;Daocloud获取Docker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.alauda.cn/"&gt;灵雀云&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.tenxcloud.com/"&gt;时速云&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;0x04 Android&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.androiddevtools.cn/"&gt;AndroidDevTools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mirrors.opencas.cn/"&gt;中科院&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;0x05 Ruby (gem,bundle)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ruby.taobao.org/"&gt;淘宝&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ruby.sdutlinux.org/"&gt;山东理工大学&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+https://ruby.taobao.org
+&lt;span class="c1"&gt;# 请确保只有 ruby.taobao.org&lt;/span&gt;
+$ gem install rails
+*** bundle ***
+可以用 Bundler 的 Gem 源代码镜像命令:
+$ bundle config mirror.https://rubygems.org https://ruby.taobao.org
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x06 composer&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://pkg.phpcomposer.com/"&gt;Packagist&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;例1：修改 composer 的全局配置文件（推荐方式）
+
+打开命令行窗口（windows用户）或控制台（Linux、Mac 用户）并执行如下命令：
+
+composer config -g repo.packagist composer 
+https://packagist.phpcomposer.com
+
+例2：修改当前项目的 composer.json 配置文件：
+
+打开命令行窗口（windows用户）或控制台（Linux、Mac 用户），进入你的项目的根目录
+（也就是 composer.json 文件所在目录），执行如下命令：
+
+composer config repo.packagist composer https://packagist.phpcomposer.com
+上述命令将会在当前项目中的 composer.json 文件的末尾自动添加镜像的配置信息
+（你也可以自己手工添加）：
+
+&amp;quot;repositories&amp;quot;: {
+&amp;quot;packagist&amp;quot;: {
+&amp;quot;type&amp;quot;: &amp;quot;composer&amp;quot;,
+&amp;quot;url&amp;quot;: &amp;quot;https://packagist.phpcomposer.com&amp;quot;
+}
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x07 NodeJs npm&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://npm.taobao.org/"&gt;淘宝源&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cnpmjs.org/"&gt;cnpm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:&lt;/span&gt;
+
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; npm install -g cnpm --registry=https://registry.npm.taobao.org&lt;/span&gt;
+
+&lt;span class="x"&gt;或者直接通过添加 npm 参数 alias 一个新命令:&lt;/span&gt;
+
+&lt;span class="x"&gt;alias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
+&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
+&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
+&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&lt;/span&gt;
+
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Or alias it in .bashrc or .zshrc&lt;/span&gt;
+&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; echo &amp;#39;\n&lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;alias&lt;/span&gt;&lt;span class="x"&gt; for cnpm\nalias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
+&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
+&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
+&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.zshrc &amp;amp;&amp;amp; source ~/.zshrc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用方法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;安装模块：
+$ cnpm install [name]
+同步模块：
+$ cnpm sync connect
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x08 Python pip&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pypi.mirrors.ustc.edu.cn/"&gt;中科大&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pypi.douban.com/"&gt;豆瓣&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 12 Mar 2016 20:42:00 +0100</pubDate><guid>tag:,2016-03-12:dubuqingfeng.github.io/posts/2016/ 3/12/201603-some-sources/index.html</guid><category>软件源</category><category>Linux</category><category>Docker</category></item><item><title>Bugtags使用感触</title><link>dubuqingfeng.github.io/posts/2015/12/18/201512-bugtags-feedback/index.html</link><description>&lt;h5&gt;0x01   前言、&lt;/h5&gt;
 &lt;p&gt;写在Bugtags上线Crash发生趋势之际，以及英语四级前夜。仅感触，无其他。&lt;/p&gt;
 &lt;h5&gt;0x02   起缘、&lt;/h5&gt;
 &lt;p&gt;在9月份的时候，开学之际，随着Codekk微信号推送了一条名为“移动应用Bug快速反馈利器”的消息，工欲善其事，必先利其器。看完介绍了以后，不禁感觉眼前一亮，和以前接触的crash收集工具有点不一样，并且也听说过一些摇一摇进行反馈的功能。&lt;/p&gt;
@@ -1234,7 +1364,7 @@ Line numbers for Project2(C:\Program Files (x86)\Borland\Delphi7\
 Projects\Project2.dpr) segment .text
 Bound resource files 与之相关的资源文件
 Program entry point at 0001:00050EE0  程序入口点
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 28 Jul 2014 20:48:00 +0200</pubDate><guid>tag:,2014-07-28:dubuqingfeng.github.io/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</guid><category>逆向</category><category>反汇编</category><category>delphi加密</category></item><item><title>c程序的启动过程的反汇编分析</title><link>dubuqingfeng.github.io/posts/2014/%207/24/201407-reverse-disassemble-c-main/index.html</link><description>&lt;h5&gt;0x01  工具准备&lt;/h5&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 28 Jul 2014 20:48:00 +0200</pubDate><guid>tag:,2014-07-28:dubuqingfeng.github.io/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</guid><category>逆向</category><category>delphi加密</category></item><item><title>c程序的启动过程的反汇编分析</title><link>dubuqingfeng.github.io/posts/2014/%207/24/201407-reverse-disassemble-c-main/index.html</link><description>&lt;h5&gt;0x01  工具准备&lt;/h5&gt;
 &lt;p&gt;1.最简c代码一只&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;int main()
 {
