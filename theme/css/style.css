@@ -55,6 +55,9 @@ body {
 nav {
   background-color: #ffffff !important;
 }
+.pagination .leftnext{
+    padding: 0px;
+}
 .input-field input[type=search] {
   line-height: inherit;
   display: inline;
