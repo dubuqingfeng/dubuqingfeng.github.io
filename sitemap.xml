@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/</loc>
-<lastmod>2016-05-25T19:39:43-00:00</lastmod>
+<lastmod>2016-06-10T18:28:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/archives.html</loc>
-<lastmod>2016-05-25T19:39:43-00:00</lastmod>
+<lastmod>2016-06-10T18:28:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/tags.html</loc>
-<lastmod>2016-05-25T19:39:43-00:00</lastmod>
+<lastmod>2016-06-10T18:28:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dubuqingfeng.github.io/categories.html</loc>
-<lastmod>2016-05-25T19:39:43-00:00</lastmod>
+<lastmod>2016-06-10T18:28:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -57,6 +57,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2016-04-23T12:42:00+02:00</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.9</priority>
+</url>
+
+<url>
+<loc>dubuqingfeng.github.io/posts/2016/ 6/08/201606-write-drozer-module/index.html</loc>
+<lastmod>2016-06-09T18:34:00+02:00</lastmod>
+<changefreq>daily</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -242,6 +249,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>dubuqingfeng.github.io/category/androidan-quan.html</loc>
+<lastmod>2016-06-09T18:34:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>dubuqingfeng.github.io/category/bugtags.html</loc>
 <lastmod>2015-12-19T01:34:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -342,6 +356,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dubuqingfeng.github.io/category/zi-you-ruan-jian.html</loc>
 <lastmod>2016-03-12T20:42:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>dubuqingfeng.github.io/tag/androidan-quan.html</loc>
+<lastmod>2016-06-09T18:34:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -550,6 +571,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>dubuqingfeng.github.io/tag/drozer.html</loc>
+<lastmod>2016-06-09T18:34:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>dubuqingfeng.github.io/tag/ruan-jian-yuan.html</loc>
 <lastmod>2016-03-12T20:42:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -586,7 +614,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dubuqingfeng.github.io/author/admin.html</loc>
-<lastmod>2016-05-24T22:34:00+00:09</lastmod>
+<lastmod>2016-06-09T18:34:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

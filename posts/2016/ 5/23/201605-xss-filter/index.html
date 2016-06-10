@@ -80,7 +80,7 @@
 <p>相关paper</p>
 </blockquote>
 <h5>0x02  基础的filter</h5>
-<p>首先需要过滤&lt;&gt;"()/script等字符，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：</p>
+<p>首先需要过滤&lt;&gt;"()/script等字符("&gt;_&lt;script123")，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：</p>
 <div class="highlight"><pre>function safe_replace($content){
     $tags = array(
         &quot;&#39;<span class="nt">&lt;iframe</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/iframe&gt;</span>&#39;is&quot;,
@@ -147,7 +147,7 @@ alert(/xss/)&quot;&gt;
 </pre></div>
 
 
-<p>当然还是要记得去判断变量类型，数字型的直接判断是否是数字，字符型的限定一些长度，并且不能有特殊字符，还有不能有<a href="">拆分跨站法(疯狂的跨站之行)</a>的出现。</p>
+<p>当然还是要记得去判断变量类型，数字型的直接判断是否是数字，字符型的限定一些长度，并且不能有特殊字符，还有不能有<a href="http://hx99.net/Article/Tech/201409/36125.html">拆分跨站法(疯狂的跨站之行)</a>的出现。</p>
 <p>如果一直针对绕过的方法，去不断过滤，未免有点麻烦，应该设计一个统一的filter，加强防御。</p>
 <h5>0x03  Python filter设计</h5>
 <p>一些用户的输入都是不可信的。</p>
@@ -168,7 +168,7 @@ lxml.html.clean.Cleaner.clean_html(html)
 <p>tornado都会自动执行xhtml_escape方法，将&lt;, &gt;, ", ', 和&amp;进行了转义。</p>
 <p>但是也需要针对特殊情况去过滤，关注一些输出在JavaScript代码的地方，进行特定形式的转义、正则匹配。</p>
 <h5>0x04  PHP filter设计</h5>
-<p>《XSS跨站脚本与防御》的第242页给出了一个通用的过滤XSS的函数，贴到了<a href="">gist</a>。</p>
+<p>《XSS跨站脚本与防御》的第242页给出了一个通用的过滤XSS的函数，贴到了<a href="https://gist.github.com/dubuqingfeng/019414ea26ddba6257c089c26ed3852c">gist</a>。</p>
 <p>PHP在处理<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code>等变量时需过滤一次。</p>
 <p>需要使用一些filter_var()，filter_input()函数来进行构造一些规则，进行一些模式的匹配，过滤。</p>
 <p>网上的一个防止基本的XSS函数：</p>
@@ -232,7 +232,8 @@ com.sxau.filter.XssFilter
 <h5>0x07  后记</h5>
 <p>当学习地渐渐深入的时候，会越来越发现其的神奇，不断的过滤，不断的绕过，以及还有二哥和长短短的一些猥琐的思路，并且也有很多人教导学习XSS时候，一定要注意JavaScript基础，毕竟好的一名跨站师，xsser都是JavaScript很厉害。</p>
 <p>当然防御XSS，不只有建立filter，也需要一些HttpOnly，Noscript，WAF，CSP的配合，更需要加强安全意识。</p>
-<p>以后探索的方向：自动化挖掘XSS漏洞，自动化防御，CVE里的XSS，以及总结一些好的XSS思路，新型XSS，自动化利用框架，浏览器Filter策略，防御XSS，机器学习。。。</p>
+<p>以后探索的方向：</p>
+<p>自动化挖掘XSS漏洞，自动化防御，CVE里的XSS，以及总结一些好的XSS思路，新型XSS，自动化利用框架，浏览器Filter策略，防御XSS，机器学习等。。。</p>
 <h5>0x08  相关paper及资料</h5>
 <blockquote>
 <p>给开发者的终极XSS备忘录</p>
@@ -282,6 +283,7 @@ com.sxau.filter.XssFilter
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/android.html">【Android】</a></li>
+                    <li ><a href="/category/androidan-quan.html">【Android安全】</a></li>
                     <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
                     <li ><a href="/category/chromebook.html">【chromebook】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
@@ -311,6 +313,7 @@ com.sxau.filter.XssFilter
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
@@ -340,6 +343,7 @@ com.sxau.filter.XssFilter
                     <a class="" href="/tag/xss.html">xss</a>
                     <a class="" href="/tag/c.html">C</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/docker.html">Docker</a>
@@ -359,6 +363,7 @@ com.sxau.filter.XssFilter
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
+                      <li><a href="/posts/2016/ 6/index.html">六月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 5/index.html">五月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 3/index.html">三月 2016 (1)</a></li>
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
@@ -386,6 +391,7 @@ com.sxau.filter.XssFilter
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
@@ -415,6 +421,7 @@ com.sxau.filter.XssFilter
                     <a class="" href="/tag/xss.html">xss</a>
                     <a class="" href="/tag/c.html">C</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/docker.html">Docker</a>

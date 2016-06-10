@@ -12,7 +12,7 @@
 &lt;p&gt;相关paper&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5&gt;0x02  基础的filter&lt;/h5&gt;
-&lt;p&gt;首先需要过滤&amp;lt;&amp;gt;"()/script等字符，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：&lt;/p&gt;
+&lt;p&gt;首先需要过滤&amp;lt;&amp;gt;"()/script等字符("&amp;gt;_&amp;lt;script123")，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;function safe_replace($content){
     $tags = array(
         &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;iframe&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
@@ -79,7 +79,7 @@ alert(/xss/)&amp;quot;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;当然还是要记得去判断变量类型，数字型的直接判断是否是数字，字符型的限定一些长度，并且不能有特殊字符，还有不能有&lt;a href=""&gt;拆分跨站法(疯狂的跨站之行)&lt;/a&gt;的出现。&lt;/p&gt;
+&lt;p&gt;当然还是要记得去判断变量类型，数字型的直接判断是否是数字，字符型的限定一些长度，并且不能有特殊字符，还有不能有&lt;a href="http://hx99.net/Article/Tech/201409/36125.html"&gt;拆分跨站法(疯狂的跨站之行)&lt;/a&gt;的出现。&lt;/p&gt;
 &lt;p&gt;如果一直针对绕过的方法，去不断过滤，未免有点麻烦，应该设计一个统一的filter，加强防御。&lt;/p&gt;
 &lt;h5&gt;0x03  Python filter设计&lt;/h5&gt;
 &lt;p&gt;一些用户的输入都是不可信的。&lt;/p&gt;
@@ -100,7 +100,7 @@ lxml.html.clean.Cleaner.clean_html(html)
 &lt;p&gt;tornado都会自动执行xhtml_escape方法，将&amp;lt;, &amp;gt;, ", ', 和&amp;amp;进行了转义。&lt;/p&gt;
 &lt;p&gt;但是也需要针对特殊情况去过滤，关注一些输出在JavaScript代码的地方，进行特定形式的转义、正则匹配。&lt;/p&gt;
 &lt;h5&gt;0x04  PHP filter设计&lt;/h5&gt;
-&lt;p&gt;《XSS跨站脚本与防御》的第242页给出了一个通用的过滤XSS的函数，贴到了&lt;a href=""&gt;gist&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;《XSS跨站脚本与防御》的第242页给出了一个通用的过滤XSS的函数，贴到了&lt;a href="https://gist.github.com/dubuqingfeng/019414ea26ddba6257c089c26ed3852c"&gt;gist&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;PHP在处理&lt;code&gt;$_GET&lt;/code&gt;、&lt;code&gt;$_POST&lt;/code&gt;、&lt;code&gt;$_REQUEST&lt;/code&gt;等变量时需过滤一次。&lt;/p&gt;
 &lt;p&gt;需要使用一些filter_var()，filter_input()函数来进行构造一些规则，进行一些模式的匹配，过滤。&lt;/p&gt;
 &lt;p&gt;网上的一个防止基本的XSS函数：&lt;/p&gt;
@@ -164,7 +164,8 @@ com.sxau.filter.XssFilter
 &lt;h5&gt;0x07  后记&lt;/h5&gt;
 &lt;p&gt;当学习地渐渐深入的时候，会越来越发现其的神奇，不断的过滤，不断的绕过，以及还有二哥和长短短的一些猥琐的思路，并且也有很多人教导学习XSS时候，一定要注意JavaScript基础，毕竟好的一名跨站师，xsser都是JavaScript很厉害。&lt;/p&gt;
 &lt;p&gt;当然防御XSS，不只有建立filter，也需要一些HttpOnly，Noscript，WAF，CSP的配合，更需要加强安全意识。&lt;/p&gt;
-&lt;p&gt;以后探索的方向：自动化挖掘XSS漏洞，自动化防御，CVE里的XSS，以及总结一些好的XSS思路，新型XSS，自动化利用框架，浏览器Filter策略，防御XSS，机器学习。。。&lt;/p&gt;
+&lt;p&gt;以后探索的方向：&lt;/p&gt;
+&lt;p&gt;自动化挖掘XSS漏洞，自动化防御，CVE里的XSS，以及总结一些好的XSS思路，新型XSS，自动化利用框架，浏览器Filter策略，防御XSS，机器学习等。。。&lt;/p&gt;
 &lt;h5&gt;0x08  相关paper及资料&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;给开发者的终极XSS备忘录&lt;/p&gt;
