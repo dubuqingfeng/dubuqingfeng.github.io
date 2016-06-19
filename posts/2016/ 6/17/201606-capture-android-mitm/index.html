@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>独步清风's blog - ionic</title>
+  <title>捕捉android网络流量及中间人攻击 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -57,8 +57,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="normal"><div class="collapsible-header"><a href="#"><i class="material-icons">loyalty</i></a><a href="#">ionic</a> </div>              </div>
-              <div class="collapsible-body"><p>This is tag...</p></div>
+<div class="collapsible-header active"><a href="/category/androidan-quan.html"><i class="material-icons">subject</i>【Android安全】</a><a href="#">--捕捉android网络流量及中间人攻击</a>              </div>
+              <div class="collapsible-body"><p>一些捕捉android网路流量的方式以及认识中间人攻击的方式和利用</p></div>
             </li>
           </ul>
         </div>
@@ -66,16 +66,147 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html" class="black-text flow-text" id="title">Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</a></span>
-      <p><p>对于一些其他平台，或者是跨平台的应用，例如ubuntu touch平台、其可利用ubuntu sdk及qml进行开发，以及跨平台移动开发框架ionic基于angularJS，本文叙述了一些入坑记录。</p>
-	  </p>
+      <span class="card-title black-text"><a href="/posts/2016/ 6/17/201606-capture-android-mitm/index.html" class="black-text flow-text" id="title">捕捉android网络流量及中间人攻击</a></span>
+      <h5>0x01   前言：</h5>
+<p>作为开发者或者安全研究员，开发或分析一些与网络相关的程序时，必然要涉及到HTTP协议，而了解信息的传输，是非常必要的。所以我们需要抓取并控制到网路流量，并且需要对中间人攻击有一定的认识。</p>
+<p>TOC：</p>
+<blockquote>
+<p>前言</p>
+<p>捕捉网络流量</p>
+<p>Charles抓包工具</p>
+<p>利用ettercap进行中间人</p>
+<p>MITM工具</p>
+<p>中间人的利用</p>
+<p>参考链接</p>
+</blockquote>
+<h5>0x02    捕捉网络流量</h5>
+<p>需要一些nc、wireshark、tcpdump for Android软件。</p>
+<p>wireshark可通过以下代码进行安装：</p>
+<div class="highlight"><pre>brew cask install wireshark
+</pre></div>
+
+
+<p>netcat可通过以下代码进行安装；</p>
+<div class="highlight"><pre>brew install netcat
+</pre></div>
+
+
+<p>然后下载好<strong>TCPdump for android</strong>，注意是可执行文件，不是文件扩展名为bin的。</p>
+<p>然后usb线连接好设备，或者启动虚拟机。</p>
+<p>进入<strong>platform-tools</strong>文件夹，输入以下的命令：</p>
+<div class="highlight"><pre>查看连接的设备：
+./adb devices
+通过adb执行android命令
+./adb shell
+su
+mkdir /data/tcpdump/
+chmod 755 /data/tcpdump/
+</pre></div>
+
+
+<p>通过数据线或者其他adb push的方式，将<strong>tcpdump</strong>复制到设备的<strong>/data/tcpdump/</strong>文件夹。</p>
+<p>在android设备里执行以下命令：</p>
+<div class="highlight"><pre>./adb shell
+su
+chmod 755 /data/tcpdump/tcpdump
+或者是以下这个：
+./adb shell chmod 755 /data/tcpdump/tcpdump
+</pre></div>
+
+
+<p>然后确认一下android设备中是否安装有<strong>netcat</strong>，可以通过nc命令来判断是否安装。</p>
+<p>以下是：在android端转发流量的命令</p>
+<div class="highlight"><pre>./data/tcpdump/tcpdump -w - | nc -l -p 31337
+</pre></div>
+
+
+<p>需要配置adb的端口转发：</p>
+<div class="highlight"><pre>./adb forward tcp:12345 tcp:31337
+</pre></div>
+
+
+<p>然后pc端需要nc转发流量，然后wireshark进行分析。</p>
+<div class="highlight"><pre>netcat 127.0.0.1 12345 | wireshark -k -S -i -
+</pre></div>
+
+
+<p>安装配置好捕捉流量，wireshark分析：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-01.gif" class="responsive-img"></p>
+<h5>0x03    Charles抓包工具的使用</h5>
+<p>安装并配置Charles。</p>
+<div class="highlight"><pre>brew cask install charles
+</pre></div>
+
+
+<p>捕捉HTTP流量：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-02.png" class="responsive-img"></p>
+<p>手机上设置代理，如下所示：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-03.gif" class="responsive-img"></p>
+<p>捕捉HTTPS流量：</p>
+<p>安装证书：</p>
+<p>下载Charles证书http://www.charlesproxy.com/getssl/，输入文件名进行安装。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-04.gif" class="responsive-img"></p>
+<p>在Charles的工具栏上点击设置按钮，选择SSL Proxy Settings；选项卡的Locations表单可以填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填*，Port填443。默认的空值表示应用于所有地址。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-05.png" class="responsive-img"></p>
+<p>0x04    利用ettercap进行中间人
+ettercap是linux上常用的一种中间人工具，作为网上的一种sniffer，曾经利用其接收到机房的广播出来的数据包。</p>
+<p>MAC系统上如何利用其进行中间人攻击呢？</p>
+<p>ettercap安装与配置：</p>
+<div class="highlight"><pre>sudo brew install ettercap --with-gtk+
+sudo port install driftnet
+</pre></div>
+
+
+<p>而driftnet是一款简单而使用的图片捕获工具，可以很方便的在网络数据包中抓取图片。可以利用其和ettercap进行抓取局域网中的图片。</p>
+<p>ARP欺骗：</p>
+<div class="highlight"><pre>ettercap -i eth0 -T -M arp:remote /10.0.0.1/ // 欺骗局域网内所有主机
+其他的命令可以通过-h --help来查看帮助。
+</pre></div>
+
+
+<h5>0x05    MITM工具</h5>
+<p>常见的有dSploit，zANTI。</p>
+<p>android设备使用dSploit进行中间人攻击：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-06.png" class="responsive-img"></p>
+<h5>0x06    中间人的利用</h5>
+<p>当成为中间人了以后，就可以进行各种利用了，比如查看流量，网页劫持，提取密码，会话劫持等。</p>
+<p>以弹对话框为例：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-07.png" class="responsive-img"></p>
+<h5>0x07    参考链接</h5>
+<p>热爱互联网，对操作系统和网络安全有狂热的追求，专业不限；熟悉漏洞挖掘、网络安全攻防技术，了解常见黑客攻击手法；掌握基本开发能力，熟练使用C/C++语言；对数据库、操作系统、网络原理有较好掌握；具有软件逆向，网络安全攻防或安全系统开发经验者优先。</p>
+<blockquote>
+<p><a href="https://www.bettercap.org/">bettercap</a></p>
+<p><a href="https://www.91ri.org/4408.html">Linux渗透之Ettercap详解</a></p>
+<p><a href="http://xkon.github.io/2015/04/17/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E5%B0%8Ftricks/">内网渗透小tricks</a></p>
+</blockquote>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
-<a href="/tag/ubuntu.html">ubuntu</a><a href="/tag/sdk.html">sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-17 17:42:00</a>
+<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/mitm.html">mitm</a>    </div>
   </div>
 </div>
-
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
       </div>
       <div class="col s12 m4 l3">
         <div class="section">
@@ -89,7 +220,7 @@
                   <ul class="">
                     <li ><a href="/category/2014.html">【2014】</a></li>
                     <li ><a href="/category/android.html">【Android】</a></li>
-                    <li ><a href="/category/androidan-quan.html">【Android安全】</a></li>
+                    <li class="active"><a href="/category/androidan-quan.html">【Android安全】</a></li>
                     <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
                     <li ><a href="/category/chromebook.html">【chromebook】</a></li>
                     <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
@@ -170,7 +301,20 @@
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
+                      <li><a href="/posts/2016/ 6/index.html">六月 2016 (2)</a></li>
+                      <li><a href="/posts/2016/ 5/index.html">五月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 3/index.html">三月 2016 (1)</a></li>
+                      <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
+                      <li><a href="/posts/2014/ 6/index.html">六月 2014 (2)</a></li>
                   </ul>
                 </div>
               </div>

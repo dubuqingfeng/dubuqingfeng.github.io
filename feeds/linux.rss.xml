@@ -168,10 +168,7 @@ pip install shadowsocks
 
 
 &lt;p&gt;0x05 Koding环境配置pelican简记&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-pip
 pip install pelican
 sudo apt-get install python-virtualenv
