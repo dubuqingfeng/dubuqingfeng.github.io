@@ -1,5 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2016-06-18T18:34:00+02:00</updated><entry><title>捕捉android网络流量及中间人攻击</title><link href="dubuqingfeng.github.io/posts/2016/%206/17/201606-capture-android-mitm/index.html" rel="alternate"></link><updated>2016-06-18T18:34:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-17:dubuqingfeng.github.io/posts/2016/ 6/17/201606-capture-android-mitm/index.html</id><summary type="html">&lt;h5&gt;0x01   前言：&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2016-06-23T18:27:00+02:00</updated><entry><title>LogCat 及Log 的一些思考</title><link href="dubuqingfeng.github.io/posts/2016/%206/21/201606-android-security-logcat-log-thinks/index.html" rel="alternate"></link><updated>2016-06-23T18:27:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-21:dubuqingfeng.github.io/posts/2016/ 6/21/201606-android-security-logcat-log-thinks/index.html</id><summary type="html">&lt;h5&gt;0x00  TOC&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原理&lt;/p&gt;
+&lt;p&gt;smali注入&lt;/p&gt;
+&lt;p&gt;手机查看log并导出&lt;/p&gt;
+&lt;p&gt;so打log&lt;/p&gt;
+&lt;p&gt;发布(release)版屏蔽Log输出&lt;/p&gt;
+&lt;p&gt;查看内核日志&lt;/p&gt;
+&lt;p&gt;参考链接&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x01  原理&lt;/h5&gt;
+&lt;p&gt;常见的一些打Log的语句&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Log.i(TAG, &amp;quot;&amp;quot;);
+Log.d(TAG, &amp;quot;&amp;quot;);
+Log.e(TAG, &amp;quot;&amp;quot;);
+Log.v(TAG, &amp;quot;&amp;quot;);
+Log.w(TAG, &amp;quot;&amp;quot;);
+Log.wtf(TAG, &amp;quot;&amp;quot;);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Log给开发者开放了6种级别(分别对应info，debug，error，verbose，warning，assert)，隐藏了两种级别:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;F — Fatal
+S — Silent (highest priority, on which nothing is ever printed)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;通过阅读&lt;a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/util/Log.java"&gt;Log的代码&lt;/a&gt;，里面说明了通过&lt;code&gt;println_native(LOG_ID_MAIN, Priority, tag, msg);&lt;/code&gt;代码进行输出了日志。并声明了LOG_ID_MAIN、LOG_ID_RADIO、LOG_ID_EVENTS、LOG_ID_SYSTEM、LOG_ID_CRASH五个缓冲区。&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;println_native()&lt;/code&gt;的代码在&lt;a href="http://www.netmite.com/android/mydroid/frameworks/base/core/jni/android_util_Log.cpp"&gt;&lt;code&gt;frameworks/base/core/jni/android_util_log.cpp&lt;/code&gt;&lt;/a&gt;，其中判断了msg是否为空，如果为空，抛出空指针异常。&lt;/p&gt;
+&lt;p&gt;其中levels_t是一个结构体，其中包括了那六种级别，其中&lt;code&gt;assert&lt;/code&gt;，查阅代码可得知，如果利用Log.wtf()方法，就会打印一个标志成ASSERT的错误。&lt;/p&gt;
+&lt;p&gt;并通过以下函数进行了打印操作。即&lt;a href="https://github.com/cgjones/android-system-core/blob/master/liblog/logd_write.c"&gt;__android_log_buf_write&lt;/a&gt;。在&lt;code&gt;__android_log_buf_write&lt;/code&gt;函数里通过调用&lt;code&gt;write_to_log&lt;/code&gt;函数进行打印。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;int res = __android_log_buf_write(bufID, (android_LogPriority)priority, tag, msg);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后&lt;code&gt;write_to_log&lt;/code&gt;是怎样的情况呢，在文件45行有以下信息。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;static int (*write_to_log)(log_id_t, struct iovec *vec, size_t nr) = __write_to_log_init;
+static int __write_to_log_init(log_id_t, struct iovec *vec, size_t nr);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后追溯到&lt;code&gt;__write_to_log_init&lt;/code&gt;这个函数里，这个函数其中有一些打开文件等的操作，然后&lt;code&gt;__write_to_log_kernel&lt;/code&gt;这个就写入到文件里。&lt;/p&gt;
+&lt;p&gt;具体底层Log设备Logger机制，就不再阐述，如果细研下去，就是另一篇文章了，并且嵌入式的同学还学到了&lt;code&gt;ioctl&lt;/code&gt;函数，这需要一些Linux驱动方面的知识。&lt;/p&gt;
+&lt;p&gt;LogCat是如何获取Log的？通过&lt;a href="https://github.com/cgjones/android-system-core/blob/master/logcat/logcat.cpp"&gt;&lt;code&gt;logcat.cpp&lt;/code&gt;&lt;/a&gt;，可以知道，定义了一个Log文件目录，即&lt;code&gt;#define LOG_FILE_DIR    "/dev/log/"&lt;/code&gt;。具体读取log的过程，可以参考田海立的文章－&lt;a href="http://blog.csdn.net/thl789/article/details/6638344"&gt;解读Android LOG机制的实现：（5）获取LOG的应用程序LogCat
+&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;如何去修改logcat的显示颜色呢，可以通过&lt;a href="http://blog.csdn.net/hotlinhao/article/details/9150519"&gt;android studio的设置&lt;/a&gt;，也可以安装一个&lt;a href="https://github.com/marshall/logcat-color"&gt;logcat-color&lt;/a&gt;直接改变颜色，通过以下命令。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ logcat-color -e &lt;span class="p"&gt;|&lt;/span&gt; egrep &lt;span class="s1"&gt;&amp;#39;(Tag1|Tag2)&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x02  smali注入&lt;/h5&gt;
+&lt;p&gt;通过以下命令，进行apktool反编译&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;apktool d xxx.apk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在合适位置插入以下语句，其中v0为寄存器，尽量不要随意添加寄存器。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;invoke-static {v0, v0}, Landroid/util/Log;-&amp;gt;e(Ljava/lang/String;Ljava/lang/String;)I
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后进行打包&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;apktool b xxx -o xxx.apk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打包完安装需要签名，由于已经有了android.keystore ，这里使用jarsigner进行签名。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;jarsigner -verbose -keystore android.keystore -signedjar android_signed.apk app.apk android.keystore
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行即可看到Log信息。&lt;/p&gt;
+&lt;h5&gt;0x03  手机查看log并导出&lt;/h5&gt;
+&lt;p&gt;如何在手机上读取其他应用的log并可以导出呢，谷歌在4.1以后禁止了相关权限，改为了&lt;code&gt;signature|system|development&lt;/code&gt;权限。就算有android.PREMISSION.READ_LOGS，也读取不到其他应用的log了。只能root以后查看。&lt;/p&gt;
+&lt;p&gt;在谷歌Android Developer论坛里也有&lt;a href="https://groups.google.com/forum/?fromgroups#!topic/android-developers/6U4A5irWang"&gt;相关讨论&lt;/a&gt;。在4.1之后，禁止了去阅读其他应用log的权限。&lt;/p&gt;
+&lt;p&gt;并且在google play商店上也有几款手机上查看log的软件，需要root权限。比如&lt;a href="https://play.google.com/store/apps/details?id=com.nolanlawson.logcat&amp;amp;hl=en"&gt;CatLog - Logcat Reader!&lt;/a&gt;，&lt;a href="https://play.google.com/store/apps/details?id=org.jtb.alogcat&amp;amp;hl=en"&gt;aLogcat (free) - logcat
+&lt;/a&gt;等。aLogCat也开源了，地址在&lt;a href="https://github.com/nolanlawson/Catlog"&gt;GitHub上&lt;/a&gt;。&lt;/p&gt;
+&lt;h5&gt;0x04  so打log&lt;/h5&gt;
+&lt;p&gt;如何在so文件，即jni开发中里打log呢&lt;/p&gt;
+&lt;p&gt;这里如何配置NDK就不再叙述。详细可参考&lt;a href="https://developer.android.com/ndk/guides/index.html"&gt;ndk官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;需要在cpp文件中添加以下语句：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;android/log.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="c1"&gt;//打印相关信息&lt;/span&gt;
+&lt;span class="n"&gt;__android_log_write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ANDROID_LOG_DEBUG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Tag&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Java_com_sxau_ndkdemo_MainActivity_getStringFromC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后在build.gradle文件里，修改成以下片段：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ndk {
+    moduleName &amp;quot;JniDemo&amp;quot;
+    ldLibs(&amp;quot;log&amp;quot;, &amp;quot;z&amp;quot;, &amp;quot;m&amp;quot;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;引入&lt;code&gt;liblog.h&lt;/code&gt;，或者通过自定义&lt;code&gt;Android.mk&lt;/code&gt;进行导入。&lt;/p&gt;
+&lt;p&gt;可以通过一些宏定义定义：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;#define LOG_TAG &amp;quot;ANDROID_LAB&amp;quot;  
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x05  发布(release)版屏蔽Log输出&lt;/h5&gt;
+&lt;p&gt;一种方法是通过添加一个Log辅助类，配置级别，或者通过变量控制显示。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public class Log {
+    public static int logLevel = Log.VERBOSE;
+
+    public static void i(String tag, String msg) {
+        if (logLevel &amp;lt;= Log.INFO)
+            android.util.Log.i(tag, msg);
+    }
+
+    public static void e(String tag, String msg) {
+        if (logLevel &amp;lt;= Log.ERROR)
+            android.util.Log.e(tag, msg);
+    }
+
+    public static void d(String tag, String msg) {
+        if (logLevel &amp;lt;= Log.DEBUG)
+            android.util.Log.d(tag, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        if (logLevel &amp;lt;= Log.VERBOSE)
+            android.util.Log.v(tag, msg);
+    }
+
+    public static void w(String tag, String msg) {
+        if (logLevel &amp;lt;= Log.WARN)
+            android.util.Log.w(tag, msg);
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用时直接使用这个Log类打印方法。&lt;/p&gt;
+&lt;p&gt;release版屏蔽log输出，另外一种方法是，可以通过ProGuard的方式，将log语句删除。&lt;/p&gt;
+&lt;p&gt;ProGuard是Android SDK的一部分。只需要开启即可。&lt;/p&gt;
+&lt;p&gt;在android studio中，编辑build.gradle文件，配置如下代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;android {
+...
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile(&amp;#39;proguard-android.txt&amp;#39;), &amp;#39;proguard-rules.pro&amp;#39;
+        }
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;后来gradle的runProguard更名为minifyEnabled，所以直接改为true即可。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;proguardFiles getDefaultProguardFile(&amp;#39;proguard-android.txt&amp;#39;), &amp;#39;proguard-rules.pro&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意这段位置，本来按默认的配置一直没有消除成功，直到看了一篇&lt;a href="http://blog.csdn.net/weizaishouex2010/article/details/49866621"&gt;文章&lt;/a&gt;以后，改为了&lt;code&gt;proguard-android-optimize.txt&lt;/code&gt;，才屏蔽输出成功。即：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;release {
+    minifyEnabled true
+    proguardFiles getDefaultProguardFile(&amp;#39;proguard-android-optimize.txt&amp;#39;), &amp;#39;proguard-rules.pro&amp;#39;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;修改Proguard的配置文件&lt;code&gt;proguard-rules.pro&lt;/code&gt;，添加以下配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-assumenosideeffects class android.util.Log {
+    public static int v(...);
+    public static int i(...);
+    public static int w(...);
+    public static int d(...);
+    public static int e(...);
+}
+
+-assumenosideeffects class java.io.PrintStream{
+    public void println(%);
+    public void println(**);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;即结果。然后打包签名输出就不会有log日志了。&lt;/p&gt;
+&lt;h5&gt;0x06  查看内核日志&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./adb shell
+su
+dmesg
+cat /proc/kmsg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;dmesg是内核中的一个命令，可以查看内核日志，当然，也可以用&lt;code&gt;cat/proc/kmsg&lt;/code&gt;。两者不同的是，dmesg只读取缓冲区中的内核日志，而&lt;code&gt;cat /proc/kmsg&lt;/code&gt;则可以原始的、完整的日志文件。&lt;/p&gt;
+&lt;h5&gt;0x07  参考链接&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://developer.android.com/reference/android/util/Log.html"&gt;Google API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://drops.wooyun.org/tips/3812"&gt;Android LogCat Security&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/25149481/can-logcat-be-used-to-log-ndk-code-in-android-or-what-are-logging-options-from"&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://book.douban.com/subject/19986441/"&gt;android系统源代码情景分析&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.csdn.net/zgjxwl/article/details/6234025"&gt;如何在JNI编程中使用logCat&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="Android安全"></category><category term="Log"></category><category term="LogCat"></category></entry><entry><title>捕捉android网络流量及中间人攻击</title><link href="dubuqingfeng.github.io/posts/2016/%206/17/201606-capture-android-mitm/index.html" rel="alternate"></link><updated>2016-06-18T18:34:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-17:dubuqingfeng.github.io/posts/2016/ 6/17/201606-capture-android-mitm/index.html</id><summary type="html">&lt;h5&gt;0x01   前言：&lt;/h5&gt;
 &lt;p&gt;作为开发者或者安全研究员，开发或分析一些与网络相关的程序时，必然要涉及到HTTP协议，而了解信息的传输，是非常必要的。所以我们需要抓取并控制到网路流量，并且需要对中间人攻击有一定的认识。&lt;/p&gt;
 &lt;p&gt;TOC：&lt;/p&gt;
 &lt;blockquote&gt;
