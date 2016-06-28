@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>捕捉android网络流量及中间人攻击 - 独步清风's blog</title>
+  <title>Android Decompiler / 初探反编译 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -57,8 +57,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="collapsible-header active"><a href="/category/androidan-quan.html"><i class="material-icons">subject</i>【Android安全】</a><a href="#">--捕捉android网络流量及中间人攻击</a>              </div>
-              <div class="collapsible-body"><p>一些捕捉android网路流量的方式以及认识中间人攻击的方式和利用</p></div>
+<div class="collapsible-header active"><a href="/category/androidan-quan.html"><i class="material-icons">subject</i>【Android安全】</a><a href="#">--Android Decompiler / 初探反编译</a>              </div>
+              <div class="collapsible-body"><p>本文对 Android 反编译领域进行了简要的分析，如何进行反编译，以及如何混淆如何加密如何加壳，以及其对策，进行了实践和探索。</p></div>
             </li>
           </ul>
         </div>
@@ -66,123 +66,277 @@
 <div class="section">
   <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2016/ 6/17/201606-capture-android-mitm/index.html" class="black-text flow-text" id="title">捕捉android网络流量及中间人攻击</a></span>
-      <h5>0x01   前言：</h5>
-<p>作为开发者或者安全研究员，开发或分析一些与网络相关的程序时，必然要涉及到HTTP协议，而了解信息的传输，是非常必要的。所以我们需要抓取并控制到网路流量，并且需要对中间人攻击有一定的认识。</p>
-<p>TOC：</p>
+      <span class="card-title black-text"><a href="/posts/2016/ 6/25/201606-android-security-decompiler/index.html" class="black-text flow-text" id="title">Android Decompiler / 初探反编译</a></span>
+      <h5>0x00  TOC</h5>
 <blockquote>
-<p>前言</p>
-<p>捕捉网络流量</p>
-<p>Charles抓包工具</p>
-<p>利用ettercap进行中间人</p>
-<p>MITM工具</p>
-<p>中间人的利用</p>
+<p>原理</p>
+<p>无混淆无加密无加壳</p>
+<p>仅混淆</p>
+<p>仅加密</p>
+<p>仅加壳</p>
+<p>自动化实现</p>
+<p>一些软件</p>
 <p>参考链接</p>
 </blockquote>
-<h5>0x02    捕捉网络流量</h5>
-<p>需要一些nc、wireshark、tcpdump for Android软件。</p>
-<p>wireshark可通过以下代码进行安装：</p>
-<div class="highlight"><pre>brew cask install wireshark
+<h5>0x01  原理</h5>
+<p>首先在逆向领域，有一个是需要区别的。就是反汇编和反编译。</p>
+<p>反汇编把程序的原始机器码，翻译成较便于阅读理解的汇编代码。比如IDA、OD等。</p>
+<p>反编译，通常是将机器码(汇编语言)转换为高级编程语言。</p>
+<p>由于Java、.net这样的基于虚拟机技术的语言都是采用了ByteCode的二进制结构，因此很容易将ByteCode转化为“抽象语法树”（简称AST，《编译原理》这门课中的概念），然后采用反编译器就可以将AST转换为代码了。</p>
+<p>详细可以参考乌云上的文章<a href="http://drops.wooyun.org/papers/13686">反编译系列教程(上)</a></p>
+<h5>0x02  无混淆无加密无加壳</h5>
+<p>一个Android程序，如果没有进行混淆，加密，加壳等行为时，如果进行反编译的话，是可以逆向到Java源码的。</p>
+<p>1.<a href="https://github.com/pxb1988/dex2jar">Dex2Jar</a>和<a href="https://github.com/java-decompiler/jd-gui">JD-GUI</a>(或者Jad)</p>
+<p>先通过Dex2Jar软件将<code>classes.dex</code>转换为jar文件，然后再通过Java反编译工具JD-GUI将jar文件转换成JAVA源文件。</p>
+<p>总之这是通过dex转jar，然后再转java源代码的思路。其中dex转jar也可以选择一些其他软件，例如谷歌官方的<a href="https://github.com/google/enjarify">enjarify</a>。</p>
+<p>下载Dex2Jar和Jd-gui的地址：</p>
+<p>Dex2Jar:<a href="https://github.com/pxb1988/dex2jar/releases">https://github.com/pxb1988/dex2jar/releases</a></p>
+<p>JD-GUI:<a href="http://jd.benow.ca/">http://jd.benow.ca/</a></p>
+<p>使用Dex2Jar和Jd-gui的命令：</p>
+<div class="highlight"><pre>dex2jar &lt;file0&gt;
+//即
+./d2j-dex2jar.sh xxx.apk
+java -jar jd-gui-x.y.z.jar
+//或者是
+java -classpath jd-gui-x.y.z.jar org.jd.gui.App
+//也可以直接运行客户端
 </pre></div>
 
 
-<p>netcat可通过以下代码进行安装；</p>
-<div class="highlight"><pre>brew install netcat
+<p>以下即为反汇编出来的结果。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-01.png" class="responsive-img"></p>
+<p>2.APK改之理、APKDB、Android逆向助手、Android Killer之类软件</p>
+<p>实际本质上还是通过Dex2jar或者apktool工具的封装。</p>
+<p>还有一个Jadx的软件也比较好用。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-02.png" class="responsive-img"></p>
+<p>3.在线反编译网站</p>
+<p>地址：<a href="http://www.decompileandroid.com/">http://www.decompileandroid.com/</a></p>
+<p>地址：<a href="http://www.ludaima.cn/android.html">http://www.ludaima.cn/android.html</a></p>
+<p>只需要上传需要反编译的apk，稍等片刻，即可下载源码。</p>
+<p>4.smali和Baksmali以及<a href="http://blog.avlyun.com/show/%E3%80%8Asv%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97%E3%80%8B/">Smali Viewer</a></p>
+<p>smali是将smali文件转换成dex。</p>
+<p>Baksmali和smali相反，将dex转换成smali。</p>
+<p>在<a href="https://www.quora.com/What-is-smali-in-Android">Quora的一篇问答</a>中，介绍了smali和baksmali的作用。</p>
+<div class="highlight"><pre>Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,
+ Android&#39;s Java VM implementation. The names &quot;Smali&quot; and &quot;Baksmali&quot; are the
+  Icelandic equivalents of &quot;assembler&quot; and &quot;disassembler&quot; respectively.
 </pre></div>
 
 
-<p>然后下载好<strong>TCPdump for android</strong>，注意是可执行文件，不是文件扩展名为bin的。</p>
-<p>然后usb线连接好设备，或者启动虚拟机。</p>
-<p>进入<strong>platform-tools</strong>文件夹，输入以下的命令：</p>
-<div class="highlight"><pre>查看连接的设备：
-./adb devices
-通过adb执行android命令
-./adb shell
-su
-mkdir /data/tcpdump/
-chmod 755 /data/tcpdump/
+<h5>0x03  仅混淆</h5>
+<p>通常Android混淆方法，有ProGuard、DexGuard和APKfuscator等。</p>
+<p>怎样使用ProGuard对Android项目源码进行混淆保护，在Android Studio中build.gradle，修改以下代码片段</p>
+<div class="highlight"><pre>release {
+    minifyEnabled true
+    proguardFiles getDefaultProguardFile(&#39;proguard-android-optimize.txt&#39;),
+     &#39;proguard-rules.pro&#39;
+}
 </pre></div>
 
 
-<p>通过数据线或者其他adb push的方式，将<strong>tcpdump</strong>复制到设备的<strong>/data/tcpdump/</strong>文件夹。</p>
-<p>在android设备里执行以下命令：</p>
-<div class="highlight"><pre>./adb shell
-su
-chmod 755 /data/tcpdump/tcpdump
-或者是以下这个：
-./adb shell chmod 755 /data/tcpdump/tcpdump
+<p>将<code>minifyEnabled</code>改为true。去除无效资源的话需要添加<a href="http://tools.android.com/tech-docs/new-build-system/resource-shrinking"><code>shrinkResources true</code></a>。</p>
+<p>然后在<code>proguard-rules.pro</code>文件中，编写一些特定框架的混淆规则。</p>
+<div class="highlight"><pre># ProGuard configurations for Bugtags
+-keepattributes LineNumberTable,SourceFile
+
+-keep class com.bugtags.library.** {*;}
+-dontwarn org.apache.http.**
+-dontwarn android.net.http.AndroidHttpClient
+-dontwarn com.bugtags.library.**
+# End Bugtags
+
+# retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+# android-async-http
+-dontwarn android-async-http-1.4.9.jar.**
+-keep class android-async-http-1.4.9.jar.**{*;}
+-keep class org.apache.http.** {*; }
 </pre></div>
 
 
-<p>然后确认一下android设备中是否安装有<strong>netcat</strong>，可以通过nc命令来判断是否安装。</p>
-<p>以下是：在android端转发流量的命令</p>
-<div class="highlight"><pre>./data/tcpdump/tcpdump -w - | nc -l -p 31337
+<p>并且混淆时需要对使用的框架进行混淆，或者是避免混淆一些类。这时就对框架的文档进行阅读，分析需要增加的混淆规则。</p>
+<p>混淆的效果如下图所示。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-03.png" class="responsive-img"></p>
+<p>以及加速gradle编译的配置：</p>
+<div class="highlight"><pre>org.gradle.daemon=true
+org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
++HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+org.gradle.parallel=true
+org.gradle.configureondemand=true
 </pre></div>
 
 
-<p>需要配置adb的端口转发：</p>
-<div class="highlight"><pre>./adb forward tcp:12345 tcp:31337
+<p>如何对抗这种混淆呢？这种混淆仅仅是增大了阅读难度，在反汇编之后，类名变成了a,b,c之类的。</p>
+<p>dex2jar作者在<a href="http://secwiki.neu.edu.cn/wiki/images/e/eb/Android%E6%B7%B7%E6%B7%86%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%8F%8D%E6%B7%B7%E6%B7%86_%E5%B0%8F%E6%B3%A2.pdf">Android混淆技巧与反混淆</a>中谈到，ProGuard有Shrinking、Optimization、Name Obfuscation、Removal of logging code等功能。在面对名字替换时，有阅读源代码、JEB、ProGuard分析等方法，Flanker大牛也分享过利用<a href="http://drops.wooyun.org/mobile/6665">JEB API编写插件分析</a>。</p>
+<p>默认的混淆规则在<a href="https://android.googlesource.com/platform/sdk/+/master/files/proguard-android.txt">proguard-android.txt</a>。</p>
+<p>可以使用Proguard再混淆一次，利用自己写的规则Mapping文件。</p>
+<p>这里以一个文件为例。进行Proguard的混淆以及反混淆。</p>
+<p>在Proguard配置文件中，添加如下语句，可打印出默认混淆规则的Mapping文件。</p>
+<div class="highlight"><pre>-printmapping mapping.txt
 </pre></div>
 
 
-<p>然后pc端需要nc转发流量，然后wireshark进行分析。</p>
-<div class="highlight"><pre>netcat 127.0.0.1 12345 | wireshark -k -S -i -
+<p>在修改好对应的值以后，利用以下语句，应用Mapping文件，再建一个项目，分析对应的代码。</p>
+<div class="highlight"><pre>-applymapping mapping.txt
 </pre></div>
 
 
-<p>安装配置好捕捉流量，wireshark分析：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-01.gif" class="responsive-img"></p>
-<h5>0x03    Charles抓包工具的使用</h5>
-<p>安装并配置Charles。</p>
-<div class="highlight"><pre>brew cask install charles
+<p>最后结果如下：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-04.png" class="responsive-img"></p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-05.png" class="responsive-img"></p>
+<p>这样反混淆了以后，降低了代码阅读的难度，增加了应用被破解的风险。</p>
+<h5>0x04  仅加密</h5>
+<p>加密方式有很多种，本文不能面面俱到，只能找出一些典型的。比如有流程混排加密、代码内部字符串加密，对so源码、so函数名称以及接口调用进行加密隐藏，对classes.dex中的所有函数功能代码进行提取，然后加密单独存放等。</p>
+<p>当然如果面面俱到，文章篇幅就比较长了，并且实践、研究花费的时间也比较多。这里就举比较简单的例子。</p>
+<p>Android签名校验：</p>
+<p>在android程序中，可以使用以下代码进行签名的获取。</p>
+<div class="highlight"><pre>public int getSignature(String packageName) {
+    PackageManager pm = this.getPackageManager();
+    PackageInfo pi = null;
+    int sig = 0;
+    try {
+        pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+        Signature[] s = pi.signatures;
+        sig = s[0].hashCode();
+    } catch (Exception e1) {
+        sig = 0;
+        e1.printStackTrace();
+    }
+    return sig;
+}
 </pre></div>
 
 
-<p>捕捉HTTP流量：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-02.png" class="responsive-img"></p>
-<p>手机上设置代理，如下所示：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-03.gif" class="responsive-img"></p>
-<p>捕捉HTTPS流量：</p>
-<p>安装证书：</p>
-<p>下载Charles证书http://www.charlesproxy.com/getssl/，输入文件名进行安装。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-04.gif" class="responsive-img"></p>
-<p>在Charles的工具栏上点击设置按钮，选择SSL Proxy Settings；选项卡的Locations表单可以填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填*，Port填443。默认的空值表示应用于所有地址。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-05.png" class="responsive-img"></p>
-<p>0x04    利用ettercap进行中间人
-ettercap是linux上常用的一种中间人工具，作为网上的一种sniffer，曾经利用其接收到机房的广播出来的数据包。</p>
-<p>MAC系统上如何利用其进行中间人攻击呢？</p>
-<p>ettercap安装与配置：</p>
-<div class="highlight"><pre>sudo brew install ettercap --with-gtk+
-sudo port install driftnet
+<p>可以在APP每次访问服务器的时候，携带上当前APP的签名，服务端做个签名验证，如果不对，直接不通过，返回客户端信息，然后客户端进行一定的处理。当然这样的话破解者也可以通过抓包的方式，抓取到签名验证的包，然后每次通信时修改对应的包即可。</p>
+<h5>0x05  仅加壳</h5>
+<p>so加壳，upx是最为so加壳的首选，以前在PC端也做过<a href="http://qingfeng520.blog.51cto.com/7098444/1256106">upx的脱壳</a>。</p>
+<p>这里做个示例，加壳so。</p>
+<p>在前一篇文章里，涉及到了如何在so里打log文件。在写好jni代码了以后，将so文件复制出来。</p>
+<p>然后添加到文件夹里，如下图所示。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-06.png" class="responsive-img"></p>
+<p>准备UPX壳编译环境：</p>
+<div class="highlight"><pre>zlib-1.2.8.tar.gz
+ucl-1.03.tar.gz
+lzma443.tar.bz2
+upx-hg-68db2e569c63.tar.gz
 </pre></div>
 
 
-<p>而driftnet是一款简单而使用的图片捕获工具，可以很方便的在网络数据包中抓取图片。可以利用其和ettercap进行抓取局域网中的图片。</p>
-<p>ARP欺骗：</p>
-<div class="highlight"><pre>ettercap -i eth0 -T -M arp:remote /10.0.0.1/ // 欺骗局域网内所有主机
-其他的命令可以通过-h --help来查看帮助。
+<p>编译安装:</p>
+<div class="highlight"><pre><span class="x">cd ucl-1.03</span>
+<span class="x">./configure --prefix=</span><span class="p">$</span><span class="nv">PWD</span><span class="x">/../../upx-hg-6cd5982ece4f/build</span>
+<span class="x">make</span>
+<span class="x">cd zlib-1.2.8</span>
+<span class="x">./configure --prefix=</span><span class="p">$</span><span class="nv">PWD</span><span class="x">/../../upx-hg-6cd5982ece4f/build</span>
+<span class="x">make</span>
+<span class="x">vi .bash_profile</span>
 </pre></div>
 
 
-<h5>0x05    MITM工具</h5>
-<p>常见的有dSploit，zANTI。</p>
-<p>android设备使用dSploit进行中间人攻击：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-06.png" class="responsive-img"></p>
-<h5>0x06    中间人的利用</h5>
-<p>当成为中间人了以后，就可以进行各种利用了，比如查看流量，网页劫持，提取密码，会话劫持等。</p>
-<p>以弹对话框为例：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-07.png" class="responsive-img"></p>
-<h5>0x07    参考链接</h5>
-<p>热爱互联网，对操作系统和网络安全有狂热的追求，专业不限；熟悉漏洞挖掘、网络安全攻防技术，了解常见黑客攻击手法；掌握基本开发能力，熟练使用C/C++语言；对数据库、操作系统、网络原理有较好掌握；具有软件逆向，网络安全攻防或安全系统开发经验者优先。</p>
+<p>设置环境变量。</p>
+<div class="highlight"><pre>export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03
+export UPX_ZLIBDIR=/Users/qingfeng/software/upx/libs/zlib-1.2.8
+export UPX_LZMADIR=/Users/qingfeng/software/upx/libs/lzma443
+export UPX_LZMA_VERSION=0x443
+export UPX_DIR=/Users/qingfeng/software/upx/upx-hg-68db2e569c63
+</pre></div>
+
+
+<p>查看环境变量的命令env，应用环境变量的命令<code>source .bash_profile</code>。</p>
+<p>然后在编译<code>make all</code>的过程中，遇到了以下的错误。</p>
+<div class="highlight"><pre>./bele_policy.h:156:9: error: unused typedef &#39;acc_cta_t__39&#39; [-Werror,-Wunused-local-typedef]
+        COMPILE_TIME_ASSERT(sizeof(U16) == 2)
+        ^
+./conf.h:359:34: note: expanded from macro &#39;COMPILE_TIME_ASSERT&#39;
+#define COMPILE_TIME_ASSERT(e)   ACC_COMPILE_TIME_ASSERT(e)
+./miniacc.h:1563:54: note: expanded from macro &#39;ACC_COMPILE_TIME_ASSERT&#39;
+#    define ACC_COMPILE_TIME_ASSERT(e)  {typedef int __ACC_CTA_NAME(acc_cta_t__)[1-2*!(e)];}
+./miniacc.h:1531:37: note: expanded from macro &#39;__ACC_CTA_NAME&#39;
+#  define __ACC_CTA_NAME(a)         ACC_PP_ECONCAT2(a,__COUNTER__)
+./miniacc.h:331:41: note: expanded from macro &#39;ACC_PP_ECONCAT2&#39;
+#define ACC_PP_ECONCAT2(a,b)            ACC_PP_CONCAT2(a,b)
+./miniacc.h:325:41: note: expanded from macro &#39;ACC_PP_CONCAT2&#39;
+#define ACC_PP_CONCAT2(a,b)             a ## b
+&lt;scratch space&gt;:183:1: note: expanded from here
+acc_cta_t__39
+</pre></div>
+
+
+<p>无论是upx是3.9.1，还是最新版，无论lzma是443版本还是最新版1610，编译的时候都会出现这个问题</p>
+<p>然后试着升级了一下g++的版本，mac自带的是4.2版本，用brew升级到了4.8，然后用zsh的alias功能（vi .zshrc）将自带的替换掉，然后再编译还是不行，最后还是使用ubuntu进行编译吧。</p>
+<p>然后就下了一个16.04的镜像，然后跑起了虚拟机，下载并<a href="http://www.chinapyg.com/thread-77929-1-1.html">编译那些依赖</a>，然后在upx目录下<code>make all</code>的过程中，出现了以下的问题：</p>
+<div class="highlight"><pre><span class="n">compress</span><span class="p">.</span><span class="nl">cpp</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span> <span class="n">fatal</span> <span class="nl">error</span><span class="p">:</span> <span class="n">zlib</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+     <span class="cp">#include</span> <span class="cpf">&lt;zlib.h&gt;</span><span class="cp"></span>
+</pre></div>
+
+
+<p>没找到<code>zlib.h</code>，可是自己在zlib那也<code>make</code>了啊，在查找资料的过程中，试着在zlib目录<code>make install</code>了一下，然后就编译完成了，在src目录下也有<code>./upx.out</code>了，版本是3.9.2。</p>
+<p>这个时候就应该考虑so的init段的问题了。据这篇文章说，加壳的文件中需要有INIT段，添加init段的代码如下：</p>
+<div class="highlight"><pre>void _init(void){} \\c++
+extern &quot;C&quot; {void _init(void){}}    \\c
+</pre></div>
+
+
+<p>然后加壳的命令如下：</p>
+<div class="highlight"><pre>./upx.out -f -o libdemo_upx.so libdemo.so
+</pre></div>
+
+
+<p>然后脱壳自然-d参数即可，需要判断标志是否为UPX!，以及处理变形等问题，脱完壳就可以使用IDA进行android的so分析了。</p>
+<h5>0x06  自动化实现</h5>
+<p>如何实现一些自动化脚本，进行反汇编的还原工作。</p>
+<p>当然网上已经有人实现过相关内容，比如Mac下的<a href="https://github.com/dirkvranckaert/AndroidDecompiler">AndroidDecompiler</a>，或者是<a href="https://github.com/luckyandyzhang/easy-android-decompiler">easy-android-decompiler</a>。</p>
+<h5>0x07  一些软件</h5>
 <blockquote>
-<p><a href="https://www.bettercap.org/">bettercap</a></p>
-<p><a href="https://www.91ri.org/4408.html">Linux渗透之Ettercap详解</a></p>
-<p><a href="http://xkon.github.io/2015/04/17/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E5%B0%8Ftricks/">内网渗透小tricks</a></p>
-</blockquote>	
+<p>Baksmali 和 Dedexer</p>
+<p>apktool</p>
+<p>JEB</p>
+<p>jadx</p>
+<p>jdgui</p>
+</blockquote>
+<p>DEX转jar：</p>
+<blockquote>
+<p>enjarify</p>
+<p>dex2jar</p>
+</blockquote>
+<p>app调试器：</p>
+<blockquote>
+<p><a href="http://gikir.com/product.php">gikdbg</a></p>
+</blockquote>
+<p>代码混淆软件：</p>
+<blockquote>
+<p>Proguard</p>
+<p>DashO</p>
+<p>Dexguard</p>
+<p>DexProtector</p>
+<p>ApkProtect</p>
+<p>Shield4j</p>
+<p>Stringer</p>
+<p>Allitori</p>
+</blockquote>
+<p>对抗混淆：</p>
+<blockquote>
+<p><a href="https://github.com/CalebFenton/dex-oracle">dex-oracle</a></p>
+<p><a href="https://github.com/CalebFenton/simplify">simplify</a></p>
+<p><a href="https://github.com/konloch/bytecode-viewer">bytecode-viewer</a></p>
+</blockquote>
+<p><a href="https://github.com/Juude/droidReverse">逆向工程集</a></p>
+<h5>0x08  参考链接</h5>
+<p>当然实际情况是混淆，加密，加壳综合起来的，实际情况要具体分析。</p>
+<p>参考链接：</p>
+<p><a href="http://drops.wooyun.org/tips/2871">一次app抓包引发的Android分析记录</a></p>
+<p><a href="http://kiya.space/2015/11/12/Android-security-tools/">Android 安全工具包（持续更新）</a></p>
+<p><a href="http://blog.csdn.net/guolin_blog/article/details/49738023">Android安全攻防战，反编译与混淆技术完全解析</a></p>
+<p><a href="http://drops.wooyun.org/mobile/12172">Android应用安全开发之源码安全</a></p>
+<p><a href="http://www.wjdiankong.cn/blog/android%E9%80%86%E5%90%91%E4%B9%8B%E6%97%85-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%88%A9%E5%99%A8apktool%E5%92%8Cjadx%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E7%BA%A0/">Android逆向之旅—反编译利器Apktool和Jadx源码分析以及错误纠正</a></p>	
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-17 17:42:00</a>
-<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/mitm.html">mitm</a>    </div>
+      <a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-25 17:24:00</a>
+<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/decompiler.html">Decompiler</a><a href="/tag/fan-bian-yi.html">反编译</a>    </div>
   </div>
 </div>
 <div class="section">

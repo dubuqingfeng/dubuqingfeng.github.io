@@ -1,5 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2016-06-23T18:27:00+02:00</updated><entry><title>LogCat 及Log 的一些思考</title><link href="dubuqingfeng.github.io/posts/2016/%206/21/201606-android-security-logcat-log-thinks/index.html" rel="alternate"></link><updated>2016-06-23T18:27:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-21:dubuqingfeng.github.io/posts/2016/ 6/21/201606-android-security-logcat-log-thinks/index.html</id><summary type="html">&lt;h5&gt;0x00  TOC&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/all.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2016-06-27T22:31:00+02:00</updated><entry><title>Android Decompiler / 初探反编译</title><link href="dubuqingfeng.github.io/posts/2016/%206/25/201606-android-security-decompiler/index.html" rel="alternate"></link><updated>2016-06-27T22:31:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-25:dubuqingfeng.github.io/posts/2016/ 6/25/201606-android-security-decompiler/index.html</id><summary type="html">&lt;h5&gt;0x00  TOC&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原理&lt;/p&gt;
+&lt;p&gt;无混淆无加密无加壳&lt;/p&gt;
+&lt;p&gt;仅混淆&lt;/p&gt;
+&lt;p&gt;仅加密&lt;/p&gt;
+&lt;p&gt;仅加壳&lt;/p&gt;
+&lt;p&gt;自动化实现&lt;/p&gt;
+&lt;p&gt;一些软件&lt;/p&gt;
+&lt;p&gt;参考链接&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x01  原理&lt;/h5&gt;
+&lt;p&gt;首先在逆向领域，有一个是需要区别的。就是反汇编和反编译。&lt;/p&gt;
+&lt;p&gt;反汇编把程序的原始机器码，翻译成较便于阅读理解的汇编代码。比如IDA、OD等。&lt;/p&gt;
+&lt;p&gt;反编译，通常是将机器码(汇编语言)转换为高级编程语言。&lt;/p&gt;
+&lt;p&gt;由于Java、.net这样的基于虚拟机技术的语言都是采用了ByteCode的二进制结构，因此很容易将ByteCode转化为“抽象语法树”（简称AST，《编译原理》这门课中的概念），然后采用反编译器就可以将AST转换为代码了。&lt;/p&gt;
+&lt;p&gt;详细可以参考乌云上的文章&lt;a href="http://drops.wooyun.org/papers/13686"&gt;反编译系列教程(上)&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;0x02  无混淆无加密无加壳&lt;/h5&gt;
+&lt;p&gt;一个Android程序，如果没有进行混淆，加密，加壳等行为时，如果进行反编译的话，是可以逆向到Java源码的。&lt;/p&gt;
+&lt;p&gt;1.&lt;a href="https://github.com/pxb1988/dex2jar"&gt;Dex2Jar&lt;/a&gt;和&lt;a href="https://github.com/java-decompiler/jd-gui"&gt;JD-GUI&lt;/a&gt;(或者Jad)&lt;/p&gt;
+&lt;p&gt;先通过Dex2Jar软件将&lt;code&gt;classes.dex&lt;/code&gt;转换为jar文件，然后再通过Java反编译工具JD-GUI将jar文件转换成JAVA源文件。&lt;/p&gt;
+&lt;p&gt;总之这是通过dex转jar，然后再转java源代码的思路。其中dex转jar也可以选择一些其他软件，例如谷歌官方的&lt;a href="https://github.com/google/enjarify"&gt;enjarify&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下载Dex2Jar和Jd-gui的地址：&lt;/p&gt;
+&lt;p&gt;Dex2Jar:&lt;a href="https://github.com/pxb1988/dex2jar/releases"&gt;https://github.com/pxb1988/dex2jar/releases&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;JD-GUI:&lt;a href="http://jd.benow.ca/"&gt;http://jd.benow.ca/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用Dex2Jar和Jd-gui的命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;dex2jar &amp;lt;file0&amp;gt;
+//即
+./d2j-dex2jar.sh xxx.apk
+java -jar jd-gui-x.y.z.jar
+//或者是
+java -classpath jd-gui-x.y.z.jar org.jd.gui.App
+//也可以直接运行客户端
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;以下即为反汇编出来的结果。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-01.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;2.APK改之理、APKDB、Android逆向助手、Android Killer之类软件&lt;/p&gt;
+&lt;p&gt;实际本质上还是通过Dex2jar或者apktool工具的封装。&lt;/p&gt;
+&lt;p&gt;还有一个Jadx的软件也比较好用。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-02.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;3.在线反编译网站&lt;/p&gt;
+&lt;p&gt;地址：&lt;a href="http://www.decompileandroid.com/"&gt;http://www.decompileandroid.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;地址：&lt;a href="http://www.ludaima.cn/android.html"&gt;http://www.ludaima.cn/android.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;只需要上传需要反编译的apk，稍等片刻，即可下载源码。&lt;/p&gt;
+&lt;p&gt;4.smali和Baksmali以及&lt;a href="http://blog.avlyun.com/show/%E3%80%8Asv%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97%E3%80%8B/"&gt;Smali Viewer&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;smali是将smali文件转换成dex。&lt;/p&gt;
+&lt;p&gt;Baksmali和smali相反，将dex转换成smali。&lt;/p&gt;
+&lt;p&gt;在&lt;a href="https://www.quora.com/What-is-smali-in-Android"&gt;Quora的一篇问答&lt;/a&gt;中，介绍了smali和baksmali的作用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,
+ Android&amp;#39;s Java VM implementation. The names &amp;quot;Smali&amp;quot; and &amp;quot;Baksmali&amp;quot; are the
+  Icelandic equivalents of &amp;quot;assembler&amp;quot; and &amp;quot;disassembler&amp;quot; respectively.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x03  仅混淆&lt;/h5&gt;
+&lt;p&gt;通常Android混淆方法，有ProGuard、DexGuard和APKfuscator等。&lt;/p&gt;
+&lt;p&gt;怎样使用ProGuard对Android项目源码进行混淆保护，在Android Studio中build.gradle，修改以下代码片段&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;release {
+    minifyEnabled true
+    proguardFiles getDefaultProguardFile(&amp;#39;proguard-android-optimize.txt&amp;#39;),
+     &amp;#39;proguard-rules.pro&amp;#39;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;将&lt;code&gt;minifyEnabled&lt;/code&gt;改为true。去除无效资源的话需要添加&lt;a href="http://tools.android.com/tech-docs/new-build-system/resource-shrinking"&gt;&lt;code&gt;shrinkResources true&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;然后在&lt;code&gt;proguard-rules.pro&lt;/code&gt;文件中，编写一些特定框架的混淆规则。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# ProGuard configurations for Bugtags
+-keepattributes LineNumberTable,SourceFile
+
+-keep class com.bugtags.library.** {*;}
+-dontwarn org.apache.http.**
+-dontwarn android.net.http.AndroidHttpClient
+-dontwarn com.bugtags.library.**
+# End Bugtags
+
+# retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+# android-async-http
+-dontwarn android-async-http-1.4.9.jar.**
+-keep class android-async-http-1.4.9.jar.**{*;}
+-keep class org.apache.http.** {*; }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;并且混淆时需要对使用的框架进行混淆，或者是避免混淆一些类。这时就对框架的文档进行阅读，分析需要增加的混淆规则。&lt;/p&gt;
+&lt;p&gt;混淆的效果如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-03.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;以及加速gradle编译的配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;org.gradle.daemon=true
+org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
++HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+org.gradle.parallel=true
+org.gradle.configureondemand=true
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如何对抗这种混淆呢？这种混淆仅仅是增大了阅读难度，在反汇编之后，类名变成了a,b,c之类的。&lt;/p&gt;
+&lt;p&gt;dex2jar作者在&lt;a href="http://secwiki.neu.edu.cn/wiki/images/e/eb/Android%E6%B7%B7%E6%B7%86%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%8F%8D%E6%B7%B7%E6%B7%86_%E5%B0%8F%E6%B3%A2.pdf"&gt;Android混淆技巧与反混淆&lt;/a&gt;中谈到，ProGuard有Shrinking、Optimization、Name Obfuscation、Removal of logging code等功能。在面对名字替换时，有阅读源代码、JEB、ProGuard分析等方法，Flanker大牛也分享过利用&lt;a href="http://drops.wooyun.org/mobile/6665"&gt;JEB API编写插件分析&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;默认的混淆规则在&lt;a href="https://android.googlesource.com/platform/sdk/+/master/files/proguard-android.txt"&gt;proguard-android.txt&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;可以使用Proguard再混淆一次，利用自己写的规则Mapping文件。&lt;/p&gt;
+&lt;p&gt;这里以一个文件为例。进行Proguard的混淆以及反混淆。&lt;/p&gt;
+&lt;p&gt;在Proguard配置文件中，添加如下语句，可打印出默认混淆规则的Mapping文件。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-printmapping mapping.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在修改好对应的值以后，利用以下语句，应用Mapping文件，再建一个项目，分析对应的代码。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;-applymapping mapping.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-04.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-05.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;这样反混淆了以后，降低了代码阅读的难度，增加了应用被破解的风险。&lt;/p&gt;
+&lt;h5&gt;0x04  仅加密&lt;/h5&gt;
+&lt;p&gt;加密方式有很多种，本文不能面面俱到，只能找出一些典型的。比如有流程混排加密、代码内部字符串加密，对so源码、so函数名称以及接口调用进行加密隐藏，对classes.dex中的所有函数功能代码进行提取，然后加密单独存放等。&lt;/p&gt;
+&lt;p&gt;当然如果面面俱到，文章篇幅就比较长了，并且实践、研究花费的时间也比较多。这里就举比较简单的例子。&lt;/p&gt;
+&lt;p&gt;Android签名校验：&lt;/p&gt;
+&lt;p&gt;在android程序中，可以使用以下代码进行签名的获取。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public int getSignature(String packageName) {
+    PackageManager pm = this.getPackageManager();
+    PackageInfo pi = null;
+    int sig = 0;
+    try {
+        pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+        Signature[] s = pi.signatures;
+        sig = s[0].hashCode();
+    } catch (Exception e1) {
+        sig = 0;
+        e1.printStackTrace();
+    }
+    return sig;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;可以在APP每次访问服务器的时候，携带上当前APP的签名，服务端做个签名验证，如果不对，直接不通过，返回客户端信息，然后客户端进行一定的处理。当然这样的话破解者也可以通过抓包的方式，抓取到签名验证的包，然后每次通信时修改对应的包即可。&lt;/p&gt;
+&lt;h5&gt;0x05  仅加壳&lt;/h5&gt;
+&lt;p&gt;so加壳，upx是最为so加壳的首选，以前在PC端也做过&lt;a href="http://qingfeng520.blog.51cto.com/7098444/1256106"&gt;upx的脱壳&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这里做个示例，加壳so。&lt;/p&gt;
+&lt;p&gt;在前一篇文章里，涉及到了如何在so里打log文件。在写好jni代码了以后，将so文件复制出来。&lt;/p&gt;
+&lt;p&gt;然后添加到文件夹里，如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-06.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;准备UPX壳编译环境：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;zlib-1.2.8.tar.gz
+ucl-1.03.tar.gz
+lzma443.tar.bz2
+upx-hg-68db2e569c63.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;编译安装:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;cd ucl-1.03&lt;/span&gt;
+&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
+&lt;span class="x"&gt;make&lt;/span&gt;
+&lt;span class="x"&gt;cd zlib-1.2.8&lt;/span&gt;
+&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
+&lt;span class="x"&gt;make&lt;/span&gt;
+&lt;span class="x"&gt;vi .bash_profile&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;设置环境变量。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03
+export UPX_ZLIBDIR=/Users/qingfeng/software/upx/libs/zlib-1.2.8
+export UPX_LZMADIR=/Users/qingfeng/software/upx/libs/lzma443
+export UPX_LZMA_VERSION=0x443
+export UPX_DIR=/Users/qingfeng/software/upx/upx-hg-68db2e569c63
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查看环境变量的命令env，应用环境变量的命令&lt;code&gt;source .bash_profile&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;然后在编译&lt;code&gt;make all&lt;/code&gt;的过程中，遇到了以下的错误。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./bele_policy.h:156:9: error: unused typedef &amp;#39;acc_cta_t__39&amp;#39; [-Werror,-Wunused-local-typedef]
+        COMPILE_TIME_ASSERT(sizeof(U16) == 2)
+        ^
+./conf.h:359:34: note: expanded from macro &amp;#39;COMPILE_TIME_ASSERT&amp;#39;
+#define COMPILE_TIME_ASSERT(e)   ACC_COMPILE_TIME_ASSERT(e)
+./miniacc.h:1563:54: note: expanded from macro &amp;#39;ACC_COMPILE_TIME_ASSERT&amp;#39;
+#    define ACC_COMPILE_TIME_ASSERT(e)  {typedef int __ACC_CTA_NAME(acc_cta_t__)[1-2*!(e)];}
+./miniacc.h:1531:37: note: expanded from macro &amp;#39;__ACC_CTA_NAME&amp;#39;
+#  define __ACC_CTA_NAME(a)         ACC_PP_ECONCAT2(a,__COUNTER__)
+./miniacc.h:331:41: note: expanded from macro &amp;#39;ACC_PP_ECONCAT2&amp;#39;
+#define ACC_PP_ECONCAT2(a,b)            ACC_PP_CONCAT2(a,b)
+./miniacc.h:325:41: note: expanded from macro &amp;#39;ACC_PP_CONCAT2&amp;#39;
+#define ACC_PP_CONCAT2(a,b)             a ## b
+&amp;lt;scratch space&amp;gt;:183:1: note: expanded from here
+acc_cta_t__39
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;无论是upx是3.9.1，还是最新版，无论lzma是443版本还是最新版1610，编译的时候都会出现这个问题&lt;/p&gt;
+&lt;p&gt;然后试着升级了一下g++的版本，mac自带的是4.2版本，用brew升级到了4.8，然后用zsh的alias功能（vi .zshrc）将自带的替换掉，然后再编译还是不行，最后还是使用ubuntu进行编译吧。&lt;/p&gt;
+&lt;p&gt;然后就下了一个16.04的镜像，然后跑起了虚拟机，下载并&lt;a href="http://www.chinapyg.com/thread-77929-1-1.html"&gt;编译那些依赖&lt;/a&gt;，然后在upx目录下&lt;code&gt;make all&lt;/code&gt;的过程中，出现了以下的问题：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;compress&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;cpp&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fatal&lt;/span&gt; &lt;span class="nl"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;zlib&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;h&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;such&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+     &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;zlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;没找到&lt;code&gt;zlib.h&lt;/code&gt;，可是自己在zlib那也&lt;code&gt;make&lt;/code&gt;了啊，在查找资料的过程中，试着在zlib目录&lt;code&gt;make install&lt;/code&gt;了一下，然后就编译完成了，在src目录下也有&lt;code&gt;./upx.out&lt;/code&gt;了，版本是3.9.2。&lt;/p&gt;
+&lt;p&gt;这个时候就应该考虑so的init段的问题了。据这篇文章说，加壳的文件中需要有INIT段，添加init段的代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;void _init(void){} \\c++
+extern &amp;quot;C&amp;quot; {void _init(void){}}    \\c
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后加壳的命令如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./upx.out -f -o libdemo_upx.so libdemo.so
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后脱壳自然-d参数即可，需要判断标志是否为UPX!，以及处理变形等问题，脱完壳就可以使用IDA进行android的so分析了。&lt;/p&gt;
+&lt;h5&gt;0x06  自动化实现&lt;/h5&gt;
+&lt;p&gt;如何实现一些自动化脚本，进行反汇编的还原工作。&lt;/p&gt;
+&lt;p&gt;当然网上已经有人实现过相关内容，比如Mac下的&lt;a href="https://github.com/dirkvranckaert/AndroidDecompiler"&gt;AndroidDecompiler&lt;/a&gt;，或者是&lt;a href="https://github.com/luckyandyzhang/easy-android-decompiler"&gt;easy-android-decompiler&lt;/a&gt;。&lt;/p&gt;
+&lt;h5&gt;0x07  一些软件&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Baksmali 和 Dedexer&lt;/p&gt;
+&lt;p&gt;apktool&lt;/p&gt;
+&lt;p&gt;JEB&lt;/p&gt;
+&lt;p&gt;jadx&lt;/p&gt;
+&lt;p&gt;jdgui&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;DEX转jar：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;enjarify&lt;/p&gt;
+&lt;p&gt;dex2jar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;app调试器：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://gikir.com/product.php"&gt;gikdbg&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;代码混淆软件：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Proguard&lt;/p&gt;
+&lt;p&gt;DashO&lt;/p&gt;
+&lt;p&gt;Dexguard&lt;/p&gt;
+&lt;p&gt;DexProtector&lt;/p&gt;
+&lt;p&gt;ApkProtect&lt;/p&gt;
+&lt;p&gt;Shield4j&lt;/p&gt;
+&lt;p&gt;Stringer&lt;/p&gt;
+&lt;p&gt;Allitori&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对抗混淆：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/CalebFenton/dex-oracle"&gt;dex-oracle&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/CalebFenton/simplify"&gt;simplify&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/konloch/bytecode-viewer"&gt;bytecode-viewer&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/Juude/droidReverse"&gt;逆向工程集&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;0x08  参考链接&lt;/h5&gt;
+&lt;p&gt;当然实际情况是混淆，加密，加壳综合起来的，实际情况要具体分析。&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://drops.wooyun.org/tips/2871"&gt;一次app抓包引发的Android分析记录&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://kiya.space/2015/11/12/Android-security-tools/"&gt;Android 安全工具包（持续更新）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.csdn.net/guolin_blog/article/details/49738023"&gt;Android安全攻防战，反编译与混淆技术完全解析&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://drops.wooyun.org/mobile/12172"&gt;Android应用安全开发之源码安全&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.wjdiankong.cn/blog/android%E9%80%86%E5%90%91%E4%B9%8B%E6%97%85-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%88%A9%E5%99%A8apktool%E5%92%8Cjadx%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E9%94%99%E8%AF%AF%E7%BA%A0/"&gt;Android逆向之旅—反编译利器Apktool和Jadx源码分析以及错误纠正&lt;/a&gt;&lt;/p&gt;</summary><category term="Android安全"></category><category term="Decompiler"></category><category term="反编译"></category></entry><entry><title>LogCat 及 Log 的一些思考</title><link href="dubuqingfeng.github.io/posts/2016/%206/21/201606-android-security-logcat-log-thinks/index.html" rel="alternate"></link><updated>2016-06-23T18:27:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-21:dubuqingfeng.github.io/posts/2016/ 6/21/201606-android-security-logcat-log-thinks/index.html</id><summary type="html">&lt;h5&gt;0x00  TOC&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;原理&lt;/p&gt;
 &lt;p&gt;smali注入&lt;/p&gt;
