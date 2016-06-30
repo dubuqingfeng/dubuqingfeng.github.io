@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/docker.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Aug 2015 20:23:00 +0200</lastBuildDate><item><title>CnutCon全球容器技术大会有感</title><link>dubuqingfeng.github.io/posts/2015/%208/30/201508-CnutCon-Docker-Beijing/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/docker.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Aug 2015 20:23:00 +0200</lastBuildDate><item><title>CNUTCon全球容器技术大会有感</title><link>dubuqingfeng.github.io/posts/2015/%208/30/201508-CNUTCon-Docker-Beijing/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;作为容器技术的发展，自认为是互联网技术公司的基础设施架构的不可或缺的一部分，并且好多公司都在实践，并且创业公司也可以利用其加快开发，缩短构建部署等消耗的时间。&lt;/p&gt;
 &lt;p&gt;很少有像docker这样才推出两年多就很火的样子，并且拿到了好多投资，😃，作为变化很快的IT行业，不掌握点新技术，很难在竞争中生存下来。&lt;/p&gt;
 &lt;p&gt;并且Docker也适合进行弹性计算，毕竟一个容器启动是秒级别的，还可以作为持续集成等实践，统一开发和部署环境。(只需要一个Dockerfile或者yaml)&lt;/p&gt;
@@ -11,7 +11,7 @@
 &lt;p&gt;晚上坐硬卧去北京，期间感受了硬卧的滋味，然后28号早上晚点了几十分钟到达了北京，然后乘地铁，倒到了十号线，在太阳宫，然后在周围找了半天，期间地图出现了些许问题，耽误了几十分钟，将近八点才到会场，然后在赞助商展演的地方刷了点小礼品。&lt;/p&gt;
 &lt;h5&gt;0x04 开场&lt;/h5&gt;
 &lt;p&gt;开场是由InfoQ官方的负责人员，郭蕾，霍泰稳(极客邦科技，InfoQ中国创始人兼CEO)，介绍了InfoQ的发展，与InfoQ和Docker的关系，毕竟整个大会大部分是在说docker及其相关，InfoQ很早的时候就推出了Docker专栏，并且推广过很多系列文章，以及还介绍了为什么举办此次会议。&lt;/p&gt;
-&lt;p&gt;插照片&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-01.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x05 技术分享－28日上午&lt;/h5&gt;
 &lt;p&gt;首先是RedHat公司的副总裁，一种印度味的英语根本听不懂，也只能拍拍Slides，去感受RedHat对于Docker发展的贡献了。其中的软件定义一切，让想起了软件定义网络，都是一些不知所云的名词，需要学习的太多太多。&lt;/p&gt;
 &lt;p&gt;然后是CoreOS产品负责人，对于CoreOS的印象是版本号太奇葩，更新太快，会议第二天听了林帆的CoreOS实战以后，才有其他印象，想起来6月份，林帆还做过浏览器的镜像，一块还在灵雀云的发布会上见过。&lt;/p&gt;
@@ -41,5 +41,8 @@
 &lt;p&gt;张磊讲的深入浅出，(毕竟是受过高等教育的人,逃),并且其中也进行了答疑，作为浙大SEL实验室，并且也有新书要发售，Daocloud的孙宏亮也写了一本书《Docker源码分析》。&lt;/p&gt;
 &lt;p&gt;传统的虚拟化技术，会在不知不觉中被容器技术替代，在互联网公司里首先会普及容器技术，然后逐渐往非互联网行业渗透，虽然觉得这个时间会很长很长，但是不可不知的是容器技术不仅在现在，在未来都会是重点发展的一部分。&lt;/p&gt;
 &lt;h5&gt;0x10 附照及PPT视频链接&lt;/h5&gt;
-&lt;p&gt;&lt;a href="http://vdisk.weibo.com/s/A0GI9rYc1XqO/1441546316#devtoutiao.com/5738"&gt;PPT下载&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=""&gt;在线视频&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 30 Aug 2015 20:23:00 +0200</pubDate><guid>tag:,2015-08-30:dubuqingfeng.github.io/posts/2015/ 8/30/201508-CnutCon-Docker-Beijing/index.html</guid><category>CnutCon</category><category>Docker</category></item></channel></rss>
+&lt;p&gt;&lt;a href="http://www.stuq.org/ppt/qcon2015/CNUTCon%E5%85%A8%E7%90%83%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A"&gt;PPT下载&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pan.baidu.com/s/1gd6OSXd"&gt;http://pan.baidu.com/s/1gd6OSXd&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.infoq.com/cn/CNUTCon"&gt;在线视频&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-02.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-03.jpg" class="responsive-img"&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 30 Aug 2015 20:23:00 +0200</pubDate><guid>tag:,2015-08-30:dubuqingfeng.github.io/posts/2015/ 8/30/201508-CNUTCon-Docker-Beijing/index.html</guid><category>CNUTCon</category><category>Docker</category></item></channel></rss>
