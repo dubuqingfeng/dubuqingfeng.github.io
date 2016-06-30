@@ -167,7 +167,7 @@ pip install shadowsocks
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;0x05 Koding环境配置pelican简记&lt;/p&gt;
+&lt;h5&gt;0x05 Koding环境配置pelican简记&lt;/h5&gt;
 &lt;p&gt;Koding是一个在线IDE环境，适合进行Web方面的开发，支持Java、PHP、NodeJS、Perl、Python、Ruby、C、C++和Go等编程语言，貌似不太好绑定自定义域名。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install python-pip
 pip install pelican
@@ -175,7 +175,7 @@ sudo apt-get install python-virtualenv
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;0x06 后记&lt;/p&gt;
+&lt;h5&gt;0x06 后记&lt;/h5&gt;
 &lt;p&gt;需要进一步学习SSH协议，Linux服务器管理，密码学，sock5代理，iptables。&lt;/p&gt;
 &lt;p&gt;路漫漫，盖余之勤且艰若此。&lt;/p&gt;
 &lt;p&gt;专注地做好每一件事。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 16 May 2015 12:53:00 +0200</pubDate><guid>tag:,2015-05-16:dubuqingfeng.github.io/posts/2015/ 5/16/201505-vps-base-setting/index.html</guid><category>linux</category><category>vps</category></item></channel></rss>

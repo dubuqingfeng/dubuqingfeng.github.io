@@ -1,5 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/android.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 06 Jun 2015 12:13:00 +0200</lastBuildDate><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/android.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 29 Jun 2016 21:31:00 +0200</lastBuildDate><item><title>findViewById注解、泛型、反射、MVVM</title><link>dubuqingfeng.github.io/posts/2016/%206/29/201606-android-develop-annotations-reflect-mvvm/index.html</link><description>&lt;h5&gt;0x00   TOC：&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;常规&lt;/p&gt;
+&lt;p&gt;注解&lt;/p&gt;
+&lt;p&gt;泛型&lt;/p&gt;
+&lt;p&gt;反射&lt;/p&gt;
+&lt;p&gt;在线生成&lt;/p&gt;
+&lt;p&gt;DataBinding&lt;/p&gt;
+&lt;p&gt;源码实现&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5&gt;0x01  常规&lt;/h5&gt;
+&lt;p&gt;这里findViewById作用以及用法就不再叙述了，接触过Android开发的都明白其怎么用，这次主要分析如何提高其性能，并且使用&lt;strong&gt;TraceView&lt;/strong&gt;分析，如何改善或者节省代码，使开发人员变得更懒。&lt;/p&gt;
+&lt;p&gt;环境：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Mac 10.11
+Android Studio2.0
+SDK24
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如何使用TraceView监测代码呢，在想要根据的代码片段之间使用以下两句代码，注意添加SD卡权限。当然也可以直接在DDMS中的面板里的&lt;code&gt;Start Method Profiling&lt;/code&gt;来监测方法。此次就将代码放置在&lt;code&gt;initView()&lt;/code&gt;方法里，以示区别。并且都是启动一次，再结束&lt;strong&gt;activity&lt;/strong&gt;，然后再启动Activity去比较运行时间。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Debug.startMethodTracing(&amp;quot;debug_test&amp;quot;);  
+Debug.stopMethodTracing();
+//权限
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot;/&amp;gt;
+&amp;lt;uses-permission android:name=&amp;quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&amp;quot;/&amp;gt;
+//adb导出
+adb pull sdcard/debug_test.trace  
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里采用的xml文件是这样的，其中包含了几个TextView，ImageView。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt; &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;xmlns:tools=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:paddingBottom=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@dimen/activity_vertical_margin&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:paddingLeft=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@dimen/activity_horizontal_margin&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:paddingRight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@dimen/activity_horizontal_margin&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:paddingTop=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@dimen/activity_vertical_margin&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;tools:context=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;com.sxau.findviewbyiddemo1.MainActivity&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/tv_demo1&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello World!&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:textSize=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;32sp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/tv_demo2&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/textview1&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:textSize=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;32sp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/tv_demo3&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/textview3&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:textSize=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;32sp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;EditText&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/et_test&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:inputType=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:textSize=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;32sp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;ImageView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/iv_test&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:contentDescription=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/iv_text&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@mipmap/ic_launcher&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span class="nt"&gt;&amp;lt;Button&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/btn_test&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:text=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/tv_btn&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:textSize=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;32sp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;string.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;resources&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;string&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;app_name&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;FindViewByIdDemo1&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;string&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;textview1&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;test&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;string&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;textview3&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;test2&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;string&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;iv_text&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;图标&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;string&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tv_btn&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;btn&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/resources&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;常规的即使用findViewById方法。即：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;textView1 = (TextView) findViewById(R.id.tv_demo1);
+textView2 = (TextView) findViewById(R.id.tv_demo2);
+textView3 = (TextView) findViewById(R.id.tv_demo3);
+editText = (EditText) findViewById(R.id.et_test);
+imageView = (ImageView) findViewById(R.id.iv_test);
+button = (Button) findViewById(R.id.btn_test);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;测试结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-01.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;h5&gt;0x02  注解&lt;/h5&gt;
+&lt;p&gt;如何使用注解这种的避免传统的&lt;code&gt;findViewById&lt;/code&gt;呢。&lt;/p&gt;
+&lt;p&gt;很多开源框架已经支持注解了，就以Android Annotations框架为例。&lt;/p&gt;
+&lt;p&gt;View注解也分运行时注解和编译时注解。&lt;/p&gt;
+&lt;p&gt;注解利用的原理也不一样，有的是利用反射，比如KJFrameForAndroid, xUtils, afinal, thinkAndroid，有的是利用aapt资源打包。反射自然效率比较低，在反射部分举例分析。&lt;/p&gt;
+&lt;p&gt;ButterKnife处理注解是在编译的时候，处理了@Bind、@OnClick等这些注解，所以效率比较高。&lt;/p&gt;
+&lt;p&gt;即：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;@BindView(R.id.tv_demo1)
+TextView textView;
+@BindView(R.id.tv_demo2)
+TextView textView2;
+@BindView(R.id.tv_demo3)
+TextView textView3;
+@BindView(R.id.iv_test)
+ImageView imageView;
+@BindView(R.id.btn_test)
+Button button;
+@BindView(R.id.et_test)
+EditText editText;
+//initView();
+ButterKnife.bind(this);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-02.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;h5&gt;0x03  泛型&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;private &amp;lt;T extends View&amp;gt; T $(int resId) {
+    return (T) super.findViewById(resId);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;textView1 = $(R.id.tv_demo1);
+textView2 = $(R.id.tv_demo2);
+textView3 = $(R.id.tv_demo3);
+button = $(R.id.btn_test);
+imageView = $(R.id.iv_test);
+editText = $(R.id.et_test);
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;测试结果：&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-03.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;h5&gt;0x04  反射&lt;/h5&gt;
+&lt;p&gt;前面也说过，有些注解框架实现视图注入是利用的反射机制，反射执行的效率是很低的。以xutils为例，测试代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;@ContentView(R.layout.activity_main)
+public class MainActivity extends AppCompatActivity {
+
+    @ViewInject(R.id.tv_demo1)
+    TextView textView1;
+    @ViewInject(R.id.tv_demo2)
+    TextView textView2;
+    @ViewInject(R.id.tv_demo3)
+    TextView textView3;
+    @ViewInject(R.id.btn_test)
+    Button button;
+    @ViewInject(R.id.iv_test)
+    ImageView imageView;
+    @ViewInject(R.id.et_test)
+    EditText editText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        x.view().inject(this);
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在DDMS的测试结果如下。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-04.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;h5&gt;0x05  在线生成&lt;/h5&gt;
+&lt;p&gt;Convert your Android XML layouts into a set of declarations and binds to save you all that manual typing. Enter a prefix for your fields, choose the scope paste in your XML and hit generate. Select "verbose" to find out why any fields are skipped.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://android.lineten.net/layout.php"&gt;http://android.lineten.net/layout.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;生成的结果如图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-05.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;h5&gt;0x06  DataBinding&lt;/h5&gt;
+&lt;p&gt;DataBinding是谷歌官方推出的一款数据绑定框架。&lt;/p&gt;
+&lt;p&gt;使用起来比较方便，只需要在build.gradle文件里添加以下代码片段。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;android {
+    ....
+    dataBinding {
+        enabled = true
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;具体的使用方法，网上也有很多，比如&lt;a href="https://github.com/LyndonChin/MasteringAndroidDataBinding"&gt;精通 Android Data Binding&lt;/a&gt;，以及&lt;a href="https://developer.android.com/topic/libraries/data-binding/index.html#build_environment"&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;layout&lt;/span&gt; &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;data&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;variable&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;user&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;com.sxau.findviewbyiddemo5.User&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/data&amp;gt;&lt;/span&gt;
+    //界面代码
+&lt;span class="nt"&gt;&amp;lt;/layout&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后Activity里可以使用&lt;code&gt;MainActivityBinding binding = DataBindingUtil.setContentView(this, R.layout.main_activity);&lt;/code&gt;进行数据绑定。&lt;/p&gt;
+&lt;p&gt;前面的类即是根据xml文件名自动生成的。&lt;/p&gt;
+&lt;p&gt;其中可以实现单向数据绑定。&lt;/p&gt;
+&lt;h5&gt;0x07  源码实现&lt;/h5&gt;
+&lt;p&gt;想了那么多避免传统的findViewById的方法，有的性能差不多，有的性能比较低，但是官方基础实现永远是性能最快的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public final View findViewById(int id) {
+    if (id &amp;lt; 0) {
+        return null;
+    }
+    return findViewTraversal(id);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中调用了&lt;code&gt;findViewTraversal()&lt;/code&gt;方法。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;protected View findViewTraversal(@IdRes int id) {
+    if (id == mID) {
+        return this;
+    }
+    return null;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们通常是在Activity里&lt;code&gt;findViewById()&lt;/code&gt;，所以需要看Activity代码。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;public View findViewById(@IdRes int id) {
+    return getWindow().findViewById(id);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;getWindow()&lt;/code&gt;的对象是继承ViewGroup的，在ViewGroup里，重写了&lt;code&gt;findViewTraversal()&lt;/code&gt;方法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;protected View findViewTraversal(@IdRes int id) {
+    if (id == mID) {
+        return this;
+    }
+
+    final View[] where = mChildren;
+    final int len = mChildrenCount;
+
+    for (int i = 0; i &amp;lt; len; i++) {
+        View v = where[i];
+
+        if ((v.mPrivateFlags &amp;amp; PFLAG_IS_ROOT_NAMESPACE) == 0) {
+            v = v.findViewById(id);
+
+            if (v != null) {
+                return v;
+            }
+        }
+    }
+
+    return null;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中维护了一个View数组，然后从中遍历匹配，从而找到View对象。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Wed, 29 Jun 2016 21:31:00 +0200</pubDate><guid>tag:,2016-06-29:dubuqingfeng.github.io/posts/2016/ 6/29/201606-android-develop-annotations-reflect-mvvm/index.html</guid><category>Android</category><category>findViewById</category><category>注解</category><category>反射</category></item><item><title>如何使用PreferenceFragment方便地完成设置界面</title><link>dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。&lt;/p&gt;
 &lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
 以及一些配置。&lt;/p&gt;
