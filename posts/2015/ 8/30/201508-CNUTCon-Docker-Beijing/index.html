@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>CNUTCon全球容器技术大会有感 - 独步清风's blog</title>
+
+  <!-- CSS  -->
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?76712397de583de526f98e457deb2a7d";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body>
+  <!-- Top-navigation -->
+  <nav class="lighten-5" role="navigation">
+    <div class="container nav-wrapper">
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+              </div>
+            </form>
+          </div>
+        </li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <ul class="right hide-on-large-only">
+        <li><a class="waves-effect waves-light" href="#"><i class="material-icons black-text">search</i></a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons black-text">menu</i></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row template-content-page">
+      <div class="col s12 m8 l9">
+        <!-- Breadcrumb -->
+        <div class="section">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+<div class="collapsible-header active"><a href="/category/docker.html"><i class="material-icons">subject</i>【Docker】</a><a href="#">--CNUTCon全球容器技术大会有感</a>              </div>
+              <div class="collapsible-body"><p>前两天去了全球容器技术大会，讨论容器技术的现在与未来。大会主要面向对容器技术感兴趣的中高端的人员，不乏很多互联网技术公司的人，都在学习如何建设新的基础设施架构。</p></div>
+            </li>
+          </ul>
+        </div>
+        <!-- Article Lists -->
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content black-text">
+      <span class="card-title black-text"><a href="/posts/2015/ 8/30/201508-CNUTCon-Docker-Beijing/index.html" class="black-text flow-text" id="title">CNUTCon全球容器技术大会有感</a></span>
+      <h5>0x01 前言</h5>
+<p>作为容器技术的发展，自认为是互联网技术公司的基础设施架构的不可或缺的一部分，并且好多公司都在实践，并且创业公司也可以利用其加快开发，缩短构建部署等消耗的时间。</p>
+<p>很少有像docker这样才推出两年多就很火的样子，并且拿到了好多投资，😃，作为变化很快的IT行业，不掌握点新技术，很难在竞争中生存下来。</p>
+<p>并且Docker也适合进行弹性计算，毕竟一个容器启动是秒级别的，还可以作为持续集成等实践，统一开发和部署环境。(只需要一个Dockerfile或者yaml)</p>
+<h5>0x02 前沿</h5>
+<p>此次CNUTCon容器技术大会，聚集了像谷歌，百度，阿里，腾讯，360，京东等大公司，也不乏像Daocloud，灵雀云，时速云这类的创业公司。</p>
+<p>不仅有像谷歌，RedHat这类的公司分享Docker容器技术的演化，以及还有Daocloud给的一些实践。</p>
+<p>这些对于一些架构师，技术官，云平台工程师都是不容错过的，各大平台分享自己的平台演化之路，毕竟互联网公司需要的更多的是基础设施的稳定性，相互借鉴，互相交流。</p>
+<h5>0x03 前奏</h5>
+<p>晚上坐硬卧去北京，期间感受了硬卧的滋味，然后28号早上晚点了几十分钟到达了北京，然后乘地铁，倒到了十号线，在太阳宫，然后在周围找了半天，期间地图出现了些许问题，耽误了几十分钟，将近八点才到会场，然后在赞助商展演的地方刷了点小礼品。</p>
+<h5>0x04 开场</h5>
+<p>开场是由InfoQ官方的负责人员，郭蕾，霍泰稳(极客邦科技，InfoQ中国创始人兼CEO)，介绍了InfoQ的发展，与InfoQ和Docker的关系，毕竟整个大会大部分是在说docker及其相关，InfoQ很早的时候就推出了Docker专栏，并且推广过很多系列文章，以及还介绍了为什么举办此次会议。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-01.jpg" class="responsive-img"></p>
+<h5>0x05 技术分享－28日上午</h5>
+<p>首先是RedHat公司的副总裁，一种印度味的英语根本听不懂，也只能拍拍Slides，去感受RedHat对于Docker发展的贡献了。其中的软件定义一切，让想起了软件定义网络，都是一些不知所云的名词，需要学习的太多太多。</p>
+<p>然后是CoreOS产品负责人，对于CoreOS的印象是版本号太奇葩，更新太快，会议第二天听了林帆的CoreOS实战以后，才有其他印象，想起来6月份，林帆还做过浏览器的镜像，一块还在灵雀云的发布会上见过。</p>
+<p>他讲了K8S，这又是较新的名词了，听说是谷歌出的，谷歌出的大部分都是好东西，并且感觉有技术含量，其他的还是回去看PPT吧。</p>
+<p>上午最后一个京东的分享容器之路，分享了一个秒杀的例子，秒杀在那几天的时候很消耗资源，但平时也用不着那么多资源，于是京东开始实践容器，并且说有10000+容器在线上运行，并且还在建设数据中心。</p>
+<p>并且也讲述了在网络和存储两大问题上的解决方案。</p>
+<h5>0x06 技术分享－28日下午</h5>
+<p>28日下午就去了解决方案专场，分会场，开始听灵雀云CTO陈恺分享微服务架构的演变，从单片到三层结构，再到最近的微服务架构，一个应用的架构在不断的发生演变，以电商网站作为例子，并且最后宣传了下灵雀云，作为持续交付，容器托管的创业公司。</p>
+<p>微服务作为近年流行的应用架构，重新定义了应用开发运维的方法。</p>
+<p>时速云王磊分享了k8s打造容器云平台实践，也是作为国内CAAS创业的一部分。</p>
+<p>华为梁辰晔分享了关于OCT容器开放测试项目的实践，是一套针对不同容器产品的统一测试框架，包含了容器标准测试、容器功能测试和容器性能测试。</p>
+<p>七牛的联合创始人徐立，曾经写过go语言编程还是什么的书，听得听的睡着了，中午吃完饭就没睡觉，『不要为了Docker而Docker、为了微服务而微服务』，毕竟Docker在网络和存储方面并不是长处。</p>
+<p>最后是SpeedyCloud，之前并没有听说过这个公司，在展台上打听的这是做云主机的一家公司，不过分享的大部分还是听不懂，回去慢慢啃PPT吧。</p>
+<p>并且在群里说TAE的分享不错，阿里的容器实践，回去看视频和ppt吧。</p>
+<h5>0x07 技术分享－29日上午</h5>
+<p>首先是首日期待很久了的谷歌Dawn Chen讲k8s和borg设计哲学，还是一名女讲师呢，她讲了在谷歌有20亿＋的容器在运行，并且早在很久以前(大概十年前开始)就已经实践了容器相关技术，并且将了k8s作为容器管理的发展，分享了Kubernetes的架构，设计等内容。</p>
+<p>相对来说，更对她的IT职场发展更感兴趣，作为一名女性，怎么在谷歌里成长的，这个完了可以作为例子，来激励或者鼓励自己罢。</p>
+<p>然后是华为的线超博讲swarm，swarm又是啥，毕竟没有接触过，作为swarm的Maintainer，并且也在分享里说了swarm并不适合直接作为生产环境，目前还在开发测试当中。</p>
+<p>最后是百度云平台负责人谢广军的分享百度云架构演化过程，从一开始的私有云实践到后来的公有云，开放云，如何支撑大量的资源进行调度。</p>
+<h5>0x08 技术分享－29日下午</h5>
+<p>中午遇到了几位灵雀云的工程师，并且在那讨论了关于灵雀云和容器docker的事，毕竟是作为开发者，总希望云平台对开发者便利，还有很多开发者对docker不了解或者是没听说过，记得灵雀云的用户群体是创业公司的，开发者还得有很多的学习docker的成本，并且在学习中还会遇到不少的坑，所以无论阿里云这类也好新浪云这类，又或是daocloud，灵雀云，时速云这种也罢，简化对于开发者上面的运维工作也很重要。</p>
+<p>下午的培训专场首先是林帆的CoreOS应用实战，从CoreOS讲到了Rkt，也说了Docker与CoreOS之间的关系，听了会出来吃茶点，然后又去主会场正好Daocloud进行分布式云平台微服务实践，如何快速部署一些服务，并且用Daocloud作为演示。</p>
+<p>最后是张磊的Kubernetes实战，作为浙大的科研人员，讲的感觉很深入浅出，并且也很有意思，值得分享。分享了关于集群管理的性能和利用率，如何进行大规模容器集群管理，以及Pod：容器化思维下的设计模式，k8s的原理。</p>
+<h5>0x09 后记</h5>
+<p>令人印象很深的是好几个讲师分享完了以后，都有好多人在其旁边去问问题也好，交流也罢，感觉气氛很好，在分会场也看到好多人在认真的做笔记，又或是拿着笔记本去实践，并且在浙大的张磊讲的时候还有好多人站的，第一天会议的时候也有很多人在后面站的。</p>
+<p>感觉有些讲师的分享干货不少，一下很难全消化掉。尤其是TAE的，谷歌的，张磊的令人印象深，TAE作为阿里的，分享阿里云在容器方面要做的一些事，并且看上去也很厉害，这些是创业公司不可比拟的额。</p>
+<p>张磊讲的深入浅出，(毕竟是受过高等教育的人,逃),并且其中也进行了答疑，作为浙大SEL实验室，并且也有新书要发售，Daocloud的孙宏亮也写了一本书《Docker源码分析》。</p>
+<p>传统的虚拟化技术，会在不知不觉中被容器技术替代，在互联网公司里首先会普及容器技术，然后逐渐往非互联网行业渗透，虽然觉得这个时间会很长很长，但是不可不知的是容器技术不仅在现在，在未来都会是重点发展的一部分。</p>
+<h5>0x10 附照及PPT视频链接</h5>
+<p><a href="http://www.stuq.org/ppt/qcon2015/CNUTCon%E5%85%A8%E7%90%83%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E5%A4%A7%E4%BC%9A">PPT下载</a></p>
+<p><a href="http://pan.baidu.com/s/1gd6OSXd">http://pan.baidu.com/s/1gd6OSXd</a></p>
+<p><a href="http://www.infoq.com/cn/CNUTCon">在线视频</a></p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-02.jpg" class="responsive-img"></p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201508-CNUTCon-Docker-Beijing-03.jpg" class="responsive-img"></p>	
+    </div>
+    <div class="card-action">
+      <a class="orange-text text-accent-2" href="/category/docker.html" onclick="">2015-08-30 19:22:00</a>
+<a href="/tag/cnutcon.html">CNUTCon</a><a href="/tag/docker.html">Docker</a>    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+      </div>
+      <div class="col s12 m4 l3">
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/categories.html" class="black-text flow-text" id="title">分类</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li ><a href="/category/2014.html">【2014】</a></li>
+                    <li ><a href="/category/android.html">【Android】</a></li>
+                    <li ><a href="/category/androidan-quan.html">【Android安全】</a></li>
+                    <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
+                    <li ><a href="/category/chromebook.html">【chromebook】</a></li>
+                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li class="active"><a href="/category/docker.html">【Docker】</a></li>
+                    <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
+                    <li ><a href="/category/git.html">【git】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
+                    <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
+                    <li ><a href="/category/php.html">【php】</a></li>
+                    <li ><a href="/category/sui-bi.html">【随笔】</a></li>
+                    <li ><a href="/category/test.html">【test】</a></li>
+                    <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
+                    <li ><a href="/category/zi-you-ruan-jian.html">【自由软件】</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">标签</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/archives.html" class="black-text flow-text" id="title">归档</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
+                      <li><a href="/posts/2016/ 6/index.html">六月 2016 (5)</a></li>
+                      <li><a href="/posts/2016/ 5/index.html">五月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 3/index.html">三月 2016 (1)</a></li>
+                      <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
+                      <li><a href="/posts/2014/ 6/index.html">六月 2014 (2)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人标签／个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div class="section">
+  <div class="card-panel z-depth-1">
+    <div class="card black-text sidebar-title">
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
+    </div>
+    <div class="row valign-wrapper">
+      <div class="col s12">
+        <div class="card-action">
+          <ul class="" id="gh_repos">
+			<li class="loading">状态更新中...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"> </script>
+</div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="https://mp.weixin.qq.com" class="black-text flow-text" id="title">微信公众号</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <img class="responsive-img" src="/theme/images/qrcode.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="" class="black-text flow-text" id="title">链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li><a href="http://1433.sinaapp.com/">1433</a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer z-depth-2">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col l12 s12">
+          <a href="#top"><button class="btn waves-effect waves-light blue darken-3 right" alt="Back To Top">Top
+          </button></a>
+          <a href="/resume.pdf"><button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Resume
+          </button></a>
+          <a href="/pages/201604-projects.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Projects
+          </button></a>
+          <a href="/pages/201604-aboutme.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">About
+          </button></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright z-depth-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-small-only">
+            Powered by <a class="amber-text text-darken-4" href="http://getpelican.com" target="_blank">Pelican</a>. <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-med-and-up">
+            <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  
+  <script src="/theme/js/ma.js"></script>
+  <script src="/theme/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/theme/js/highlight.pack.js"></script>
+  </body>
+</html>
