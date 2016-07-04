@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Android UI期末作业分析（附代码） - 独步清风's blog</title>
+
+  <!-- CSS  -->
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?76712397de583de526f98e457deb2a7d";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</head>
+<body>
+  <!-- Top-navigation -->
+  <nav class="lighten-5" role="navigation">
+    <div class="container nav-wrapper">
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+              </div>
+            </form>
+          </div>
+        </li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <ul class="right hide-on-large-only">
+        <li><a class="waves-effect waves-light" href="#"><i class="material-icons black-text">search</i></a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons black-text">menu</i></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row template-content-page">
+      <div class="col s12 m8 l9">
+        <!-- Breadcrumb -->
+        <div class="section">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+<div class="collapsible-header active"><a href="/category/android.html"><i class="material-icons">subject</i>【Android】</a><a href="#">--Android UI期末作业分析（附代码）</a>              </div>
+              <div class="collapsible-body"><p>以一次作业为例，分析Android上常见的UI风格的实现，并整理一些链接及官方实现。</p></div>
+            </li>
+          </ul>
+        </div>
+        <!-- Article Lists -->
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content black-text">
+      <span class="card-title black-text"><a href="/posts/2016/ 7/01/201607-android-ui-design-homework/index.html" class="black-text flow-text" id="title">Android UI期末作业分析（附代码）</a></span>
+      <h5>0x00   TOC</h5>
+<blockquote>
+<p>作业题目分析</p>
+<p>底部选项卡实现</p>
+<p>轮播图片实现</p>
+<p>卡片式风格</p>
+<p>Fragment平板电脑适配</p>
+<p>左右ListView实现</p>
+<p>侧滑界面实现</p>
+<p>顶部弹出菜单实现</p>
+<p>顶部选项卡实现</p>
+<p>后记</p>
+</blockquote>
+<h5>0x01  作业题目分析</h5>
+<p>最近android UI布置了期末作业，以前总是不写作业，总觉得那些作业重复性太强，浪费太多时间。还不如将写作业的时间用在思考上面。不过自己还是喜欢那种课程设计的作业，课程设计的作业较普通作业来说，可以学到不少知识，可以整理出很多东西。几个人做出一个课设总觉得是一件很酷的事情，不过哪有几个人，很多时间都是一个人在做。不仅是对以往知识的掌握的练习，还可以自由地进行一定的扩展。</p>
+<p>本次的试题总共有四个题目，分别代表了不同的应用，后面会尽量使用谷歌官方的组件来进行实现。</p>
+<p>首先是模拟去哪儿网风格的卡片式手机客户端界面。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-01.png" class="responsive-img"></p>
+<p>通过截图我们可以看到整体界面基本由三部分组成（第三幅图的标题栏可自行实现），底部由底部选项卡组成，上面是一个轮播图片组件，中间是一个类似于Win8的Merto风格的磁贴式风格。（题目上说下标签页，滑动导航，卡片式是什么鬼），这些基本就是这个试题的组成部分了，其他都是一些不重要或者很简单的东西了。</p>
+<p>第二个是一个点菜应用界面设计。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-02.png" class="responsive-img"></p>
+<p>看风格总像是一个在iPad上的应用，其中主要是以下几点：</p>
+<p>1.设计成平板电脑横向应用（不可以旋转界面嘛）</p>
+<p>2.界面实现左边菜谱分类导航，右边就是其分类下的菜品。这个就是意思是左边是一个ListView，右边还是一个ListView或者GridView，（当然都是Reclyview也不反对），实际上截图上面左边是一个可扩展的ListView，这些不重要，重要的是右边内容是跟着左边的选项变化的。</p>
+<p>3.关于详情介绍界面这个，把那个菜品对象传到另一个详情界面的Activity，然后显示即可。以及选菜功能的话，这个其实有一点点复杂的，主要是选菜界面的部分，首先每个菜品上面需要有个单选框，来标记是否选择此菜品，选了以后，存到sharedprefences也好，数据库也罢，或者放到缓存里面，然后在我的已点菜界面可以查到相关信息。以及应该有个计算总价或者购物车的功能。</p>
+<p>第三个是一个模拟手机QQ的界面，给出的截图也应该是5.x的版本，在以后的版本里，已经改回了侧滑菜单，不再有缩放效果。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-03.png" class="responsive-img"></p>
+<p>上方的消息电话的切换效果，以前是用两张图片来切换的，然后中间内容是一个ViewPager控制下的Fragment，然后滑动一下，切换界面的时候，更改标题栏的图片。</p>
+<p>这个题目需要有一个侧滑菜单，点击头像或者在左侧边缘部分向右滑动，可像抽屉似的出现一个菜单。</p>
+<p>其他就是一些底部选项卡的，以及圆角头像，以及圆角头像的角标，弹出菜单的一些常规的东西了。</p>
+<p>最后一个是一个新闻客户端，截图给了一个网易和凤凰视频的，两者结构上很相似，基本上是以下情况。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-04.png" class="responsive-img"></p>
+<p>除去标题栏以后，一个顶部选项卡，（当然网易的还有沉浸式状态栏），然后一个轮播图片组件，一个ListView的新闻列表，（当然网易的还有一个垂直跑马灯效果的新闻组件），底部选项卡。</p>
+<p>整体的这次课程设计就是这样子，实际上谷歌官方并不推荐这样布局的，谷歌有自己的设计语言<strong>Material Design</strong>，在5.0以后会越来越多的应用采用这个（当然国内大厂没遵循规范，其实他们也做过相关实践的），比如一些知乎、Youtube类似的应用，早已开始了这种风格的实践，并且谷歌官方推出了不少关于它的组件，让一个不懂设计的开发，也能做出一个好看的界面，而传统的风格是碎片化的，有些应用借鉴了iOS的设计，形成了自己的风格，需要美工和开发者的不断配合。</p>
+<p>对于现在来说，个人开发者对<strong>Material Design</strong>熟悉一点比较好，不仅可以快速做出一些界面，还可以改善自己博客的风格。</p>
+<h5>0x02  底部选项卡实现</h5>
+<p>底部选项卡，在2.3时期，采用了TabHost和TabActivity的方式（即课本采用的方式），现在早已不是2.3时期了，TabActivity也已经过期了。在引入了Fragment以后，底部选项卡的设计也有所变化。</p>
+<p>在Material Design里，也对底部导航栏进行了<a href="https://material.google.com/components/bottom-navigation.html">统一设计规范</a>，该规范明确给出了 BottomNavigation在设计，使用，交互，风格和尺寸等的使用。</p>
+<p>实现Tab功能的几种方式也有人总结过，在<a href="http://www.cnblogs.com/asion/archive/2013/09/25/3339313.html">Android学习笔记：TabHost 和 FragmentTabHost</a>这篇文章也叙述了五种方法。</p>
+<p>其中有种就是利用FragmentTabHost实现底部导航栏，在Activity里初始化的代码：</p>
+<div class="highlight"><pre>fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+radioGroup = (RadioGroup) findViewById(R.id.rg_tab);
+fragmentTabHost.setup(this, getSupportFragmentManager(), R.id.fl_content);
+int count = fragments.length;
+for (int i = 0; i &lt; count; i++) {
+    TabHost.TabSpec tabSpec = fragmentTabHost.newTabSpec(i + &quot;&quot;).setIndicator(i + &quot;&quot;);
+    fragmentTabHost.addTab(tabSpec, fragments[i], null);
+}
+radioGroup.setOnCheckedChangeListener(this);
+fragmentTabHost.setCurrentTab(0);
+</pre></div>
+
+
+<p>其中fragments是一个Fragment的数组，里面包含了标签卡的class。其中底部的按钮采用了RadioGroup的组件，标识其只能按下一个。并且实现其的选择改变的接口（OnCheckedChangeListener），然后里面需要使<code>fragmentTabHost.setCurrentTab(0);</code>设置对应的标签页。</p>
+<div class="highlight"><pre>private Class[] fragments = {HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class};
+</pre></div>
+
+
+<p>布局代码：</p>
+<div class="highlight"><pre><span class="nt">&lt;android.support.v4.app.FragmentTabHost</span>
+        <span class="na">android:id=</span><span class="s">&quot;@android:id/tabhost&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:visibility=</span><span class="s">&quot;gone&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/android.support.v4.app.FragmentTabHost&gt;</span>
+<span class="nt">&lt;RadioGroup</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/rg_tab&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;fill_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;55dp&quot;</span>
+    <span class="na">android:layout_alignParentBottom=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">android:layout_gravity=</span><span class="s">&quot;bottom&quot;</span>
+    <span class="na">android:gravity=</span><span class="s">&quot;bottom&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;RadioButton</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/rb_home&quot;</span>
+        <span class="na">style=</span><span class="s">&quot;@style/RadioButtonBottomTab&quot;</span>
+        <span class="na">android:checked=</span><span class="s">&quot;true&quot;</span>
+        <span class="na">android:minHeight=</span><span class="s">&quot;40dp&quot;</span>
+        <span class="na">android:drawableTop=</span><span class="s">&quot;@drawable/selector_main_tab_home&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;首页&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;RadioButton</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/rb_test&quot;</span>
+        <span class="na">style=</span><span class="s">&quot;@style/RadioButtonBottomTab&quot;</span>
+        <span class="na">android:drawableTop=</span><span class="s">&quot;@drawable/selector_main_tab_home&quot;</span>
+        <span class="na">android:text=</span><span class="s">&quot;测试&quot;</span> <span class="nt">/&gt;</span>
+    ...
+<span class="nt">&lt;/RadioGroup&gt;</span>
+</pre></div>
+
+
+<p>当然利用ViewPagerIndicator和PagerSlidingTabStrip也可以完成此功能，这里用了RadioButton。</p>
+<div class="highlight"><pre>//style.xml
+<span class="c">&lt;!--底部导航栏--&gt;</span>
+<span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;RadioButtonBottomTab&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:layout_weight&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:layout_width&quot;</span><span class="nt">&gt;</span>0dp<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:layout_height&quot;</span><span class="nt">&gt;</span>match_parent<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:padding&quot;</span><span class="nt">&gt;</span>2dp<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:button&quot;</span><span class="nt">&gt;</span>@null<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:layout_gravity&quot;</span><span class="nt">&gt;</span>center_vertical<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:scaleType&quot;</span><span class="nt">&gt;</span>centerCrop<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:textSize&quot;</span><span class="nt">&gt;</span>14sp<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:textColor&quot;</span><span class="nt">&gt;</span>@android:color/black<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:gravity&quot;</span><span class="nt">&gt;</span>center<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:background&quot;</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>//selector_main_tab_home.xml
+<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;selector</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@mipmap/ic_home_fill&quot;</span>
+          <span class="na">android:state_checked=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@mipmap/ic_home&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/selector&gt;</span>
+</pre></div>
+
+
+<p>效果图如下：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-05.png" class="responsive-img"></p>
+<p>莫名地总想测一下时间，利用<code>TraceView</code>测试<code>initView()</code>（即初始化fragmentTabHost的代码）的结果如下：</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-06.png" class="responsive-img"></p>
+<h5>0x03  轮播图片实现</h5>
+<p>这个轮播图片，这个好多大牛都自己实现过一次，如果时间不够，或者水平没达到一定程度，也可以借鉴一些开源组件，例如<a href="https://github.com/iKrelve/Kanner">Kanner</a>，<a href="https://github.com/bendeng/PictureCarousel">PictureCarousel</a>等。当然Trinea大牛也出过一篇名为<a href="http://www.trinea.cn/android/auto-scroll-view-pager/">Android自动滚动 轮播循环的ViewPager</a>的分析。 限于篇幅，不能详细地分析了。</p>
+<h5>0x04  卡片式风格</h5>
+<p>事实上，截图里的风格趋近于磁贴，真正的卡片式设计<a href="https://www.zhihu.com/question/21473866">谷歌也早已在应用</a>。但是这种交互性没有那么强，只有几个块状元素，应该触感上不如磁贴的。</p>
+<p>因为没有什么特效，可以直接使用ImageView构建类似的风格，即如下图所示。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-07.png" class="responsive-img"></p>
+<p>直接使用xml代码即可。</p>
+<div class="highlight"><pre>//activity_main.xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;#ffede0c8&quot;
+    android:orientation=&quot;vertical&quot; &gt;
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:background=&quot;#ffede0c8&quot;
+        android:gravity=&quot;center&quot;
+        android:orientation=&quot;vertical&quot; &gt;
+        &lt;LinearLayout
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:orientation=&quot;vertical&quot; &gt;
+            &lt;LinearLayout
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:orientation=&quot;horizontal&quot; &gt;
+                &lt;LinearLayout
+                    android:layout_width=&quot;wrap_content&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:layout_weight=&quot;2&quot;
+                    android:orientation=&quot;vertical&quot; &gt;
+                    &lt;ImageView
+                        android:id=&quot;@+id/c_joke&quot;
+                        android:layout_width=&quot;match_parent&quot;
+                        android:layout_height=&quot;wrap_content&quot;
+                        android:layout_margin=&quot;1dp&quot;
+                        android:scaleType=&quot;fitXY&quot;
+                        android:src=&quot;@drawable/left_top&quot; /&gt;
+
+                    &lt;ImageView
+                        android:id=&quot;@+id/c_idea&quot;
+                        android:layout_width=&quot;match_parent&quot;
+                        android:layout_height=&quot;wrap_content&quot;
+                        android:layout_margin=&quot;1dp&quot;
+                        android:scaleType=&quot;fitXY&quot;
+                        android:src=&quot;@drawable/left_bottom&quot; /&gt;
+                &lt;/LinearLayout&gt;
+                &lt;ImageView
+                    android:id=&quot;@+id/c_constellation&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:layout_width=&quot;wrap_content&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:layout_margin=&quot;1dp&quot;
+                    android:scaleType=&quot;fitXY&quot;
+                    android:src=&quot;@drawable/right&quot; /&gt;
+            &lt;/LinearLayout&gt;
+            &lt;ImageView
+                android:id=&quot;@+id/iv_ad&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_margin=&quot;1dp&quot;
+                android:scaleType=&quot;fitXY&quot;
+                android:src=&quot;@drawable/bottom&quot; /&gt;
+        &lt;/LinearLayout&gt;
+    &lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
+</pre></div>
+
+
+<h5>0x05  Fragment平板电脑适配</h5>
+<p>以及如何禁止旋转呢。</p>
+<p>在新建项目的时候，选择<code>Master/Detail Flow</code>，然后运行到横向布局的平板上面，即是下图的效果。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-08.png" class="responsive-img"></p>
+<p>它这里主要通过建立了layout-w900dp文件夹，来进行屏幕的适配，以及在java代码里面，通过以下判断，在Adapter里设定一个标志变量，以求响应不同的屏幕。</p>
+<div class="highlight"><pre>if (findViewById(R.id.item_detail_container) != null) {
+    // The detail container view will be present only in the
+    // large-screen layouts (res/values-w900dp).
+    // If this view is present, then the
+    // activity should be in two-pane mode.
+    mTwoPane = true;
+}
+</pre></div>
+
+
+<p>禁止旋转的话，只需要在AndroidManifest.xml将对应的Activity的android:screenOrientation属性设为定值即可，比如纵向"portrait"，横向"landscape"。</p>
+<h5>0x06  左右ListView实现</h5>
+<p>这个以前也做过类似的，类似于外卖平台的商家界面，左边是分类，而右边是该分类对应下的商品。当时做的是网络应用，分类和商品都是网络获取的，当然现在这个自己生成一些数据就好。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-09.png" class="responsive-img"></p>
+<p>主要是有两个Adapter，一个分类的Adapter，即左边的Adapter，一个右边的Adapter。Adapter和传统的写法一致。</p>
+<p>布局xml代码：</p>
+<div class="highlight"><pre>&lt;LinearLayout
+    android:layout_width=&quot;fill_parent&quot;
+    android:layout_height=&quot;fill_parent&quot;
+    android:background=&quot;#ededed&quot;
+    android:orientation=&quot;horizontal&quot;&gt;
+
+    &lt;ListView
+        android:id=&quot;@+id/listView&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;3&quot;
+        android:background=&quot;@android:color/holo_green_dark&quot;
+        android:choiceMode=&quot;singleChoice&quot;
+        android:divider=&quot;@android:color/darker_gray&quot;
+        android:dividerHeight=&quot;1px&quot;
+        android:listSelector=&quot;@android:color/white&quot;/&gt;
+
+    &lt;GridView
+        android:id=&quot;@+id/subListView&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:layout_margin=&quot;10dp&quot;
+        android:layout_marginTop=&quot;1dp&quot;
+        android:layout_weight=&quot;1&quot;
+        android:clipToPadding=&quot;false&quot;
+        android:horizontalSpacing=&quot;10dp&quot;
+        android:numColumns=&quot;3&quot;
+        android:verticalSpacing=&quot;10dp&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</pre></div>
+
+
+<p>其中ListView和GridView是在一个LinearLayout里，响应listView的点击事件，然后加载不同的数据源，配置Adapter。</p>
+<div class="highlight"><pre><span class="nx">listView</span><span class="p">.</span><span class="nx">setOnItemClickListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">AdapterView</span><span class="p">.</span><span class="nx">OnItemClickListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="err">@</span><span class="nx">Override</span>
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">onItemClick</span><span class="p">(</span><span class="nx">AdapterView</span><span class="cp">&lt;?</span><span class="o">&gt;</span> <span class="nx">arg0</span><span class="p">,</span> <span class="nx">View</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">position</span><span class="p">,</span>
+                            <span class="nx">long</span> <span class="nx">arg3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ClassList</span> <span class="nx">classList</span> <span class="o">=</span> <span class="nx">datas</span><span class="o">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">position</span><span class="p">);</span>
+        <span class="nx">cate_id</span> <span class="o">=</span> <span class="nx">classList</span><span class="o">.</span><span class="nx">getGcId</span><span class="p">();</span>
+        <span class="nx">findCateById</span><span class="p">(</span><span class="nx">cate_id</span><span class="p">);</span>
+        <span class="nx">myAdapter</span><span class="o">.</span><span class="nx">setSelectedPosition</span><span class="p">(</span><span class="nx">position</span><span class="p">);</span>
+        <span class="nx">myAdapter</span><span class="o">.</span><span class="nx">notifyDataSetInvalidated</span><span class="p">();</span>
+        <span class="nx">subAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubAdapter</span><span class="p">(</span><span class="nx">MainActivity</span><span class="o">.</span><span class="k">this</span><span class="p">,</span> <span class="nx">subdatas</span><span class="p">);</span>
+        <span class="nx">subListView</span><span class="o">.</span><span class="nx">setAdapter</span><span class="p">(</span><span class="nx">subAdapter</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<h5>0x07  侧滑界面实现</h5>
+<p>关于QQ的侧滑界面，网上也有<a href="http://www.kancloud.cn/digest/fastdev4android/109672">解析</a>，使用了ViewDragHelper来进行手势的处理。</p>
+<p>这个在新建项目的时候，我们就会发现一个名为Navigation Drawer Activity的选项。</p>
+<p>我们可以选择它，一路Next。</p>
+<p>然后运行应用，可以看到以下的效果。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-10.png" class="responsive-img"></p>
+<p>分析这个应用的xml，整个界面的xml如下：</p>
+<div class="highlight"><pre><span class="nt">&lt;android.support.v4.widget.DrawerLayout&gt;</span>
+    <span class="nt">&lt;android.support.design.widget.CoordinatorLayout&gt;</span>
+        <span class="nt">&lt;android.support.design.widget.AppBarLayout&gt;</span>
+            <span class="nt">&lt;android.support.v7.widget.Toolbar</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/android.support.design.widget.AppBarLayout&gt;</span>
+        <span class="nt">&lt;RelativeLayout&gt;</span>
+            <span class="nt">&lt;TextView/&gt;</span>
+        <span class="nt">&lt;/RelativeLayout&gt;</span>
+        <span class="nt">&lt;android.support.design.widget.FloatingActionButton</span><span class="err">／</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;android.support.design.widget.CoordinatorLayout&gt;</span>
+    <span class="nt">&lt;android.support.design.widget.NavigationView/&gt;</span>
+<span class="nt">&lt;/android.support.v4.widget.DrawerLayout&gt;</span>
+</pre></div>
+
+
+<p>整体不难理解，是由一个DrawerLayout包含了整体的布局，然后CoodinatorLayout是界面的布局，而NavigationView是侧边栏导航的布局。其中DrawerLayout的文档里也说明了需要将primary content view作为第一个子节点，并且高度和宽度均为match_parent并且没有设置Layout_gravity，而抽屉需要在这个view之后，并设置layout_gravity，如果设置成start，即为从左向右滑动。</p>
+<p>在java代码里，这个示例主要做了以下几件事情。</p>
+<blockquote>
+<p>初始化并设置Toolbar</p>
+<p>设置浮动按钮（FloatingActionButton）。</p>
+<p>初始化DrawerLayout。由于ActionBarDrawerToggle实现了DrawerLayout.DrawerListener，所以直接使用其可以将DrawerLayout和ActionBar进行监听器的绑定。</p>
+<p>初始化并配置NavigationView，其是谷歌标准的侧滑出来的布局，当然也可以自己实现一个布局，然后在Activity的xml布局里，在主内容之后添加。</p>
+</blockquote>
+<p>其中menu也声明了是在<code>activity_main_drawer.xml</code>文件里，可以修改其，以进行一些侧滑菜单项的配置。</p>
+<h5>0x08  顶部弹出菜单实现</h5>
+<p>我们在侧滑界面实现的那个Demo或者<code>Base Activity</code>里面，其实已经实现了点击弹出菜单的样式，即官方实现，当然这个各自有各自的实现，我们当然也可以使用PopupMenu、PopupWindow之类的去实现这些效果，此次简要写一下官方实现Menu。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-11.png" class="responsive-img"></p>
+<div class="highlight"><pre>//MainActivity.java
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle action bar item clicks here. The action bar will
+    // automatically handle clicks on the Home/Up button, so long
+    // as you specify a parent activity in AndroidManifest.xml.
+    int id = item.getItemId();
+
+    //noinspection SimplifiableIfStatement
+    if (id == R.id.action_settings) {
+        return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+}
+</pre></div>
+
+
+<div class="highlight"><pre>//main.xml
+<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/action_settings&quot;</span>
+        <span class="na">android:orderInCategory=</span><span class="s">&quot;100&quot;</span>
+        <span class="na">android:title=</span><span class="s">&quot;@string/action_settings&quot;</span>
+        <span class="na">app:showAsAction=</span><span class="s">&quot;never&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/menu&gt;</span>
+</pre></div>
+
+
+<h5>0x09  顶部选项卡实现</h5>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-12.png" class="responsive-img"></p>
+<p>在<code>build.gradle</code>里引入</p>
+<div class="highlight"><pre>compile &#39;com.android.support:design:24.0.0&#39;
+</pre></div>
+
+
+<div class="highlight"><pre>//xml代码
+<span class="nt">&lt;android.support.design.widget.TabLayout</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/tabs&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;48dp&quot;</span> <span class="err">//菜单高度</span>
+    <span class="na">android:background=</span><span class="s">&quot;#1FBCD2&quot;</span> <span class="err">//菜单条的背景</span>
+    <span class="na">app:tabIndicatorColor=</span><span class="s">&quot;#ff0000&quot;</span> <span class="err">//菜单指示器的颜色</span>
+    <span class="na">app:tabMode=</span><span class="s">&quot;scrollable&quot;</span> <span class="err">//菜单可以滚动</span>
+    <span class="na">app:tabPaddingEnd=</span><span class="s">&quot;20dp&quot;</span> 
+    <span class="na">app:tabPaddingStart=</span><span class="s">&quot;20dp&quot;</span> <span class="err">//菜单之间的间距</span>
+    <span class="na">app:tabSelectedTextColor=</span><span class="s">&quot;#FFFFFF&quot;</span> <span class="err">//菜单选中时的颜色</span>
+    <span class="na">app:tabTextColor=</span><span class="s">&quot;#000000&quot;</span><span class="nt">&gt;</span> //菜单未选中时的颜色
+<span class="nt">&lt;/android.support.design.widget.TabLayout&gt;</span>
+
+<span class="nt">&lt;android.support.v4.view.ViewPager</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/vp_view&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>//Activity代码
+private List&lt;String&gt; mTitleList = new ArrayList&lt;String&gt;();//页卡标题集合
+private View view1, view2, view3;
+private List&lt;View&gt; mViewList = new ArrayList&lt;&gt;();//页卡视图集合
+
+//onCreate里关键代码
+view1 = mInflater.inflate(R.layout.content, null);
+view2 = mInflater.inflate(R.layout.content, null);
+view3 = mInflater.inflate(R.layout.content, null);
+
+mViewPager = (ViewPager) findViewById(R.id.vp_view);
+mTabLayout = (TabLayout) findViewById(R.id.tabs);
+
+mViewList.add(view1);
+mViewList.add(view2);
+mViewList.add(view3);
+
+mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)), true);
+mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
+mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
+
+MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
+//给ViewPager设置适配器
+mViewPager.setAdapter(mAdapter);
+
+//将TabLayout和ViewPager关联起来
+mTabLayout.setupWithViewPager(mViewPager);
+//给Tabs设置适配器
+mTabLayout.setTabsFromPagerAdapter(mAdapter);
+
+//ViewPager适配器，内部类
+class MyPagerAdapter extends PagerAdapter {
+    private List&lt;View&gt; mViewList;
+
+    public MyPagerAdapter(List&lt;View&gt; mViewList) {
+        this.mViewList = mViewList;
+    }
+
+    @Override
+    public int getCount() {
+        return mViewList.size();//页卡数
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;//官方推荐写法
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        container.addView(mViewList.get(position));//添加页卡
+        return mViewList.get(position);
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView(mViewList.get(position));//删除页卡
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mTitleList.get(position);//页卡标题
+    }
+
+}
+</pre></div>
+
+
+<p>具体可以参考简书上的这篇<a href="http://www.jianshu.com/p/7ee916e5fae7">Android开发之TabLayout实现顶部菜单的文章</a>。如果要实现内容不是View，而是一个Fragment的话，只需要重写一下<code>Adapter</code>，将对应的Fragment返回即可，具体可以查看<code>FragmentStatePagerAdapter</code>的源码，以及以前写过类似的<a href="https://github.com/DigDream/shopnc-app/blob/master/Src/app/src/main/java/com/daxueoo/shopnc/ui/fragment/HomeFragment.java">东西</a>。</p>
+<h5>0x0A  后记</h5>
+<p>斜阳无限，无奈只一息间灿烂。</p>
+<p>曾遇上几多风雨翻，编织我交错梦幻。</p>
+<p>曾遇你真心的臂弯，伴我走过患难。</p>
+<p>夕阳虽美，但却近黄昏。</p>
+<p>梅艳芳曾经讲过，《夕阳之歌》是她一生的写照。也许在死亡面前，才能真正感悟。</p>
+<p>各位都应珍惜时间，别到了最后，令自己后悔；珍惜眼前人，也许明日就是离别之时；珍惜身边的一切，经历过大风大浪才知，平淡美好的生活才是所向往的。未来怎样，无法预料，可是我们也得有面对未来的准备啊。扪心自问，问心无愧，足以。</p>	
+    </div>
+    <div class="card-action">
+      <a class="orange-text text-accent-2" href="/category/android.html" onclick="">2016-07-01 13:27:00</a>
+<a href="/tag/android.html">Android</a><a href="/tag/android-ui.html">Android UI</a><a href="/tag/dao-hang-lan.html">导航栏</a>    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+      </div>
+      <div class="col s12 m4 l3">
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/categories.html" class="black-text flow-text" id="title">分类</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li ><a href="/category/2014.html">【2014】</a></li>
+                    <li class="active"><a href="/category/android.html">【Android】</a></li>
+                    <li ><a href="/category/androidan-quan.html">【Android安全】</a></li>
+                    <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
+                    <li ><a href="/category/chromebook.html">【chromebook】</a></li>
+                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li ><a href="/category/docker.html">【Docker】</a></li>
+                    <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
+                    <li ><a href="/category/git.html">【git】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
+                    <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
+                    <li ><a href="/category/php.html">【php】</a></li>
+                    <li ><a href="/category/sui-bi.html">【随笔】</a></li>
+                    <li ><a href="/category/test.html">【test】</a></li>
+                    <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
+                    <li ><a href="/category/zi-you-ruan-jian.html">【自由软件】</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">标签</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/archives.html" class="black-text flow-text" id="title">归档</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                  <li><a href="/archives.html">所有文章 (30)</a></li>
+                      <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 6/index.html">六月 2016 (5)</a></li>
+                      <li><a href="/posts/2016/ 5/index.html">五月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 3/index.html">三月 2016 (1)</a></li>
+                      <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
+                      <li><a href="/posts/2014/ 6/index.html">六月 2014 (2)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人标签／个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div class="section">
+  <div class="card-panel z-depth-1">
+    <div class="card black-text sidebar-title">
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
+    </div>
+    <div class="row valign-wrapper">
+      <div class="col s12">
+        <div class="card-action">
+          <ul class="" id="gh_repos">
+			<li class="loading">状态更新中...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"> </script>
+</div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="https://mp.weixin.qq.com" class="black-text flow-text" id="title">微信公众号</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <img class="responsive-img" src="/theme/images/qrcode.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="" class="black-text flow-text" id="title">链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li><a href="http://1433.sinaapp.com/">1433</a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer z-depth-2">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col l12 s12">
+          <a href="#top"><button class="btn waves-effect waves-light blue darken-3 right" alt="Back To Top">Top
+          </button></a>
+          <a href="/resume.pdf"><button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Resume
+          </button></a>
+          <a href="/pages/201604-projects.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Projects
+          </button></a>
+          <a href="/pages/201604-aboutme.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">About
+          </button></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright z-depth-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-small-only">
+            Powered by <a class="amber-text text-darken-4" href="http://getpelican.com" target="_blank">Pelican</a>. <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-med-and-up">
+            <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  
+  <script src="/theme/js/ma.js"></script>
+  <script src="/theme/js/init.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/theme/js/highlight.pack.js"></script>
+  </body>
+</html>
