@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -126,11 +126,11 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 <h5>0x03  仅混淆</h5>
 <p>通常Android混淆方法，有ProGuard、DexGuard和APKfuscator等。</p>
 <p>怎样使用ProGuard对Android项目源码进行混淆保护，在Android Studio中build.gradle，修改以下代码片段</p>
-<div class="highlight"><pre>release {
-    minifyEnabled true
-    proguardFiles getDefaultProguardFile(&#39;proguard-android-optimize.txt&#39;),
-     &#39;proguard-rules.pro&#39;
-}
+<div class="highlight"><pre><span class="n">release</span> <span class="o">{</span>
+    <span class="n">minifyEnabled</span> <span class="kc">true</span>
+    <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">optimize</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span>
+     <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -194,20 +194,20 @@ org.gradle.configureondemand=true
 <p>当然如果面面俱到，文章篇幅就比较长了，并且实践、研究花费的时间也比较多。这里就举比较简单的例子。</p>
 <p>Android签名校验：</p>
 <p>在android程序中，可以使用以下代码进行签名的获取。</p>
-<div class="highlight"><pre>public int getSignature(String packageName) {
-    PackageManager pm = this.getPackageManager();
-    PackageInfo pi = null;
-    int sig = 0;
-    try {
-        pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-        Signature[] s = pi.signatures;
-        sig = s[0].hashCode();
-    } catch (Exception e1) {
-        sig = 0;
-        e1.printStackTrace();
-    }
-    return sig;
-}
+<div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">packageName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getPackageManager</span><span class="o">();</span>
+    <span class="n">PackageInfo</span> <span class="n">pi</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="na">getPackageInfo</span><span class="o">(</span><span class="n">packageName</span><span class="o">,</span> <span class="n">PackageManager</span><span class="o">.</span><span class="na">GET_SIGNATURES</span><span class="o">);</span>
+        <span class="n">Signature</span><span class="o">[]</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pi</span><span class="o">.</span><span class="na">signatures</span><span class="o">;</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">s</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">hashCode</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sig</span><span class="o">;</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -276,8 +276,8 @@ acc_cta_t__39
 
 <p>没找到<code>zlib.h</code>，可是自己在zlib那也<code>make</code>了啊，在查找资料的过程中，试着在zlib目录<code>make install</code>了一下，然后就编译完成了，在src目录下也有<code>./upx.out</code>了，版本是3.9.2。</p>
 <p>这个时候就应该考虑so的init段的问题了。据这篇文章说，加壳的文件中需要有INIT段，添加init段的代码如下：</p>
-<div class="highlight"><pre>void _init(void){} \\c++
-extern &quot;C&quot; {void _init(void){}}    \\c
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}</span> <span class="err">\\</span><span class="n">c</span><span class="o">++</span>
+<span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span><span class="kt">void</span> <span class="n">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}}</span>    <span class="err">\\</span><span class="n">c</span>
 </pre></div>
 
 
@@ -648,6 +648,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

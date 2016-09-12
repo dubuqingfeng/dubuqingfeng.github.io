@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/fan-hui-bian.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2014-07-24T15:42:00+02:00</updated><entry><title>c程序的启动过程的反汇编分析</title><link href="dubuqingfeng.github.io/posts/2014/%207/24/201407-reverse-disassemble-c-main/index.html" rel="alternate"></link><updated>2014-07-24T15:42:00+02:00</updated><author><name>admin</name></author><id>tag:,2014-07-24:dubuqingfeng.github.io/posts/2014/ 7/24/201407-reverse-disassemble-c-main/index.html</id><summary type="html">&lt;h5&gt;0x01  工具准备&lt;/h5&gt;
 &lt;p&gt;1.最简c代码一只&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;int main()
-{
-    return 0;
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -12,10 +12,10 @@
 &lt;p&gt;3.VC++6.0&lt;/p&gt;
 &lt;p&gt;4.GCC（mingw）&lt;/p&gt;
 &lt;h5&gt;0x02  代码分析&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;int main()
-{
-    return 0;
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/linux.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-05-16T12:53:00+02:00</updated><entry><title>Linux VPS的一些配置</title><link href="dubuqingfeng.github.io/posts/2015/%205/16/201505-vps-base-setting/index.html" rel="alternate"></link><updated>2015-05-16T12:53:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-05-16:dubuqingfeng.github.io/posts/2015/ 5/16/201505-vps-base-setting/index.html</id><summary type="html">&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
 &lt;p&gt;一般ssh是开放的，容易受到攻击或者爆破等行为。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#vi /etc/ssh/sshd_config
+&lt;div class="highlight"&gt;&lt;pre&gt;#&lt;span class="k"&gt;vi&lt;/span&gt; &lt;span class="sr"&gt;/etc/&lt;/span&gt;ssh/sshd_config
 
-#Port 22             //先把22注释掉
+#Port &lt;span class="m"&gt;22&lt;/span&gt;             &lt;span class="sr"&gt;//&lt;/span&gt;先把&lt;span class="m"&gt;22&lt;/span&gt;注释掉
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -83,17 +83,17 @@ pip install shadowsocks
 
 
 &lt;p&gt;内容如下：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;{
-        &amp;quot;server&amp;quot;:&amp;quot;your_server_ip&amp;quot;,
-        &amp;quot;server_port&amp;quot;:8989,
-        &amp;quot;local_address&amp;quot;: &amp;quot;127.0.0.1&amp;quot;,
-        &amp;quot;local_port&amp;quot;:1080,
-        &amp;quot;password&amp;quot;:&amp;quot;yourpassword&amp;quot;,
-        &amp;quot;timeout&amp;quot;:600,
-        &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;,
-        &amp;quot;fast_open&amp;quot;: false,
-        &amp;quot;workers&amp;quot;: 1
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;your_server_ip&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;server_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8989&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;local_address&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;127.0.0.1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;local_port&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1080&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;yourpassword&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;timeout&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;method&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;aes-256-cfb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;fast_open&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;quot;workers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

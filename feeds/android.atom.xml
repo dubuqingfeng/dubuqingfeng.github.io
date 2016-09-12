@@ -22,7 +22,7 @@
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-02.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;看风格总像是一个在iPad上的应用，其中主要是以下几点：&lt;/p&gt;
 &lt;p&gt;1.设计成平板电脑横向应用（不可以旋转界面嘛）&lt;/p&gt;
-&lt;p&gt;2.界面实现左边菜谱分类导航，右边就是其分类下的菜品。这个就是意思是左边是一个ListView，右边还是一个ListView或者GridView，（当然都是Reclyview也不反对），实际上截图上面左边是一个可扩展的ListView，这些不重要，重要的是右边内容是跟着左边的选项变化的。&lt;/p&gt;
+&lt;p&gt;2.界面实现左边菜谱分类导航，右边就是其分类下的菜品。这个就是意思是左边是一个ListView，右边还是一个ListView或者GridView，（当然都是RecyclerView也不反对），实际上截图上面左边是一个可扩展的ListView，这些不重要，重要的是右边内容是跟着左边的选项变化的。&lt;/p&gt;
 &lt;p&gt;3.关于详情介绍界面这个，把那个菜品对象传到另一个详情界面的Activity，然后显示即可。以及选菜功能的话，这个其实有一点点复杂的，主要是选菜界面的部分，首先每个菜品上面需要有个单选框，来标记是否选择此菜品，选了以后，存到sharedprefences也好，数据库也罢，或者放到缓存里面，然后在我的已点菜界面可以查到相关信息。以及应该有个计算总价或者购物车的功能。&lt;/p&gt;
 &lt;p&gt;第三个是一个模拟手机QQ的界面，给出的截图也应该是5.x的版本，在以后的版本里，已经改回了侧滑菜单，不再有缩放效果。&lt;/p&gt;
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-03.png" class="responsive-img"&gt;&lt;/p&gt;
@@ -39,21 +39,22 @@
 &lt;p&gt;在Material Design里，也对底部导航栏进行了&lt;a href="https://material.google.com/components/bottom-navigation.html"&gt;统一设计规范&lt;/a&gt;，该规范明确给出了 BottomNavigation在设计，使用，交互，风格和尺寸等的使用。&lt;/p&gt;
 &lt;p&gt;实现Tab功能的几种方式也有人总结过，在&lt;a href="http://www.cnblogs.com/asion/archive/2013/09/25/3339313.html"&gt;Android学习笔记：TabHost 和 FragmentTabHost&lt;/a&gt;这篇文章也叙述了五种方法。&lt;/p&gt;
 &lt;p&gt;其中有种就是利用FragmentTabHost实现底部导航栏，在Activity里初始化的代码：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
-radioGroup = (RadioGroup) findViewById(R.id.rg_tab);
-fragmentTabHost.setup(this, getSupportFragmentManager(), R.id.fl_content);
-int count = fragments.length;
-for (int i = 0; i &amp;lt; count; i++) {
-    TabHost.TabSpec tabSpec = fragmentTabHost.newTabSpec(i + &amp;quot;&amp;quot;).setIndicator(i + &amp;quot;&amp;quot;);
-    fragmentTabHost.addTab(tabSpec, fragments[i], null);
-}
-radioGroup.setOnCheckedChangeListener(this);
-fragmentTabHost.setCurrentTab(0);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fragmentTabHost&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FragmentTabHost&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tabhost&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;radioGroup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RadioGroup&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;rg_tab&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;fragmentTabHost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;getSupportFragmentManager&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;fl_content&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fragments&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;TabHost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;TabSpec&lt;/span&gt; &lt;span class="n"&gt;tabSpec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fragmentTabHost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;newTabSpec&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;setIndicator&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;fragmentTabHost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addTab&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tabSpec&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fragments&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;],&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;radioGroup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setOnCheckedChangeListener&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;fragmentTabHost&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setCurrentTab&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;其中fragments是一个Fragment的数组，里面包含了标签卡的class。其中底部的按钮采用了RadioGroup的组件，标识其只能按下一个。并且实现其的选择改变的接口（OnCheckedChangeListener），然后里面需要使&lt;code&gt;fragmentTabHost.setCurrentTab(0);&lt;/code&gt;设置对应的标签页。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;private Class[] fragments = {HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class};
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;Class&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;fragments&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;HomeFragment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HomeFragment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; 
+    &lt;span class="n"&gt;HomeFragment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HomeFragment&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;};&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -130,66 +131,66 @@ fragmentTabHost.setCurrentTab(0);
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-07.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;直接使用xml代码即可。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;//activity_main.xml
-&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;LinearLayout xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;
-    android:layout_width=&amp;quot;match_parent&amp;quot;
-    android:layout_height=&amp;quot;match_parent&amp;quot;
-    android:background=&amp;quot;#ffede0c8&amp;quot;
-    android:orientation=&amp;quot;vertical&amp;quot; &amp;gt;
-    &amp;lt;LinearLayout
-        android:layout_width=&amp;quot;match_parent&amp;quot;
-        android:layout_height=&amp;quot;match_parent&amp;quot;
-        android:background=&amp;quot;#ffede0c8&amp;quot;
-        android:gravity=&amp;quot;center&amp;quot;
-        android:orientation=&amp;quot;vertical&amp;quot; &amp;gt;
-        &amp;lt;LinearLayout
-            android:layout_width=&amp;quot;match_parent&amp;quot;
-            android:layout_height=&amp;quot;wrap_content&amp;quot;
-            android:orientation=&amp;quot;vertical&amp;quot; &amp;gt;
-            &amp;lt;LinearLayout
-                android:layout_width=&amp;quot;match_parent&amp;quot;
-                android:layout_height=&amp;quot;wrap_content&amp;quot;
-                android:orientation=&amp;quot;horizontal&amp;quot; &amp;gt;
-                &amp;lt;LinearLayout
-                    android:layout_width=&amp;quot;wrap_content&amp;quot;
-                    android:layout_height=&amp;quot;wrap_content&amp;quot;
-                    android:layout_weight=&amp;quot;2&amp;quot;
-                    android:orientation=&amp;quot;vertical&amp;quot; &amp;gt;
-                    &amp;lt;ImageView
-                        android:id=&amp;quot;@+id/c_joke&amp;quot;
-                        android:layout_width=&amp;quot;match_parent&amp;quot;
-                        android:layout_height=&amp;quot;wrap_content&amp;quot;
-                        android:layout_margin=&amp;quot;1dp&amp;quot;
-                        android:scaleType=&amp;quot;fitXY&amp;quot;
-                        android:src=&amp;quot;@drawable/left_top&amp;quot; /&amp;gt;
+&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt; &lt;span class="na"&gt;xmlns:android=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:background=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#ffede0c8&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:background=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#ffede0c8&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:gravity=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;center&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt;
+            &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+            &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt;
+                &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;horizontal&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_weight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class="nt"&gt;&amp;lt;ImageView&lt;/span&gt;
+                        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/c_joke&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_margin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1dp&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:scaleType=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fitXY&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@drawable/left_top&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
 
-                    &amp;lt;ImageView
-                        android:id=&amp;quot;@+id/c_idea&amp;quot;
-                        android:layout_width=&amp;quot;match_parent&amp;quot;
-                        android:layout_height=&amp;quot;wrap_content&amp;quot;
-                        android:layout_margin=&amp;quot;1dp&amp;quot;
-                        android:scaleType=&amp;quot;fitXY&amp;quot;
-                        android:src=&amp;quot;@drawable/left_bottom&amp;quot; /&amp;gt;
-                &amp;lt;/LinearLayout&amp;gt;
-                &amp;lt;ImageView
-                    android:id=&amp;quot;@+id/c_constellation&amp;quot;
-                    android:layout_weight=&amp;quot;1&amp;quot;
-                    android:layout_width=&amp;quot;wrap_content&amp;quot;
-                    android:layout_height=&amp;quot;wrap_content&amp;quot;
-                    android:layout_margin=&amp;quot;1dp&amp;quot;
-                    android:scaleType=&amp;quot;fitXY&amp;quot;
-                    android:src=&amp;quot;@drawable/right&amp;quot; /&amp;gt;
-            &amp;lt;/LinearLayout&amp;gt;
-            &amp;lt;ImageView
-                android:id=&amp;quot;@+id/iv_ad&amp;quot;
-                android:layout_width=&amp;quot;match_parent&amp;quot;
-                android:layout_height=&amp;quot;wrap_content&amp;quot;
-                android:layout_margin=&amp;quot;1dp&amp;quot;
-                android:scaleType=&amp;quot;fitXY&amp;quot;
-                android:src=&amp;quot;@drawable/bottom&amp;quot; /&amp;gt;
-        &amp;lt;/LinearLayout&amp;gt;
-    &amp;lt;/LinearLayout&amp;gt;
-&amp;lt;/LinearLayout&amp;gt;
+                    &lt;span class="nt"&gt;&amp;lt;ImageView&lt;/span&gt;
+                        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/c_idea&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:layout_margin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1dp&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:scaleType=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fitXY&amp;quot;&lt;/span&gt;
+                        &lt;span class="na"&gt;android:src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@drawable/left_bottom&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;ImageView&lt;/span&gt;
+                    &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/c_constellation&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_weight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:layout_margin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1dp&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:scaleType=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fitXY&amp;quot;&lt;/span&gt;
+                    &lt;span class="na"&gt;android:src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@drawable/right&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;ImageView&lt;/span&gt;
+                &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/iv_ad&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:layout_margin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1dp&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:scaleType=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fitXY&amp;quot;&lt;/span&gt;
+                &lt;span class="na"&gt;android:src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@drawable/bottom&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -198,13 +199,13 @@ fragmentTabHost.setCurrentTab(0);
 &lt;p&gt;在新建项目的时候，选择&lt;code&gt;Master/Detail Flow&lt;/code&gt;，然后运行到横向布局的平板上面，即是下图的效果。&lt;/p&gt;
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-08.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;它这里主要通过建立了layout-w900dp文件夹，来进行屏幕的适配，以及在java代码里面，通过以下判断，在Adapter里设定一个标志变量，以求响应不同的屏幕。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;if (findViewById(R.id.item_detail_container) != null) {
-    // The detail container view will be present only in the
-    // large-screen layouts (res/values-w900dp).
-    // If this view is present, then the
-    // activity should be in two-pane mode.
-    mTwoPane = true;
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;item_detail_container&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// The detail container view will be present only in the&lt;/span&gt;
+    &lt;span class="c1"&gt;// large-screen layouts (res/values-w900dp).&lt;/span&gt;
+    &lt;span class="c1"&gt;// If this view is present, then the&lt;/span&gt;
+    &lt;span class="c1"&gt;// activity should be in two-pane mode.&lt;/span&gt;
+    &lt;span class="n"&gt;mTwoPane&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -214,53 +215,53 @@ fragmentTabHost.setCurrentTab(0);
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-09.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;主要是有两个Adapter，一个分类的Adapter，即左边的Adapter，一个右边的Adapter。Adapter和传统的写法一致。&lt;/p&gt;
 &lt;p&gt;布局xml代码：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;LinearLayout
-    android:layout_width=&amp;quot;fill_parent&amp;quot;
-    android:layout_height=&amp;quot;fill_parent&amp;quot;
-    android:background=&amp;quot;#ededed&amp;quot;
-    android:orientation=&amp;quot;horizontal&amp;quot;&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;LinearLayout&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fill_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fill_parent&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:background=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#ededed&amp;quot;&lt;/span&gt;
+    &lt;span class="na"&gt;android:orientation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;horizontal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
 
-    &amp;lt;ListView
-        android:id=&amp;quot;@+id/listView&amp;quot;
-        android:layout_width=&amp;quot;wrap_content&amp;quot;
-        android:layout_height=&amp;quot;wrap_content&amp;quot;
-        android:layout_weight=&amp;quot;3&amp;quot;
-        android:background=&amp;quot;@android:color/holo_green_dark&amp;quot;
-        android:choiceMode=&amp;quot;singleChoice&amp;quot;
-        android:divider=&amp;quot;@android:color/darker_gray&amp;quot;
-        android:dividerHeight=&amp;quot;1px&amp;quot;
-        android:listSelector=&amp;quot;@android:color/white&amp;quot;/&amp;gt;
+    &lt;span class="nt"&gt;&amp;lt;ListView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/listView&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_weight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:background=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@android:color/holo_green_dark&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:choiceMode=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;singleChoice&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:divider=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@android:color/darker_gray&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:dividerHeight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1px&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:listSelector=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@android:color/white&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
 
-    &amp;lt;GridView
-        android:id=&amp;quot;@+id/subListView&amp;quot;
-        android:layout_width=&amp;quot;match_parent&amp;quot;
-        android:layout_height=&amp;quot;match_parent&amp;quot;
-        android:layout_margin=&amp;quot;10dp&amp;quot;
-        android:layout_marginTop=&amp;quot;1dp&amp;quot;
-        android:layout_weight=&amp;quot;1&amp;quot;
-        android:clipToPadding=&amp;quot;false&amp;quot;
-        android:horizontalSpacing=&amp;quot;10dp&amp;quot;
-        android:numColumns=&amp;quot;3&amp;quot;
-        android:verticalSpacing=&amp;quot;10dp&amp;quot; /&amp;gt;
+    &lt;span class="nt"&gt;&amp;lt;GridView&lt;/span&gt;
+        &lt;span class="na"&gt;android:id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@+id/subListView&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_width=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_height=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_margin=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10dp&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_marginTop=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1dp&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:layout_weight=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:clipToPadding=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;false&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:horizontalSpacing=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10dp&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:numColumns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
+        &lt;span class="na"&gt;android:verticalSpacing=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10dp&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
 
-&amp;lt;/LinearLayout&amp;gt;
+&lt;span class="nt"&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;其中ListView和GridView是在一个LinearLayout里，响应listView的点击事件，然后加载不同的数据源，配置Adapter。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;listView&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setOnItemClickListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;AdapterView&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;OnItemClickListener&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;Override&lt;/span&gt;
-    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;onItemClick&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;AdapterView&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;arg0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;View&lt;/span&gt; &lt;span class="nx"&gt;arg1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;position&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                            &lt;span class="nx"&gt;long&lt;/span&gt; &lt;span class="nx"&gt;arg3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nx"&gt;ClassList&lt;/span&gt; &lt;span class="nx"&gt;classList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;datas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;position&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="nx"&gt;cate_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;classList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getGcId&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-        &lt;span class="nx"&gt;findCateById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cate_id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="nx"&gt;myAdapter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setSelectedPosition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;position&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="nx"&gt;myAdapter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notifyDataSetInvalidated&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-        &lt;span class="nx"&gt;subAdapter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;SubAdapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;MainActivity&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;subdatas&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="nx"&gt;subListView&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setAdapter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;subAdapter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;listView&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setOnItemClickListener&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;AdapterView&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;OnItemClickListener&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onItemClick&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdapterView&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;?&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;arg0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="n"&gt;arg1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                            &lt;span class="kt"&gt;long&lt;/span&gt; &lt;span class="n"&gt;arg3&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;ClassList&lt;/span&gt; &lt;span class="n"&gt;classList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;datas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;cate_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;classList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getGcId&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;findCateById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cate_id&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;myAdapter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setSelectedPosition&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;myAdapter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;notifyDataSetInvalidated&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;subAdapter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;SubAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MainActivity&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;this&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;subdatas&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;subListView&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;subAdapter&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;});&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -279,7 +280,7 @@ fragmentTabHost.setCurrentTab(0);
         &lt;span class="nt"&gt;&amp;lt;RelativeLayout&amp;gt;&lt;/span&gt;
             &lt;span class="nt"&gt;&amp;lt;TextView/&amp;gt;&lt;/span&gt;
         &lt;span class="nt"&gt;&amp;lt;/RelativeLayout&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;android.support.design.widget.FloatingActionButton&lt;/span&gt;&lt;span class="err"&gt;／&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;android.support.design.widget.FloatingActionButton/&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;android.support.design.widget.CoordinatorLayout&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;android.support.design.widget.NavigationView/&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/android.support.v4.widget.DrawerLayout&amp;gt;&lt;/span&gt;
@@ -298,28 +299,28 @@ fragmentTabHost.setCurrentTab(0);
 &lt;h5&gt;0x08  顶部弹出菜单实现&lt;/h5&gt;
 &lt;p&gt;我们在侧滑界面实现的那个Demo或者&lt;code&gt;Base Activity&lt;/code&gt;里面，其实已经实现了点击弹出菜单的样式，即官方实现，当然这个各自有各自的实现，我们当然也可以使用PopupMenu、PopupWindow之类的去实现这些效果，此次简要写一下官方实现Menu。&lt;/p&gt;
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-11.png" class="responsive-img"&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;//MainActivity.java
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;//MainActivity.java&lt;/span&gt;
+&lt;span class="nd"&gt;@Override&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;onCreateOptionsMenu&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Menu&lt;/span&gt; &lt;span class="n"&gt;menu&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Inflate the menu; this adds items to the action bar if it is present.&lt;/span&gt;
+    &lt;span class="n"&gt;getMenuInflater&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;inflate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;menu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;main&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;menu&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
+&lt;span class="nd"&gt;@Override&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;onOptionsItemSelected&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MenuItem&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Handle action bar item clicks here. The action bar will&lt;/span&gt;
+    &lt;span class="c1"&gt;// automatically handle clicks on the Home/Up button, so long&lt;/span&gt;
+    &lt;span class="c1"&gt;// as you specify a parent activity in AndroidManifest.xml.&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getItemId&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-        return true;
-    }
+    &lt;span class="c1"&gt;//noinspection SimplifiableIfStatement&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;action_settings&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    return super.onOptionsItemSelected(item);
-}
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;onOptionsItemSelected&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -364,71 +365,71 @@ public boolean onOptionsItemSelected(MenuItem item) {
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;//Activity代码
-private List&amp;lt;String&amp;gt; mTitleList = new ArrayList&amp;lt;String&amp;gt;();//页卡标题集合
-private View view1, view2, view3;
-private List&amp;lt;View&amp;gt; mViewList = new ArrayList&amp;lt;&amp;gt;();//页卡视图集合
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;//Activity代码&lt;/span&gt;
+&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mTitleList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;ArrayList&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;();&lt;/span&gt;&lt;span class="c1"&gt;//页卡标题集合&lt;/span&gt;
+&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="n"&gt;view1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;view2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;view3&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;ArrayList&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;gt;();&lt;/span&gt;&lt;span class="c1"&gt;//页卡视图集合&lt;/span&gt;
 
-//onCreate里关键代码
-view1 = mInflater.inflate(R.layout.content, null);
-view2 = mInflater.inflate(R.layout.content, null);
-view3 = mInflater.inflate(R.layout.content, null);
+&lt;span class="c1"&gt;//onCreate里关键代码&lt;/span&gt;
+&lt;span class="n"&gt;view1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mInflater&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;inflate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;view2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mInflater&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;inflate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;view3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mInflater&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;inflate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;content&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-mViewPager = (ViewPager) findViewById(R.id.vp_view);
-mTabLayout = (TabLayout) findViewById(R.id.tabs);
+&lt;span class="n"&gt;mViewPager&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ViewPager&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;vp_view&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TabLayout&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tabs&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-mViewList.add(view1);
-mViewList.add(view2);
-mViewList.add(view3);
+&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;add&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;view1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;add&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;view2&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;add&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;view3&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)), true);
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addTab&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;newTab&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;setText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTitleList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)),&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addTab&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;newTab&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;setText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTitleList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;)));&lt;/span&gt;
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addTab&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;newTab&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;setText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mTitleList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;)));&lt;/span&gt;
 
-MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
-//给ViewPager设置适配器
-mViewPager.setAdapter(mAdapter);
+&lt;span class="n"&gt;MyPagerAdapter&lt;/span&gt; &lt;span class="n"&gt;mAdapter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MyPagerAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;//给ViewPager设置适配器&lt;/span&gt;
+&lt;span class="n"&gt;mViewPager&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mAdapter&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-//将TabLayout和ViewPager关联起来
-mTabLayout.setupWithViewPager(mViewPager);
-//给Tabs设置适配器
-mTabLayout.setTabsFromPagerAdapter(mAdapter);
+&lt;span class="c1"&gt;//将TabLayout和ViewPager关联起来&lt;/span&gt;
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setupWithViewPager&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mViewPager&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;//给Tabs设置适配器&lt;/span&gt;
+&lt;span class="n"&gt;mTabLayout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setTabsFromPagerAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mAdapter&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-//ViewPager适配器，内部类
-class MyPagerAdapter extends PagerAdapter {
-    private List&amp;lt;View&amp;gt; mViewList;
+&lt;span class="c1"&gt;//ViewPager适配器，内部类&lt;/span&gt;
+&lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyPagerAdapter&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;PagerAdapter&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
-    public MyPagerAdapter(List&amp;lt;View&amp;gt; mViewList) {
-        this.mViewList = mViewList;
-    }
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;MyPagerAdapter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mViewList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    @Override
-    public int getCount() {
-        return mViewList.size();//页卡数
-    }
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;getCount&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;size&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;&lt;span class="c1"&gt;//页卡数&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;//官方推荐写法
-    }
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isViewFromObject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="n"&gt;view&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Object&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;view&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;span class="c1"&gt;//官方推荐写法&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(mViewList.get(position));//添加页卡
-        return mViewList.get(position);
-    }
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Object&lt;/span&gt; &lt;span class="nf"&gt;instantiateItem&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ViewGroup&lt;/span&gt; &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;&lt;span class="c1"&gt;//添加页卡&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(mViewList.get(position));//删除页卡
-    }
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;destroyItem&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ViewGroup&lt;/span&gt; &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Object&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;removeView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mViewList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;&lt;span class="c1"&gt;//删除页卡&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mTitleList.get(position);//页卡标题
-    }
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;CharSequence&lt;/span&gt; &lt;span class="nf"&gt;getPageTitle&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;mTitleList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;position&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;&lt;span class="c1"&gt;//页卡标题&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-}
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -459,13 +460,13 @@ SDK24
 
 
 &lt;p&gt;如何使用TraceView监测代码呢，在想要根据的代码片段之间使用以下两句代码，注意添加SD卡权限。当然也可以直接在DDMS中的面板里的&lt;code&gt;Start Method Profiling&lt;/code&gt;来监测方法。此次就将代码放置在&lt;code&gt;initView()&lt;/code&gt;方法里，以示区别。并且都是启动一次，再结束&lt;strong&gt;activity&lt;/strong&gt;，然后再启动Activity去比较运行时间。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Debug.startMethodTracing(&amp;quot;debug_test&amp;quot;);  
-Debug.stopMethodTracing();
-//权限
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot;/&amp;gt;
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&amp;quot;/&amp;gt;
-//adb导出
-adb pull sdcard/debug_test.trace  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;startMethodTracing&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;debug_test&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;  
+&lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;stopMethodTracing&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="c1"&gt;//权限&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;uses&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;permission&lt;/span&gt; &lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;uses&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;permission&lt;/span&gt; &lt;span class="n"&gt;android&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;//adb导出&lt;/span&gt;
+&lt;span class="n"&gt;adb&lt;/span&gt; &lt;span class="n"&gt;pull&lt;/span&gt; &lt;span class="n"&gt;sdcard&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;debug_test&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;trace&lt;/span&gt;  
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -540,12 +541,12 @@ adb pull sdcard/debug_test.trace
 
 
 &lt;p&gt;常规的即使用findViewById方法。即：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;textView1 = (TextView) findViewById(R.id.tv_demo1);
-textView2 = (TextView) findViewById(R.id.tv_demo2);
-textView3 = (TextView) findViewById(R.id.tv_demo3);
-editText = (EditText) findViewById(R.id.et_test);
-imageView = (ImageView) findViewById(R.id.iv_test);
-button = (Button) findViewById(R.id.btn_test);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;textView1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextView&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;textView2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextView&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo2&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;textView3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TextView&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo3&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;editText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;EditText&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;et_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;imageView&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ImageView&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;iv_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;button&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Button&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;btn_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -558,38 +559,38 @@ button = (Button) findViewById(R.id.btn_test);
 &lt;p&gt;注解利用的原理也不一样，有的是利用反射，比如KJFrameForAndroid, xUtils, afinal, thinkAndroid，有的是利用aapt资源打包。反射自然效率比较低，在反射部分举例分析。&lt;/p&gt;
 &lt;p&gt;ButterKnife处理注解是在编译的时候，处理了@Bind、@OnClick等这些注解，所以效率比较高。&lt;/p&gt;
 &lt;p&gt;即：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;@BindView(R.id.tv_demo1)
-TextView textView;
-@BindView(R.id.tv_demo2)
-TextView textView2;
-@BindView(R.id.tv_demo3)
-TextView textView3;
-@BindView(R.id.iv_test)
-ImageView imageView;
-@BindView(R.id.btn_test)
-Button button;
-@BindView(R.id.et_test)
-EditText editText;
-//initView();
-ButterKnife.bind(this);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView2&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo3&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView3&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;iv_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ImageView&lt;/span&gt; &lt;span class="n"&gt;imageView&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;btn_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Button&lt;/span&gt; &lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nd"&gt;@BindView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;et_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;EditText&lt;/span&gt; &lt;span class="n"&gt;editText&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;//initView();&lt;/span&gt;
+&lt;span class="n"&gt;ButterKnife&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;bind&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;结果如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-02.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x03  泛型&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;private &amp;lt;T extends View&amp;gt; T $(int resId) {
-    return (T) super.findViewById(resId);
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="nf"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;resId&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;resId&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;textView1 = $(R.id.tv_demo1);
-textView2 = $(R.id.tv_demo2);
-textView3 = $(R.id.tv_demo3);
-button = $(R.id.btn_test);
-imageView = $(R.id.iv_test);
-editText = $(R.id.et_test);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;textView1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo1&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;textView2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo2&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;textView3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo3&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;button&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;btn_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;imageView&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;iv_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;editText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;$&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;et_test&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -597,28 +598,28 @@ editText = $(R.id.et_test);
 &lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-03.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x04  反射&lt;/h5&gt;
 &lt;p&gt;前面也说过，有些注解框架实现视图注入是利用的反射机制，反射执行的效率是很低的。以xutils为例，测试代码：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;@ContentView(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity {
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@ContentView&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;activity_main&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MainActivity&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;AppCompatActivity&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
 
-    @ViewInject(R.id.tv_demo1)
-    TextView textView1;
-    @ViewInject(R.id.tv_demo2)
-    TextView textView2;
-    @ViewInject(R.id.tv_demo3)
-    TextView textView3;
-    @ViewInject(R.id.btn_test)
-    Button button;
-    @ViewInject(R.id.iv_test)
-    ImageView imageView;
-    @ViewInject(R.id.et_test)
-    EditText editText;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo1&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView1&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo2&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView2&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tv_demo3&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;TextView&lt;/span&gt; &lt;span class="n"&gt;textView3&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;btn_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;Button&lt;/span&gt; &lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;iv_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;ImageView&lt;/span&gt; &lt;span class="n"&gt;imageView&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="nd"&gt;@ViewInject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;et_test&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;EditText&lt;/span&gt; &lt;span class="n"&gt;editText&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        x.view().inject(this);
-    }
-}
+    &lt;span class="nd"&gt;@Override&lt;/span&gt;
+    &lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onCreate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Bundle&lt;/span&gt; &lt;span class="n"&gt;savedInstanceState&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;onCreate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;savedInstanceState&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;view&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;inject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -632,12 +633,12 @@ public class MainActivity extends AppCompatActivity {
 &lt;h5&gt;0x06  DataBinding&lt;/h5&gt;
 &lt;p&gt;DataBinding是谷歌官方推出的一款数据绑定框架。&lt;/p&gt;
 &lt;p&gt;使用起来比较方便，只需要在build.gradle文件里添加以下代码片段。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;android {
-    ....
-    dataBinding {
-        enabled = true
-    }
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;android&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="o"&gt;....&lt;/span&gt;
+    &lt;span class="n"&gt;dataBinding&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;enabled&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -656,55 +657,55 @@ public class MainActivity extends AppCompatActivity {
 &lt;p&gt;其中可以实现单向数据绑定。&lt;/p&gt;
 &lt;h5&gt;0x07  源码实现&lt;/h5&gt;
 &lt;p&gt;想了那么多避免传统的findViewById的方法，有的性能差不多，有的性能比较低，但是官方基础实现永远是性能最快的。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;public final View findViewById(int id) {
-    if (id &amp;lt; 0) {
-        return null;
-    }
-    return findViewTraversal(id);
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="nf"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;findViewTraversal&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;其中调用了&lt;code&gt;findViewTraversal()&lt;/code&gt;方法。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;protected View findViewTraversal(@IdRes int id) {
-    if (id == mID) {
-        return this;
-    }
-    return null;
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="nf"&gt;findViewTraversal&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nd"&gt;@IdRes&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;mID&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;我们通常是在Activity里&lt;code&gt;findViewById()&lt;/code&gt;，所以需要看Activity代码。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;public View findViewById(@IdRes int id) {
-    return getWindow().findViewById(id);
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="nf"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nd"&gt;@IdRes&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;getWindow&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;getWindow()&lt;/code&gt;的对象是继承ViewGroup的，在ViewGroup里，重写了&lt;code&gt;findViewTraversal()&lt;/code&gt;方法：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;protected View findViewTraversal(@IdRes int id) {
-    if (id == mID) {
-        return this;
-    }
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="nf"&gt;findViewTraversal&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nd"&gt;@IdRes&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;mID&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    final View[] where = mChildren;
-    final int len = mChildrenCount;
+    &lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="n"&gt;View&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mChildren&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mChildrenCount&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
-    for (int i = 0; i &amp;lt; len; i++) {
-        View v = where[i];
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;View&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;];&lt;/span&gt;
 
-        if ((v.mPrivateFlags &amp;amp; PFLAG_IS_ROOT_NAMESPACE) == 0) {
-            v = v.findViewById(id);
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;((&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mPrivateFlags&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;PFLAG_IS_ROOT_NAMESPACE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;findViewById&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-            if (v != null) {
-                return v;
-            }
-        }
-    }
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+            &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
 
-    return null;
-}
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -721,9 +722,9 @@ public class MainActivity extends AppCompatActivity {
 &lt;span class="cm"&gt; * clicked.&lt;/span&gt;
 &lt;span class="cm"&gt; *&lt;/span&gt;
 &lt;span class="cm"&gt; * @hide&lt;/span&gt;
-&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/span&gt;OnPreferenceTreeClickListener&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;interface&lt;/span&gt; &lt;span class="nc"&gt;OnPreferenceTreeClickListener&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
 &lt;span class="cm"&gt;     * Called when a preference in the tree rooted at this&lt;/span&gt;
 &lt;span class="cm"&gt;     * {@link PreferenceScreen} has been clicked.&lt;/span&gt;
 &lt;span class="cm"&gt;     * &lt;/span&gt;
@@ -731,10 +732,10 @@ public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/s
 &lt;span class="cm"&gt;     *        preference is located in.&lt;/span&gt;
 &lt;span class="cm"&gt;     * @param preference The preference that was clicked.&lt;/span&gt;
 &lt;span class="cm"&gt;     * @return Whether the click was handled.&lt;/span&gt;
-&lt;span class="cm"&gt;     */&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;boolean&lt;span class="w"&gt; &lt;/span&gt;onPreferenceTreeClick&lt;span class="o"&gt;(&lt;/span&gt;PreferenceScreen&lt;span class="w"&gt; &lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;preferenceScreen&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;Preference&lt;span class="w"&gt; &lt;/span&gt;preference&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
-&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;onPreferenceTreeClick&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PreferenceScreen&lt;/span&gt; 
+    &lt;span class="n"&gt;preferenceScreen&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Preference&lt;/span&gt; &lt;span class="n"&gt;preference&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -773,36 +774,36 @@ public&lt;span class="w"&gt; &lt;/span&gt;interface&lt;span class="w"&gt; &lt;/s
 
 
 &lt;p&gt;在SettingFragment中，通过addPreferencesFromResource(R.xml.preferences);加载上述的xml文件。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;@Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    addPreferencesFromResource(R.xml.preferences);
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@Override&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;onCreate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Bundle&lt;/span&gt; &lt;span class="n"&gt;savedInstanceState&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;onCreate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;savedInstanceState&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;addPreferencesFromResource&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;xml&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;preferences&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;设置项保存到哪了？SharedPreferences。在/data/data/应用包名/shared_prefs/应用包名_preferences.xml文件中，android:key即为键值名。&lt;/p&gt;
 &lt;p&gt;如何读取设置？通过SharedPreferences&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;SharedPreferences mySharedPreferences = PreferenceManager
-        .getDefaultSharedPreferences(this);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SharedPreferences&lt;/span&gt; &lt;span class="n"&gt;mySharedPreferences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PreferenceManager&lt;/span&gt;
+        &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getDefaultSharedPreferences&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-boolean my_checkbox_preference = mySharedPreferences.getBoolean(
-        &amp;quot;checkbox_preference&amp;quot;, false);
-prefCheckBox.setChecked(my_checkbox_preference);
+&lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;my_checkbox_preference&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mySharedPreferences&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getBoolean&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;checkbox_preference&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;prefCheckBox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setChecked&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_checkbox_preference&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 
-String my_edittext_preference = mySharedPreferences.getString(
-        &amp;quot;edittext_preference&amp;quot;, &amp;quot;&amp;quot;);
-prefEditText.setText(my_edittext_preference);
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;my_edittext_preference&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mySharedPreferences&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getString&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;quot;edittext_preference&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;prefEditText&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_edittext_preference&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;列表设置项的ListPreferences类：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;ListPreference
-      android:key=&amp;quot;list_preference&amp;quot;
-      android:title=&amp;quot;@string/标题&amp;quot;
-      android:dialogTitle=&amp;quot;@string/对话框标题&amp;quot;
-      android:entries=&amp;quot;@array/listArray&amp;quot;
-      android:entryValues=&amp;quot;@array/listValues&amp;quot; /&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;ListPreference&lt;/span&gt;
+      &lt;span class="na"&gt;android:key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;list_preference&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;android:title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/标题&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;android:dialogTitle=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@string/对话框标题&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;android:entries=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@array/listArray&amp;quot;&lt;/span&gt;
+      &lt;span class="na"&gt;android:entryValues=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@array/listValues&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

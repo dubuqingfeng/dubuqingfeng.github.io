@@ -109,11 +109,11 @@ Call VarPtr(“VMProtect end”)
 &lt;h5&gt;0x03 VMProtect和ASProtect的混合加密&lt;/h5&gt;
 &lt;p&gt;Asprotect也有相关的sdk，也提供了注册机制，主要delphi通过标记语句，{$I filename}，实现文件的引入，它主要有多态变形标记，crc检查标记，外壳完整性检查。不同的标记需要引入不同的文件，例如在多态变形标记中，示例为：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Delphiexample&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
- &lt;span class="n"&gt;Procedure&lt;/span&gt; &lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
- &lt;span class="n"&gt;begin&lt;/span&gt;
- &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="n"&gt;$I&lt;/span&gt; &lt;span class="n"&gt;Inc&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="n"&gt;UserPolyBuffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;inc&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;
+ &lt;span class="k"&gt;Procedure&lt;/span&gt; &lt;span class="nf"&gt;Test&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;begin&lt;/span&gt;
+ &lt;span class="cm"&gt;{$I Inc\UserPolyBuffer.inc}&lt;/span&gt;
  &lt;span class="c1"&gt;// some code&lt;/span&gt;
- &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+ &lt;span class="k"&gt;end&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

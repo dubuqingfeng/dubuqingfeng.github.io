@@ -13,31 +13,31 @@
 &lt;/blockquote&gt;
 &lt;h5&gt;0x02  基础的filter&lt;/h5&gt;
 &lt;p&gt;首先需要过滤&amp;lt;&amp;gt;"()/script等字符("&amp;gt;_&amp;lt;script123")，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;function safe_replace($content){
-    $tags = array(
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;iframe&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;frame&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/frame&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;head&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;title&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;.*?&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;&amp;#39;is&amp;quot;,
-        &amp;quot;&amp;#39;&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt;&lt;span class="err"&gt;[^&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;]*?&amp;gt;&amp;#39;is&amp;quot;,
-    );
-    return preg_replace($tags, &amp;quot;&amp;quot;, $content);
-}
-echo htmlspecialchars(safe_replace($content));
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;function safe_replace($content){&lt;/span&gt;
+&lt;span class="x"&gt;    $tags = array(&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;iframe[^&amp;gt;]*?&amp;gt;.*?&amp;lt;/iframe&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;frame[^&amp;gt;]*?&amp;gt;.*?&amp;lt;/frame&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;script[^&amp;gt;]*?&amp;gt;.*?&amp;lt;/script&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;head[^&amp;gt;]*?&amp;gt;.*?&amp;lt;/head&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;title[^&amp;gt;]*?&amp;gt;.*?&amp;lt;/title&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;meta[^&amp;gt;]*?&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;        &amp;quot;&amp;#39;&amp;lt;link[^&amp;gt;]*?&amp;gt;&amp;#39;is&amp;quot;,&lt;/span&gt;
+&lt;span class="x"&gt;    );&lt;/span&gt;
+&lt;span class="x"&gt;    return preg_replace($tags, &amp;quot;&amp;quot;, $content);&lt;/span&gt;
+&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;span class="x"&gt;echo htmlspecialchars(safe_replace($content));&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;这里可以采用&lt;a href="https://github.com/zicai/xss-learn/"&gt;zicai的XSS-learn代码&lt;/a&gt;进行实验。&lt;/p&gt;
 &lt;p&gt;java可以使用：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replaceAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;lt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replaceAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.apache.commons.lang.StringEscapeUtils&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;StringEscapeUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;escapeHtml&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="err"&gt;如果引用&lt;/span&gt;&lt;span class="n"&gt;spring&lt;/span&gt;&lt;span class="err"&gt;框架&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.springframework.web.util.HtmlUtils&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="n"&gt;HtmlUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;htmlEscape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;replaceAll&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;lt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;replaceAll&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.apache.commons.lang.StringEscapeUtils&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;StringEscapeUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;escapeHtml&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;//如果引用spring框架&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.springframework.web.util.HtmlUtils&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;HtmlUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;htmlEscape&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -51,31 +51,31 @@ echo htmlspecialchars(safe_replace($content));
 &lt;p&gt;以上都是一些正则过滤和escape编码的手段，当然不会过滤掉所有的XSS，仅可以防御一些小白。&lt;/p&gt;
 &lt;p&gt;还是会有人去寻找其他的可控点，或者想办法去绕过过滤。&lt;/p&gt;
 &lt;p&gt;当然这可以过滤&lt;strong&gt;';alert(String.fromCharCode(88,83,83))&lt;/strong&gt;这种的攻击向量么，如果可控点在JavaScript代码里呢，或者javascript伪协议，例如&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;javascript:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;javascript:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;以及如果使用黑名单去过滤javascript伪协议的XSS，可以使用一些空格或者回车Tab等的绕过。即：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;lt;img src=&amp;quot;javas
-cript:
-alert(/xss/)&amp;quot;&amp;gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;javas&lt;/span&gt;
+&lt;span class="s"&gt;cript:&lt;/span&gt;
+&lt;span class="s"&gt;alert(/xss/)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;如何去过滤这种的呢？&lt;/p&gt;
 &lt;p&gt;将换行符换成\n，将回车符换成\r，将制表符换成\t，空格可以遍历去除。&lt;/p&gt;
 &lt;p&gt;当过滤完这种的以后呢，又会出现一些大小写混淆或者十进制十六进制编码或者注释的示例：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;JavaScRiPt:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;jav&amp;amp;#97;ascript:alert(&amp;#39;xss);&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;jav&amp;amp;#x09;ascript:alert(&amp;#39;xss);&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;jav/**/ascript:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;JavaScRiPt:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;jav&amp;amp;#97;ascript:alert(&amp;#39;xss);&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;jav&amp;amp;#x09;ascript:alert(&amp;#39;xss);&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;img&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;jav/**/ascript:alert(&amp;#39;xss&amp;#39;);&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;面对这些，如果过滤&lt;code&gt;/*&amp;amp;#javascript\;&lt;/code&gt;，不如采取一些白名单的形式，仅允许执行特定形式的，去正则匹配结果。例如：仅允许&lt;code&gt;&amp;lt;img src="http://"&amp;gt;&lt;/code&gt;这种的。&lt;/p&gt;
 &lt;p&gt;可以构造正则语句："/^((http|ftp|https):\/\/)?[\w-&lt;em&gt;.]+(\/[\w-&lt;/em&gt;]+)*\/?$/"&lt;/p&gt;
 &lt;p&gt;如果单纯地过滤一些常见的&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;标签或者&lt;code&gt;onerror、onResume&lt;/code&gt;等事件，还是可能会利用&lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;引入一个内容为如下的CSS进行hack。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;javascript:alert(&amp;quot;XSS&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;javascript:alert(&amp;quot;XSS&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -84,10 +84,10 @@ alert(/xss/)&amp;quot;&amp;gt;
 &lt;h5&gt;0x03  Python filter设计&lt;/h5&gt;
 &lt;p&gt;一些用户的输入都是不可信的。&lt;/p&gt;
 &lt;p&gt;基础的过滤就得使用一些函数或者开源库:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;//基础的过滤
-escape(text, quote=True).replace(&amp;#39;:&amp;#39;,&amp;#39;&amp;amp;#58;&amp;#39;)
-//以及一个富文本过滤类
-lxml.html.clean.Cleaner.clean_html(html)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="err"&gt;基础的过滤&lt;/span&gt;
+&lt;span class="n"&gt;escape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;quote&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;amp;#58;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="err"&gt;以及一个富文本过滤类&lt;/span&gt;
+&lt;span class="n"&gt;lxml&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Cleaner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clean_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -104,21 +104,21 @@ lxml.html.clean.Cleaner.clean_html(html)
 &lt;p&gt;PHP在处理&lt;code&gt;$_GET&lt;/code&gt;、&lt;code&gt;$_POST&lt;/code&gt;、&lt;code&gt;$_REQUEST&lt;/code&gt;等变量时需过滤一次。&lt;/p&gt;
 &lt;p&gt;需要使用一些filter_var()，filter_input()函数来进行构造一些规则，进行一些模式的匹配，过滤。&lt;/p&gt;
 &lt;p&gt;网上的一个防止基本的XSS函数：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;function transform_HTML(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;, &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;length&lt;/span&gt;&lt;span class="x"&gt; = null) &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;function transform_HTML($string, $length = null) {&lt;/span&gt;
 &lt;span class="x"&gt;    // Helps prevent XSS attacks&lt;/span&gt;
 &lt;span class="x"&gt;    // Remove dead space.&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = trim(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
+&lt;span class="x"&gt;    $string = trim($string);&lt;/span&gt;
 &lt;span class="x"&gt;    // Prevent potential Unicode codec problems.&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = utf8_decode(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
+&lt;span class="x"&gt;    $string = utf8_decode($string);&lt;/span&gt;
 &lt;span class="x"&gt;    // HTMLize HTML-specific characters.&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = htmlentities(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;, ENT_NOQUOTES);&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = str_replace(&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;&amp;quot;, &amp;quot;&amp;amp;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;35;&amp;quot;, &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = str_replace(&amp;quot;%&amp;quot;, &amp;quot;&amp;amp;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt;37;&amp;quot;, &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
-&lt;span class="x"&gt;    &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;length&lt;/span&gt;&lt;span class="x"&gt; = intval(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;length&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
-&lt;span class="x"&gt;    if (&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;length&lt;/span&gt;&lt;span class="x"&gt; &amp;gt; 0) &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;        &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt; = substr(&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;, 0, &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;length&lt;/span&gt;&lt;span class="x"&gt;);&lt;/span&gt;
+&lt;span class="x"&gt;    $string = htmlentities($string, ENT_NOQUOTES);&lt;/span&gt;
+&lt;span class="x"&gt;    $string = str_replace(&amp;quot;#&amp;quot;, &amp;quot;&amp;amp;#35;&amp;quot;, $string);&lt;/span&gt;
+&lt;span class="x"&gt;    $string = str_replace(&amp;quot;%&amp;quot;, &amp;quot;&amp;amp;#37;&amp;quot;, $string);&lt;/span&gt;
+&lt;span class="x"&gt;    $length = intval($length);&lt;/span&gt;
+&lt;span class="x"&gt;    if ($length &amp;gt; 0) {&lt;/span&gt;
+&lt;span class="x"&gt;        $string = substr($string, 0, $length);&lt;/span&gt;
 &lt;span class="x"&gt;    }&lt;/span&gt;
-&lt;span class="x"&gt;    return &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;&lt;span class="x"&gt;;&lt;/span&gt;
+&lt;span class="x"&gt;    return $string;&lt;/span&gt;
 &lt;span class="x"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

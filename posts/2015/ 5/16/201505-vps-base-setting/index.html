@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -69,9 +69,9 @@
       <span class="card-title black-text"><a href="/posts/2015/ 5/16/201505-vps-base-setting/index.html" class="black-text flow-text" id="title">Linux VPS的一些配置</a></span>
       <h5>0x01 更改默认ssh登录端口</h5>
 <p>一般ssh是开放的，容易受到攻击或者爆破等行为。</p>
-<div class="highlight"><pre>#vi /etc/ssh/sshd_config
+<div class="highlight"><pre>#<span class="k">vi</span> <span class="sr">/etc/</span>ssh/sshd_config
 
-#Port 22             //先把22注释掉
+#Port <span class="m">22</span>             <span class="sr">//</span>先把<span class="m">22</span>注释掉
 </pre></div>
 
 
@@ -151,17 +151,17 @@ pip install shadowsocks
 
 
 <p>内容如下：</p>
-<div class="highlight"><pre>{
-        &quot;server&quot;:&quot;your_server_ip&quot;,
-        &quot;server_port&quot;:8989,
-        &quot;local_address&quot;: &quot;127.0.0.1&quot;,
-        &quot;local_port&quot;:1080,
-        &quot;password&quot;:&quot;yourpassword&quot;,
-        &quot;timeout&quot;:600,
-        &quot;method&quot;:&quot;aes-256-cfb&quot;,
-        &quot;fast_open&quot;: false,
-        &quot;workers&quot;: 1
-}
+<div class="highlight"><pre><span class="p">{</span>
+        <span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;your_server_ip&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;server_port&quot;</span><span class="p">:</span><span class="mi">8989</span><span class="p">,</span>
+        <span class="nt">&quot;local_address&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;local_port&quot;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
+        <span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;timeout&quot;</span><span class="p">:</span><span class="mi">600</span><span class="p">,</span>
+        <span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;aes-256-cfb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;fast_open&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;workers&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -562,6 +562,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

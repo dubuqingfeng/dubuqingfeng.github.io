@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -87,13 +87,13 @@ SDK24
 
 
 <p>如何使用TraceView监测代码呢，在想要根据的代码片段之间使用以下两句代码，注意添加SD卡权限。当然也可以直接在DDMS中的面板里的<code>Start Method Profiling</code>来监测方法。此次就将代码放置在<code>initView()</code>方法里，以示区别。并且都是启动一次，再结束<strong>activity</strong>，然后再启动Activity去比较运行时间。</p>
-<div class="highlight"><pre>Debug.startMethodTracing(&quot;debug_test&quot;);  
-Debug.stopMethodTracing();
-//权限
-&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;/&gt;
-//adb导出
-adb pull sdcard/debug_test.trace  
+<div class="highlight"><pre><span class="n">Debug</span><span class="o">.</span><span class="na">startMethodTracing</span><span class="o">(</span><span class="s">&quot;debug_test&quot;</span><span class="o">);</span>  
+<span class="n">Debug</span><span class="o">.</span><span class="na">stopMethodTracing</span><span class="o">();</span>
+<span class="c1">//权限</span>
+<span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;android.permission.MOUNT_UNMOUNT_FILESYSTEMS&quot;</span><span class="o">/&gt;</span>
+<span class="c1">//adb导出</span>
+<span class="n">adb</span> <span class="n">pull</span> <span class="n">sdcard</span><span class="o">/</span><span class="n">debug_test</span><span class="o">.</span><span class="na">trace</span>  
 </pre></div>
 
 
@@ -168,12 +168,12 @@ adb pull sdcard/debug_test.trace
 
 
 <p>常规的即使用findViewById方法。即：</p>
-<div class="highlight"><pre>textView1 = (TextView) findViewById(R.id.tv_demo1);
-textView2 = (TextView) findViewById(R.id.tv_demo2);
-textView3 = (TextView) findViewById(R.id.tv_demo3);
-editText = (EditText) findViewById(R.id.et_test);
-imageView = (ImageView) findViewById(R.id.iv_test);
-button = (Button) findViewById(R.id.btn_test);
+<div class="highlight"><pre><span class="n">textView1</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo1</span><span class="o">);</span>
+<span class="n">textView2</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo2</span><span class="o">);</span>
+<span class="n">textView3</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo3</span><span class="o">);</span>
+<span class="n">editText</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">et_test</span><span class="o">);</span>
+<span class="n">imageView</span> <span class="o">=</span> <span class="o">(</span><span class="n">ImageView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">iv_test</span><span class="o">);</span>
+<span class="n">button</span> <span class="o">=</span> <span class="o">(</span><span class="n">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">btn_test</span><span class="o">);</span>
 </pre></div>
 
 
@@ -186,38 +186,38 @@ button = (Button) findViewById(R.id.btn_test);
 <p>注解利用的原理也不一样，有的是利用反射，比如KJFrameForAndroid, xUtils, afinal, thinkAndroid，有的是利用aapt资源打包。反射自然效率比较低，在反射部分举例分析。</p>
 <p>ButterKnife处理注解是在编译的时候，处理了@Bind、@OnClick等这些注解，所以效率比较高。</p>
 <p>即：</p>
-<div class="highlight"><pre>@BindView(R.id.tv_demo1)
-TextView textView;
-@BindView(R.id.tv_demo2)
-TextView textView2;
-@BindView(R.id.tv_demo3)
-TextView textView3;
-@BindView(R.id.iv_test)
-ImageView imageView;
-@BindView(R.id.btn_test)
-Button button;
-@BindView(R.id.et_test)
-EditText editText;
-//initView();
-ButterKnife.bind(this);
+<div class="highlight"><pre><span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo1</span><span class="o">)</span>
+<span class="n">TextView</span> <span class="n">textView</span><span class="o">;</span>
+<span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo2</span><span class="o">)</span>
+<span class="n">TextView</span> <span class="n">textView2</span><span class="o">;</span>
+<span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo3</span><span class="o">)</span>
+<span class="n">TextView</span> <span class="n">textView3</span><span class="o">;</span>
+<span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">iv_test</span><span class="o">)</span>
+<span class="n">ImageView</span> <span class="n">imageView</span><span class="o">;</span>
+<span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">btn_test</span><span class="o">)</span>
+<span class="n">Button</span> <span class="n">button</span><span class="o">;</span>
+<span class="nd">@BindView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">et_test</span><span class="o">)</span>
+<span class="n">EditText</span> <span class="n">editText</span><span class="o">;</span>
+<span class="c1">//initView();</span>
+<span class="n">ButterKnife</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 </pre></div>
 
 
 <p>结果如下：</p>
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-02.png" class="responsive-img"></p>
 <h5>0x03  泛型</h5>
-<div class="highlight"><pre>private &lt;T extends View&gt; T $(int resId) {
-    return (T) super.findViewById(resId);
-}
+<div class="highlight"><pre><span class="kd">private</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">View</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">$</span><span class="o">(</span><span class="kt">int</span> <span class="n">resId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">T</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">resId</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre>textView1 = $(R.id.tv_demo1);
-textView2 = $(R.id.tv_demo2);
-textView3 = $(R.id.tv_demo3);
-button = $(R.id.btn_test);
-imageView = $(R.id.iv_test);
-editText = $(R.id.et_test);
+<div class="highlight"><pre><span class="n">textView1</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo1</span><span class="o">);</span>
+<span class="n">textView2</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo2</span><span class="o">);</span>
+<span class="n">textView3</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo3</span><span class="o">);</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">btn_test</span><span class="o">);</span>
+<span class="n">imageView</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">iv_test</span><span class="o">);</span>
+<span class="n">editText</span> <span class="o">=</span> <span class="n">$</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">et_test</span><span class="o">);</span>
 </pre></div>
 
 
@@ -225,28 +225,28 @@ editText = $(R.id.et_test);
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-develop-annotations-reflect-mvvm-03.png" class="responsive-img"></p>
 <h5>0x04  反射</h5>
 <p>前面也说过，有些注解框架实现视图注入是利用的反射机制，反射执行的效率是很低的。以xutils为例，测试代码：</p>
-<div class="highlight"><pre>@ContentView(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity {
+<div class="highlight"><pre><span class="nd">@ContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
 
-    @ViewInject(R.id.tv_demo1)
-    TextView textView1;
-    @ViewInject(R.id.tv_demo2)
-    TextView textView2;
-    @ViewInject(R.id.tv_demo3)
-    TextView textView3;
-    @ViewInject(R.id.btn_test)
-    Button button;
-    @ViewInject(R.id.iv_test)
-    ImageView imageView;
-    @ViewInject(R.id.et_test)
-    EditText editText;
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo1</span><span class="o">)</span>
+    <span class="n">TextView</span> <span class="n">textView1</span><span class="o">;</span>
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo2</span><span class="o">)</span>
+    <span class="n">TextView</span> <span class="n">textView2</span><span class="o">;</span>
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tv_demo3</span><span class="o">)</span>
+    <span class="n">TextView</span> <span class="n">textView3</span><span class="o">;</span>
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">btn_test</span><span class="o">)</span>
+    <span class="n">Button</span> <span class="n">button</span><span class="o">;</span>
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">iv_test</span><span class="o">)</span>
+    <span class="n">ImageView</span> <span class="n">imageView</span><span class="o">;</span>
+    <span class="nd">@ViewInject</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">et_test</span><span class="o">)</span>
+    <span class="n">EditText</span> <span class="n">editText</span><span class="o">;</span>
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        x.view().inject(this);
-    }
-}
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">x</span><span class="o">.</span><span class="na">view</span><span class="o">().</span><span class="na">inject</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -260,12 +260,12 @@ public class MainActivity extends AppCompatActivity {
 <h5>0x06  DataBinding</h5>
 <p>DataBinding是谷歌官方推出的一款数据绑定框架。</p>
 <p>使用起来比较方便，只需要在build.gradle文件里添加以下代码片段。</p>
-<div class="highlight"><pre>android {
-    ....
-    dataBinding {
-        enabled = true
-    }
-}
+<div class="highlight"><pre><span class="n">android</span> <span class="o">{</span>
+    <span class="o">....</span>
+    <span class="n">dataBinding</span> <span class="o">{</span>
+        <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -284,55 +284,55 @@ public class MainActivity extends AppCompatActivity {
 <p>其中可以实现单向数据绑定。</p>
 <h5>0x07  源码实现</h5>
 <p>想了那么多避免传统的findViewById的方法，有的性能差不多，有的性能比较低，但是官方基础实现永远是性能最快的。</p>
-<div class="highlight"><pre>public final View findViewById(int id) {
-    if (id &lt; 0) {
-        return null;
-    }
-    return findViewTraversal(id);
-}
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">final</span> <span class="n">View</span> <span class="nf">findViewById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">findViewTraversal</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
 <p>其中调用了<code>findViewTraversal()</code>方法。</p>
-<div class="highlight"><pre>protected View findViewTraversal(@IdRes int id) {
-    if (id == mID) {
-        return this;
-    }
-    return null;
-}
+<div class="highlight"><pre><span class="kd">protected</span> <span class="n">View</span> <span class="nf">findViewTraversal</span><span class="o">(</span><span class="nd">@IdRes</span> <span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">mID</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
 </pre></div>
 
 
 <p>我们通常是在Activity里<code>findViewById()</code>，所以需要看Activity代码。</p>
-<div class="highlight"><pre>public View findViewById(@IdRes int id) {
-    return getWindow().findViewById(id);
-}
+<div class="highlight"><pre><span class="kd">public</span> <span class="n">View</span> <span class="nf">findViewById</span><span class="o">(</span><span class="nd">@IdRes</span> <span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">getWindow</span><span class="o">().</span><span class="na">findViewById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
 <p><code>getWindow()</code>的对象是继承ViewGroup的，在ViewGroup里，重写了<code>findViewTraversal()</code>方法：</p>
-<div class="highlight"><pre>protected View findViewTraversal(@IdRes int id) {
-    if (id == mID) {
-        return this;
-    }
+<div class="highlight"><pre><span class="kd">protected</span> <span class="n">View</span> <span class="nf">findViewTraversal</span><span class="o">(</span><span class="nd">@IdRes</span> <span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">mID</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    final View[] where = mChildren;
-    final int len = mChildrenCount;
+    <span class="kd">final</span> <span class="n">View</span><span class="o">[]</span> <span class="n">where</span> <span class="o">=</span> <span class="n">mChildren</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">mChildrenCount</span><span class="o">;</span>
 
-    for (int i = 0; i &lt; len; i++) {
-        View v = where[i];
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">View</span> <span class="n">v</span> <span class="o">=</span> <span class="n">where</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 
-        if ((v.mPrivateFlags &amp; PFLAG_IS_ROOT_NAMESPACE) == 0) {
-            v = v.findViewById(id);
+        <span class="k">if</span> <span class="o">((</span><span class="n">v</span><span class="o">.</span><span class="na">mPrivateFlags</span> <span class="o">&amp;</span> <span class="n">PFLAG_IS_ROOT_NAMESPACE</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
 
-            if (v != null) {
-                return v;
-            }
-        }
-    }
+            <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">v</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    return null;
-}
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -652,6 +652,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

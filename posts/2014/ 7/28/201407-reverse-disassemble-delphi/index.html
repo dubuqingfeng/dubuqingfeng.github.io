@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -177,11 +177,11 @@ Call VarPtr(“VMProtect end”)
 <h5>0x03 VMProtect和ASProtect的混合加密</h5>
 <p>Asprotect也有相关的sdk，也提供了注册机制，主要delphi通过标记语句，{$I filename}，实现文件的引入，它主要有多态变形标记，crc检查标记，外壳完整性检查。不同的标记需要引入不同的文件，例如在多态变形标记中，示例为：</p>
 <div class="highlight"><pre><span class="n">Delphiexample</span><span class="o">:</span>
- <span class="n">Procedure</span> <span class="n">Test</span><span class="o">;</span>
- <span class="n">begin</span>
- <span class="o">{</span><span class="n">$I</span> <span class="n">Inc</span><span class="o">\</span><span class="n">UserPolyBuffer</span><span class="o">.</span><span class="na">inc</span><span class="o">}</span>
+ <span class="k">Procedure</span> <span class="nf">Test</span><span class="o">;</span>
+ <span class="k">begin</span>
+ <span class="cm">{$I Inc\UserPolyBuffer.inc}</span>
  <span class="c1">// some code</span>
- <span class="n">end</span><span class="o">;</span>
+ <span class="k">end</span><span class="o">;</span>
 </pre></div>
 
 
@@ -527,6 +527,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -69,10 +69,10 @@
       <span class="card-title black-text"><a href="/posts/2014/ 7/24/201407-reverse-disassemble-c-main/index.html" class="black-text flow-text" id="title">c程序的启动过程的反汇编分析</a></span>
       <h5>0x01  工具准备</h5>
 <p>1.最简c代码一只</p>
-<div class="highlight"><pre>int main()
-{
-    return 0;
-}
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -80,10 +80,10 @@
 <p>3.VC++6.0</p>
 <p>4.GCC（mingw）</p>
 <h5>0x02  代码分析</h5>
-<div class="highlight"><pre>int main()
-{
-    return 0;
-}
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -462,6 +462,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

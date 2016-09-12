@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -81,31 +81,31 @@
 </blockquote>
 <h5>0x02  基础的filter</h5>
 <p>首先需要过滤&lt;&gt;"()/script等字符("&gt;_&lt;script123")，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：</p>
-<div class="highlight"><pre>function safe_replace($content){
-    $tags = array(
-        &quot;&#39;<span class="nt">&lt;iframe</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/iframe&gt;</span>&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;frame</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/frame&gt;</span>&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;script</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/script&gt;</span>&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;head</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/head&gt;</span>&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;title</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;.*?<span class="nt">&lt;/title&gt;</span>&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;meta</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;&#39;is&quot;,
-        &quot;&#39;<span class="nt">&lt;link</span><span class="err">[^</span><span class="nt">&gt;</span>]*?&gt;&#39;is&quot;,
-    );
-    return preg_replace($tags, &quot;&quot;, $content);
-}
-echo htmlspecialchars(safe_replace($content));
+<div class="highlight"><pre><span class="x">function safe_replace($content){</span>
+<span class="x">    $tags = array(</span>
+<span class="x">        &quot;&#39;&lt;iframe[^&gt;]*?&gt;.*?&lt;/iframe&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;frame[^&gt;]*?&gt;.*?&lt;/frame&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;script[^&gt;]*?&gt;.*?&lt;/script&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;head[^&gt;]*?&gt;.*?&lt;/head&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;title[^&gt;]*?&gt;.*?&lt;/title&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;meta[^&gt;]*?&gt;&#39;is&quot;,</span>
+<span class="x">        &quot;&#39;&lt;link[^&gt;]*?&gt;&#39;is&quot;,</span>
+<span class="x">    );</span>
+<span class="x">    return preg_replace($tags, &quot;&quot;, $content);</span>
+<span class="x">}</span>
+<span class="x">echo htmlspecialchars(safe_replace($content));</span>
 </pre></div>
 
 
 <p>这里可以采用<a href="https://github.com/zicai/xss-learn/">zicai的XSS-learn代码</a>进行实验。</p>
 <p>java可以使用：</p>
-<div class="highlight"><pre><span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replaceAll</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;lt;&quot;</span><span class="p">);</span>
-<span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replaceAll</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;gt;&quot;</span><span class="p">);</span>
-<span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringEscapeUtils</span><span class="p">;</span>
-<span class="n">StringEscapeUtils</span><span class="o">.</span><span class="n">escapeHtml</span><span class="p">(</span><span class="s2">&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span><span class="p">);</span>
-<span class="o">//</span><span class="err">如果引用</span><span class="n">spring</span><span class="err">框架</span>
-<span class="kn">import</span> <span class="nn">org.springframework.web.util.HtmlUtils</span><span class="p">;</span>
-<span class="n">HtmlUtils</span><span class="o">.</span><span class="n">htmlEscape</span><span class="p">(</span><span class="s2">&quot;&lt;script&gt;alert(1)&lt;/script&gt;&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;&lt;&quot;</span><span class="o">,</span> <span class="s">&quot;&amp;lt;&quot;</span><span class="o">);</span>
+<span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;&gt;&quot;</span><span class="o">,</span> <span class="s">&quot;&amp;gt;&quot;</span><span class="o">);</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringEscapeUtils</span><span class="o">;</span>
+<span class="n">StringEscapeUtils</span><span class="o">.</span><span class="na">escapeHtml</span><span class="o">(</span><span class="s">&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span><span class="o">);</span>
+<span class="c1">//如果引用spring框架</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.util.HtmlUtils</span><span class="o">;</span>
+<span class="n">HtmlUtils</span><span class="o">.</span><span class="na">htmlEscape</span><span class="o">(</span><span class="s">&quot;&lt;script&gt;alert(1)&lt;/script&gt;&quot;</span><span class="o">);</span>
 </pre></div>
 
 
@@ -119,31 +119,31 @@ echo htmlspecialchars(safe_replace($content));
 <p>以上都是一些正则过滤和escape编码的手段，当然不会过滤掉所有的XSS，仅可以防御一些小白。</p>
 <p>还是会有人去寻找其他的可控点，或者想办法去绕过过滤。</p>
 <p>当然这可以过滤<strong>';alert(String.fromCharCode(88,83,83))</strong>这种的攻击向量么，如果可控点在JavaScript代码里呢，或者javascript伪协议，例如</p>
-<div class="highlight"><pre><span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;javascript:alert(&#39;xss&#39;);&quot;</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>以及如果使用黑名单去过滤javascript伪协议的XSS，可以使用一些空格或者回车Tab等的绕过。即：</p>
-<div class="highlight"><pre>&lt;img src=&quot;javas
-cript:
-alert(/xss/)&quot;&gt;
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javas</span>
+<span class="s">cript:</span>
+<span class="s">alert(/xss/)&quot;</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>如何去过滤这种的呢？</p>
 <p>将换行符换成\n，将回车符换成\r，将制表符换成\t，空格可以遍历去除。</p>
 <p>当过滤完这种的以后呢，又会出现一些大小写混淆或者十进制十六进制编码或者注释的示例：</p>
-<div class="highlight"><pre><span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;JavaScRiPt:alert(&#39;xss&#39;);&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;jav&amp;#97;ascript:alert(&#39;xss);&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;jav&amp;#x09;ascript:alert(&#39;xss);&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">img</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;jav/**/ascript:alert(&#39;xss&#39;);&quot;</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;JavaScRiPt:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav&amp;#97;ascript:alert(&#39;xss);&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav&amp;#x09;ascript:alert(&#39;xss);&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav/**/ascript:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>面对这些，如果过滤<code>/*&amp;#javascript\;</code>，不如采取一些白名单的形式，仅允许执行特定形式的，去正则匹配结果。例如：仅允许<code>&lt;img src="http://"&gt;</code>这种的。</p>
 <p>可以构造正则语句："/^((http|ftp|https):\/\/)?[\w-<em>.]+(\/[\w-</em>]+)*\/?$/"</p>
 <p>如果单纯地过滤一些常见的<code>&lt;script&gt;</code>标签或者<code>onerror、onResume</code>等事件，还是可能会利用<code>&lt;link&gt;</code>引入一个内容为如下的CSS进行hack。</p>
-<div class="highlight"><pre><span class="nd">@import</span> <span class="s1">&#39;javascript:alert(&quot;XSS&quot;)&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">@import</span> <span class="s1">&#39;javascript:alert(&quot;XSS&quot;)&#39;</span><span class="p">;</span>
 </pre></div>
 
 
@@ -152,10 +152,10 @@ alert(/xss/)&quot;&gt;
 <h5>0x03  Python filter设计</h5>
 <p>一些用户的输入都是不可信的。</p>
 <p>基础的过滤就得使用一些函数或者开源库:</p>
-<div class="highlight"><pre>//基础的过滤
-escape(text, quote=True).replace(&#39;:&#39;,&#39;&amp;#58;&#39;)
-//以及一个富文本过滤类
-lxml.html.clean.Cleaner.clean_html(html)
+<div class="highlight"><pre><span class="o">//</span><span class="err">基础的过滤</span>
+<span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">quote</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;&amp;#58;&#39;</span><span class="p">)</span>
+<span class="o">//</span><span class="err">以及一个富文本过滤类</span>
+<span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">Cleaner</span><span class="o">.</span><span class="n">clean_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 </pre></div>
 
 
@@ -172,21 +172,21 @@ lxml.html.clean.Cleaner.clean_html(html)
 <p>PHP在处理<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code>等变量时需过滤一次。</p>
 <p>需要使用一些filter_var()，filter_input()函数来进行构造一些规则，进行一些模式的匹配，过滤。</p>
 <p>网上的一个防止基本的XSS函数：</p>
-<div class="highlight"><pre><span class="x">function transform_HTML(</span><span class="p">$</span><span class="nv">string</span><span class="x">, </span><span class="p">$</span><span class="nv">length</span><span class="x"> = null) </span><span class="err">{</span><span class="x"></span>
+<div class="highlight"><pre><span class="x">function transform_HTML($string, $length = null) {</span>
 <span class="x">    // Helps prevent XSS attacks</span>
 <span class="x">    // Remove dead space.</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">string</span><span class="x"> = trim(</span><span class="p">$</span><span class="nv">string</span><span class="x">);</span>
+<span class="x">    $string = trim($string);</span>
 <span class="x">    // Prevent potential Unicode codec problems.</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">string</span><span class="x"> = utf8_decode(</span><span class="p">$</span><span class="nv">string</span><span class="x">);</span>
+<span class="x">    $string = utf8_decode($string);</span>
 <span class="x">    // HTMLize HTML-specific characters.</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">string</span><span class="x"> = htmlentities(</span><span class="p">$</span><span class="nv">string</span><span class="x">, ENT_NOQUOTES);</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">string</span><span class="x"> = str_replace(&quot;</span><span class="err">#</span><span class="x">&quot;, &quot;&amp;</span><span class="err">#</span><span class="x">35;&quot;, </span><span class="p">$</span><span class="nv">string</span><span class="x">);</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">string</span><span class="x"> = str_replace(&quot;%&quot;, &quot;&amp;</span><span class="err">#</span><span class="x">37;&quot;, </span><span class="p">$</span><span class="nv">string</span><span class="x">);</span>
-<span class="x">    </span><span class="p">$</span><span class="nv">length</span><span class="x"> = intval(</span><span class="p">$</span><span class="nv">length</span><span class="x">);</span>
-<span class="x">    if (</span><span class="p">$</span><span class="nv">length</span><span class="x"> &gt; 0) </span><span class="err">{</span><span class="x"></span>
-<span class="x">        </span><span class="p">$</span><span class="nv">string</span><span class="x"> = substr(</span><span class="p">$</span><span class="nv">string</span><span class="x">, 0, </span><span class="p">$</span><span class="nv">length</span><span class="x">);</span>
+<span class="x">    $string = htmlentities($string, ENT_NOQUOTES);</span>
+<span class="x">    $string = str_replace(&quot;#&quot;, &quot;&amp;#35;&quot;, $string);</span>
+<span class="x">    $string = str_replace(&quot;%&quot;, &quot;&amp;#37;&quot;, $string);</span>
+<span class="x">    $length = intval($length);</span>
+<span class="x">    if ($length &gt; 0) {</span>
+<span class="x">        $string = substr($string, 0, $length);</span>
 <span class="x">    }</span>
-<span class="x">    return </span><span class="p">$</span><span class="nv">string</span><span class="x">;</span>
+<span class="x">    return $string;</span>
 <span class="x">}</span>
 </pre></div>
 
@@ -557,6 +557,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

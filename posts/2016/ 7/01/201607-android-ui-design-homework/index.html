@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -90,7 +90,7 @@
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-02.png" class="responsive-img"></p>
 <p>看风格总像是一个在iPad上的应用，其中主要是以下几点：</p>
 <p>1.设计成平板电脑横向应用（不可以旋转界面嘛）</p>
-<p>2.界面实现左边菜谱分类导航，右边就是其分类下的菜品。这个就是意思是左边是一个ListView，右边还是一个ListView或者GridView，（当然都是Reclyview也不反对），实际上截图上面左边是一个可扩展的ListView，这些不重要，重要的是右边内容是跟着左边的选项变化的。</p>
+<p>2.界面实现左边菜谱分类导航，右边就是其分类下的菜品。这个就是意思是左边是一个ListView，右边还是一个ListView或者GridView，（当然都是RecyclerView也不反对），实际上截图上面左边是一个可扩展的ListView，这些不重要，重要的是右边内容是跟着左边的选项变化的。</p>
 <p>3.关于详情介绍界面这个，把那个菜品对象传到另一个详情界面的Activity，然后显示即可。以及选菜功能的话，这个其实有一点点复杂的，主要是选菜界面的部分，首先每个菜品上面需要有个单选框，来标记是否选择此菜品，选了以后，存到sharedprefences也好，数据库也罢，或者放到缓存里面，然后在我的已点菜界面可以查到相关信息。以及应该有个计算总价或者购物车的功能。</p>
 <p>第三个是一个模拟手机QQ的界面，给出的截图也应该是5.x的版本，在以后的版本里，已经改回了侧滑菜单，不再有缩放效果。</p>
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-03.png" class="responsive-img"></p>
@@ -107,21 +107,22 @@
 <p>在Material Design里，也对底部导航栏进行了<a href="https://material.google.com/components/bottom-navigation.html">统一设计规范</a>，该规范明确给出了 BottomNavigation在设计，使用，交互，风格和尺寸等的使用。</p>
 <p>实现Tab功能的几种方式也有人总结过，在<a href="http://www.cnblogs.com/asion/archive/2013/09/25/3339313.html">Android学习笔记：TabHost 和 FragmentTabHost</a>这篇文章也叙述了五种方法。</p>
 <p>其中有种就是利用FragmentTabHost实现底部导航栏，在Activity里初始化的代码：</p>
-<div class="highlight"><pre>fragmentTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
-radioGroup = (RadioGroup) findViewById(R.id.rg_tab);
-fragmentTabHost.setup(this, getSupportFragmentManager(), R.id.fl_content);
-int count = fragments.length;
-for (int i = 0; i &lt; count; i++) {
-    TabHost.TabSpec tabSpec = fragmentTabHost.newTabSpec(i + &quot;&quot;).setIndicator(i + &quot;&quot;);
-    fragmentTabHost.addTab(tabSpec, fragments[i], null);
-}
-radioGroup.setOnCheckedChangeListener(this);
-fragmentTabHost.setCurrentTab(0);
+<div class="highlight"><pre><span class="n">fragmentTabHost</span> <span class="o">=</span> <span class="o">(</span><span class="n">FragmentTabHost</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tabhost</span><span class="o">);</span>
+<span class="n">radioGroup</span> <span class="o">=</span> <span class="o">(</span><span class="n">RadioGroup</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">rg_tab</span><span class="o">);</span>
+<span class="n">fragmentTabHost</span><span class="o">.</span><span class="na">setup</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">getSupportFragmentManager</span><span class="o">(),</span> <span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">fl_content</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fragments</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">TabHost</span><span class="o">.</span><span class="na">TabSpec</span> <span class="n">tabSpec</span> <span class="o">=</span> <span class="n">fragmentTabHost</span><span class="o">.</span><span class="na">newTabSpec</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">).</span><span class="na">setIndicator</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+    <span class="n">fragmentTabHost</span><span class="o">.</span><span class="na">addTab</span><span class="o">(</span><span class="n">tabSpec</span><span class="o">,</span> <span class="n">fragments</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">radioGroup</span><span class="o">.</span><span class="na">setOnCheckedChangeListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">fragmentTabHost</span><span class="o">.</span><span class="na">setCurrentTab</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 </pre></div>
 
 
 <p>其中fragments是一个Fragment的数组，里面包含了标签卡的class。其中底部的按钮采用了RadioGroup的组件，标识其只能按下一个。并且实现其的选择改变的接口（OnCheckedChangeListener），然后里面需要使<code>fragmentTabHost.setCurrentTab(0);</code>设置对应的标签页。</p>
-<div class="highlight"><pre>private Class[] fragments = {HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class};
+<div class="highlight"><pre><span class="kd">private</span> <span class="n">Class</span><span class="o">[]</span> <span class="n">fragments</span> <span class="o">=</span> <span class="o">{</span><span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> 
+    <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">};</span>
 </pre></div>
 
 
@@ -198,66 +199,66 @@ fragmentTabHost.setCurrentTab(0);
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-07.png" class="responsive-img"></p>
 <p>直接使用xml代码即可。</p>
 <div class="highlight"><pre>//activity_main.xml
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:background=&quot;#ffede0c8&quot;
-    android:orientation=&quot;vertical&quot; &gt;
-    &lt;LinearLayout
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:background=&quot;#ffede0c8&quot;
-        android:gravity=&quot;center&quot;
-        android:orientation=&quot;vertical&quot; &gt;
-        &lt;LinearLayout
-            android:layout_width=&quot;match_parent&quot;
-            android:layout_height=&quot;wrap_content&quot;
-            android:orientation=&quot;vertical&quot; &gt;
-            &lt;LinearLayout
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;wrap_content&quot;
-                android:orientation=&quot;horizontal&quot; &gt;
-                &lt;LinearLayout
-                    android:layout_width=&quot;wrap_content&quot;
-                    android:layout_height=&quot;wrap_content&quot;
-                    android:layout_weight=&quot;2&quot;
-                    android:orientation=&quot;vertical&quot; &gt;
-                    &lt;ImageView
-                        android:id=&quot;@+id/c_joke&quot;
-                        android:layout_width=&quot;match_parent&quot;
-                        android:layout_height=&quot;wrap_content&quot;
-                        android:layout_margin=&quot;1dp&quot;
-                        android:scaleType=&quot;fitXY&quot;
-                        android:src=&quot;@drawable/left_top&quot; /&gt;
+<span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:background=</span><span class="s">&quot;#ffede0c8&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:background=</span><span class="s">&quot;#ffede0c8&quot;</span>
+        <span class="na">android:gravity=</span><span class="s">&quot;center&quot;</span>
+        <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;LinearLayout</span>
+            <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+            <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+            <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;LinearLayout</span>
+                <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+                <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;LinearLayout</span>
+                    <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+                    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                    <span class="na">android:layout_weight=</span><span class="s">&quot;2&quot;</span>
+                    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span> <span class="nt">&gt;</span>
+                    <span class="nt">&lt;ImageView</span>
+                        <span class="na">android:id=</span><span class="s">&quot;@+id/c_joke&quot;</span>
+                        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+                        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                        <span class="na">android:layout_margin=</span><span class="s">&quot;1dp&quot;</span>
+                        <span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
+                        <span class="na">android:src=</span><span class="s">&quot;@drawable/left_top&quot;</span> <span class="nt">/&gt;</span>
 
-                    &lt;ImageView
-                        android:id=&quot;@+id/c_idea&quot;
-                        android:layout_width=&quot;match_parent&quot;
-                        android:layout_height=&quot;wrap_content&quot;
-                        android:layout_margin=&quot;1dp&quot;
-                        android:scaleType=&quot;fitXY&quot;
-                        android:src=&quot;@drawable/left_bottom&quot; /&gt;
-                &lt;/LinearLayout&gt;
-                &lt;ImageView
-                    android:id=&quot;@+id/c_constellation&quot;
-                    android:layout_weight=&quot;1&quot;
-                    android:layout_width=&quot;wrap_content&quot;
-                    android:layout_height=&quot;wrap_content&quot;
-                    android:layout_margin=&quot;1dp&quot;
-                    android:scaleType=&quot;fitXY&quot;
-                    android:src=&quot;@drawable/right&quot; /&gt;
-            &lt;/LinearLayout&gt;
-            &lt;ImageView
-                android:id=&quot;@+id/iv_ad&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;wrap_content&quot;
-                android:layout_margin=&quot;1dp&quot;
-                android:scaleType=&quot;fitXY&quot;
-                android:src=&quot;@drawable/bottom&quot; /&gt;
-        &lt;/LinearLayout&gt;
-    &lt;/LinearLayout&gt;
-&lt;/LinearLayout&gt;
+                    <span class="nt">&lt;ImageView</span>
+                        <span class="na">android:id=</span><span class="s">&quot;@+id/c_idea&quot;</span>
+                        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+                        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                        <span class="na">android:layout_margin=</span><span class="s">&quot;1dp&quot;</span>
+                        <span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
+                        <span class="na">android:src=</span><span class="s">&quot;@drawable/left_bottom&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/LinearLayout&gt;</span>
+                <span class="nt">&lt;ImageView</span>
+                    <span class="na">android:id=</span><span class="s">&quot;@+id/c_constellation&quot;</span>
+                    <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
+                    <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+                    <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                    <span class="na">android:layout_margin=</span><span class="s">&quot;1dp&quot;</span>
+                    <span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
+                    <span class="na">android:src=</span><span class="s">&quot;@drawable/right&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/LinearLayout&gt;</span>
+            <span class="nt">&lt;ImageView</span>
+                <span class="na">android:id=</span><span class="s">&quot;@+id/iv_ad&quot;</span>
+                <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+                <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+                <span class="na">android:layout_margin=</span><span class="s">&quot;1dp&quot;</span>
+                <span class="na">android:scaleType=</span><span class="s">&quot;fitXY&quot;</span>
+                <span class="na">android:src=</span><span class="s">&quot;@drawable/bottom&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/LinearLayout&gt;</span>
+    <span class="nt">&lt;/LinearLayout&gt;</span>
+<span class="nt">&lt;/LinearLayout&gt;</span>
 </pre></div>
 
 
@@ -266,13 +267,13 @@ fragmentTabHost.setCurrentTab(0);
 <p>在新建项目的时候，选择<code>Master/Detail Flow</code>，然后运行到横向布局的平板上面，即是下图的效果。</p>
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-08.png" class="responsive-img"></p>
 <p>它这里主要通过建立了layout-w900dp文件夹，来进行屏幕的适配，以及在java代码里面，通过以下判断，在Adapter里设定一个标志变量，以求响应不同的屏幕。</p>
-<div class="highlight"><pre>if (findViewById(R.id.item_detail_container) != null) {
-    // The detail container view will be present only in the
-    // large-screen layouts (res/values-w900dp).
-    // If this view is present, then the
-    // activity should be in two-pane mode.
-    mTwoPane = true;
-}
+<div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">item_detail_container</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// The detail container view will be present only in the</span>
+    <span class="c1">// large-screen layouts (res/values-w900dp).</span>
+    <span class="c1">// If this view is present, then the</span>
+    <span class="c1">// activity should be in two-pane mode.</span>
+    <span class="n">mTwoPane</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -282,53 +283,53 @@ fragmentTabHost.setCurrentTab(0);
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-09.png" class="responsive-img"></p>
 <p>主要是有两个Adapter，一个分类的Adapter，即左边的Adapter，一个右边的Adapter。Adapter和传统的写法一致。</p>
 <p>布局xml代码：</p>
-<div class="highlight"><pre>&lt;LinearLayout
-    android:layout_width=&quot;fill_parent&quot;
-    android:layout_height=&quot;fill_parent&quot;
-    android:background=&quot;#ededed&quot;
-    android:orientation=&quot;horizontal&quot;&gt;
+<div class="highlight"><pre><span class="nt">&lt;LinearLayout</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;fill_parent&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;fill_parent&quot;</span>
+    <span class="na">android:background=</span><span class="s">&quot;#ededed&quot;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
 
-    &lt;ListView
-        android:id=&quot;@+id/listView&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_weight=&quot;3&quot;
-        android:background=&quot;@android:color/holo_green_dark&quot;
-        android:choiceMode=&quot;singleChoice&quot;
-        android:divider=&quot;@android:color/darker_gray&quot;
-        android:dividerHeight=&quot;1px&quot;
-        android:listSelector=&quot;@android:color/white&quot;/&gt;
+    <span class="nt">&lt;ListView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/listView&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;3&quot;</span>
+        <span class="na">android:background=</span><span class="s">&quot;@android:color/holo_green_dark&quot;</span>
+        <span class="na">android:choiceMode=</span><span class="s">&quot;singleChoice&quot;</span>
+        <span class="na">android:divider=</span><span class="s">&quot;@android:color/darker_gray&quot;</span>
+        <span class="na">android:dividerHeight=</span><span class="s">&quot;1px&quot;</span>
+        <span class="na">android:listSelector=</span><span class="s">&quot;@android:color/white&quot;</span><span class="nt">/&gt;</span>
 
-    &lt;GridView
-        android:id=&quot;@+id/subListView&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_margin=&quot;10dp&quot;
-        android:layout_marginTop=&quot;1dp&quot;
-        android:layout_weight=&quot;1&quot;
-        android:clipToPadding=&quot;false&quot;
-        android:horizontalSpacing=&quot;10dp&quot;
-        android:numColumns=&quot;3&quot;
-        android:verticalSpacing=&quot;10dp&quot; /&gt;
+    <span class="nt">&lt;GridView</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/subListView&quot;</span>
+        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+        <span class="na">android:layout_margin=</span><span class="s">&quot;10dp&quot;</span>
+        <span class="na">android:layout_marginTop=</span><span class="s">&quot;1dp&quot;</span>
+        <span class="na">android:layout_weight=</span><span class="s">&quot;1&quot;</span>
+        <span class="na">android:clipToPadding=</span><span class="s">&quot;false&quot;</span>
+        <span class="na">android:horizontalSpacing=</span><span class="s">&quot;10dp&quot;</span>
+        <span class="na">android:numColumns=</span><span class="s">&quot;3&quot;</span>
+        <span class="na">android:verticalSpacing=</span><span class="s">&quot;10dp&quot;</span> <span class="nt">/&gt;</span>
 
-&lt;/LinearLayout&gt;
+<span class="nt">&lt;/LinearLayout&gt;</span>
 </pre></div>
 
 
 <p>其中ListView和GridView是在一个LinearLayout里，响应listView的点击事件，然后加载不同的数据源，配置Adapter。</p>
-<div class="highlight"><pre><span class="nx">listView</span><span class="p">.</span><span class="nx">setOnItemClickListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">AdapterView</span><span class="p">.</span><span class="nx">OnItemClickListener</span><span class="p">()</span> <span class="p">{</span>
-    <span class="err">@</span><span class="nx">Override</span>
-    <span class="kr">public</span> <span class="k">void</span> <span class="nx">onItemClick</span><span class="p">(</span><span class="nx">AdapterView</span><span class="cp">&lt;?</span><span class="o">&gt;</span> <span class="nx">arg0</span><span class="p">,</span> <span class="nx">View</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">position</span><span class="p">,</span>
-                            <span class="nx">long</span> <span class="nx">arg3</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ClassList</span> <span class="nx">classList</span> <span class="o">=</span> <span class="nx">datas</span><span class="o">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">position</span><span class="p">);</span>
-        <span class="nx">cate_id</span> <span class="o">=</span> <span class="nx">classList</span><span class="o">.</span><span class="nx">getGcId</span><span class="p">();</span>
-        <span class="nx">findCateById</span><span class="p">(</span><span class="nx">cate_id</span><span class="p">);</span>
-        <span class="nx">myAdapter</span><span class="o">.</span><span class="nx">setSelectedPosition</span><span class="p">(</span><span class="nx">position</span><span class="p">);</span>
-        <span class="nx">myAdapter</span><span class="o">.</span><span class="nx">notifyDataSetInvalidated</span><span class="p">();</span>
-        <span class="nx">subAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubAdapter</span><span class="p">(</span><span class="nx">MainActivity</span><span class="o">.</span><span class="k">this</span><span class="p">,</span> <span class="nx">subdatas</span><span class="p">);</span>
-        <span class="nx">subListView</span><span class="o">.</span><span class="nx">setAdapter</span><span class="p">(</span><span class="nx">subAdapter</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight"><pre><span class="n">listView</span><span class="o">.</span><span class="na">setOnItemClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">AdapterView</span><span class="o">.</span><span class="na">OnItemClickListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">arg0</span><span class="o">,</span> <span class="n">View</span> <span class="n">arg1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span>
+                            <span class="kt">long</span> <span class="n">arg3</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ClassList</span> <span class="n">classList</span> <span class="o">=</span> <span class="n">datas</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+        <span class="n">cate_id</span> <span class="o">=</span> <span class="n">classList</span><span class="o">.</span><span class="na">getGcId</span><span class="o">();</span>
+        <span class="n">findCateById</span><span class="o">(</span><span class="n">cate_id</span><span class="o">);</span>
+        <span class="n">myAdapter</span><span class="o">.</span><span class="na">setSelectedPosition</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+        <span class="n">myAdapter</span><span class="o">.</span><span class="na">notifyDataSetInvalidated</span><span class="o">();</span>
+        <span class="n">subAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubAdapter</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">subdatas</span><span class="o">);</span>
+        <span class="n">subListView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">subAdapter</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
 </pre></div>
 
 
@@ -347,7 +348,7 @@ fragmentTabHost.setCurrentTab(0);
         <span class="nt">&lt;RelativeLayout&gt;</span>
             <span class="nt">&lt;TextView/&gt;</span>
         <span class="nt">&lt;/RelativeLayout&gt;</span>
-        <span class="nt">&lt;android.support.design.widget.FloatingActionButton</span><span class="err">／</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;android.support.design.widget.FloatingActionButton/&gt;</span>
     <span class="nt">&lt;android.support.design.widget.CoordinatorLayout&gt;</span>
     <span class="nt">&lt;android.support.design.widget.NavigationView/&gt;</span>
 <span class="nt">&lt;/android.support.v4.widget.DrawerLayout&gt;</span>
@@ -366,28 +367,28 @@ fragmentTabHost.setCurrentTab(0);
 <h5>0x08  顶部弹出菜单实现</h5>
 <p>我们在侧滑界面实现的那个Demo或者<code>Base Activity</code>里面，其实已经实现了点击弹出菜单的样式，即官方实现，当然这个各自有各自的实现，我们当然也可以使用PopupMenu、PopupWindow之类的去实现这些效果，此次简要写一下官方实现Menu。</p>
 <p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201607-android-ui-design-homework-11.png" class="responsive-img"></p>
-<div class="highlight"><pre>//MainActivity.java
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.main, menu);
-    return true;
-}
+<div class="highlight"><pre><span class="c1">//MainActivity.java</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onCreateOptionsMenu</span><span class="o">(</span><span class="n">Menu</span> <span class="n">menu</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Inflate the menu; this adds items to the action bar if it is present.</span>
+    <span class="n">getMenuInflater</span><span class="o">().</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">menu</span><span class="o">.</span><span class="na">main</span><span class="o">,</span> <span class="n">menu</span><span class="o">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onOptionsItemSelected</span><span class="o">(</span><span class="n">MenuItem</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Handle action bar item clicks here. The action bar will</span>
+    <span class="c1">// automatically handle clicks on the Home/Up button, so long</span>
+    <span class="c1">// as you specify a parent activity in AndroidManifest.xml.</span>
+    <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getItemId</span><span class="o">();</span>
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-        return true;
-    }
+    <span class="c1">//noinspection SimplifiableIfStatement</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">action_settings</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    return super.onOptionsItemSelected(item);
-}
+    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">onOptionsItemSelected</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -432,71 +433,71 @@ public boolean onOptionsItemSelected(MenuItem item) {
 </pre></div>
 
 
-<div class="highlight"><pre>//Activity代码
-private List&lt;String&gt; mTitleList = new ArrayList&lt;String&gt;();//页卡标题集合
-private View view1, view2, view3;
-private List&lt;View&gt; mViewList = new ArrayList&lt;&gt;();//页卡视图集合
+<div class="highlight"><pre><span class="c1">//Activity代码</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mTitleList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span><span class="c1">//页卡标题集合</span>
+<span class="kd">private</span> <span class="n">View</span> <span class="n">view1</span><span class="o">,</span> <span class="n">view2</span><span class="o">,</span> <span class="n">view3</span><span class="o">;</span>
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span> <span class="n">mViewList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span><span class="c1">//页卡视图集合</span>
 
-//onCreate里关键代码
-view1 = mInflater.inflate(R.layout.content, null);
-view2 = mInflater.inflate(R.layout.content, null);
-view3 = mInflater.inflate(R.layout.content, null);
+<span class="c1">//onCreate里关键代码</span>
+<span class="n">view1</span> <span class="o">=</span> <span class="n">mInflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">content</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">view2</span> <span class="o">=</span> <span class="n">mInflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">content</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">view3</span> <span class="o">=</span> <span class="n">mInflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">content</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
 
-mViewPager = (ViewPager) findViewById(R.id.vp_view);
-mTabLayout = (TabLayout) findViewById(R.id.tabs);
+<span class="n">mViewPager</span> <span class="o">=</span> <span class="o">(</span><span class="n">ViewPager</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">vp_view</span><span class="o">);</span>
+<span class="n">mTabLayout</span> <span class="o">=</span> <span class="o">(</span><span class="n">TabLayout</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tabs</span><span class="o">);</span>
 
-mViewList.add(view1);
-mViewList.add(view2);
-mViewList.add(view3);
+<span class="n">mViewList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">view1</span><span class="o">);</span>
+<span class="n">mViewList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">view2</span><span class="o">);</span>
+<span class="n">mViewList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">view3</span><span class="o">);</span>
 
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(0)), true);
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(1)));
-mTabLayout.addTab(mTabLayout.newTab().setText(mTitleList.get(2)));
+<span class="n">mTabLayout</span><span class="o">.</span><span class="na">addTab</span><span class="o">(</span><span class="n">mTabLayout</span><span class="o">.</span><span class="na">newTab</span><span class="o">().</span><span class="na">setText</span><span class="o">(</span><span class="n">mTitleList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)),</span> <span class="kc">true</span><span class="o">);</span>
+<span class="n">mTabLayout</span><span class="o">.</span><span class="na">addTab</span><span class="o">(</span><span class="n">mTabLayout</span><span class="o">.</span><span class="na">newTab</span><span class="o">().</span><span class="na">setText</span><span class="o">(</span><span class="n">mTitleList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">)));</span>
+<span class="n">mTabLayout</span><span class="o">.</span><span class="na">addTab</span><span class="o">(</span><span class="n">mTabLayout</span><span class="o">.</span><span class="na">newTab</span><span class="o">().</span><span class="na">setText</span><span class="o">(</span><span class="n">mTitleList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">2</span><span class="o">)));</span>
 
-MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
-//给ViewPager设置适配器
-mViewPager.setAdapter(mAdapter);
+<span class="n">MyPagerAdapter</span> <span class="n">mAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyPagerAdapter</span><span class="o">(</span><span class="n">mViewList</span><span class="o">);</span>
+<span class="c1">//给ViewPager设置适配器</span>
+<span class="n">mViewPager</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">mAdapter</span><span class="o">);</span>
 
-//将TabLayout和ViewPager关联起来
-mTabLayout.setupWithViewPager(mViewPager);
-//给Tabs设置适配器
-mTabLayout.setTabsFromPagerAdapter(mAdapter);
+<span class="c1">//将TabLayout和ViewPager关联起来</span>
+<span class="n">mTabLayout</span><span class="o">.</span><span class="na">setupWithViewPager</span><span class="o">(</span><span class="n">mViewPager</span><span class="o">);</span>
+<span class="c1">//给Tabs设置适配器</span>
+<span class="n">mTabLayout</span><span class="o">.</span><span class="na">setTabsFromPagerAdapter</span><span class="o">(</span><span class="n">mAdapter</span><span class="o">);</span>
 
-//ViewPager适配器，内部类
-class MyPagerAdapter extends PagerAdapter {
-    private List&lt;View&gt; mViewList;
+<span class="c1">//ViewPager适配器，内部类</span>
+<span class="kd">class</span> <span class="nc">MyPagerAdapter</span> <span class="kd">extends</span> <span class="n">PagerAdapter</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span> <span class="n">mViewList</span><span class="o">;</span>
 
-    public MyPagerAdapter(List&lt;View&gt; mViewList) {
-        this.mViewList = mViewList;
-    }
+    <span class="kd">public</span> <span class="nf">MyPagerAdapter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span> <span class="n">mViewList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">mViewList</span> <span class="o">=</span> <span class="n">mViewList</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    public int getCount() {
-        return mViewList.size();//页卡数
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">mViewList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span><span class="c1">//页卡数</span>
+    <span class="o">}</span>
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;//官方推荐写法
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isViewFromObject</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">,</span> <span class="n">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">view</span> <span class="o">==</span> <span class="n">object</span><span class="o">;</span><span class="c1">//官方推荐写法</span>
+    <span class="o">}</span>
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(mViewList.get(position));//添加页卡
-        return mViewList.get(position);
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">instantiateItem</span><span class="o">(</span><span class="n">ViewGroup</span> <span class="n">container</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">container</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span><span class="n">mViewList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">));</span><span class="c1">//添加页卡</span>
+        <span class="k">return</span> <span class="n">mViewList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(mViewList.get(position));//删除页卡
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroyItem</span><span class="o">(</span><span class="n">ViewGroup</span> <span class="n">container</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">container</span><span class="o">.</span><span class="na">removeView</span><span class="o">(</span><span class="n">mViewList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">));</span><span class="c1">//删除页卡</span>
+    <span class="o">}</span>
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mTitleList.get(position);//页卡标题
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">CharSequence</span> <span class="nf">getPageTitle</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">mTitleList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span><span class="c1">//页卡标题</span>
+    <span class="o">}</span>
 
-}
+<span class="o">}</span>
 </pre></div>
 
 
@@ -823,6 +824,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>

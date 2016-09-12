@@ -8,8 +8,8 @@
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css" media="screen,projection">
   <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" type="text/css" href="/theme/css/monokai.css" media="screen,projection">
   <script src="/theme/js/jquery-1.11.2.min.js"></script>
   <script>
   var _hmt = _hmt || [];
@@ -80,9 +80,9 @@
 <span class="cm"> * clicked.</span>
 <span class="cm"> *</span>
 <span class="cm"> * @hide</span>
-<span class="cm"> */</span><span class="w"></span>
-public<span class="w"> </span>interface<span class="w"> </span>OnPreferenceTreeClickListener<span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/**</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnPreferenceTreeClickListener</span> <span class="o">{</span>
+    <span class="cm">/**</span>
 <span class="cm">     * Called when a preference in the tree rooted at this</span>
 <span class="cm">     * {@link PreferenceScreen} has been clicked.</span>
 <span class="cm">     * </span>
@@ -90,10 +90,10 @@ public<span class="w"> </span>interface<span class="w"> </span>OnPreferenceTreeC
 <span class="cm">     *        preference is located in.</span>
 <span class="cm">     * @param preference The preference that was clicked.</span>
 <span class="cm">     * @return Whether the click was handled.</span>
-<span class="cm">     */</span><span class="w"></span>
-<span class="w">    </span>boolean<span class="w"> </span>onPreferenceTreeClick<span class="o">(</span>PreferenceScreen<span class="w"> </span>
-<span class="w">    </span>preferenceScreen<span class="o">,</span><span class="w"> </span>Preference<span class="w"> </span>preference<span class="o">)</span><span class="err">;</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
+<span class="cm">     */</span>
+    <span class="kt">boolean</span> <span class="nf">onPreferenceTreeClick</span><span class="o">(</span><span class="n">PreferenceScreen</span> 
+    <span class="n">preferenceScreen</span><span class="o">,</span> <span class="n">Preference</span> <span class="n">preference</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
@@ -132,36 +132,36 @@ public<span class="w"> </span>interface<span class="w"> </span>OnPreferenceTreeC
 
 
 <p>在SettingFragment中，通过addPreferencesFromResource(R.xml.preferences);加载上述的xml文件。</p>
-<div class="highlight"><pre>@Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    addPreferencesFromResource(R.xml.preferences);
-}
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">addPreferencesFromResource</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">preferences</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 
 
 <p>设置项保存到哪了？SharedPreferences。在/data/data/应用包名/shared_prefs/应用包名_preferences.xml文件中，android:key即为键值名。</p>
 <p>如何读取设置？通过SharedPreferences</p>
-<div class="highlight"><pre>SharedPreferences mySharedPreferences = PreferenceManager
-        .getDefaultSharedPreferences(this);
+<div class="highlight"><pre><span class="n">SharedPreferences</span> <span class="n">mySharedPreferences</span> <span class="o">=</span> <span class="n">PreferenceManager</span>
+        <span class="o">.</span><span class="na">getDefaultSharedPreferences</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 
-boolean my_checkbox_preference = mySharedPreferences.getBoolean(
-        &quot;checkbox_preference&quot;, false);
-prefCheckBox.setChecked(my_checkbox_preference);
+<span class="kt">boolean</span> <span class="n">my_checkbox_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span>
+        <span class="s">&quot;checkbox_preference&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+<span class="n">prefCheckBox</span><span class="o">.</span><span class="na">setChecked</span><span class="o">(</span><span class="n">my_checkbox_preference</span><span class="o">);</span>
 
-String my_edittext_preference = mySharedPreferences.getString(
-        &quot;edittext_preference&quot;, &quot;&quot;);
-prefEditText.setText(my_edittext_preference);
+<span class="n">String</span> <span class="n">my_edittext_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span>
+        <span class="s">&quot;edittext_preference&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+<span class="n">prefEditText</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">my_edittext_preference</span><span class="o">);</span>
 </pre></div>
 
 
 <p>列表设置项的ListPreferences类：</p>
-<div class="highlight"><pre>&lt;ListPreference
-      android:key=&quot;list_preference&quot;
-      android:title=&quot;@string/标题&quot;
-      android:dialogTitle=&quot;@string/对话框标题&quot;
-      android:entries=&quot;@array/listArray&quot;
-      android:entryValues=&quot;@array/listValues&quot; /&gt;
+<div class="highlight"><pre><span class="nt">&lt;ListPreference</span>
+      <span class="na">android:key=</span><span class="s">&quot;list_preference&quot;</span>
+      <span class="na">android:title=</span><span class="s">&quot;@string/标题&quot;</span>
+      <span class="na">android:dialogTitle=</span><span class="s">&quot;@string/对话框标题&quot;</span>
+      <span class="na">android:entries=</span><span class="s">&quot;@array/listArray&quot;</span>
+      <span class="na">android:entryValues=</span><span class="s">&quot;@array/listValues&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 
 
@@ -511,6 +511,5 @@ $(document).ready(function () {
   <script src="/theme/js/ma.js"></script>
   <script src="/theme/js/init.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/theme/js/highlight.pack.js"></script>
   </body>
 </html>
