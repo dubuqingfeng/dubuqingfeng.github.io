@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>DevOps 最佳实践之推进软件安全开发周期 SDL 建设 - 独步清风's blog</title>
+
+  <!-- CSS  -->
+  <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="/theme/js/jquery-1.11.2.min.js"></script>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?76712397de583de526f98e457deb2a7d";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+<style type="text/css">
+.highlight  { background: #202020; color: #e2e2e5}
+.highlight .hll { background-color: #49483e }
+.highlight .c { color: #75715e } /* Comment */
+.highlight .err { color: #960050; background-color: #1e0010 } /* Error */
+.highlight .k { color: #66d9ef } /* Keyword */
+.highlight .l { color: #ae81ff } /* Literal */
+.highlight .n { color: #f8f8f2 } /* Name */
+.highlight .o { color: #f92672 } /* Operator */
+.highlight .p { color: #f8f8f2 } /* Punctuation */
+.highlight .cm { color: #75715e } /* Comment.Multiline */
+.highlight .cp { color: #75715e } /* Comment.Preproc */
+.highlight .c1 { color: #75715e } /* Comment.Single */
+.highlight .cs { color: #75715e } /* Comment.Special */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .kc { color: #66d9ef } /* Keyword.Constant */
+.highlight .kd { color: #66d9ef } /* Keyword.Declaration */
+.highlight .kn { color: #f92672 } /* Keyword.Namespace */
+.highlight .kp { color: #66d9ef } /* Keyword.Pseudo */
+.highlight .kr { color: #66d9ef } /* Keyword.Reserved */
+.highlight .kt { color: #66d9ef } /* Keyword.Type */
+.highlight .ld { color: #e6db74 } /* Literal.Date */
+.highlight .m { color: #ae81ff } /* Literal.Number */
+.highlight .s { color: #e6db74 } /* Literal.String */
+.highlight .na { color: #a6e22e } /* Name.Attribute */
+.highlight .nb { color: #f8f8f2 } /* Name.Builtin */
+.highlight .nc { color: #a6e22e } /* Name.Class */
+.highlight .no { color: #66d9ef } /* Name.Constant */
+.highlight .nd { color: #a6e22e } /* Name.Decorator */
+.highlight .ni { color: #f8f8f2 } /* Name.Entity */
+.highlight .ne { color: #a6e22e } /* Name.Exception */
+.highlight .nf { color: #a6e22e } /* Name.Function */
+.highlight .nl { color: #f8f8f2 } /* Name.Label */
+.highlight .nn { color: #f8f8f2 } /* Name.Namespace */
+.highlight .nx { color: #a6e22e } /* Name.Other */
+.highlight .py { color: #f8f8f2 } /* Name.Property */
+.highlight .nt { color: #f92672 } /* Name.Tag */
+.highlight .nv { color: #f8f8f2 } /* Name.Variable */
+.highlight .ow { color: #f92672 } /* Operator.Word */
+.highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+.highlight .mf { color: #ae81ff } /* Literal.Number.Float */
+.highlight .mh { color: #ae81ff } /* Literal.Number.Hex */
+.highlight .mi { color: #ae81ff } /* Literal.Number.Integer */
+.highlight .mo { color: #ae81ff } /* Literal.Number.Oct */
+.highlight .sb { color: #e6db74 } /* Literal.String.Backtick */
+.highlight .sc { color: #e6db74 } /* Literal.String.Char */
+.highlight .sd { color: #e6db74 } /* Literal.String.Doc */
+.highlight .s2 { color: #e6db74 } /* Literal.String.Double */
+.highlight .se { color: #ae81ff } /* Literal.String.Escape */
+.highlight .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.highlight .si { color: #e6db74 } /* Literal.String.Interpol */
+.highlight .sx { color: #e6db74 } /* Literal.String.Other */
+.highlight .sr { color: #e6db74 } /* Literal.String.Regex */
+.highlight .s1 { color: #e6db74 } /* Literal.String.Single */
+.highlight .ss { color: #e6db74 } /* Literal.String.Symbol */
+.highlight .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.highlight .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.highlight .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+
+.highlight .gh { } /* Generic Heading & Diff Header */
+.highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
+.highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
+.highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
+</style>
+</head>
+<body>
+  <!-- Top-navigation -->
+  <nav class="lighten-5" role="navigation">
+    <div class="container nav-wrapper">
+      <a id="logo-container" href="http://dbqf.xyz" class="brand-logo"><span class="blue-grey-text text-darken-4">独步清风</span></a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="black-text">
+            <form onsubmit="return dispatch()">
+              <div class="input-field">
+                <input type="search" id="search-field" class="field" required maxlength="" name="q">
+              </div>
+            </form>
+          </div>
+        </li>
+        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng" target="_blank"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <ul class="right hide-on-large-only">
+        <li><a class="waves-effect waves-light" href="#"><i class="material-icons black-text">search</i></a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a class="waves-effect waves-light" href="#">Navbar Link</a></li>
+        <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://github.com/dubuqingfeng"><span class="blue-grey-text text-darken-4">GitHub</span></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons black-text">menu</i></a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row template-content-page">
+      <div class="col s12 m8 l9">
+        <!-- Breadcrumb -->
+        <div class="section">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+<div class="collapsible-header active"><a href="/category/devops.html"><i class="material-icons">subject</i>【DevOps】</a><a href="#">--DevOps 最佳实践之推进软件安全开发周期 SDL 建设</a>              </div>
+              <div class="collapsible-body"><p>本文从 DevOps 的角度去浅显地探讨软件安全开发周期，而建设软件安全开发周期任重而道远，而面对大多数公司的安全性问题，能否使用软件安全开发周期解决。并且 DevOps 作为周期很重要的一环，如何推动公司的安全体系建设。当然 SDL 并不是银弹，只是能大量减少软件安全缺陷。</p></div>
+            </li>
+          </ul>
+        </div>
+        <!-- Article Lists -->
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content black-text">
+      <span class="card-title black-text"><a href="/posts/2016/10/24/201610-devops-best-practices-sdl/index.html" class="black-text flow-text" id="title">DevOps 最佳实践之推进软件安全开发周期 SDL 建设</a></span>
+      <h5>目录：</h5>
+<ul>
+<li>前言</li>
+<li>DevOps</li>
+<li>如今的安全形势</li>
+<li>软件安全开发周期及应用 SDL 解决安全问题</li>
+<li>使用 DevOps 推进 SDL</li>
+<li>在华为软件云的实践</li>
+<li>后记</li>
+</ul>
+<h5>前言</h5>
+<p>本文从 DevOps 的角度去浅显地探讨软件安全开发周期，而建设软件安全开发周期任重而道远，而面对大多数公司的安全性问题，能否使用软件安全开发周期解决。并且 DevOps 作为周期很重要的一环，如何推动公司的安全体系建设。当然 SDL 并不是银弹，只是能大量减少软件安全缺陷。</p>
+<h5>DevOps</h5>
+<p>现如今，DevOps 的概念已经对于互联网公司来说不是陌生了，随着诸多大公司的推进，越来越多的公司用上了 DevOps，有些公司从中体验到了快捷之处，也有公司感觉到了复杂性。不像其他方面，DevOps 至今都没有一个完整的标准或者是实现方案，大多数都是一些大公司的实践。</p>
+<p>而中小企业或者创业公司，需不需要 DevOps 呢？大多数创业公司还是需要一种敏捷性，追求快速迭代开发，希望早点上线，早点运营，抢占用户。在公司里规划 DevOps 团队，自然就显得比较重要，可以提高产品的交付能力与效率。近几年，Docker，Kubernetes 的出现，极大地增加了我们对于 DevOps 的渴望。</p>
+<p>通过 Docker 进行持续集成，极大地提升了我们持续交付的能力。并且它可以达到开发与生产环境一致的效果，从原来的一天部署一次，通过它的可持续可以一天构建几十次之多。使得 Dev 和 Ops 的关系从原来的相互独立变成了相互融合，实际上还可以引入 QA 等人员。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201610-devops-best-practices-sdl-1.png" class="responsive-img"></p>
+<p>当熟悉了 DevOps 的最佳实践了以后，运用一些自动化工具，改变传统的开发部署流程，提高部署速度，构建可扩展的技术架构，
+提升软件交付的效率。从下图也可以看出，企业对于 DevOps 的重视程度在不断增加。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201610-devops-best-practices-sdl-2.png" class="responsive-img"></p>
+<h5>如今的安全形势</h5>
+<p>近几年，政府与各大公司在不断地推进网络安全的发展，但是还是每天有很多应急，数据泄露事件的发生。有数据表明，大多数网络安全问题是由 SQL 注入、网站后门、代码注入、未授权访问、弱口令等造成的。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201610-devops-best-practices-sdl-3.png" class="responsive-img"></p>
+<p>像这些问题是如何造成的呢，有很大一部分是由于开发上的不完善，导致有些地方可以利用，比如 SQL 注入，XSS 之类的，在代码上没有做好过滤，或者是进行参数化查询，而这些问题在开发的过程中就有能力去解决，可以使用一些代码审计或者代码检查服务。而中小公司，创业公司并没有配备专业的安全团队，而这些安全问题往往是致命的，可以被拿到权限，或者关键数据库等，而安全对于用户的影响也是很重要的。</p>
+<p>如何去解决这些问题呢？有一种方法是采用一些安全测试，使用专门的人员进行黑盒测试，而这种的并不能找到所有的问题，还是会有一些问题遗漏，并且这种成本较高，普通小公司初期往往不能接受，如果领导层面不重视安全的话，必然会出现很多问题。而中小公司的安全问题如何去解决，大多数普通开发者对于安全审计的知识了解尚浅，所以需要一个自动化，在开发过程中进行代码检查的工具，使开发者了解到其危害，并定期做一些科普性的交流。这样可以减少一定的风险，而成本不会投入太多。</p>
+<h5>软件安全开发周期以及应用 SDL 解决安全问题</h5>
+<p>中小公司、创业公司，在业务的不断成长的情况下，总是会遇到很多安全性，以及开发上的部署，测试等流程上的问题。如何去面对这种问题呢？</p>
+<p>微软在最初的时候，也有开发周期上的不完善，导致出现了很多安全问题，比如缺少安全设计，缺少安全编程规范，开发者安全意识不足等，并且当时 IIS 引发了不少安全 bug，导致当时安全不容乐观。而微软在推动软件安全开发生命周期（SDL）以后，如同“微软：引领软件安全趋势”给我们带来了这样的印象。实际说明了 SDL 带来的效果。</p>
+<p>软件安全开发周期包括什么呢？包括安全编码培训、安全威胁建模、安全设计、安全应急响应、安全配置、安全测试、安全部署等。它只是一个体系，具体实施的时候，还得看实际情况。</p>
+<p>安全编码培训就是提供不同的开发语言的安全规范，与安全团队或者安全负责人进行课程的建立，增强开发人员的安全意识。开发人员需要遵循安全编码规范，定期做一些代码检查之类的。在有些产品中，在设计阶段就应该引入安全部分。创建一些恶意的输入进行安全测试，并且把引用到的第三方开源控件也应该记录下来，及时升级新版本。并且对安全事件进行应急响应，规范修补漏洞的流程。</p>
+<p>而现如今的敏捷开发方式，是争取早日上线，抢占用户，从漏洞报告的情况可得知，有很多不应该出现的安全缺陷。而安全开发周期这种体系，也许是因为领导的不重视，或许是没人进行推进，导致各种安全事件的发生。所以需要在项目管理的时候，引入安全开发周期的概念，建立相关模板，定期进行代码审计，规范环境配置，做好安全应急响应。</p>
+<h5>DevOps 推进 SDL</h5>
+<p>其实在开发与测试过程中，很多安全开发周期需要规范的地方，在 DevOps 部分可以体现。所以作为 DevOps。有必要协助进行 SDL 的建设。</p>
+<p>在随着持续集成与持续交付建立好的情况下，发布会越来越频繁，而其中需要安全团队或者安全负责人进行定期的代码审查，而 DevOps 配置好一些自动化审计工具以后，会降低一些工作量，并且 DevOps 进行规范化配置，定期和运维去检查一些弱口令或者未授权访问的情况。提醒开发禁止使用一些危险可能造成漏洞的 API 或者函数。并且通过使用 Docker 统一环境，进行隔离，降低了由环境带来的安全风险。</p>
+<p>在做安全应急响应的时候，有一部分事件是与部署或者环境有关的，比如 Docker 或者 etcd 未授权访问、弱口令、一些常见组件的安全漏洞（struts、脏牛、ImageMagick 等），这一部分由于是线上环境，所以需要 DevOps 去关注相关的动态，定期做一些培训或者检查，在有相关组件的安全漏洞时及时构建镜像进行升级，避免受到攻击。</p>
+<p>对 CVE 进行关注，列出应用依赖的组件，避免通过组件拿到权限。并且与运维配置好相关防火墙，WAF，监控服务。做好身份校验。</p>
+<p>由于业务的不同，每个公司的情况都不可能一致，所以需要 DevOps 和安全部门或者负责安全的人员进行共同做对应的配置及优化。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201610-devops-best-practices-sdl-4.png" class="responsive-img"></p>
+<h5>在华为软件云的实践</h5>
+<p>在小型的创业公司里，以上最好是可以弄在项目管理里，而常见的项目管理软件或者网站，并没有相关功能，而华为企业云在这块开发了软件开发云模块，里面提供了各种完善的管理机制，而对于软件园区、孵化器、互联网企业、软件外包行业、高校、培训机构这些应用场景来说，完整的软件管理周期就显得有核心竞争力。并且它有代码检查的功能，还可以自定义检查规则，其中提供了以下的服务</p>
+<ul>
+<li>缺陷快速定位和修复</li>
+<li>主流编程语言</li>
+<li>多种检查规则套餐</li>
+<li>自定义检查规则</li>
+<li>缺陷批量处理</li>
+<li>多维度报表</li>
+</ul>
+<p>这是其他同类网站所没有的。并且相比较而言，以前得使用很多服务，比如bugly，Jenkins，bugclose 或者 bugtags，trello 或者 tower，git 等。</p>
+<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201610-devops-best-practices-sdl-5.png" class="responsive-img"></p>
+<h5>后记</h5>
+<p>实际上，软件安全开发周期还有很多内容，限于篇幅，不能一一列举探讨，而其他的比如安全培训，需求分析，测试，系统设计，发布，应急响应时候的安全规范，这个每个公司情况不尽相同，不能一概而论，并且 SDL 也不是银弹，不能解决全部的问题，但是对整体的安全性会有很大的提升，所以也希望大部分公司可以建设起自己的安全体系，建设属于自己的 SDL，解决大部分的安全问题，一起对安全作出自己的贡献。</p>	
+    </div>
+    <div class="card-action">
+      <a class="orange-text text-accent-2" href="/category/devops.html" onclick="">2016-10-24 15:42:00</a>
+<a href="/tag/sdl.html">SDL</a><a href="/tag/devops.html">DevOps</a>    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="card z-depth-1">
+    <div class="card-content">
+			<div class="row">
+				<div class="col s12">
+					<h3>Comments</h3>
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+						var disqus_shortname = 'dubuqingfeng';
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">蓝瘦，香菇，Disqus被墙了。</a></noscript>
+					蓝瘦，香菇，<a href="http://disqus.com" class="dsq-brlink"><span class="logo-disqus">Disqus</span></a>被墙了。
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      </div>
+      <div class="col s12 m4 l3">
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/categories.html" class="black-text flow-text" id="title">分类</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li ><a href="/category/2014.html">【2014】</a></li>
+                    <li ><a href="/category/android.html">【Android】</a></li>
+                    <li ><a href="/category/androidan-quan.html">【Android安全】</a></li>
+                    <li ><a href="/category/bugtags.html">【Bugtags】</a></li>
+                    <li ><a href="/category/chromebook.html">【chromebook】</a></li>
+                    <li class="active"><a href="/category/devops.html">【DevOps】</a></li>
+                    <li ><a href="/category/dian-zi-she-ji.html">【电子设计】</a></li>
+                    <li ><a href="/category/docker.html">【Docker】</a></li>
+                    <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
+                    <li ><a href="/category/git.html">【git】</a></li>
+                    <li ><a href="/category/github.html">【github】</a></li>
+                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
+                    <li ><a href="/category/linux.html">【Linux】</a></li>
+                    <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
+                    <li ><a href="/category/php.html">【php】</a></li>
+                    <li ><a href="/category/sui-bi.html">【随笔】</a></li>
+                    <li ><a href="/category/test.html">【test】</a></li>
+                    <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
+                    <li ><a href="/category/zi-you-ruan-jian.html">【自由软件】</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">标签</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/archives.html" class="black-text flow-text" id="title">归档</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                  <li><a href="/archives.html">所有文章 (31)</a></li>
+                      <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 6/index.html">六月 2016 (5)</a></li>
+                      <li><a href="/posts/2016/ 5/index.html">五月 2016 (1)</a></li>
+                      <li><a href="/posts/2016/ 3/index.html">三月 2016 (1)</a></li>
+                      <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
+                      <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
+                      <li><a href="/posts/2014/ 6/index.html">六月 2014 (2)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="/tags.html" class="black-text flow-text" id="title">个人标签／个人项目链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+<div class="section">
+  <div class="card-panel z-depth-1">
+    <div class="card black-text sidebar-title">
+      <span class="black-text sidebar-title-text"><a href="https://github.com/dubuqingfeng" class="black-text flow-text" id="title">GitHub</a></span>
+    </div>
+    <div class="row valign-wrapper">
+      <div class="col s12">
+        <div class="card-action">
+          <ul class="" id="gh_repos">
+			<li class="loading">状态更新中...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    if (!window.jXHR) {
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/theme/js/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'dubuqingfeng',
+        count: 5,
+        skip_forks: false,
+        target: '#gh_repos'
+    });
+});
+</script>
+<script type="text/javascript">
+  var github = (function(){
+    function escapeHtml(str) {
+      return $('<div/>').text(str).html();
+    }
+    function render(target, repos){
+      var i = 0, fragment = '', t = $(target)[0];
+      fragment += '<ul class="list-group" id="github">';
+
+      for(i = 0; i < repos.length; i++) {
+        fragment += '<li class="list-group-item"><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+      }
+      fragment += '</ul>';
+      t.innerHTML = fragment;
+    }
+    return {
+      showRepos: function(options){
+        $.ajax({
+            url: "https://api.github.com/users/"+options.user+"/repos?callback=?"
+          , dataType: 'jsonp'
+          , error: function (err) { $(options.target + ' li.loading').addClass('error').text("网络加载失败.."); }
+          , success: function(data) {
+            var repos = [];
+            if (!data || !data.data) { return; }
+            for (var i = 0; i < data.data.length; i++) {
+              if (options.skip_forks && data.data[i].fork) { continue; }
+              repos.push(data.data[i]);
+            }
+            repos.sort(function(a, b) {
+              var aDate = new Date(a.pushed_at).valueOf(),
+                  bDate = new Date(b.pushed_at).valueOf();
+
+              if (aDate === bDate) { return 0; }
+              return aDate > bDate ? -1 : 1;
+            });
+
+            if (options.count) { repos.splice(options.count); }
+            render(options.target, repos);
+          }
+        });
+      }
+    };
+  })();
+</script>
+</div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="https://mp.weixin.qq.com" class="black-text flow-text" id="title">微信公众号</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <img class="responsive-img" src="/theme/images/qrcode.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="card-panel z-depth-1">
+            <div class="card black-text sidebar-title">
+              <span class="black-text sidebar-title-text"><a href="" class="black-text flow-text" id="title">友情链接</a></span>
+            </div>
+            <div class="row valign-wrapper">
+              <div class="col s12">
+                <div class="card-action">
+                  <ul class="">
+                    <li><a href="http://numberwolf.top/ME/" target="_blank">numberwolf</a></li>
+                    <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
+                    <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
+                    <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer z-depth-2">
+    <div class="container footer-content">
+      <div class="row">
+        <div class="col l12 s12">
+          <a href="#top"><button class="btn waves-effect waves-light blue darken-3 right" alt="Back To Top">Top
+          </button></a>
+          <a href="/resume.pdf"><button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Resume
+          </button></a>
+          <a href="/pages/201604-projects.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">Projects
+          </button></a>
+          <a href="/pages/201604-aboutme.html">
+          <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action" alt="">About
+          </button></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright z-depth-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-small-only">
+            Powered by <a class="amber-text text-darken-4" href="http://getpelican.com" target="_blank">Pelican</a>. <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+          <div class="col l12 s12 grey-text text-darken-4 hide-on-med-and-up">
+            <span class="right">Theme by <a class="amber-text text-darken-4" href="http://dbqf.xyz">Dubuqingfeng</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  
+  <script src="/theme/js/ma.min.js"></script>
+  <script type="text/javascript">
+    (function($){
+      $(function(){
+        $('.button-collapse').sideNav();
+      }); // end of document ready
+    })(jQuery); // end of jQuery name space
+    $('.button-collapse').sideNav({menuWidth: 240, activationWidth: 70});
+    function dispatch() {
+        var q = document.getElementById("search-field");
+        if (q.value != "") {
+            var url = 'http://www.google.com/search?q=site:dbqf.xyz%20' + q.value;
+            if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPhone') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                location.href = url;
+            } else {
+                window.open(url, "_blank");
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </body>
+</html>
