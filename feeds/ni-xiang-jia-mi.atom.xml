@@ -9,15 +9,15 @@ option in the “MAP file” group on the “Linker” tab:
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-1.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-1.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;将项目设置中map文件的设置从无改成详细。&lt;/p&gt;
 &lt;p&gt;可以看到产生了如图的map文件，map文件中包含了有关被链接的程序的下列信息：模块名称，为1文件的基名称，时间戳，来自程序的文件头（不是来自文件系统，程序中的组列表，包括每个组的起始地 址（节：偏移量的形式）、长度、组名和类；公共符号的列表，包括每个地址（节：偏移量的形式）、符号名称、平直地址和包含符号定义的obj文件；入口点（节：偏移量的形式），另外可以通过map文件确定程序奔溃的位置。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-2.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-2.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;然后下载VMProtect，官网上是未激活版。本文以注册版演示。&lt;/p&gt;
 &lt;p&gt;载入文件后，VMProtect界面如图所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-3.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-3.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;VMProtect根据map文件得到了一些函数信息，然后F9即可进行编译加壳，然后会生成后缀为.vmp.exe的保护后的文件，在peid0.95中查壳，结果如图所示。虽然结果为什么都没找到，但是区段中已经有了vmp1，vmp0。可以以vmprotect来进行脱壳等操作。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-4.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-4.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;而语句标记法，主要利用了下列语句进行需要保护的代码的标记&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;asm&lt;/span&gt;
 &lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;10,’VMProtect begin’,0 //标记开始处.&lt;/span&gt;
@@ -119,10 +119,10 @@ Call VarPtr(“VMProtect end”)
 
 &lt;p&gt;还得引入相关的api，uses  aspr_api;&lt;/p&gt;
 &lt;p&gt;如果有map文件时，在软件界面中也可以导入，如图所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-5.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-5.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;在保护的时候即可自动识别函数。
 试验的程序当先用VMProtect，后用ASProtect时，会出现一个如图文件损坏的对话框，可能是因为区段的问题，无法找到入口。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201407reverse-disassemble-delphi-6.jpg" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-6.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;而先用ASProtect，后用VMProtect时，程序正常运行，当然因为加壳的原因，在在线杀毒引擎中有23%的杀软(9/38)报告发现病毒。&lt;/p&gt;
 &lt;h5&gt;0x04 MAP文件的结构&lt;/h5&gt;
 &lt;p&gt;一开始是&lt;/p&gt;

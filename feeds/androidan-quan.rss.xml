@@ -36,11 +36,11 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 
 
 &lt;p&gt;以下即为反汇编出来的结果。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-01.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-01.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;2.APK改之理、APKDB、Android逆向助手、Android Killer之类软件&lt;/p&gt;
 &lt;p&gt;实际本质上还是通过Dex2jar或者apktool工具的封装。&lt;/p&gt;
 &lt;p&gt;还有一个Jadx的软件也比较好用。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-02.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-02.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;3.在线反编译网站&lt;/p&gt;
 &lt;p&gt;地址：&lt;a href="http://www.decompileandroid.com/"&gt;http://www.decompileandroid.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;地址：&lt;a href="http://www.ludaima.cn/android.html"&gt;http://www.ludaima.cn/android.html&lt;/a&gt;&lt;/p&gt;
@@ -92,7 +92,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 
 &lt;p&gt;并且混淆时需要对使用的框架进行混淆，或者是避免混淆一些类。这时就对框架的文档进行阅读，分析需要增加的混淆规则。&lt;/p&gt;
 &lt;p&gt;混淆的效果如下图所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-03.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-03.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;以及加速gradle编译的配置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;org.gradle.daemon=true
 org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
@@ -118,8 +118,8 @@ org.gradle.configureondemand=true
 
 
 &lt;p&gt;最后结果如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-04.png" class="responsive-img"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-05.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-04.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-05.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;这样反混淆了以后，降低了代码阅读的难度，增加了应用被破解的风险。&lt;/p&gt;
 &lt;h5&gt;0x04  仅加密&lt;/h5&gt;
 &lt;p&gt;加密方式有很多种，本文不能面面俱到，只能找出一些典型的。比如有流程混排加密、代码内部字符串加密，对so源码、so函数名称以及接口调用进行加密隐藏，对classes.dex中的所有函数功能代码进行提取，然后加密单独存放等。&lt;/p&gt;
@@ -149,7 +149,7 @@ org.gradle.configureondemand=true
 &lt;p&gt;这里做个示例，加壳so。&lt;/p&gt;
 &lt;p&gt;在前一篇文章里，涉及到了如何在so里打log文件。在写好jni代码了以后，将so文件复制出来。&lt;/p&gt;
 &lt;p&gt;然后添加到文件夹里，如下图所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-06.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-06.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;准备UPX壳编译环境：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;zlib-1.2.8.tar.gz
 ucl-1.03.tar.gz
@@ -525,7 +525,7 @@ chmod 755 /data/tcpdump/tcpdump
 
 
 &lt;p&gt;安装配置好捕捉流量，wireshark分析：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-01.gif" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-01.gif" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x03    Charles抓包工具的使用&lt;/h5&gt;
 &lt;p&gt;安装并配置Charles。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;brew cask install charles
@@ -533,15 +533,15 @@ chmod 755 /data/tcpdump/tcpdump
 
 
 &lt;p&gt;捕捉HTTP流量：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-02.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-02.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;手机上设置代理，如下所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-03.gif" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-03.gif" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;捕捉HTTPS流量：&lt;/p&gt;
 &lt;p&gt;安装证书：&lt;/p&gt;
 &lt;p&gt;下载Charles证书http://www.charlesproxy.com/getssl/，输入文件名进行安装。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-04.gif" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-04.gif" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;在Charles的工具栏上点击设置按钮，选择SSL Proxy Settings；选项卡的Locations表单可以填写要抓包的域名和端口，点击Add按钮，在弹出的表单中Host填写域名，比如填*，Port填443。默认的空值表示应用于所有地址。&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-05.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-05.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;0x04    利用ettercap进行中间人
 ettercap是linux上常用的一种中间人工具，作为网上的一种sniffer，曾经利用其接收到机房的广播出来的数据包。&lt;/p&gt;
 &lt;p&gt;MAC系统上如何利用其进行中间人攻击呢？&lt;/p&gt;
@@ -561,11 +561,11 @@ sudo port install driftnet
 &lt;h5&gt;0x05    MITM工具&lt;/h5&gt;
 &lt;p&gt;常见的有dSploit，zANTI。&lt;/p&gt;
 &lt;p&gt;android设备使用dSploit进行中间人攻击：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-06.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-06.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x06    中间人的利用&lt;/h5&gt;
 &lt;p&gt;当成为中间人了以后，就可以进行各种利用了，比如查看流量，网页劫持，提取密码，会话劫持等。&lt;/p&gt;
 &lt;p&gt;以弹对话框为例：&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-capture-android-mitm-07.png" class="responsive-img"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201606-capture-android-mitm-07.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;0x07    参考链接&lt;/h5&gt;
 &lt;p&gt;热爱互联网，对操作系统和网络安全有狂热的追求，专业不限；熟悉漏洞挖掘、网络安全攻防技术，了解常见黑客攻击手法；掌握基本开发能力，熟练使用C/C++语言；对数据库、操作系统、网络原理有较好掌握；具有软件逆向，网络安全攻防或安全系统开发经验者优先。&lt;/p&gt;
 &lt;blockquote&gt;

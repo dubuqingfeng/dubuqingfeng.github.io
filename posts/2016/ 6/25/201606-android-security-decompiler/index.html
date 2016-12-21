@@ -175,11 +175,11 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 
 
 <p>以下即为反汇编出来的结果。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-01.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-01.png" class="responsive-img"></p>
 <p>2.APK改之理、APKDB、Android逆向助手、Android Killer之类软件</p>
 <p>实际本质上还是通过Dex2jar或者apktool工具的封装。</p>
 <p>还有一个Jadx的软件也比较好用。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-02.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-02.png" class="responsive-img"></p>
 <p>3.在线反编译网站</p>
 <p>地址：<a href="http://www.decompileandroid.com/">http://www.decompileandroid.com/</a></p>
 <p>地址：<a href="http://www.ludaima.cn/android.html">http://www.ludaima.cn/android.html</a></p>
@@ -231,7 +231,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 
 <p>并且混淆时需要对使用的框架进行混淆，或者是避免混淆一些类。这时就对框架的文档进行阅读，分析需要增加的混淆规则。</p>
 <p>混淆的效果如下图所示。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-03.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-03.png" class="responsive-img"></p>
 <p>以及加速gradle编译的配置：</p>
 <div class="highlight"><pre>org.gradle.daemon=true
 org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
@@ -257,8 +257,8 @@ org.gradle.configureondemand=true
 
 
 <p>最后结果如下：</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-04.png" class="responsive-img"></p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-05.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-04.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-05.png" class="responsive-img"></p>
 <p>这样反混淆了以后，降低了代码阅读的难度，增加了应用被破解的风险。</p>
 <h5>0x04  仅加密</h5>
 <p>加密方式有很多种，本文不能面面俱到，只能找出一些典型的。比如有流程混排加密、代码内部字符串加密，对so源码、so函数名称以及接口调用进行加密隐藏，对classes.dex中的所有函数功能代码进行提取，然后加密单独存放等。</p>
@@ -288,7 +288,7 @@ org.gradle.configureondemand=true
 <p>这里做个示例，加壳so。</p>
 <p>在前一篇文章里，涉及到了如何在so里打log文件。在写好jni代码了以后，将so文件复制出来。</p>
 <p>然后添加到文件夹里，如下图所示。</p>
-<p><img src="http://7s1qw7.com1.z0.glb.clouddn.com/blog201606-android-security-decompiler-06.png" class="responsive-img"></p>
+<p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-06.png" class="responsive-img"></p>
 <p>准备UPX壳编译环境：</p>
 <div class="highlight"><pre>zlib-1.2.8.tar.gz
 ucl-1.03.tar.gz
