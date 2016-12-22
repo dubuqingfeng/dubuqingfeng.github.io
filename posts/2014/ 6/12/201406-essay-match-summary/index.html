@@ -85,6 +85,32 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
+#rewardButton span {
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    font-stretch: normal;
+    font-size: 18px;
+    font-family: "Microsoft Yahei";
+    background: #f44336;
+}
+#rewardButton {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    border-radius: 100%;
+    padding: 0;
+    margin: 0;
+    letter-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+}
 </style>
 </head>
 <body>
@@ -158,12 +184,12 @@
 			</button>
 			<div id="QR" style="display: none;">
 				<div id="wechat" style="display: inline-block">
-					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<img id="wechat_qr" class="responsive-img" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
 					<p>WeChat 微信</p>
 					<!--<p>微信打赏</p>-->
 				</div>
 				<div id="alipay" style="display: inline-block">
-					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<img id="alipay_qr" class="responsive-img" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
 					<p>Alipay 支付宝</p>
 					<!--<p>支付宝打赏</p>-->
 				</div>
