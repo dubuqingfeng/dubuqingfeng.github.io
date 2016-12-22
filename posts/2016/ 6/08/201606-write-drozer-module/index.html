@@ -85,31 +85,14 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
-#rewardButton span {
+#QR img {
+    width: 180px;
+    max-width: 100%;
     display: inline-block;
-    width: 80px;
-    height: 35px;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 400;
-    font-style: normal;
-    font-variant: normal;
-    font-stretch: normal;
-    font-size: 18px;
-    font-family: "Microsoft Yahei";
-    background: #f44336;
+    margin: 0.8em 2em 0 2em;
 }
-#rewardButton {
-    cursor: pointer;
+#QR a {
     border: 0;
-    outline: 0;
-    border-radius: 100%;
-    padding: 0;
-    margin: 0;
-    letter-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
 }
 </style>
 </head>
@@ -400,9 +383,8 @@ run app.package.info -a application_name
 <p>当然drozer的可利用范围是比较广的，可以测试SQL注入，以及各种组件的漏洞，或者配合nc进行shell的获取。以后再整理一些利用思路，或者一些exploit的编写。</p>
 <h5>0x08    参考链接</h5>
 <p><a href="http://appscan.360.cn/blog/?p=45">自己动手开发Drozer插件之AutoAttack</a></p>	
-		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-				<span>打赏</span>
+		<div style="padding: 10px 0;text-align: center;">
+			<button class="btn waves-effect waves-light" type="submit" name="action" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">打赏
 			</button>
 			<div id="QR" style="display: none;">
 				<div id="wechat" style="display: inline-block">

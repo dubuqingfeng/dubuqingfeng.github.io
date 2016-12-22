@@ -85,31 +85,14 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
-#rewardButton span {
+#QR img {
+    width: 180px;
+    max-width: 100%;
     display: inline-block;
-    width: 80px;
-    height: 35px;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 400;
-    font-style: normal;
-    font-variant: normal;
-    font-stretch: normal;
-    font-size: 18px;
-    font-family: "Microsoft Yahei";
-    background: #f44336;
+    margin: 0.8em 2em 0 2em;
 }
-#rewardButton {
-    cursor: pointer;
+#QR a {
     border: 0;
-    outline: 0;
-    border-radius: 100%;
-    padding: 0;
-    margin: 0;
-    letter-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
 }
 </style>
 </head>
@@ -606,9 +589,8 @@
 <p>夕阳虽美，但却近黄昏。</p>
 <p>梅艳芳曾经讲过，《夕阳之歌》是她一生的写照。也许在死亡面前，才能真正感悟。</p>
 <p>各位都应珍惜时间，别到了最后，令自己后悔；珍惜眼前人，也许明日就是离别之时；珍惜身边的一切，经历过大风大浪才知，平淡美好的生活才是所向往的。未来怎样，无法预料，可是我们也得有面对未来的准备啊。扪心自问，问心无愧，足以。</p>	
-		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-				<span>打赏</span>
+		<div style="padding: 10px 0;text-align: center;">
+			<button class="btn waves-effect waves-light" type="submit" name="action" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">打赏
 			</button>
 			<div id="QR" style="display: none;">
 				<div id="wechat" style="display: inline-block">

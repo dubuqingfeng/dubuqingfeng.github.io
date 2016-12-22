@@ -85,31 +85,14 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
-#rewardButton span {
+#QR img {
+    width: 180px;
+    max-width: 100%;
     display: inline-block;
-    width: 80px;
-    height: 35px;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 400;
-    font-style: normal;
-    font-variant: normal;
-    font-stretch: normal;
-    font-size: 18px;
-    font-family: "Microsoft Yahei";
-    background: #f44336;
+    margin: 0.8em 2em 0 2em;
 }
-#rewardButton {
-    cursor: pointer;
+#QR a {
     border: 0;
-    outline: 0;
-    border-radius: 100%;
-    padding: 0;
-    margin: 0;
-    letter-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
 }
 </style>
 </head>
@@ -276,9 +259,8 @@ sudo port install driftnet
 <p><a href="https://www.91ri.org/4408.html">Linux渗透之Ettercap详解</a></p>
 <p><a href="http://xkon.github.io/2015/04/17/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E5%B0%8Ftricks/">内网渗透小tricks</a></p>
 </blockquote>	
-		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-				<span>打赏</span>
+		<div style="padding: 10px 0;text-align: center;">
+			<button class="btn waves-effect waves-light" type="submit" name="action" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">打赏
 			</button>
 			<div id="QR" style="display: none;">
 				<div id="wechat" style="display: inline-block">
