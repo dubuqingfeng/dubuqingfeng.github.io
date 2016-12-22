@@ -228,18 +228,17 @@ KERNEL32! 7c816fd7()
 <h5>0x05 后记</h5>
 <p>最近在阅读《c++反汇编与逆向分析技术揭秘》，在阅读到第三章认识启动函数，找到用户入口时，得知main函数之前系统要做一些准备工作，再加上上学期学的C语言程序入口函数不是main函数，而是_start函数，这不禁引发了一些思考，到底编译器在编译和系统执行程序的时候发生了什么，因此想以实例进行一定的分析。在思考的过程中，有些涉及到了编译器的知识，包括它如何工作的，汇编之后又是如何链接的，这一部分内容不太熟悉，这一方面得掌握编译原理的知识，还得学习编译器的相关内容。那些东西还没学，因此不免有一些缺憾。了解反汇编的一些内容，可以更深层次的理解相对底层的一些东西，包括栈，堆和寄存器的数据交换。另外并未使用到神器IDA，利用IDA会更好地静态分析一些函数。</p>	
 		<div style="padding: 10px 0;text-align: center;">
+			<div>美景加咖啡，一杯又一杯。</div>
 			<button class="btn waves-effect waves-light" type="submit" name="action" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">打赏
 			</button>
 			<div id="QR" style="display: none;">
 				<div id="wechat" style="display: inline-block">
 					<img id="wechat_qr" class="responsive-img" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
 					<p>WeChat 微信</p>
-					<!--<p>微信打赏</p>-->
 				</div>
 				<div id="alipay" style="display: inline-block">
 					<img id="alipay_qr" class="responsive-img" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
 					<p>Alipay 支付宝</p>
-					<!--<p>支付宝打赏</p>-->
 				</div>
 			</div>
 		</div>
