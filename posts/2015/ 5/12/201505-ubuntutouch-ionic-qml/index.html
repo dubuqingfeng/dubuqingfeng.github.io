@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html" class="black-text flow-text" id="title">Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</a></span>
-      <h5>0x01 前言</h5>
+    	<span class="card-title black-text"><a href="/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html" class="black-text flow-text" id="title">Ubuntu sdk、ubuntu touch、QML、Ionic开发入坑记</a></span>
+    	<h5>0x01 前言</h5>
 <p>人生就是一个不断挖坑、埋坑的过程，最近又接了一些活，参加一些比赛。并且尝试开发一些不同平台的应用。</p>
 <h5>0x02 ubuntu sdk</h5>
 <p>ubuntu sdk是基于QT Creator，自然开发起来主要是QT、qml，QT的基础仅是会调一些控件，了解信号槽机制，对于其他的SQL、串口通信没了解过，也没有做过完整的项目。其优势跨平台，然而QT在安卓上的发展并没有HTML5火，并且打包出来相对原生较大的感觉。为了响应敏捷开发，QT还有一个QT Quick，采用qml语言，其语法与javascript较为类似，qml代码如果有javascript和安卓开发基础就好理解。</p>
@@ -164,15 +164,31 @@ apt-get install ubuntu-sdk
 <p>用AngularJS开发下一代Web应用</p>
 <h5>0x100 参考资料</h5>
 <p>AngularJS</p>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
-<a href="/tag/ubuntu.html">ubuntu</a><a href="/tag/sdk.html">sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/kua-ping-tai-kai-fa.html" onclick="">2015-05-12 09:21:00</a>
+<a href="/tag/ubuntu.html">ubuntu</a><a href="/tag/sdk.html">sdk</a><a href="/tag/ubuntu-touch.html">ubuntu touch</a><a href="/tag/qml.html">qml</a><a href="/tag/ionic.html">ionic</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -202,12 +218,10 @@ apt-get install ubuntu-sdk
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

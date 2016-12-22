@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人组装调试</a></span>
-      <h5>0x01 LM3S615</h5>
+    	<span class="card-title black-text"><a href="/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html" class="black-text flow-text" id="title">基于Arduino的解魔方机器人组装调试</a></span>
+    	<h5>0x01 LM3S615</h5>
 <p>此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在<a href="http://download"></a>有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。</p>
 <h5>0x02 TTL与RS-232</h5>
 <p>波特率</p>
@@ -164,15 +164,31 @@
 <p>首先需要考虑蓝牙模块供电问题，</p>
 <h5>0x100 参考文献</h5>
 <p>《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)</p>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-24 14:23:00</a>
-<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/dian-zi-she-ji.html" onclick="">2015-03-24 14:23:00</a>
+<a href="/tag/dian-zi-she-ji.html">电子设计</a><a href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -202,12 +218,10 @@
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

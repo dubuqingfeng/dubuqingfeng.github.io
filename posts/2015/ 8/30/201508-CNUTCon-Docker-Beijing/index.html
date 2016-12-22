@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 8/30/201508-CNUTCon-Docker-Beijing/index.html" class="black-text flow-text" id="title">CNUTCon全球容器技术大会有感</a></span>
-      <h5>0x01 前言</h5>
+    	<span class="card-title black-text"><a href="/posts/2015/ 8/30/201508-CNUTCon-Docker-Beijing/index.html" class="black-text flow-text" id="title">CNUTCon全球容器技术大会有感</a></span>
+    	<h5>0x01 前言</h5>
 <p>作为容器技术的发展，自认为是互联网技术公司的基础设施架构的不可或缺的一部分，并且好多公司都在实践，并且创业公司也可以利用其加快开发，缩短构建部署等消耗的时间。</p>
 <p>很少有像docker这样才推出两年多就很火的样子，并且拿到了好多投资，😃，作为变化很快的IT行业，不掌握点新技术，很难在竞争中生存下来。</p>
 <p>并且Docker也适合进行弹性计算，毕竟一个容器启动是秒级别的，还可以作为持续集成等实践，统一开发和部署环境。(只需要一个Dockerfile或者yaml)</p>
@@ -185,15 +185,31 @@
 <p><a href="http://www.infoq.com/cn/CNUTCon">在线视频</a></p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201508-CNUTCon-Docker-Beijing-02.jpg" class="responsive-img"></p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201508-CNUTCon-Docker-Beijing-03.jpg" class="responsive-img"></p>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/docker.html" onclick="">2015-08-30 19:22:00</a>
-<a href="/tag/cnutcon.html">CNUTCon</a><a href="/tag/docker.html">Docker</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/docker.html" onclick="">2015-08-30 19:22:00</a>
+<a href="/tag/cnutcon.html">CNUTCon</a><a href="/tag/docker.html">Docker</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -223,12 +239,10 @@
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

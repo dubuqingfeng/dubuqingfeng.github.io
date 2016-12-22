@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2016/ 6/17/201606-capture-android-mitm/index.html" class="black-text flow-text" id="title">捕捉android网络流量及中间人攻击</a></span>
-      <h5>0x01   前言：</h5>
+    	<span class="card-title black-text"><a href="/posts/2016/ 6/17/201606-capture-android-mitm/index.html" class="black-text flow-text" id="title">捕捉android网络流量及中间人攻击</a></span>
+    	<h5>0x01   前言：</h5>
 <p>作为开发者或者安全研究员，开发或分析一些与网络相关的程序时，必然要涉及到HTTP协议，而了解信息的传输，是非常必要的。所以我们需要抓取并控制到网路流量，并且需要对中间人攻击有一定的认识。</p>
 <p>TOC：</p>
 <blockquote>
@@ -250,15 +250,31 @@ sudo port install driftnet
 <p><a href="https://www.91ri.org/4408.html">Linux渗透之Ettercap详解</a></p>
 <p><a href="http://xkon.github.io/2015/04/17/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E5%B0%8Ftricks/">内网渗透小tricks</a></p>
 </blockquote>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-17 17:42:00</a>
-<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/mitm.html">mitm</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-17 17:42:00</a>
+<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/mitm.html">mitm</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -288,12 +304,10 @@ sudo port install driftnet
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2015/ 2/12/201502-php-zhanzhang/index.html" class="black-text flow-text" id="title">php实现一些站长的工具</a></span>
-      <h5>0x01 前言</h5>
+    	<span class="card-title black-text"><a href="/posts/2015/ 2/12/201502-php-zhanzhang/index.html" class="black-text flow-text" id="title">php实现一些站长的工具</a></span>
+    	<h5>0x01 前言</h5>
 <p>近期有一个任务，要求仿站长工具网，进行关键字，seo，whois，ip查询等。</p>
 <h5>0x02 计划与环境搭建</h5>
 <p>前端框架采用bootstrap，有一个比较方便的bootwatch，
@@ -147,15 +147,31 @@ php要求性能的话，phalcon框架，是php的一个扩展</p>
 <h5>0x03 whois</h5>
 <p>whois功能需要根据域名后缀，来连接一些whois服务器进行查询，</p>
 <h5>0x04 ip查询</h5>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/php.html" onclick="">2015-02-12 12:11:11</a>
-<a href="/tag/php.html">php</a><a href="/tag/whois.html">whois</a><a href="/tag/seo.html">seo</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/php.html" onclick="">2015-02-12 12:11:11</a>
+<a href="/tag/php.html">php</a><a href="/tag/whois.html">whois</a><a href="/tag/seo.html">seo</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -185,12 +201,10 @@ php要求性能的话，phalcon框架，是php的一个扩展</p>
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

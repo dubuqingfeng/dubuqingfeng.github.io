@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2014/11/18/201411-git-ubuntu/index.html" class="black-text flow-text" id="title">ubuntu下git入门与配置</a></span>
-      <h5>0x01 git</h5>
+    	<span class="card-title black-text"><a href="/posts/2014/11/18/201411-git-ubuntu/index.html" class="black-text flow-text" id="title">ubuntu下git入门与配置</a></span>
+    	<h5>0x01 git</h5>
 <p>GIT最初是由Linus Benedict Torvalds为了更有效地管理Linux内核开发而创立的分布式版本控制软件，与常用的版本控制工具如CVS、Subversion不同，它不必服务器端软件支持，速度和效率也有着相当程度的提高。</p>
 <h5>0x02 准备安装</h5>
 <p>从这里 http://git-scm.com/download 下载GIT或者使用wget命令获取</p>
@@ -255,15 +255,31 @@ git add *
 
 <h5>0x05 gitg</h5>
 <p>在ubuntu里使用过gitg的客户端，基本不大的项目够用。</p>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/git.html" onclick="">2014-11-18 14:51:00</a>
-<a href="/tag/git.html">git</a><a href="/tag/ubuntu.html">ubuntu</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/git.html" onclick="">2014-11-18 14:51:00</a>
+<a href="/tag/git.html">git</a><a href="/tag/ubuntu.html">ubuntu</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -293,12 +309,10 @@ git add *
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">

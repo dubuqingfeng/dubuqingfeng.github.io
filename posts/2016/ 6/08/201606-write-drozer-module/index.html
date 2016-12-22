@@ -135,10 +135,10 @@
         </div>
         <!-- Article Lists -->
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content black-text">
-      <span class="card-title black-text"><a href="/posts/2016/ 6/08/201606-write-drozer-module/index.html" class="black-text flow-text" id="title">自己动手写drozer模块</a></span>
-      <h5>0x01    前言及TOC</h5>
+    	<span class="card-title black-text"><a href="/posts/2016/ 6/08/201606-write-drozer-module/index.html" class="black-text flow-text" id="title">自己动手写drozer模块</a></span>
+    	<h5>0x01    前言及TOC</h5>
 <p>drozer是一个android渗透与测试比较出名的一个框架，其源码托管在<a href="https://github.com/mwrlabs/drozer">GitHub</a>。我们可以利用其进行一些自动化测试工作，以及测试一些拒绝式服务，写一些exploit等。</p>
 <p>TOC：</p>
 <blockquote>
@@ -374,15 +374,31 @@ run app.package.info -a application_name
 <p>当然drozer的可利用范围是比较广的，可以测试SQL注入，以及各种组件的漏洞，或者配合nc进行shell的获取。以后再整理一些利用思路，或者一些exploit的编写。</p>
 <h5>0x08    参考链接</h5>
 <p><a href="http://appscan.360.cn/blog/?p=45">自己动手开发Drozer插件之AutoAttack</a></p>	
+		<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+			<button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+				<span>打赏</span>
+			</button>
+			<div id="QR" style="display: none;">
+				<div id="wechat" style="display: inline-block">
+					<img id="wechat_qr" src="https://oijlbmkg8.qnssl.com/blog_wechat_pay.png" alt="WeChat Pay"/>
+					<p>WeChat 微信</p>
+					<!--<p>微信打赏</p>-->
+				</div>
+				<div id="alipay" style="display: inline-block">
+					<img id="alipay_qr" src="https://oijlbmkg8.qnssl.com/blog_ali_pay.png" alt="Alipay"/>
+					<p>Alipay 支付宝</p>
+					<!--<p>支付宝打赏</p>-->
+				</div>
+			</div>
+		</div>
     </div>
     <div class="card-action">
-      <a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-08 17:42:00</a>
-<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/drozer.html">drozer</a><div id="cyReward" role="cylabs" data-use="reward" ></div>
+		<a class="orange-text text-accent-2" href="/category/androidan-quan.html" onclick="">2016-06-08 17:42:00</a>
+<a href="/tag/androidan-quan.html">Android安全</a><a href="/tag/drozer.html">drozer</a>    </div>
     </div>
-  </div>
 </div>
 <div class="section">
-  <div class="card z-depth-1">
+    <div class="card z-depth-1">
     <div class="card-content">
 			<div class="row">
 				<div class="col s12">
@@ -412,12 +428,10 @@ run app.package.info -a application_name
 				</div>
 			</div>
 		</div>
-  </div>
+    </div>
 </div>
 <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js">
 </script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyruDUH8e"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"105"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//dbqf.xyz/theme/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       </div>
       <div class="col s12 m4 l3">
