@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 May 2015 12:53:00 +0200</lastBuildDate><item><title>Linux VPS的一些配置</title><link>dubuqingfeng.github.io/posts/2015/%205/16/201505-vps-base-setting/index.html</link><description>&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 16 May 2015 12:53:00 +0200</lastBuildDate><item><title>Linux VPS的一些配置</title><link>dbqf.xyz/posts/2015/%205/16/201505-vps-base-setting/index.html</link><description>&lt;h5&gt;0x01 更改默认ssh登录端口&lt;/h5&gt;
 &lt;p&gt;一般ssh是开放的，容易受到攻击或者爆破等行为。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;#&lt;span class="k"&gt;vi&lt;/span&gt; &lt;span class="sr"&gt;/etc/&lt;/span&gt;ssh/sshd_config
 
@@ -178,4 +178,4 @@ sudo apt-get install python-virtualenv
 &lt;h5&gt;0x06 后记&lt;/h5&gt;
 &lt;p&gt;需要进一步学习SSH协议，Linux服务器管理，密码学，sock5代理，iptables。&lt;/p&gt;
 &lt;p&gt;路漫漫，盖余之勤且艰若此。&lt;/p&gt;
-&lt;p&gt;专注地做好每一件事。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 16 May 2015 12:53:00 +0200</pubDate><guid>tag:,2015-05-16:dubuqingfeng.github.io/posts/2015/ 5/16/201505-vps-base-setting/index.html</guid><category>linux</category><category>vps</category></item></channel></rss>
+&lt;p&gt;专注地做好每一件事。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 16 May 2015 12:53:00 +0200</pubDate><guid>tag:,2015-05-16:dbqf.xyz/posts/2015/ 5/16/201505-vps-base-setting/index.html</guid><category>linux</category><category>vps</category></item></channel></rss>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/git.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 18 Nov 2014 21:25:00 +0100</lastBuildDate><item><title>ubuntu下git入门与配置</title><link>dubuqingfeng.github.io/posts/2014/11/18/201411-git-ubuntu/index.html</link><description>&lt;h5&gt;0x01 git&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/git.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 18 Nov 2014 21:25:00 +0100</lastBuildDate><item><title>ubuntu下git入门与配置</title><link>dbqf.xyz/posts/2014/11/18/201411-git-ubuntu/index.html</link><description>&lt;h5&gt;0x01 git&lt;/h5&gt;
 &lt;p&gt;GIT最初是由Linus Benedict Torvalds为了更有效地管理Linux内核开发而创立的分布式版本控制软件，与常用的版本控制工具如CVS、Subversion不同，它不必服务器端软件支持，速度和效率也有着相当程度的提高。&lt;/p&gt;
 &lt;h5&gt;0x02 准备安装&lt;/h5&gt;
 &lt;p&gt;从这里 http://git-scm.com/download 下载GIT或者使用wget命令获取&lt;/p&gt;
@@ -115,4 +115,4 @@ git add *
 
 
 &lt;h5&gt;0x05 gitg&lt;/h5&gt;
-&lt;p&gt;在ubuntu里使用过gitg的客户端，基本不大的项目够用。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 18 Nov 2014 21:25:00 +0100</pubDate><guid>tag:,2014-11-18:dubuqingfeng.github.io/posts/2014/11/18/201411-git-ubuntu/index.html</guid><category>git</category><category>ubuntu</category></item></channel></rss>
+&lt;p&gt;在ubuntu里使用过gitg的客户端，基本不大的项目够用。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 18 Nov 2014 21:25:00 +0100</pubDate><guid>tag:,2014-11-18:dbqf.xyz/posts/2014/11/18/201411-git-ubuntu/index.html</guid><category>git</category><category>ubuntu</category></item></channel></rss>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/ni-xiang-jia-mi.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 28 Jul 2014 20:48:00 +0200</lastBuildDate><item><title>利用VMProtect sdk和ASProtect sdk加密delphi程序</title><link>dubuqingfeng.github.io/posts/2014/%207/28/201407-reverse-disassemble-delphi/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/ni-xiang-jia-mi.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 28 Jul 2014 20:48:00 +0200</lastBuildDate><item><title>利用VMProtect sdk和ASProtect sdk加密delphi程序</title><link>dbqf.xyz/posts/2014/%207/28/201407-reverse-disassemble-delphi/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;普通的一些加密壳能够较为容易的被脱掉，而一些稍微难一点壳，例如VMProtect等，刚入门的新手就不是那么好脱了，而这些壳也提供了一些sdk帮助我们加密需要加密的函数，使保护壳能够识别源码中需要加密保护的代码段。下面以我的一个delphi程序为例，介绍VMProtect sdk和EncryptPE的一些加密方法，其他vc，或者易语言写的程序也可以使用其进行加密。&lt;/p&gt;
 &lt;h5&gt;0x02 VMProtect保护&lt;/h5&gt;
 &lt;p&gt;VMProtect sdk保护方式可以有两种，map法和标记法，在官方文档中，有下述方法。&lt;/p&gt;
@@ -143,4 +143,4 @@ Line numbers for Project2(C:\Program Files (x86)\Borland\Delphi7\
 Projects\Project2.dpr) segment .text
 Bound resource files 与之相关的资源文件
 Program entry point at 0001:00050EE0  程序入口点
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 28 Jul 2014 20:48:00 +0200</pubDate><guid>tag:,2014-07-28:dubuqingfeng.github.io/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</guid><category>逆向</category><category>delphi加密</category></item></channel></rss>
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 28 Jul 2014 20:48:00 +0200</pubDate><guid>tag:,2014-07-28:dbqf.xyz/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</guid><category>逆向</category><category>delphi加密</category></item></channel></rss>

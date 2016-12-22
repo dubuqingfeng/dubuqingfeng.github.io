@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/dian-zi-she-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Jul 2015 21:41:00 +0200</lastBuildDate><item><title>基于arduino的解魔方机器人一些总结</title><link>dubuqingfeng.github.io/posts/2015/%204/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</link><description>&lt;h5&gt;0x01 期间的一些问题&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/dian-zi-she-ji.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Jul 2015 21:41:00 +0200</lastBuildDate><item><title>基于arduino的解魔方机器人一些总结</title><link>dbqf.xyz/posts/2015/%204/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</link><description>&lt;h5&gt;0x01 期间的一些问题&lt;/h5&gt;
 &lt;p&gt;解魔方机器人，最初只是大一的一个想法，然后那会调研了下，成本需要两三k，并且是动力老男孩的那种版本，印象中其他类型的解魔方机器人需要的动手能力比较强。&lt;/p&gt;
 &lt;p&gt;在毕昇杯想项目的过程中，本来有一个区域性物流定位的项目，但是相关基础是在不好，并没有相关思路，所以同时也在构思其他项目，在一次睡梦中，想到了解魔方机器人，想到了现在的原型，并且在寒假中开始搜集资料，整理思路。&lt;/p&gt;
 &lt;p&gt;在刚开始的时候，遇到了一些问题。&lt;/p&gt;
@@ -9,13 +9,13 @@
 &lt;h5&gt;0x03 无可置换的控制板&lt;/h5&gt;
 &lt;h5&gt;0x04 博创杯参赛小记&lt;/h5&gt;
 &lt;h5&gt;0x05 博创杯见闻&lt;/h5&gt;
-&lt;h5&gt;0x06 嵌入式回顾&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 28 Jul 2015 21:41:00 +0200</pubDate><guid>tag:,2015-04-30:dubuqingfeng.github.io/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于arduino的解魔方机器人后续扩展</title><link>dubuqingfeng.github.io/posts/2015/%204/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</link><description>&lt;h5&gt;0x01 Android软件上的扩展&lt;/h5&gt;
+&lt;h5&gt;0x06 嵌入式回顾&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 28 Jul 2015 21:41:00 +0200</pubDate><guid>tag:,2015-04-30:dbqf.xyz/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于arduino的解魔方机器人后续扩展</title><link>dbqf.xyz/posts/2015/%204/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</link><description>&lt;h5&gt;0x01 Android软件上的扩展&lt;/h5&gt;
 &lt;p&gt;Android上的控制软件，&lt;/p&gt;
 &lt;h5&gt;0x02 Arduino主控的扩展&lt;/h5&gt;
 &lt;h5&gt;0x03 在图像处理方面的扩展&lt;/h5&gt;
 &lt;h5&gt;0x04 蓝牙WIFI方面的扩展&lt;/h5&gt;
 &lt;h5&gt;0x05 主控板的扩展&lt;/h5&gt;
-&lt;h5&gt;0x06 树莓派的扩展&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-20:dubuqingfeng.github.io/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>dubuqingfeng.github.io/posts/2015/%204/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
+&lt;h5&gt;0x06 树莓派的扩展&lt;/h5&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Mon, 20 Apr 2015 16:22:00 +0200</pubDate><guid>tag:,2015-04-20:dbqf.xyz/posts/2015/ 4/20/201503-Rubik's-Cube-Robot-houxukuozhan/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人软件设计与实现</title><link>dbqf.xyz/posts/2015/%204/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</link><description>&lt;h5&gt;0x01 Android上位机设计部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 Android代码思路&lt;/h5&gt;
 &lt;h5&gt;0x03 Android软件测试&lt;/h5&gt;
@@ -98,7 +98,7 @@
 &lt;/blockquote&gt;
 &lt;h5&gt;0x07 魔方解法操作对应舵机动作分析&lt;/h5&gt;
 &lt;p&gt;因为舵机转动角度为0～180度，所以在初始角度中有两种，可以在0度，使得可以一次性做U和U2类型的操作(关于魔方转法表示，参考详细思考)，魔方解法为上黄下白前橙的初始位置。&lt;/p&gt;
-&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 10 Apr 2015 20:18:00 +0200</pubDate><guid>tag:,2015-04-10:dubuqingfeng.github.io/posts/2015/ 4/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人组装调试</title><link>dubuqingfeng.github.io/posts/2015/%203/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</link><description>&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
+&lt;p&gt;R动作分析如下：2f号舵机旋转到90度，延迟等待旋转完毕，2b号舵机旋转，使机械臂后退，延迟等待旋转完毕，2f号舵机旋转到0度，延迟等待旋转完毕，2b号舵机旋转，使机械臂前进卡住魔方。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 10 Apr 2015 20:18:00 +0200</pubDate><guid>tag:,2015-04-10:dbqf.xyz/posts/2015/ 4/10/201503-Rubik's-Cube-Robot-Ruanjiansheji/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人组装调试</title><link>dbqf.xyz/posts/2015/%203/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</link><description>&lt;h5&gt;0x01 LM3S615&lt;/h5&gt;
 &lt;p&gt;此板是属于TI公司LM3S系列，是ARM Cortex-M3内核，相关手册以及电路图、说明书也在&lt;a href="http://download"&gt;&lt;/a&gt;有下载，主要使用20针JTAG接口与J-LINK仿真器进行连接调试，主要有关系的是LM3S615的串口通信，PWM模块和GPIO接口。&lt;/p&gt;
 &lt;h5&gt;0x02 TTL与RS-232&lt;/h5&gt;
 &lt;p&gt;波特率&lt;/p&gt;
@@ -123,7 +123,7 @@
 &lt;h5&gt;0x11 蓝牙与舵机控制板的连接测试&lt;/h5&gt;
 &lt;p&gt;首先需要考虑蓝牙模块供电问题，&lt;/p&gt;
 &lt;h5&gt;0x100 参考文献&lt;/h5&gt;
-&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 Mar 2015 22:12:00 +0100</pubDate><guid>tag:,2015-03-24:dubuqingfeng.github.io/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人详细思考</title><link>dubuqingfeng.github.io/posts/2015/%203/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
+&lt;p&gt;《ARM体系结构与外设接口实战开发》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 Mar 2015 22:12:00 +0100</pubDate><guid>tag:,2015-03-24:dbqf.xyz/posts/2015/ 3/24/201503-Rubik's-Cube-Robot-Zhuzhuangtiaoshi/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人详细思考</title><link>dbqf.xyz/posts/2015/%203/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</link><description>&lt;h5&gt;0x01 显示屏大显部分&lt;/h5&gt;
 &lt;p&gt;常见的魔方比赛可以&lt;/p&gt;
 &lt;h5&gt;0x02 系统设计框图设计&lt;/h5&gt;
 &lt;p&gt;主控板采取官方平台LM3S615平台，其供电采取电源适配器转3.3V(5V)，&lt;/p&gt;
@@ -133,7 +133,7 @@
 &lt;p&gt;电路板部分涉及到了通用版。&lt;/p&gt;
 &lt;h5&gt;0x05 材料的选择&lt;/h5&gt;
 &lt;p&gt;1.魔方：采用5.7CM的标准魔方，以顺滑和容错为标准，适当调整螺丝。
-2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 20 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-20:dubuqingfeng.github.io/posts/2015/ 3/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人初步设计</title><link>dubuqingfeng.github.io/posts/2015/%203/08/201503-Rubik's-Cube-Robot-start/index.html</link><description>&lt;h5&gt;0x01 材料&lt;/h5&gt;
+2.蓝牙适配器：现有HC-05和HM-10两种，主要是下位机接收命令的，应该是配置成从机。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Fri, 20 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-20:dbqf.xyz/posts/2015/ 3/20/201503-Rubik's-Cube-Robot-Xiangxisikao/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于Arduino的解魔方机器人初步设计</title><link>dbqf.xyz/posts/2015/%203/08/201503-Rubik's-Cube-Robot-start/index.html</link><description>&lt;h5&gt;0x01 材料&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;Android手机(摄像头正常)&lt;/li&gt;
 &lt;li&gt;魔方(5.7cm,非地摊货)&lt;/li&gt;
@@ -225,7 +225,7 @@
 &lt;li&gt;3.主要功能为解魔方操作，识别魔方，计时等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5&gt;0x10 乐高机器人与之的辨析&lt;/h5&gt;
-&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 08 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-08:dubuqingfeng.github.io/posts/2015/ 3/08/201503-Rubik's-Cube-Robot-start/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于RFID的区域性物流定位的初步设计</title><link>dubuqingfeng.github.io/posts/2015/%203/06/201503-RFID-RTLS-RSSI-start/index.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
+&lt;p&gt;乐高也有解魔方机器人，并且有专门的颜色传感器，&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sun, 08 Mar 2015 20:12:00 +0100</pubDate><guid>tag:,2015-03-08:dbqf.xyz/posts/2015/ 3/08/201503-Rubik's-Cube-Robot-start/index.html</guid><category>电子设计</category><category>解魔方机器人</category></item><item><title>基于RFID的区域性物流定位的初步设计</title><link>dbqf.xyz/posts/2015/%203/06/201503-RFID-RTLS-RSSI-start/index.html</link><description>&lt;h5&gt;0x01 RFID定位&lt;/h5&gt;
 &lt;p&gt;RFID技术，无线电频率识别，一种利用射频信号自动识别目标对象并获取相关信息的技术。超高频UHF及高频HF的RFID定位技术，&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;RFID 定位模块&lt;/p&gt;
@@ -302,4 +302,4 @@
 &lt;p&gt;《单片机与计算机串口通信实践》第一部分，第二部分第3，4章(单片机，串口通信基础)&lt;/p&gt;
 &lt;p&gt;《RFID与传感器网络：架构、协议、安全与集成》(机械工业出版社)第10，19章&lt;/p&gt;
 &lt;p&gt;《UHF RFID标签天线设计、仿真及实践》(电子工业出版社)&lt;/p&gt;
-&lt;p&gt;《无线射频识别(RFID)技术基础》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:,2015-03-06:dubuqingfeng.github.io/posts/2015/ 3/06/201503-RFID-RTLS-RSSI-start/index.html</guid><category>电子设计</category><category>RFID</category></item></channel></rss>
+&lt;p&gt;《无线射频识别(RFID)技术基础》(北京航空航天大学出版社)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 07 Mar 2015 11:00:00 +0100</pubDate><guid>tag:,2015-03-06:dbqf.xyz/posts/2015/ 3/06/201503-RFID-RTLS-RSSI-start/index.html</guid><category>电子设计</category><category>RFID</category></item></channel></rss>

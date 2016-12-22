@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/weban-quan.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 24 May 2016 22:34:00 +0200</lastBuildDate><item><title>XSS Filter</title><link>dubuqingfeng.github.io/posts/2016/%205/23/201605-xss-filter/index.html</link><description>&lt;h5&gt;0x01  前言及TOC&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/weban-quan.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 24 May 2016 22:34:00 +0200</lastBuildDate><item><title>XSS Filter</title><link>dbqf.xyz/posts/2016/%205/23/201605-xss-filter/index.html</link><description>&lt;h5&gt;0x01  前言及TOC&lt;/h5&gt;
 &lt;p&gt;最近在看XSS的相关内容，也有很多需要注意的东西。在平时的开发及设计当中，不可避免的会遇到XSS，于是就有了设计一些filter的想法，以前也在phithon的github上看到过Python的&lt;a href="https://github.com/phith0n/python-xss-filter"&gt;XSS filter&lt;/a&gt;，毕竟自己动手实现一个对于理解XSS，以及过滤的相关事情是很有帮助的。因此设计一些简单的filter，以备自己使用，并且这些filter是不安全的，不要放在生产环境，毕竟没有经过一些专业的检测，以及自己的JavaScript和XSS水平有待提高。以及以后可能还会写一些如何attack 这个filter的文章。&lt;/p&gt;
 &lt;p&gt;TOC：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -173,4 +173,4 @@ com.sxau.filter.XssFilter
 &lt;p&gt;site:freebuf.com xss&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://drops.wooyun.org/?s=xss&amp;amp;submit=%E6%90%9C%E7%B4%A2"&gt;Wooyun Drops&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://code.google.com/p/owasp-esapi-python/"&gt;owasp-esapi-python&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 May 2016 22:34:00 +0200</pubDate><guid>tag:,2016-05-23:dubuqingfeng.github.io/posts/2016/ 5/23/201605-xss-filter/index.html</guid><category>Web安全</category><category>xss</category></item></channel></rss>
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Tue, 24 May 2016 22:34:00 +0200</pubDate><guid>tag:,2016-05-23:dbqf.xyz/posts/2016/ 5/23/201605-xss-filter/index.html</guid><category>Web安全</category><category>xss</category></item></channel></rss>

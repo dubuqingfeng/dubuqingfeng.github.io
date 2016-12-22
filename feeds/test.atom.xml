@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/test.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2015-02-10T12:11:00+01:00</updated><entry><title>Hello,World!</title><link href="dubuqingfeng.github.io/posts/2015/%202/10/2015-create-blog/index.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-10:dubuqingfeng.github.io/posts/2015/ 2/10/2015-create-blog/index.html</id><summary type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/test.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2015-02-10T12:11:00+01:00</updated><entry><title>Hello,World!</title><link href="dbqf.xyz/posts/2015/%202/10/2015-create-blog/index.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-10:dbqf.xyz/posts/2015/ 2/10/2015-create-blog/index.html</id><summary type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
 &lt;/blockquote&gt;

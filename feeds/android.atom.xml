@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dubuqingfeng.github.io/" rel="alternate"></link><link href="dubuqingfeng.github.io/feeds/android.atom.xml" rel="self"></link><id>dubuqingfeng.github.io/</id><updated>2016-07-03T22:31:00+02:00</updated><entry><title>Android UI期末作业分析（附代码）</title><link href="dubuqingfeng.github.io/posts/2016/%207/01/201607-android-ui-design-homework/index.html" rel="alternate"></link><updated>2016-07-03T22:31:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-07-01:dubuqingfeng.github.io/posts/2016/ 7/01/201607-android-ui-design-homework/index.html</id><summary type="html">&lt;h5&gt;0x00   TOC&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/android.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2016-07-03T22:31:00+02:00</updated><entry><title>Android UI期末作业分析（附代码）</title><link href="dbqf.xyz/posts/2016/%207/01/201607-android-ui-design-homework/index.html" rel="alternate"></link><updated>2016-07-03T22:31:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-07-01:dbqf.xyz/posts/2016/ 7/01/201607-android-ui-design-homework/index.html</id><summary type="html">&lt;h5&gt;0x00   TOC&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;作业题目分析&lt;/p&gt;
 &lt;p&gt;底部选项卡实现&lt;/p&gt;
@@ -440,7 +440,7 @@
 &lt;p&gt;曾遇你真心的臂弯，伴我走过患难。&lt;/p&gt;
 &lt;p&gt;夕阳虽美，但却近黄昏。&lt;/p&gt;
 &lt;p&gt;梅艳芳曾经讲过，《夕阳之歌》是她一生的写照。也许在死亡面前，才能真正感悟。&lt;/p&gt;
-&lt;p&gt;各位都应珍惜时间，别到了最后，令自己后悔；珍惜眼前人，也许明日就是离别之时；珍惜身边的一切，经历过大风大浪才知，平淡美好的生活才是所向往的。未来怎样，无法预料，可是我们也得有面对未来的准备啊。扪心自问，问心无愧，足以。&lt;/p&gt;</summary><category term="Android"></category><category term="Android UI"></category><category term="导航栏"></category></entry><entry><title>findViewById注解、泛型、反射、MVVM</title><link href="dubuqingfeng.github.io/posts/2016/%206/29/201606-android-develop-annotations-reflect-mvvm/index.html" rel="alternate"></link><updated>2016-06-29T21:31:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-29:dubuqingfeng.github.io/posts/2016/ 6/29/201606-android-develop-annotations-reflect-mvvm/index.html</id><summary type="html">&lt;h5&gt;0x00   TOC：&lt;/h5&gt;
+&lt;p&gt;各位都应珍惜时间，别到了最后，令自己后悔；珍惜眼前人，也许明日就是离别之时；珍惜身边的一切，经历过大风大浪才知，平淡美好的生活才是所向往的。未来怎样，无法预料，可是我们也得有面对未来的准备啊。扪心自问，问心无愧，足以。&lt;/p&gt;</summary><category term="Android"></category><category term="Android UI"></category><category term="导航栏"></category></entry><entry><title>findViewById注解、泛型、反射、MVVM</title><link href="dbqf.xyz/posts/2016/%206/29/201606-android-develop-annotations-reflect-mvvm/index.html" rel="alternate"></link><updated>2016-06-29T21:31:00+02:00</updated><author><name>admin</name></author><id>tag:,2016-06-29:dbqf.xyz/posts/2016/ 6/29/201606-android-develop-annotations-reflect-mvvm/index.html</id><summary type="html">&lt;h5&gt;0x00   TOC：&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;常规&lt;/p&gt;
 &lt;p&gt;注解&lt;/p&gt;
@@ -709,7 +709,7 @@ SDK24
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;其中维护了一个View数组，然后从中遍历匹配，从而找到View对象。&lt;/p&gt;</summary><category term="Android"></category><category term="findViewById"></category><category term="注解"></category><category term="反射"></category></entry><entry><title>如何使用PreferenceFragment方便地完成设置界面</title><link href="dubuqingfeng.github.io/posts/2015/%206/06/201506-android-Preference-fragment/index.html" rel="alternate"></link><updated>2015-06-06T12:13:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-06-06:dubuqingfeng.github.io/posts/2015/ 6/06/201506-android-Preference-fragment/index.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+&lt;p&gt;其中维护了一个View数组，然后从中遍历匹配，从而找到View对象。&lt;/p&gt;</summary><category term="Android"></category><category term="findViewById"></category><category term="注解"></category><category term="反射"></category></entry><entry><title>如何使用PreferenceFragment方便地完成设置界面</title><link href="dbqf.xyz/posts/2015/%206/06/201506-android-Preference-fragment/index.html" rel="alternate"></link><updated>2015-06-06T12:13:00+02:00</updated><author><name>admin</name></author><id>tag:,2015-06-06:dbqf.xyz/posts/2015/ 6/06/201506-android-Preference-fragment/index.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在设置界面的开发时，以前往往通过自己写界面，在没有合适美工时，比较费时费力，尤其是以前需要兼容Android2.3的时候。当3.0以后出现了PreferenceFragment，可以快速地完成一个类似于系统设置的偏好设定界面。&lt;/p&gt;
 &lt;p&gt;在android3.0以后，官方推荐使用PreferenceFragment去替代PreferenceActivity。
 以及一些配置。&lt;/p&gt;

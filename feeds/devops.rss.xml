@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/devops.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 10 Nov 2016 01:53:00 +0100</lastBuildDate><item><title>DevOps 最佳实践之推进软件安全开发周期 SDL 建设</title><link>dubuqingfeng.github.io/posts/2016/10/24/201610-devops-best-practices-sdl/index.html</link><description>&lt;h5&gt;目录：&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/devops.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 10 Nov 2016 01:53:00 +0100</lastBuildDate><item><title>DevOps 最佳实践之推进软件安全开发周期 SDL 建设</title><link>dbqf.xyz/posts/2016/10/24/201610-devops-best-practices-sdl/index.html</link><description>&lt;h5&gt;目录：&lt;/h5&gt;
 &lt;ul&gt;
 &lt;li&gt;前言&lt;/li&gt;
 &lt;li&gt;DevOps&lt;/li&gt;
@@ -50,4 +50,4 @@
 &lt;p&gt;这是其他同类网站所没有的。并且相比较而言，以前得使用很多服务，比如bugly，Jenkins，bugclose 或者 bugtags，trello 或者 tower，git 等。&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201610-devops-best-practices-sdl-5.png" class="responsive-img"&gt;&lt;/p&gt;
 &lt;h5&gt;后记&lt;/h5&gt;
-&lt;p&gt;实际上，软件安全开发周期还有很多内容，限于篇幅，不能一一列举探讨，而其他的比如安全培训，需求分析，测试，系统设计，发布，应急响应时候的安全规范，这个每个公司情况不尽相同，不能一概而论，并且 SDL 也不是银弹，不能解决全部的问题，但是对整体的安全性会有很大的提升，所以也希望大部分公司可以建设起自己的安全体系，建设属于自己的 SDL，解决大部分的安全问题，一起对安全作出自己的贡献。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 10 Nov 2016 01:53:00 +0100</pubDate><guid>tag:,2016-10-24:dubuqingfeng.github.io/posts/2016/10/24/201610-devops-best-practices-sdl/index.html</guid><category>SDL</category><category>DevOps</category></item></channel></rss>
+&lt;p&gt;实际上，软件安全开发周期还有很多内容，限于篇幅，不能一一列举探讨，而其他的比如安全培训，需求分析，测试，系统设计，发布，应急响应时候的安全规范，这个每个公司情况不尽相同，不能一概而论，并且 SDL 也不是银弹，不能解决全部的问题，但是对整体的安全性会有很大的提升，所以也希望大部分公司可以建设起自己的安全体系，建设属于自己的 SDL，解决大部分的安全问题，一起对安全作出自己的贡献。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Thu, 10 Nov 2016 01:53:00 +0100</pubDate><guid>tag:,2016-10-24:dbqf.xyz/posts/2016/10/24/201610-devops-best-practices-sdl/index.html</guid><category>SDL</category><category>DevOps</category></item></channel></rss>

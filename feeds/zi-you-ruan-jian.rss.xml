@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dubuqingfeng.github.io/</link><description></description><atom:link href="dubuqingfeng.github.io/feeds/zi-you-ruan-jian.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 12 Mar 2016 20:42:00 +0100</lastBuildDate><item><title>一些软件源的收集</title><link>dubuqingfeng.github.io/posts/2016/%203/12/201603-some-sources/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>独步清风's blog</title><link>dbqf.xyz/</link><description></description><atom:link href="dbqf.xyz/feeds/zi-you-ruan-jian.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 12 Mar 2016 20:42:00 +0100</lastBuildDate><item><title>一些软件源的收集</title><link>dbqf.xyz/posts/2016/%203/12/201603-some-sources/index.html</link><description>&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在国内的大环境下，一些软件使用官方源会有很大的延迟，而使用国内搭建的同步官方源的话，速度会提升很多的，因此，本文总结一些常用的软件源，并不定期更新。&lt;/p&gt;
 &lt;h5&gt;0x02 Linux&lt;/h5&gt;
 &lt;ul&gt;
@@ -129,4 +129,4 @@ $ cnpm sync connect
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://pypi.mirrors.ustc.edu.cn/"&gt;中科大&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://pypi.douban.com/"&gt;豆瓣&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 12 Mar 2016 20:42:00 +0100</pubDate><guid>tag:,2016-03-12:dubuqingfeng.github.io/posts/2016/ 3/12/201603-some-sources/index.html</guid><category>软件源</category><category>Linux</category><category>Docker</category></item></channel></rss>
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">admin</dc:creator><pubDate>Sat, 12 Mar 2016 20:42:00 +0100</pubDate><guid>tag:,2016-03-12:dbqf.xyz/posts/2016/ 3/12/201603-some-sources/index.html</guid><category>软件源</category><category>Linux</category><category>Docker</category></item></channel></rss>
