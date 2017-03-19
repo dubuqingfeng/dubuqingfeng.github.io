@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/bugtags.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2015-12-19T01:34:00+01:00</updated><entry><title>Bugtags使用感触</title><link href="dbqf.xyz/posts/2015/12/18/201512-bugtags-feedback/index.html" rel="alternate"></link><updated>2015-12-19T01:34:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-12-18:dbqf.xyz/posts/2015/12/18/201512-bugtags-feedback/index.html</id><summary type="html">&lt;h5&gt;0x01   前言、&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog - 【Bugtags】</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/bugtags.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2015-12-19T01:34:00+01:00</updated><entry><title>Bugtags使用感触</title><link href="dbqf.xyz/posts/2015/12/18/201512-bugtags-feedback/index.html" rel="alternate"></link><published>2015-12-18T23:22:00+01:00</published><updated>2015-12-19T01:34:00+01:00</updated><author><name>admin</name></author><id>tag:None,2015-12-18:dbqf.xyz/posts/2015/12/18/201512-bugtags-feedback/index.html</id><summary type="html">&lt;p&gt;写在Bugtags上线Crash发生趋势之际，以及英语四级前夜。仅感触，无其他。&lt;/p&gt;</summary><content type="html">&lt;h5&gt;0x01   前言、&lt;/h5&gt;
 &lt;p&gt;写在Bugtags上线Crash发生趋势之际，以及英语四级前夜。仅感触，无其他。&lt;/p&gt;
 &lt;h5&gt;0x02   起缘、&lt;/h5&gt;
 &lt;p&gt;在9月份的时候，开学之际，随着Codekk微信号推送了一条名为“移动应用Bug快速反馈利器”的消息，工欲善其事，必先利其器。看完介绍了以后，不禁感觉眼前一亮，和以前接触的crash收集工具有点不一样，并且也听说过一些摇一摇进行反馈的功能。&lt;/p&gt;
@@ -50,4 +50,4 @@
 &lt;p&gt;开放一些api，实现自定义配置&lt;/p&gt;
 &lt;p&gt;希望可以提供一些移动应用测试，例如monkey之类的实践。&lt;/p&gt;
 &lt;p&gt;如果是非Wi-Fi环境下，提供一些流量方面的统计。&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Bug管理"></category><category term="Bugtags"></category></entry></feed>
+&lt;/blockquote&gt;</content><category term="Bug管理"></category><category term="Bugtags"></category></entry></feed>

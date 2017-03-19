@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/test.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2015-02-10T12:11:00+01:00</updated><entry><title>Hello,World!</title><link href="dbqf.xyz/posts/2015/%202/10/2015-create-blog/index.html" rel="alternate"></link><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:,2015-02-10:dbqf.xyz/posts/2015/ 2/10/2015-create-blog/index.html</id><summary type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog - 【test】</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/test.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2015-02-10T12:11:00+01:00</updated><entry><title>Hello,World!</title><link href="dbqf.xyz/posts/2015/%202/10/2015-create-blog/index.html" rel="alternate"></link><published>2015-02-10T12:11:00+01:00</published><updated>2015-02-10T12:11:00+01:00</updated><author><name>admin</name></author><id>tag:None,2015-02-10:dbqf.xyz/posts/2015/ 2/10/2015-create-blog/index.html</id><summary type="html">&lt;p&gt;这是搭建pelican后的第一篇文章，还将会修改主题，建立一种编辑器环境。本文记述了如何搭建pelican的环境，写作环境，主题的编写，pelican插件配置，以及程序后续维护，域名、Rss等服务配置。&lt;/p&gt;</summary><content type="html">&lt;h5&gt;0x01 搭建环境&lt;/h5&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Linux(Ubuntu)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Virtualenv
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Virtualenv
 
 sudo pip install virtualenv
 &lt;/pre&gt;&lt;/div&gt;
@@ -12,7 +12,7 @@ sudo pip install virtualenv
 &lt;blockquote&gt;
 &lt;p&gt;MAC&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;pip install pelican markdown
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown
 
 pelican-quickstart
 &lt;/pre&gt;&lt;/div&gt;
@@ -45,7 +45,7 @@ Cactus&lt;/p&gt;
 &lt;p&gt;SSL证书配置？&lt;/p&gt;
 &lt;p&gt;因blog为静态的，也不需要涉及后台的操作，所以https加密显得不是特别重要。&lt;/p&gt;
 &lt;p&gt;RSS的配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# Feed generation is usually not desired when developing
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Feed generation is usually not desired when developing
 FEED_RSS = u&amp;quot;feeds/all.rss.xml&amp;quot;
 CATEGORY_FEED_RSS=u&amp;quot;feeds/%s.rss.xml&amp;quot;
 FEED_ALL_ATOM = &amp;#39;feeds/all.atom.xml&amp;#39;
@@ -56,4 +56,7 @@ AUTHOR_FEED_RSS = None
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;</summary><category term="github pages"></category><category term="pelican"></category></entry></feed>
+&lt;p&gt;然后RSS的地址为/feeds/all.rss.xml&lt;/p&gt;
+&lt;h5&gt;0x07 20170213更新&lt;/h5&gt;
+&lt;p&gt;博客通过阿里云万网进行国内和国外的分流，国内使用Coding pages进行托管，最近也上了SSL证书，设置了强制跳转，由于HTTPS不能访问HTTP资源，所以对主题进行了一定的改写，先将图片托管到七牛云平台，并通过认证开通HTTPS，然后就是百度分享的问题，根据&lt;a href="https://github.com/hrwhisper/baiduShare"&gt;这个仓库&lt;/a&gt;的说明，修改了一些地址。然后就是评论就不支持多说了，于是换了友言，原来的评论后来被墙了，可怜。然后又加上了打赏按钮，虽然知道并不会有人打赏的。&lt;/p&gt;
+&lt;p&gt;并且将博客代码放到了坚果云上，达到同步的效果（好几次苹果电脑打不开的情况，做个备份也罢）。后来发现，&lt;a href="https://xiaoye.me"&gt;hexo博客&lt;/a&gt;部署起来也很方便，只需要一个命令就可以了，&lt;strong&gt;hexo deploy&lt;/strong&gt;类似这种的，配合git-deployer直接推到github pages，并且主分支就是hexo博客的代码，不用坚果云去同步。&lt;/p&gt;</content><category term="github pages"></category><category term="pelican"></category></entry></feed>

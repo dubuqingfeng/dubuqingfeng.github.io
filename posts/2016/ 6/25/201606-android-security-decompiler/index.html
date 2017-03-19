@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -174,7 +175,7 @@
 <p>Dex2Jar:<a href="https://github.com/pxb1988/dex2jar/releases">https://github.com/pxb1988/dex2jar/releases</a></p>
 <p>JD-GUI:<a href="http://jd.benow.ca/">http://jd.benow.ca/</a></p>
 <p>使用Dex2Jar和Jd-gui的命令：</p>
-<div class="highlight"><pre>dex2jar &lt;file0&gt;
+<div class="highlight"><pre><span></span>dex2jar &lt;file0&gt;
 //即
 ./d2j-dex2jar.sh xxx.apk
 java -jar jd-gui-x.y.z.jar
@@ -198,7 +199,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 <p>smali是将smali文件转换成dex。</p>
 <p>Baksmali和smali相反，将dex转换成smali。</p>
 <p>在<a href="https://www.quora.com/What-is-smali-in-Android">Quora的一篇问答</a>中，介绍了smali和baksmali的作用。</p>
-<div class="highlight"><pre>Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,
+<div class="highlight"><pre><span></span>Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,
  Android&#39;s Java VM implementation. The names &quot;Smali&quot; and &quot;Baksmali&quot; are the
   Icelandic equivalents of &quot;assembler&quot; and &quot;disassembler&quot; respectively.
 </pre></div>
@@ -207,7 +208,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 <h5>0x03  仅混淆</h5>
 <p>通常Android混淆方法，有ProGuard、DexGuard和APKfuscator等。</p>
 <p>怎样使用ProGuard对Android项目源码进行混淆保护，在Android Studio中build.gradle，修改以下代码片段</p>
-<div class="highlight"><pre><span class="n">release</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">release</span> <span class="o">{</span>
     <span class="n">minifyEnabled</span> <span class="kc">true</span>
     <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">optimize</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span>
      <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
@@ -217,7 +218,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 
 <p>将<code>minifyEnabled</code>改为true。去除无效资源的话需要添加<a href="http://tools.android.com/tech-docs/new-build-system/resource-shrinking"><code>shrinkResources true</code></a>。</p>
 <p>然后在<code>proguard-rules.pro</code>文件中，编写一些特定框架的混淆规则。</p>
-<div class="highlight"><pre># ProGuard configurations for Bugtags
+<div class="highlight"><pre><span></span># ProGuard configurations for Bugtags
 -keepattributes LineNumberTable,SourceFile
 
 -keep class com.bugtags.library.** {*;}
@@ -243,7 +244,7 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 <p>混淆的效果如下图所示。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-03.png" class="responsive-img"></p>
 <p>以及加速gradle编译的配置：</p>
-<div class="highlight"><pre>org.gradle.daemon=true
+<div class="highlight"><pre><span></span>org.gradle.daemon=true
 org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
 +HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
 org.gradle.parallel=true
@@ -257,12 +258,12 @@ org.gradle.configureondemand=true
 <p>可以使用Proguard再混淆一次，利用自己写的规则Mapping文件。</p>
 <p>这里以一个文件为例。进行Proguard的混淆以及反混淆。</p>
 <p>在Proguard配置文件中，添加如下语句，可打印出默认混淆规则的Mapping文件。</p>
-<div class="highlight"><pre>-printmapping mapping.txt
+<div class="highlight"><pre><span></span>-printmapping mapping.txt
 </pre></div>
 
 
 <p>在修改好对应的值以后，利用以下语句，应用Mapping文件，再建一个项目，分析对应的代码。</p>
-<div class="highlight"><pre>-applymapping mapping.txt
+<div class="highlight"><pre><span></span>-applymapping mapping.txt
 </pre></div>
 
 
@@ -275,7 +276,7 @@ org.gradle.configureondemand=true
 <p>当然如果面面俱到，文章篇幅就比较长了，并且实践、研究花费的时间也比较多。这里就举比较简单的例子。</p>
 <p>Android签名校验：</p>
 <p>在android程序中，可以使用以下代码进行签名的获取。</p>
-<div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">packageName</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">packageName</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getPackageManager</span><span class="o">();</span>
     <span class="n">PackageInfo</span> <span class="n">pi</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -300,7 +301,7 @@ org.gradle.configureondemand=true
 <p>然后添加到文件夹里，如下图所示。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-06.png" class="responsive-img"></p>
 <p>准备UPX壳编译环境：</p>
-<div class="highlight"><pre>zlib-1.2.8.tar.gz
+<div class="highlight"><pre><span></span>zlib-1.2.8.tar.gz
 ucl-1.03.tar.gz
 lzma443.tar.bz2
 upx-hg-68db2e569c63.tar.gz
@@ -308,7 +309,7 @@ upx-hg-68db2e569c63.tar.gz
 
 
 <p>编译安装:</p>
-<div class="highlight"><pre><span class="x">cd ucl-1.03</span>
+<div class="highlight"><pre><span></span><span class="x">cd ucl-1.03</span>
 <span class="x">./configure --prefix=</span><span class="p">$</span><span class="nv">PWD</span><span class="x">/../../upx-hg-6cd5982ece4f/build</span>
 <span class="x">make</span>
 <span class="x">cd zlib-1.2.8</span>
@@ -319,7 +320,7 @@ upx-hg-68db2e569c63.tar.gz
 
 
 <p>设置环境变量。</p>
-<div class="highlight"><pre>export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03
+<div class="highlight"><pre><span></span>export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03
 export UPX_ZLIBDIR=/Users/qingfeng/software/upx/libs/zlib-1.2.8
 export UPX_LZMADIR=/Users/qingfeng/software/upx/libs/lzma443
 export UPX_LZMA_VERSION=0x443
@@ -329,7 +330,7 @@ export UPX_DIR=/Users/qingfeng/software/upx/upx-hg-68db2e569c63
 
 <p>查看环境变量的命令env，应用环境变量的命令<code>source .bash_profile</code>。</p>
 <p>然后在编译<code>make all</code>的过程中，遇到了以下的错误。</p>
-<div class="highlight"><pre>./bele_policy.h:156:9: error: unused typedef &#39;acc_cta_t__39&#39; [-Werror,-Wunused-local-typedef]
+<div class="highlight"><pre><span></span>./bele_policy.h:156:9: error: unused typedef &#39;acc_cta_t__39&#39; [-Werror,-Wunused-local-typedef]
         COMPILE_TIME_ASSERT(sizeof(U16) == 2)
         ^
 ./conf.h:359:34: note: expanded from macro &#39;COMPILE_TIME_ASSERT&#39;
@@ -350,20 +351,20 @@ acc_cta_t__39
 <p>无论是upx是3.9.1，还是最新版，无论lzma是443版本还是最新版1610，编译的时候都会出现这个问题</p>
 <p>然后试着升级了一下g++的版本，mac自带的是4.2版本，用brew升级到了4.8，然后用zsh的alias功能（vi .zshrc）将自带的替换掉，然后再编译还是不行，最后还是使用ubuntu进行编译吧。</p>
 <p>然后就下了一个16.04的镜像，然后跑起了虚拟机，下载并<a href="http://www.chinapyg.com/thread-77929-1-1.html">编译那些依赖</a>，然后在upx目录下<code>make all</code>的过程中，出现了以下的问题：</p>
-<div class="highlight"><pre><span class="n">compress</span><span class="p">.</span><span class="nl">cpp</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span> <span class="n">fatal</span> <span class="nl">error</span><span class="p">:</span> <span class="n">zlib</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<div class="highlight"><pre><span></span><span class="n">compress</span><span class="p">.</span><span class="nl">cpp</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span> <span class="n">fatal</span> <span class="nl">error</span><span class="p">:</span> <span class="n">zlib</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
      <span class="cp">#include</span> <span class="cpf">&lt;zlib.h&gt;</span><span class="cp"></span>
 </pre></div>
 
 
 <p>没找到<code>zlib.h</code>，可是自己在zlib那也<code>make</code>了啊，在查找资料的过程中，试着在zlib目录<code>make install</code>了一下，然后就编译完成了，在src目录下也有<code>./upx.out</code>了，版本是3.9.2。</p>
 <p>这个时候就应该考虑so的init段的问题了。据这篇文章说，加壳的文件中需要有INIT段，添加init段的代码如下：</p>
-<div class="highlight"><pre><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}</span> <span class="err">\\</span><span class="n">c</span><span class="o">++</span>
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}</span> <span class="err">\\</span><span class="n">c</span><span class="o">++</span>
 <span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span><span class="kt">void</span> <span class="n">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}}</span>    <span class="err">\\</span><span class="n">c</span>
 </pre></div>
 
 
 <p>然后加壳的命令如下：</p>
-<div class="highlight"><pre>./upx.out -f -o libdemo_upx.so libdemo.so
+<div class="highlight"><pre><span></span>./upx.out -f -o libdemo_upx.so libdemo.so
 </pre></div>
 
 
@@ -521,51 +522,51 @@ acc_cta_t__39
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -611,54 +612,54 @@ acc_cta_t__39
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>

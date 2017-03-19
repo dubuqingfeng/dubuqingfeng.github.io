@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -154,7 +155,7 @@
 以及一些配置。</p>
 <h5>0x02 浅析</h5>
 <p>PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。</p>
-<div class="highlight"><pre><span class="cm">/**</span>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Interface definition for a callback to be invoked when a</span>
 <span class="cm"> * {@link Preference} in the hierarchy rooted at this </span>
 <span class="cm"> * {@link PreferenceScreen} is</span>
@@ -184,7 +185,7 @@
 <p>选择Blank Activity With Fragment，填写activity为SettingActivity。</p>
 <p><strong>修改fragment继承PreferenceFragment。</strong></p>
 <p>新建一个xml文件，建立/res/xml/preferences.xml</p>
-<div class="highlight"><pre><span class="nt">&lt;PreferenceScreen</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;PreferenceScreen</span>
     <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;PreferenceCategory</span>
@@ -213,7 +214,7 @@
 
 
 <p>在SettingFragment中，通过addPreferencesFromResource(R.xml.preferences);加载上述的xml文件。</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
+<div class="highlight"><pre><span></span><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
     <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
     <span class="n">addPreferencesFromResource</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">preferences</span><span class="o">);</span>
@@ -223,7 +224,7 @@
 
 <p>设置项保存到哪了？SharedPreferences。在/data/data/应用包名/shared_prefs/应用包名_preferences.xml文件中，android:key即为键值名。</p>
 <p>如何读取设置？通过SharedPreferences</p>
-<div class="highlight"><pre><span class="n">SharedPreferences</span> <span class="n">mySharedPreferences</span> <span class="o">=</span> <span class="n">PreferenceManager</span>
+<div class="highlight"><pre><span></span><span class="n">SharedPreferences</span> <span class="n">mySharedPreferences</span> <span class="o">=</span> <span class="n">PreferenceManager</span>
         <span class="o">.</span><span class="na">getDefaultSharedPreferences</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 
 <span class="kt">boolean</span> <span class="n">my_checkbox_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span>
@@ -237,7 +238,7 @@
 
 
 <p>列表设置项的ListPreferences类：</p>
-<div class="highlight"><pre><span class="nt">&lt;ListPreference</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;ListPreference</span>
       <span class="na">android:key=</span><span class="s">&quot;list_preference&quot;</span>
       <span class="na">android:title=</span><span class="s">&quot;@string/标题&quot;</span>
       <span class="na">android:dialogTitle=</span><span class="s">&quot;@string/对话框标题&quot;</span>
@@ -247,7 +248,7 @@
 
 
 <p>entries和entryValues从哪来？/res/values/array.xml或者/res/values/strings.xml</p>
-<div class="highlight"><pre><span class="nt">&lt;resources&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;resources&gt;</span>
 <span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">&quot;listArray&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item&gt;</span>Headings<span class="nt">&lt;/item&gt;</span>
     <span class="nt">&lt;item&gt;</span>Headings and Details<span class="nt">&lt;/item&gt;</span>
@@ -384,51 +385,51 @@
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -474,54 +475,54 @@
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/ni-xiang-jia-mi.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2014-07-28T20:48:00+02:00</updated><entry><title>利用VMProtect sdk和ASProtect sdk加密delphi程序</title><link href="dbqf.xyz/posts/2014/%207/28/201407-reverse-disassemble-delphi/index.html" rel="alternate"></link><updated>2014-07-28T20:48:00+02:00</updated><author><name>admin</name></author><id>tag:,2014-07-28:dbqf.xyz/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog - 【逆向加密】</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/ni-xiang-jia-mi.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2014-07-28T20:48:00+02:00</updated><entry><title>利用VMProtect sdk和ASProtect sdk加密delphi程序</title><link href="dbqf.xyz/posts/2014/%207/28/201407-reverse-disassemble-delphi/index.html" rel="alternate"></link><published>2014-07-28T14:32:00+02:00</published><updated>2014-07-28T20:48:00+02:00</updated><author><name>admin</name></author><id>tag:None,2014-07-28:dbqf.xyz/posts/2014/ 7/28/201407-reverse-disassemble-delphi/index.html</id><summary type="html">&lt;p&gt;下面以我的一个delphi程序为例，介绍VMProtect sdk和EncryptPE的一些加密方法，其他vc，或者易语言写的程序也可以使用其进行加密。&lt;/p&gt;</summary><content type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;普通的一些加密壳能够较为容易的被脱掉，而一些稍微难一点壳，例如VMProtect等，刚入门的新手就不是那么好脱了，而这些壳也提供了一些sdk帮助我们加密需要加密的函数，使保护壳能够识别源码中需要加密保护的代码段。下面以我的一个delphi程序为例，介绍VMProtect sdk和EncryptPE的一些加密方法，其他vc，或者易语言写的程序也可以使用其进行加密。&lt;/p&gt;
 &lt;h5&gt;0x02 VMProtect保护&lt;/h5&gt;
 &lt;p&gt;VMProtect sdk保护方式可以有两种，map法和标记法，在官方文档中，有下述方法。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;it is possible by doing the following: use the main menu of the Delphi IDE 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;it is possible by doing the following: use the main menu of the Delphi IDE 
 to open the project options (Project – Options) and select the “Detailed” 
 option in the “MAP file” group on the “Linker” tab:
 &lt;/pre&gt;&lt;/div&gt;
@@ -19,7 +19,7 @@ option in the “MAP file” group on the “Linker” tab:
 &lt;p&gt;VMProtect根据map文件得到了一些函数信息，然后F9即可进行编译加壳，然后会生成后缀为.vmp.exe的保护后的文件，在peid0.95中查壳，结果如图所示。虽然结果为什么都没找到，但是区段中已经有了vmp1，vmp0。可以以vmprotect来进行脱壳等操作。&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-4.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;而语句标记法，主要利用了下列语句进行需要保护的代码的标记&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;asm&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;asm&lt;/span&gt;
 &lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;10,’VMProtect begin’,0 //标记开始处.&lt;/span&gt;
 &lt;span class="x"&gt;end;&lt;/span&gt;
 &lt;span class="x"&gt;//想保护的程序代码&lt;/span&gt;
@@ -30,7 +30,7 @@ option in the “MAP file” group on the “Linker” tab:
 
 
 &lt;p&gt;Vc当中标记模式为：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; __asm    //标记开始处.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; __asm    //标记开始处.
 {
 _emit 0xEB
 _emit 0x10  //jmp 0x10
@@ -75,7 +75,7 @@ _emit 0x00
 
 
 &lt;p&gt;而在官方文档中，有下列例子可供参考，将sdk的动态链接库引入，在lib目录下有相关的dll文件，在library目录下也有相关的库文件。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Markers are inserted in the code to protect separate sections of the code and also
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Markers are inserted in the code to protect separate sections of the code and also
 protect string constants. Markers are calls of imported procedures stored in an external
  DLL (VMProtectSDK32.dll is used for 32-bit applications and VMProtectSDK64.dll is used
 for 64-bit applications; VMProtectDDK32.sys and VMProtectDDK64.sys respectively are
@@ -108,7 +108,7 @@ Call VarPtr(“VMProtect end”)
 
 &lt;h5&gt;0x03 VMProtect和ASProtect的混合加密&lt;/h5&gt;
 &lt;p&gt;Asprotect也有相关的sdk，也提供了注册机制，主要delphi通过标记语句，{$I filename}，实现文件的引入，它主要有多态变形标记，crc检查标记，外壳完整性检查。不同的标记需要引入不同的文件，例如在多态变形标记中，示例为：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Delphiexample&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Delphiexample&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
  &lt;span class="k"&gt;Procedure&lt;/span&gt; &lt;span class="nf"&gt;Test&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
  &lt;span class="k"&gt;begin&lt;/span&gt;
  &lt;span class="cm"&gt;{$I Inc\UserPolyBuffer.inc}&lt;/span&gt;
@@ -126,7 +126,7 @@ Call VarPtr(“VMProtect end”)
 &lt;p&gt;而先用ASProtect，后用VMProtect时，程序正常运行，当然因为加壳的原因，在在线杀毒引擎中有23%的杀软(9/38)报告发现病毒。&lt;/p&gt;
 &lt;h5&gt;0x04 MAP文件的结构&lt;/h5&gt;
 &lt;p&gt;一开始是&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; Start         Length     Name                   Class
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; Start         Length     Name                   Class
  0001:00000000 00050F4CH .text                   CODE
  0002:00000000 000011D8H .data                   DATA
  0002:000011D8 00000BE1H .bss                    BSS
@@ -134,7 +134,7 @@ Call VarPtr(“VMProtect end”)
 
 
 &lt;p&gt;Pe文件的区段:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Detailed map of segments，一些细节方面的东西
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Detailed map of segments，一些细节方面的东西
 Address Publics by Name，然后一些关于函数的偏移量
 Line numbers for SysConst(C:\Program Files (x86)\Borland\Delphi7\lib\
 sysconst.pas) segment .text SysConst代码中行数的偏移量
@@ -143,4 +143,4 @@ Line numbers for Project2(C:\Program Files (x86)\Borland\Delphi7\
 Projects\Project2.dpr) segment .text
 Bound resource files 与之相关的资源文件
 Program entry point at 0001:00050EE0  程序入口点
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="逆向"></category><category term="delphi加密"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</content><category term="逆向"></category><category term="delphi加密"></category></entry></feed>

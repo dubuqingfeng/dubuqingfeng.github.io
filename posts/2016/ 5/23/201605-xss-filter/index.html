@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -162,7 +163,7 @@
 </blockquote>
 <h5>0x02  基础的filter</h5>
 <p>首先需要过滤&lt;&gt;"()/script等字符("&gt;_&lt;script123")，在PHP里可以使用preg_replace函数去过滤，并且通过htmlspecialchars函数转换为HTML实体编码。即：</p>
-<div class="highlight"><pre><span class="x">function safe_replace($content){</span>
+<div class="highlight"><pre><span></span><span class="x">function safe_replace($content){</span>
 <span class="x">    $tags = array(</span>
 <span class="x">        &quot;&#39;&lt;iframe[^&gt;]*?&gt;.*?&lt;/iframe&gt;&#39;is&quot;,</span>
 <span class="x">        &quot;&#39;&lt;frame[^&gt;]*?&gt;.*?&lt;/frame&gt;&#39;is&quot;,</span>
@@ -180,7 +181,7 @@
 
 <p>这里可以采用<a href="https://github.com/zicai/xss-learn/">zicai的XSS-learn代码</a>进行实验。</p>
 <p>java可以使用：</p>
-<div class="highlight"><pre><span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;&lt;&quot;</span><span class="o">,</span> <span class="s">&quot;&amp;lt;&quot;</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;&lt;&quot;</span><span class="o">,</span> <span class="s">&quot;&amp;lt;&quot;</span><span class="o">);</span>
 <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;&gt;&quot;</span><span class="o">,</span> <span class="s">&quot;&amp;gt;&quot;</span><span class="o">);</span>
 <span class="kn">import</span> <span class="nn">org.apache.commons.lang.StringEscapeUtils</span><span class="o">;</span>
 <span class="n">StringEscapeUtils</span><span class="o">.</span><span class="na">escapeHtml</span><span class="o">(</span><span class="s">&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span><span class="o">);</span>
@@ -192,7 +193,7 @@
 
 <p>当有了过滤以后，测试&lt;&gt;"(号时，发现&lt;&gt;被转义成<code>&amp;lt;</code>和<code>&amp;gt;</code>，而"(等的并没有转义，当时怀疑是被实体编码了。当看到实际代码时，发现是字符串正则替换，后来一想，如果是类似于httpspecialchars那种的实体编码的话，引号也应该转义才对。当时还想着怎么绕过实体编码转义，于是又有了一个问题，关于java里的escapeHtml的底层实现是怎样的？以及实体编码是怎样的过程，似乎这个有点偏离主题了，这个完了再思考去写一篇总结编码的文章。</p>
 <p>而在Python里可以使用</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">cgi</span>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cgi</span>
 <span class="n">cgi</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -200,12 +201,12 @@
 <p>以上都是一些正则过滤和escape编码的手段，当然不会过滤掉所有的XSS，仅可以防御一些小白。</p>
 <p>还是会有人去寻找其他的可控点，或者想办法去绕过过滤。</p>
 <p>当然这可以过滤<strong>';alert(String.fromCharCode(88,83,83))</strong>这种的攻击向量么，如果可控点在JavaScript代码里呢，或者javascript伪协议，例如</p>
-<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascript:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
 </pre></div>
 
 
 <p>以及如果使用黑名单去过滤javascript伪协议的XSS，可以使用一些空格或者回车Tab等的绕过。即：</p>
-<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javas</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javas</span>
 <span class="s">cript:</span>
 <span class="s">alert(/xss/)&quot;</span><span class="p">&gt;</span>
 </pre></div>
@@ -214,7 +215,7 @@
 <p>如何去过滤这种的呢？</p>
 <p>将换行符换成\n，将回车符换成\r，将制表符换成\t，空格可以遍历去除。</p>
 <p>当过滤完这种的以后呢，又会出现一些大小写混淆或者十进制十六进制编码或者注释的示例：</p>
-<div class="highlight"><pre><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;JavaScRiPt:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;JavaScRiPt:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav&amp;#97;ascript:alert(&#39;xss);&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav&amp;#x09;ascript:alert(&#39;xss);&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jav/**/ascript:alert(&#39;xss&#39;);&quot;</span><span class="p">&gt;</span>
@@ -224,7 +225,7 @@
 <p>面对这些，如果过滤<code>/*&amp;#javascript\;</code>，不如采取一些白名单的形式，仅允许执行特定形式的，去正则匹配结果。例如：仅允许<code>&lt;img src="http://"&gt;</code>这种的。</p>
 <p>可以构造正则语句："/^((http|ftp|https):\/\/)?[\w-<em>.]+(\/[\w-</em>]+)*\/?$/"</p>
 <p>如果单纯地过滤一些常见的<code>&lt;script&gt;</code>标签或者<code>onerror、onResume</code>等事件，还是可能会利用<code>&lt;link&gt;</code>引入一个内容为如下的CSS进行hack。</p>
-<div class="highlight"><pre><span class="k">@import</span> <span class="s1">&#39;javascript:alert(&quot;XSS&quot;)&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">@import</span> <span class="s1">&#39;javascript:alert(&quot;XSS&quot;)&#39;</span><span class="p">;</span>
 </pre></div>
 
 
@@ -233,7 +234,7 @@
 <h5>0x03  Python filter设计</h5>
 <p>一些用户的输入都是不可信的。</p>
 <p>基础的过滤就得使用一些函数或者开源库:</p>
-<div class="highlight"><pre><span class="o">//</span><span class="err">基础的过滤</span>
+<div class="highlight"><pre><span></span><span class="o">//</span><span class="err">基础的过滤</span>
 <span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">quote</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;&amp;#58;&#39;</span><span class="p">)</span>
 <span class="o">//</span><span class="err">以及一个富文本过滤类</span>
 <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">Cleaner</span><span class="o">.</span><span class="n">clean_html</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
@@ -253,7 +254,7 @@
 <p>PHP在处理<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code>等变量时需过滤一次。</p>
 <p>需要使用一些filter_var()，filter_input()函数来进行构造一些规则，进行一些模式的匹配，过滤。</p>
 <p>网上的一个防止基本的XSS函数：</p>
-<div class="highlight"><pre><span class="x">function transform_HTML($string, $length = null) {</span>
+<div class="highlight"><pre><span></span><span class="x">function transform_HTML($string, $length = null) {</span>
 <span class="x">    // Helps prevent XSS attacks</span>
 <span class="x">    // Remove dead space.</span>
 <span class="x">    $string = trim($string);</span>
@@ -279,7 +280,7 @@
 <p>Java里面本来就有一个Filter类，继承这个Filter类，然后可以通过构造一个XSSRequestWrapper，过滤一些HttpServletRequest，配置好Web.xml，使这个继承后的Filter类全局有效，进行自动的anti一些xss，过滤掉所有请求里的恶意脚本。</p>
 <p>在XSSRequestWrapper这个类里，需要重写一些getParameterValues(), getParameter() 和 getHeader()方法，期间实现一些过滤xss的函数，通过一些HTML实体编码的手段，以及正则匹配替换掉一些关键词，或者直接replaceAll去替换。</p>
 <p>Web.xml的配置方法：</p>
-<div class="highlight"><pre><span class="c">&lt;!-- XSS过滤器  --&gt;</span>
+<div class="highlight"><pre><span></span><span class="c">&lt;!-- XSS过滤器  --&gt;</span>
 <span class="nt">&lt;filter&gt;</span>
 <span class="nt">&lt;filter-name&gt;</span>XSSFilter<span class="nt">&lt;/filter-name&gt;</span>
 <span class="nt">&lt;filter-class&gt;</span>
@@ -298,7 +299,7 @@ com.sxau.filter.XssFilter
 <p>这里的系统层面，侧重于WAF方面。</p>
 <p>WAF可以是硬件层面，也可以是软件层面，<a href="https://github.com/loveshell/ngx_lua_waf">ngx_lua_waf</a>就提供了一种基于nginx_lua的思路。</p>
 <p>通常会定义一些过滤规则，就像下面这样的正则匹配规则：</p>
-<div class="highlight"><pre><span class="x">\.\./</span>
+<div class="highlight"><pre><span></span><span class="x">\.\./</span>
 <span class="x">\:\</span><span class="p">$</span><span class="x"></span>
 <span class="x">\</span><span class="p">$</span><span class="x">\</span><span class="err">{</span><span class="x"></span>
 <span class="x">\&lt;(iframe|script|body|img|layer|div|meta|style|base|object|input)</span>
@@ -430,51 +431,51 @@ com.sxau.filter.XssFilter
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -520,54 +521,54 @@ com.sxau.filter.XssFilter
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>

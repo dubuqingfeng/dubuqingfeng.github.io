@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -160,7 +161,7 @@
 </blockquote>
 <h5>0x01  原理</h5>
 <p>常见的一些打Log的语句</p>
-<div class="highlight"><pre><span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
 <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
 <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
 <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
@@ -170,7 +171,7 @@
 
 
 <p>Log给开发者开放了6种级别(分别对应info，debug，error，verbose，warning，assert)，隐藏了两种级别:</p>
-<div class="highlight"><pre>F — Fatal
+<div class="highlight"><pre><span></span>F — Fatal
 S — Silent (highest priority, on which nothing is ever printed)
 </pre></div>
 
@@ -179,12 +180,12 @@ S — Silent (highest priority, on which nothing is ever printed)
 <p>而<code>println_native()</code>的代码在<a href="http://www.netmite.com/android/mydroid/frameworks/base/core/jni/android_util_Log.cpp"><code>frameworks/base/core/jni/android_util_log.cpp</code></a>，其中判断了msg是否为空，如果为空，抛出空指针异常。</p>
 <p>其中levels_t是一个结构体，其中包括了那六种级别，其中<code>assert</code>，查阅代码可得知，如果利用Log.wtf()方法，就会打印一个标志成ASSERT的错误。</p>
 <p>并通过以下函数进行了打印操作。即<a href="https://github.com/cgjones/android-system-core/blob/master/liblog/logd_write.c">__android_log_buf_write</a>。在<code>__android_log_buf_write</code>函数里通过调用<code>write_to_log</code>函数进行打印。</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">__android_log_buf_write</span><span class="p">(</span><span class="n">bufID</span><span class="p">,</span> <span class="p">(</span><span class="n">android_LogPriority</span><span class="p">)</span><span class="n">priority</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">__android_log_buf_write</span><span class="p">(</span><span class="n">bufID</span><span class="p">,</span> <span class="p">(</span><span class="n">android_LogPriority</span><span class="p">)</span><span class="n">priority</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
 </pre></div>
 
 
 <p>然后<code>write_to_log</code>是怎样的情况呢，在文件45行有以下信息。</p>
-<div class="highlight"><pre><span class="k">static</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">write_to_log</span><span class="p">)(</span><span class="n">log_id_t</span><span class="p">,</span> <span class="k">struct</span> <span class="n">iovec</span> <span class="o">*</span><span class="n">vec</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nr</span><span class="p">)</span> <span class="o">=</span> <span class="n">__write_to_log_init</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">write_to_log</span><span class="p">)(</span><span class="n">log_id_t</span><span class="p">,</span> <span class="k">struct</span> <span class="n">iovec</span> <span class="o">*</span><span class="n">vec</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nr</span><span class="p">)</span> <span class="o">=</span> <span class="n">__write_to_log_init</span><span class="p">;</span>
 <span class="k">static</span> <span class="kt">int</span> <span class="nf">__write_to_log_init</span><span class="p">(</span><span class="n">log_id_t</span><span class="p">,</span> <span class="k">struct</span> <span class="n">iovec</span> <span class="o">*</span><span class="n">vec</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nr</span><span class="p">);</span>
 </pre></div>
 
@@ -194,28 +195,28 @@ S — Silent (highest priority, on which nothing is ever printed)
 <p>LogCat是如何获取Log的？通过<a href="https://github.com/cgjones/android-system-core/blob/master/logcat/logcat.cpp"><code>logcat.cpp</code></a>，可以知道，定义了一个Log文件目录，即<code>#define LOG_FILE_DIR    "/dev/log/"</code>。具体读取log的过程，可以参考田海立的文章－<a href="http://blog.csdn.net/thl789/article/details/6638344">解读Android LOG机制的实现：（5）获取LOG的应用程序LogCat
 </a>。</p>
 <p>如何去修改logcat的显示颜色呢，可以通过<a href="http://blog.csdn.net/hotlinhao/article/details/9150519">android studio的设置</a>，也可以安装一个<a href="https://github.com/marshall/logcat-color">logcat-color</a>直接改变颜色，通过以下命令。</p>
-<div class="highlight"><pre>$ logcat-color -e <span class="p">|</span> egrep <span class="s1">&#39;(Tag1|Tag2)&#39;</span>
+<div class="highlight"><pre><span></span>$ logcat-color -e <span class="p">|</span> egrep <span class="s1">&#39;(Tag1|Tag2)&#39;</span>
 </pre></div>
 
 
 <h5>0x02  smali注入</h5>
 <p>通过以下命令，进行apktool反编译</p>
-<div class="highlight"><pre>apktool d xxx.apk
+<div class="highlight"><pre><span></span>apktool d xxx.apk
 </pre></div>
 
 
 <p>在合适位置插入以下语句，其中v0为寄存器，尽量不要随意添加寄存器。</p>
-<div class="highlight"><pre>invoke-static <span class="p">{</span><span class="nb">v0</span><span class="p">,</span> <span class="nb">v0</span><span class="p">},</span> <span class="kt">L</span>android/util/<span class="nc">Log</span>;<span class="p">-&gt;</span><span class="nf">e</span><span class="p">(</span><span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="p">)</span><span class="kt">I</span>
+<div class="highlight"><pre><span></span>invoke-static <span class="p">{</span><span class="nb">v0</span><span class="p">,</span> <span class="nb">v0</span><span class="p">},</span> <span class="kt">L</span>android/util/<span class="nc">Log</span>;<span class="p">-&gt;</span><span class="nf">e</span><span class="p">(</span><span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="kt">L</span>java/lang/<span class="nc">String</span>;<span class="p">)</span><span class="kt">I</span>
 </pre></div>
 
 
 <p>然后进行打包</p>
-<div class="highlight"><pre>apktool b xxx -o xxx.apk
+<div class="highlight"><pre><span></span>apktool b xxx -o xxx.apk
 </pre></div>
 
 
 <p>打包完安装需要签名，由于已经有了android.keystore ，这里使用jarsigner进行签名。</p>
-<div class="highlight"><pre>jarsigner -verbose -keystore android.keystore -signedjar android_signed.apk app.apk android.keystore
+<div class="highlight"><pre><span></span>jarsigner -verbose -keystore android.keystore -signedjar android_signed.apk app.apk android.keystore
 </pre></div>
 
 
@@ -229,14 +230,14 @@ S — Silent (highest priority, on which nothing is ever printed)
 <p>如何在so文件，即jni开发中里打log呢</p>
 <p>这里如何配置NDK就不再叙述。详细可参考<a href="https://developer.android.com/ndk/guides/index.html">ndk官网</a></p>
 <p>需要在cpp文件中添加以下语句：</p>
-<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&lt;android/log.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;android/log.h&gt;</span><span class="cp"></span>
 <span class="c1">//打印相关信息</span>
 <span class="n">__android_log_write</span><span class="p">(</span><span class="n">ANDROID_LOG_DEBUG</span><span class="p">,</span><span class="s">&quot;Tag&quot;</span><span class="p">,</span><span class="s">&quot;Java_com_sxau_ndkdemo_MainActivity_getStringFromC&quot;</span><span class="p">);</span>
 </pre></div>
 
 
 <p>然后在build.gradle文件里，修改成以下片段：</p>
-<div class="highlight"><pre><span class="n">ndk</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">ndk</span> <span class="o">{</span>
     <span class="n">moduleName</span> <span class="s">&quot;JniDemo&quot;</span>
     <span class="n">ldLibs</span><span class="o">(</span><span class="s">&quot;log&quot;</span><span class="o">,</span> <span class="s">&quot;z&quot;</span><span class="o">,</span> <span class="s">&quot;m&quot;</span><span class="o">)</span>
 <span class="o">}</span>
@@ -245,14 +246,14 @@ S — Silent (highest priority, on which nothing is ever printed)
 
 <p>引入<code>liblog.h</code>，或者通过自定义<code>Android.mk</code>进行导入。</p>
 <p>可以通过一些宏定义定义：</p>
-<div class="highlight"><pre><span class="cp">#define LOG_TAG &quot;ANDROID_LAB&quot;  </span>
+<div class="highlight"><pre><span></span><span class="cp">#define LOG_TAG &quot;ANDROID_LAB&quot;  </span>
 <span class="cp">#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)  </span>
 </pre></div>
 
 
 <h5>0x05  发布(release)版屏蔽Log输出</h5>
 <p>一种方法是通过添加一个Log辅助类，配置级别，或者通过变量控制显示。</p>
-<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Log</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Log</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">logLevel</span> <span class="o">=</span> <span class="n">Log</span><span class="o">.</span><span class="na">VERBOSE</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">i</span><span class="o">(</span><span class="n">String</span> <span class="n">tag</span><span class="o">,</span> <span class="n">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
@@ -287,7 +288,7 @@ S — Silent (highest priority, on which nothing is ever printed)
 <p>release版屏蔽log输出，另外一种方法是，可以通过ProGuard的方式，将log语句删除。</p>
 <p>ProGuard是Android SDK的一部分。只需要开启即可。</p>
 <p>在android studio中，编辑build.gradle文件，配置如下代码：</p>
-<div class="highlight"><pre><span class="n">android</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">android</span> <span class="o">{</span>
 <span class="o">...</span>
     <span class="n">buildTypes</span> <span class="o">{</span>
         <span class="n">release</span> <span class="o">{</span>
@@ -300,12 +301,12 @@ S — Silent (highest priority, on which nothing is ever printed)
 
 
 <p>后来gradle的runProguard更名为minifyEnabled，所以直接改为true即可。</p>
-<div class="highlight"><pre><span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span> <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span> <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
 </pre></div>
 
 
 <p>注意这段位置，本来按默认的配置一直没有消除成功，直到看了一篇<a href="http://blog.csdn.net/weizaishouex2010/article/details/49866621">文章</a>以后，改为了<code>proguard-android-optimize.txt</code>，才屏蔽输出成功。即：</p>
-<div class="highlight"><pre><span class="n">release</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">release</span> <span class="o">{</span>
     <span class="n">minifyEnabled</span> <span class="kc">true</span>
     <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">optimize</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span> <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
 <span class="o">}</span>
@@ -313,7 +314,7 @@ S — Silent (highest priority, on which nothing is ever printed)
 
 
 <p>修改Proguard的配置文件<code>proguard-rules.pro</code>，添加以下配置：</p>
-<div class="highlight"><pre>-assumenosideeffects class android.util.Log {
+<div class="highlight"><pre><span></span>-assumenosideeffects class android.util.Log {
     public static int v(...);
     public static int i(...);
     public static int w(...);
@@ -330,7 +331,7 @@ S — Silent (highest priority, on which nothing is ever printed)
 
 <p>即结果。然后打包签名输出就不会有log日志了。</p>
 <h5>0x06  查看内核日志</h5>
-<div class="highlight"><pre>./adb shell
+<div class="highlight"><pre><span></span>./adb shell
 su
 dmesg
 cat /proc/kmsg
@@ -453,51 +454,51 @@ cat /proc/kmsg
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -543,54 +544,54 @@ cat /proc/kmsg
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>

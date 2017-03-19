@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/zi-you-ruan-jian.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2016-03-12T20:42:00+01:00</updated><entry><title>一些软件源的收集</title><link href="dbqf.xyz/posts/2016/%203/12/201603-some-sources/index.html" rel="alternate"></link><updated>2016-03-12T20:42:00+01:00</updated><author><name>admin</name></author><id>tag:,2016-03-12:dbqf.xyz/posts/2016/ 3/12/201603-some-sources/index.html</id><summary type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>独步清风's blog - 【自由软件】</title><link href="dbqf.xyz/" rel="alternate"></link><link href="dbqf.xyz/feeds/zi-you-ruan-jian.atom.xml" rel="self"></link><id>dbqf.xyz/</id><updated>2016-03-12T20:42:00+01:00</updated><entry><title>一些软件源的收集</title><link href="dbqf.xyz/posts/2016/%203/12/201603-some-sources/index.html" rel="alternate"></link><published>2016-03-12T13:13:00+01:00</published><updated>2016-03-12T20:42:00+01:00</updated><author><name>admin</name></author><id>tag:None,2016-03-12:dbqf.xyz/posts/2016/ 3/12/201603-some-sources/index.html</id><summary type="html">&lt;p&gt;在国内，使用一些常见的软件源会大幅度提升速度，提升工作上的效率，本文总结了一些常用的软件源。&lt;/p&gt;</summary><content type="html">&lt;h5&gt;0x01 前言&lt;/h5&gt;
 &lt;p&gt;在国内的大环境下，一些软件使用官方源会有很大的延迟，而使用国内搭建的同步官方源的话，速度会提升很多的，因此，本文总结一些常用的软件源，并不定期更新。&lt;/p&gt;
 &lt;h5&gt;0x02 Linux&lt;/h5&gt;
 &lt;ul&gt;
@@ -50,7 +50,7 @@
 &lt;li&gt;&lt;a href="http://ruby.sdutlinux.org/"&gt;山东理工大学&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ gem sources --add https://ruby.taobao.org/ --remove https://rubygems.org/
 $ gem sources -l
 *** CURRENT SOURCES ***
 https://ruby.taobao.org
@@ -67,7 +67,7 @@ $ bundle config mirror.https://rubygems.org https://ruby.taobao.org
 &lt;li&gt;&lt;a href="http://pkg.phpcomposer.com/"&gt;Packagist&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;例1：修改 composer 的全局配置文件（推荐方式）
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;例1：修改 composer 的全局配置文件（推荐方式）
 
 打开命令行窗口（windows用户）或控制台（Linux、Mac 用户）并执行如下命令：
 
@@ -98,7 +98,7 @@ composer config repo.packagist composer https://packagist.phpcomposer.com
 &lt;li&gt;&lt;a href="https://cnpmjs.org/"&gt;cnpm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:&lt;/span&gt;
 
 &lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; npm install -g cnpm --registry=https://registry.npm.taobao.org&lt;/span&gt;
 
@@ -118,7 +118,7 @@ composer config repo.packagist composer https://packagist.phpcomposer.com
 
 
 &lt;p&gt;使用方法&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;安装模块：
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;安装模块：
 $ cnpm install [name]
 同步模块：
 $ cnpm sync connect
@@ -129,4 +129,35 @@ $ cnpm sync connect
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://pypi.mirrors.ustc.edu.cn/"&gt;中科大&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://pypi.douban.com/"&gt;豆瓣&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="软件源"></category><category term="Linux"></category><category term="Docker"></category></entry></feed>
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install -i http://pypi.douban.com/simple/ xxx
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h5&gt;0x09 maven&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://maven.aliyun.com/nexus/content/groups/public"&gt;阿里&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;在maven的settings.xml 文件里配置mirrors的子节点，添加如下mirror
+&lt;span class="nt"&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;id&amp;gt;&lt;/span&gt;nexus-aliyun&lt;span class="nt"&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;*&lt;span class="nt"&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Nexus aliyun&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+   &lt;span class="nt"&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;span class="nt"&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;本地配置文件：
+&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;settings&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;mirrors&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;id&amp;gt;&lt;/span&gt;nexus-aliyun&lt;span class="nt"&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;*&lt;span class="nt"&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;name&amp;gt;&lt;/span&gt;Nexus aliyun&lt;span class="nt"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;span class="nt"&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/mirrors&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/settings&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="软件源"></category><category term="Linux"></category><category term="Docker"></category></entry></feed>

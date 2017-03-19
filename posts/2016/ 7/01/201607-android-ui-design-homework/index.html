@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -188,7 +189,7 @@
 <p>在Material Design里，也对底部导航栏进行了<a href="https://material.google.com/components/bottom-navigation.html">统一设计规范</a>，该规范明确给出了 BottomNavigation在设计，使用，交互，风格和尺寸等的使用。</p>
 <p>实现Tab功能的几种方式也有人总结过，在<a href="http://www.cnblogs.com/asion/archive/2013/09/25/3339313.html">Android学习笔记：TabHost 和 FragmentTabHost</a>这篇文章也叙述了五种方法。</p>
 <p>其中有种就是利用FragmentTabHost实现底部导航栏，在Activity里初始化的代码：</p>
-<div class="highlight"><pre><span class="n">fragmentTabHost</span> <span class="o">=</span> <span class="o">(</span><span class="n">FragmentTabHost</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tabhost</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><span class="n">fragmentTabHost</span> <span class="o">=</span> <span class="o">(</span><span class="n">FragmentTabHost</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tabhost</span><span class="o">);</span>
 <span class="n">radioGroup</span> <span class="o">=</span> <span class="o">(</span><span class="n">RadioGroup</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">rg_tab</span><span class="o">);</span>
 <span class="n">fragmentTabHost</span><span class="o">.</span><span class="na">setup</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">getSupportFragmentManager</span><span class="o">(),</span> <span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">fl_content</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">fragments</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
@@ -202,13 +203,13 @@
 
 
 <p>其中fragments是一个Fragment的数组，里面包含了标签卡的class。其中底部的按钮采用了RadioGroup的组件，标识其只能按下一个。并且实现其的选择改变的接口（OnCheckedChangeListener），然后里面需要使<code>fragmentTabHost.setCurrentTab(0);</code>设置对应的标签页。</p>
-<div class="highlight"><pre><span class="kd">private</span> <span class="n">Class</span><span class="o">[]</span> <span class="n">fragments</span> <span class="o">=</span> <span class="o">{</span><span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> 
+<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">Class</span><span class="o">[]</span> <span class="n">fragments</span> <span class="o">=</span> <span class="o">{</span><span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> 
     <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">HomeFragment</span><span class="o">.</span><span class="na">class</span><span class="o">};</span>
 </pre></div>
 
 
 <p>布局代码：</p>
-<div class="highlight"><pre><span class="nt">&lt;android.support.v4.app.FragmentTabHost</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;android.support.v4.app.FragmentTabHost</span>
         <span class="na">android:id=</span><span class="s">&quot;@android:id/tabhost&quot;</span>
         <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
         <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
@@ -240,7 +241,7 @@
 
 
 <p>当然利用ViewPagerIndicator和PagerSlidingTabStrip也可以完成此功能，这里用了RadioButton。</p>
-<div class="highlight"><pre>//style.xml
+<div class="highlight"><pre><span></span>//style.xml
 <span class="c">&lt;!--底部导航栏--&gt;</span>
 <span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;RadioButtonBottomTab&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:layout_weight&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/item&gt;</span>
@@ -258,7 +259,7 @@
 </pre></div>
 
 
-<div class="highlight"><pre>//selector_main_tab_home.xml
+<div class="highlight"><pre><span></span>//selector_main_tab_home.xml
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;selector</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@mipmap/ic_home_fill&quot;</span>
@@ -279,7 +280,7 @@
 <p>因为没有什么特效，可以直接使用ImageView构建类似的风格，即如下图所示。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-07.png" class="responsive-img"></p>
 <p>直接使用xml代码即可。</p>
-<div class="highlight"><pre>//activity_main.xml
+<div class="highlight"><pre><span></span>//activity_main.xml
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;LinearLayout</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
@@ -348,7 +349,7 @@
 <p>在新建项目的时候，选择<code>Master/Detail Flow</code>，然后运行到横向布局的平板上面，即是下图的效果。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-08.png" class="responsive-img"></p>
 <p>它这里主要通过建立了layout-w900dp文件夹，来进行屏幕的适配，以及在java代码里面，通过以下判断，在Adapter里设定一个标志变量，以求响应不同的屏幕。</p>
-<div class="highlight"><pre><span class="k">if</span> <span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">item_detail_container</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">(</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">item_detail_container</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// The detail container view will be present only in the</span>
     <span class="c1">// large-screen layouts (res/values-w900dp).</span>
     <span class="c1">// If this view is present, then the</span>
@@ -364,7 +365,7 @@
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-09.png" class="responsive-img"></p>
 <p>主要是有两个Adapter，一个分类的Adapter，即左边的Adapter，一个右边的Adapter。Adapter和传统的写法一致。</p>
 <p>布局xml代码：</p>
-<div class="highlight"><pre><span class="nt">&lt;LinearLayout</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;LinearLayout</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;fill_parent&quot;</span>
     <span class="na">android:layout_height=</span><span class="s">&quot;fill_parent&quot;</span>
     <span class="na">android:background=</span><span class="s">&quot;#ededed&quot;</span>
@@ -398,7 +399,7 @@
 
 
 <p>其中ListView和GridView是在一个LinearLayout里，响应listView的点击事件，然后加载不同的数据源，配置Adapter。</p>
-<div class="highlight"><pre><span class="n">listView</span><span class="o">.</span><span class="na">setOnItemClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">AdapterView</span><span class="o">.</span><span class="na">OnItemClickListener</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><span class="n">listView</span><span class="o">.</span><span class="na">setOnItemClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">AdapterView</span><span class="o">.</span><span class="na">OnItemClickListener</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">arg0</span><span class="o">,</span> <span class="n">View</span> <span class="n">arg1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span>
                             <span class="kt">long</span> <span class="n">arg3</span><span class="o">)</span> <span class="o">{</span>
@@ -421,7 +422,7 @@
 <p>然后运行应用，可以看到以下的效果。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-10.png" class="responsive-img"></p>
 <p>分析这个应用的xml，整个界面的xml如下：</p>
-<div class="highlight"><pre><span class="nt">&lt;android.support.v4.widget.DrawerLayout&gt;</span>
+<div class="highlight"><pre><span></span><span class="nt">&lt;android.support.v4.widget.DrawerLayout&gt;</span>
     <span class="nt">&lt;android.support.design.widget.CoordinatorLayout&gt;</span>
         <span class="nt">&lt;android.support.design.widget.AppBarLayout&gt;</span>
             <span class="nt">&lt;android.support.v7.widget.Toolbar</span> <span class="nt">/&gt;</span>
@@ -448,7 +449,7 @@
 <h5>0x08  顶部弹出菜单实现</h5>
 <p>我们在侧滑界面实现的那个Demo或者<code>Base Activity</code>里面，其实已经实现了点击弹出菜单的样式，即官方实现，当然这个各自有各自的实现，我们当然也可以使用PopupMenu、PopupWindow之类的去实现这些效果，此次简要写一下官方实现Menu。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-11.png" class="responsive-img"></p>
-<div class="highlight"><pre><span class="c1">//MainActivity.java</span>
+<div class="highlight"><pre><span></span><span class="c1">//MainActivity.java</span>
 <span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onCreateOptionsMenu</span><span class="o">(</span><span class="n">Menu</span> <span class="n">menu</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// Inflate the menu; this adds items to the action bar if it is present.</span>
@@ -473,7 +474,7 @@
 </pre></div>
 
 
-<div class="highlight"><pre>//main.xml
+<div class="highlight"><pre><span></span>//main.xml
 <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
     <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span><span class="nt">&gt;</span>
@@ -489,11 +490,11 @@
 <h5>0x09  顶部选项卡实现</h5>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201607-android-ui-design-homework-12.png" class="responsive-img"></p>
 <p>在<code>build.gradle</code>里引入</p>
-<div class="highlight"><pre>compile &#39;com.android.support:design:24.0.0&#39;
+<div class="highlight"><pre><span></span>compile &#39;com.android.support:design:24.0.0&#39;
 </pre></div>
 
 
-<div class="highlight"><pre>//xml代码
+<div class="highlight"><pre><span></span>//xml代码
 <span class="nt">&lt;android.support.design.widget.TabLayout</span>
     <span class="na">android:id=</span><span class="s">&quot;@+id/tabs&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
@@ -514,7 +515,7 @@
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c1">//Activity代码</span>
+<div class="highlight"><pre><span></span><span class="c1">//Activity代码</span>
 <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mTitleList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span><span class="c1">//页卡标题集合</span>
 <span class="kd">private</span> <span class="n">View</span> <span class="n">view1</span><span class="o">,</span> <span class="n">view2</span><span class="o">,</span> <span class="n">view3</span><span class="o">;</span>
 <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span> <span class="n">mViewList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span><span class="c1">//页卡视图集合</span>
@@ -697,51 +698,51 @@
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -787,54 +788,54 @@
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>

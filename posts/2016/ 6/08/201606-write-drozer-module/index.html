@@ -111,7 +111,8 @@
             </form>
           </div>
         </li>
-        <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li>
+        <li><a class="waves-effect waves-light" href="https://www.xiaoye.me/" target="_blank"><span class="blue-grey-text text-darken-4">生活</span></a></li>
+        <!-- <li><a class="waves-effect waves-light" href="http://dubuqingfeng-sitenav.daoapp.io/" target="_blank"><span class="blue-grey-text text-darken-4">导航</span></a></li> -->
         <li><a class="waves-effect waves-light" href="http://lab.dbqf.xyz/" target="_blank"><span class="blue-grey-text text-darken-4">实验室</span></a></li>
         <li><a class="waves-effect waves-light" href="/pages/201603-computer-books-security.html" target="_blank"><span class="blue-grey-text text-darken-4">书单</span></a></li>
         <li><a class="waves-effect waves-light" href="/feeds/all.rss.xml" target="_blank"><span class="blue-grey-text text-darken-4">RSS</span></a></li>
@@ -163,26 +164,26 @@
 <h5>0x02    安装与配置drozer</h5>
 <p>mac10.11系统：
 安装配置好python，然后使用下面的命令，或者pip安装也可以。</p>
-<div class="highlight"><pre>sudo easy_install --allow-hosts pypi.python.org protobuf==2.4.1
+<div class="highlight"><pre><span></span>sudo easy_install --allow-hosts pypi.python.org protobuf==2.4.1
 sudo easy_install twisted==10.2.0
 </pre></div>
 
 
 <p>遇到了如下的问题：</p>
-<div class="highlight"><pre><span class="n">error</span><span class="o">:</span> <span class="n">Setup</span> <span class="n">script</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">error</span><span class="o">:</span> <span class="n">command</span> <span class="s1">&#39;clang&#39;</span> <span class="n">failed</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">status</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><span class="n">error</span><span class="o">:</span> <span class="n">Setup</span> <span class="n">script</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">error</span><span class="o">:</span> <span class="n">command</span> <span class="s1">&#39;clang&#39;</span> <span class="n">failed</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">status</span> <span class="mi">1</span>
 </pre></div>
 
 
 <p>然后在github上的仓库上寻找方案。其中<a href="https://github.com/mwrlabs/drozer/issues/155">ISSUE#155</a>叙述了这个问题。但是官网的2.3.4并没有修复依赖。</p>
 <p>于是应该clone这个仓库进行安装。然后修复更新的是develop分支，就是clone这个分支的事情了。</p>
-<div class="highlight"><pre>sudo easy_install pyopenssl==0.15
+<div class="highlight"><pre><span></span>sudo easy_install pyopenssl==0.15
 git clone https://github.com/mwrlabs/drozer.git -b develop
 </pre></div>
 
 
 <p>然后<strong>sudo python setup.py install</strong>即可</p>
 <p>并且<strong>/usr/local/lib/python2.7/site-packages/drozer-2.3.4-py2.7.egg/drozer/lib/aapt</strong>这个需要配置好755权限。</p>
-<div class="highlight"><pre>sudo chmod 755 /usr/local/lib/python2.7/site-packages/drozer-2.3.4-py2.7.egg/drozer/lib/aapt
+<div class="highlight"><pre><span></span>sudo chmod 755 /usr/local/lib/python2.7/site-packages/drozer-2.3.4-py2.7.egg/drozer/lib/aapt
 </pre></div>
 
 
@@ -190,18 +191,18 @@ git clone https://github.com/mwrlabs/drozer.git -b develop
 <p>连接上android设备，并打开调试，允许安装未知来源的应用。</p>
 <p>然后<strong>adb install drozer.apk</strong>，或者在官网下载apk包，传到android设备上安装。</p>
 <p>之后打开drozer应用，并且设备通过USB线连接上，并设置好端口转发：</p>
-<div class="highlight"><pre>adb forward tcp:31415 tcp:31415
+<div class="highlight"><pre><span></span>adb forward tcp:31415 tcp:31415
 </pre></div>
 
 
 <p>然后启动drozer应用上的嵌入式服务，<strong>Embedded Server</strong>，然后按一下<strong>Embedded Server</strong>滑块，再将<strong>Disabled</strong>滑块拖到右边。</p>
 <p>然后计算机设备上就可以通过下面这条命令连接到drozer console了。</p>
-<div class="highlight"><pre>drozer console connect
+<div class="highlight"><pre><span></span>drozer console connect
 </pre></div>
 
 
 <p>可以进行一些常见的命令：</p>
-<div class="highlight"><pre>枚举已安装的包：
+<div class="highlight"><pre><span></span>枚举已安装的包：
 run app.package.list
 查看application信息：
 run app.package.info -a application_name
@@ -210,7 +211,7 @@ run app.package.info -a application_name
 
 <h5>0x03    安装模块</h5>
 <p>打开<strong>drozer console</strong>，执行以下命令：</p>
-<div class="highlight"><pre><span class="k">module</span> <span class="n">repository</span> <span class="n">create</span> [<span class="n">path-to-your-module-dir</span>]
+<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">repository</span> <span class="n">create</span> [<span class="n">path-to-your-module-dir</span>]
 <span class="k">module</span> <span class="n">install</span> [<span class="n">pach-to-your-module-dir</span>]/[<span class="n">module-name</span>](<span class="n">模块代码所在路径</span>)
 <span class="nb">run</span> [<span class="n">module-name</span>]
 </pre></div>
@@ -223,7 +224,7 @@ run app.package.info -a application_name
 <p>如果增加参数可使用<strong>add_arguments()</strong>方法，其利用<strong>argparse</strong>的原理。</p>
 <p>模块一：</p>
 <p>枚举所有的可导出的activity、content provider、service、broadcast receiver：</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">drozer.modules</span> <span class="kn">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">Module</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">drozer.modules</span> <span class="kn">import</span> <span class="n">common</span><span class="p">,</span> <span class="n">Module</span>
 
 
 <span class="k">class</span> <span class="nc">Info</span><span class="p">(</span><span class="n">Module</span><span class="p">,</span> <span class="n">common</span><span class="o">.</span><span class="n">Filters</span><span class="p">,</span> <span class="n">common</span><span class="o">.</span><span class="n">PackageManager</span><span class="p">):</span>
@@ -328,7 +329,7 @@ run app.package.info -a application_name
 
 
 <p>在模块一的基础上实现自动启动可导出的activity，以测试是否产生拒绝式服务。</p>
-<div class="highlight"><pre><span class="k">try</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">intent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;android.content.Intent&quot;</span><span class="p">)</span>
     <span class="n">comp</span> <span class="o">=</span> <span class="p">(</span><span class="n">package</span><span class="o">.</span><span class="n">packageName</span><span class="p">,</span> <span class="n">activity</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
     <span class="n">com</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;android.content.ComponentName&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">comp</span><span class="p">)</span>
@@ -345,7 +346,7 @@ run app.package.info -a application_name
 1.drozer模块存放在哪，从哪寻找那些模块？</p>
 <p>用户自定义的模块，在当前目录下面会生成如下图所示的结构，当删除这个目录后，模块也被删除。并且drozer会在模块目录，存在一个名为.drozer_repository的文件。</p>
 <p>并且drozer的文件中说明了寻找模块的方法。</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">__locate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__locate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Search the module paths for Python modules, which may contain drozer</span>
 <span class="sd">    Modules, and build a collection of Python modules to load.</span>
@@ -491,51 +492,51 @@ run app.package.info -a application_name
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/android.html">Android</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
+                    <a class="" href="/tag/bugtags.html">Bugtags</a>
+                    <a class="" href="/tag/qml.html">qml</a>
+                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
+                    <a class="" href="/tag/mitm.html">mitm</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
+                    <a class="" href="/tag/c.html">C</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
+                    <a class="" href="/tag/fan-she.html">反射</a>
+                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/findviewbyid.html">findViewById</a>
-                    <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
-                    <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
                     <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
-                    <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
-                    <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
-                    <a class="" href="/tag/fan-she.html">反射</a>
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
-                    <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
                 </div>
               </div>
             </div>
@@ -581,54 +582,54 @@ run app.package.info -a application_name
             <div class="row valign-wrapper">
               <div class="col s12">
                 <div class="card-action">
-                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
-                    <a class="" href="/tag/pelican.html">pelican</a>
-                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
                     <a class="" href="/tag/bugtags.html">Bugtags</a>
-                    <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/linux.html">Linux</a>
-                    <a class="" href="/tag/seo.html">seo</a>
-                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
-                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
-                    <a class="" href="/tag/chromebook.html">chromebook</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/log.html">Log</a>
-                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/bugguan-li.html">Bug管理</a>
-                    <a class="" href="/tag/devops.html">DevOps</a>
-                    <a class="" href="/tag/sui-bi.html">随笔</a>
-                    <a class="" href="/tag/github-pages.html">github pages</a>
-                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
-                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
-                    <a class="" href="/tag/2014.html">2014</a>
-                    <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
-                    <a class="" href="/tag/fork.html">fork</a>
-                    <a class="" href="/tag/logcat.html">LogCat</a>
-                    <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
-                    <a class="" href="/tag/zhu-jie.html">注解</a>
-                    <a class="" href="/tag/android-ui.html">Android UI</a>
                     <a class="" href="/tag/mitm.html">mitm</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdl.html">SDL</a>
-                    <a class="" href="/tag/git.html">git</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/decompiler.html">Decompiler</a>
-                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/devops.html">DevOps</a>
+                    <a class="" href="/tag/vps.html">vps</a>
+                    <a class="" href="/tag/weban-quan.html">Web安全</a>
                     <a class="" href="/tag/c.html">C</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
+                    <a class="" href="/tag/2014.html">2014</a>
+                    <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
+                    <a class="" href="/tag/logcat.html">LogCat</a>
+                    <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
+                    <a class="" href="/tag/whois.html">whois</a>
+                    <a class="" href="/tag/ni-xiang.html">逆向</a>
+                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
+                    <a class="" href="/tag/decompiler.html">Decompiler</a>
+                    <a class="" href="/tag/dao-hang-lan.html">导航栏</a>
+                    <a class="" href="/tag/fan-bian-yi.html">反编译</a>
+                    <a class="" href="/tag/androidan-quan.html">Android安全</a>
+                    <a class="" href="/tag/ionic.html">ionic</a>
+                    <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
+                    <a class="" href="/tag/php.html">php</a>
+                    <a class="" href="/tag/xss.html">xss</a>
+                    <a class="" href="/tag/fan-hui-bian.html">反汇编</a>
                     <a class="" href="/tag/fan-she.html">反射</a>
-                    <a class="" href="/tag/docker.html">Docker</a>
-                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/ruan-jian-yuan.html">软件源</a>
+                    <a class="" href="/tag/chromebook.html">chromebook</a>
+                    <a class="" href="/tag/sdk.html">sdk</a>
+                    <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
+                    <a class="" href="/tag/docker.html">Docker</a>
+                    <a class="" href="/tag/seo.html">seo</a>
+                    <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/sui-bi.html">随笔</a>
+                    <a class="" href="/tag/findviewbyid.html">findViewById</a>
+                    <a class="" href="/tag/android.html">Android</a>
+                    <a class="" href="/tag/rfid.html">RFID</a>
+                    <a class="" href="/tag/cnutcon.html">CNUTCon</a>
+                    <a class="" href="/tag/zhu-jie.html">注解</a>
+                    <a class="" href="/tag/fork.html">fork</a>
+                    <a class="" href="/tag/log.html">Log</a>
+                    <a class="" href="/tag/android-ui.html">Android UI</a>
+                    <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
+                    <a class="" href="/tag/drozer.html">drozer</a>
+                    <a class="" href="/tag/sdl.html">SDL</a>
+                    <a class="" href="/tag/linux.html">Linux</a>
                 </div>
               </div>
             </div>
