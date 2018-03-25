@@ -982,13 +982,13 @@ upx-hg-68db2e569c63.tar.gz
 
 
 &lt;p&gt;编译安装:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;cd ucl-1.03&lt;/span&gt;
-&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
-&lt;span class="x"&gt;make&lt;/span&gt;
-&lt;span class="x"&gt;cd zlib-1.2.8&lt;/span&gt;
-&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
-&lt;span class="x"&gt;make&lt;/span&gt;
-&lt;span class="x"&gt;vi .bash_profile&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd ucl-1.03
+./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
+make
+cd zlib-1.2.8
+./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
+make
+vi .bash_profile
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1706,7 +1706,7 @@ run app.package.info -a application_name
 &lt;p&gt;面对这些，如果过滤&lt;code&gt;/*&amp;amp;#javascript\;&lt;/code&gt;，不如采取一些白名单的形式，仅允许执行特定形式的，去正则匹配结果。例如：仅允许&lt;code&gt;&amp;lt;img src="http://"&amp;gt;&lt;/code&gt;这种的。&lt;/p&gt;
 &lt;p&gt;可以构造正则语句："/^((http|ftp|https):\/\/)?[\w-&lt;em&gt;.]+(\/[\w-&lt;/em&gt;]+)*\/?$/"&lt;/p&gt;
 &lt;p&gt;如果单纯地过滤一些常见的&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;标签或者&lt;code&gt;onerror、onResume&lt;/code&gt;等事件，还是可能会利用&lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;引入一个内容为如下的CSS进行hack。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;javascript:alert(&amp;quot;XSS&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;javascript:alert(&amp;quot;XSS&amp;quot;)&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1780,14 +1780,14 @@ com.sxau.filter.XssFilter
 &lt;p&gt;这里的系统层面，侧重于WAF方面。&lt;/p&gt;
 &lt;p&gt;WAF可以是硬件层面，也可以是软件层面，&lt;a href="https://github.com/loveshell/ngx_lua_waf"&gt;ngx_lua_waf&lt;/a&gt;就提供了一种基于nginx_lua的思路。&lt;/p&gt;
 &lt;p&gt;通常会定义一些过滤规则，就像下面这样的正则匹配规则：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;\.\./&lt;/span&gt;
-&lt;span class="x"&gt;\:\&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;\&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;\&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;\&amp;lt;(iframe|script|body|img|layer|div|meta|style|base|object|input)&lt;/span&gt;
-&lt;span class="x"&gt;(onmouseover|onerror|onload)\=&lt;/span&gt;
-&lt;span class="x"&gt;(gopher|doc|php|glob|file|phar|zlib|ftp|ldap|dict|ogg|data)\:\/&lt;/span&gt;
-&lt;span class="x"&gt;java\.lang&lt;/span&gt;
-&lt;span class="x"&gt;\&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;GET|post|cookie|files|session|env|phplib|GLOBALS|SERVER&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="x"&gt;\[&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;\.\./
+\:\$
+\$\{
+\&amp;lt;(iframe|script|body|img|layer|div|meta|style|base|object|input)
+(onmouseover|onerror|onload)\=
+(gopher|doc|php|glob|file|phar|zlib|ftp|ldap|dict|ogg|data)\:\/
+java\.lang
+\$_(GET|post|cookie|files|session|env|phplib|GLOBALS|SERVER)\[
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1903,22 +1903,22 @@ composer config repo.packagist composer https://packagist.phpcomposer.com
 &lt;li&gt;&lt;a href="https://cnpmjs.org/"&gt;cnpm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
 
-&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; npm install -g cnpm --registry=https://registry.npm.taobao.org&lt;/span&gt;
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
-&lt;span class="x"&gt;或者直接通过添加 npm 参数 alias 一个新命令:&lt;/span&gt;
+或者直接通过添加 npm 参数 alias 一个新命令:
 
-&lt;span class="x"&gt;alias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
-&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
-&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
-&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&lt;/span&gt;
+alias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc&amp;quot;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Or alias it in .bashrc or .zshrc&lt;/span&gt;
-&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; echo &amp;#39;\n&lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;alias&lt;/span&gt;&lt;span class="x"&gt; for cnpm\nalias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
-&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
-&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
-&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.zshrc &amp;amp;&amp;amp; source ~/.zshrc&lt;/span&gt;
+# Or alias it in .bashrc or .zshrc
+$ echo &amp;#39;\n#alias for cnpm\nalias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.zshrc &amp;amp;&amp;amp; source ~/.zshrc
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2881,7 +2881,7 @@ $ sudo make &lt;span class="nv"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ whereis git
 git: /usr/local/bin/git
 $ git –version
-git version 1.9.1
+git version &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 $ git –help
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -2901,7 +2901,7 @@ $ git config –global user.email “1135326346@qq.com”//填写自己的邮箱
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cat ~/.gitconfig
 &lt;span class="o"&gt;[&lt;/span&gt;user&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; dubuqingfeng
-&lt;span class="nv"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 1135326346@qq.com
+&lt;span class="nv"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;1135326346&lt;/span&gt;@qq.com
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -3080,13 +3080,13 @@ option in the “MAP file” group on the “Linker” tab:
 &lt;p&gt;VMProtect根据map文件得到了一些函数信息，然后F9即可进行编译加壳，然后会生成后缀为.vmp.exe的保护后的文件，在peid0.95中查壳，结果如图所示。虽然结果为什么都没找到，但是区段中已经有了vmp1，vmp0。可以以vmprotect来进行脱壳等操作。&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-4.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;而语句标记法，主要利用了下列语句进行需要保护的代码的标记&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;asm&lt;/span&gt;
-&lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;10,’VMProtect begin’,0 //标记开始处.&lt;/span&gt;
-&lt;span class="x"&gt;end;&lt;/span&gt;
-&lt;span class="x"&gt;//想保护的程序代码&lt;/span&gt;
-&lt;span class="x"&gt;asm&lt;/span&gt;
-&lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;0E,’VMProtect end’,0 //标记结束处.&lt;/span&gt;
-&lt;span class="x"&gt;end;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;asm
+db $EB,$10,’VMProtect begin’,0 //标记开始处.
+end;
+//想保护的程序代码
+asm
+db $EB,$0E,’VMProtect end’,0 //标记结束处.
+end;
 &lt;/pre&gt;&lt;/div&gt;
 
 

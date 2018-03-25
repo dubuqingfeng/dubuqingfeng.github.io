@@ -25,7 +25,7 @@ $ sudo make &lt;span class="nv"&gt;prefix&lt;/span&gt;&lt;span class="o"&gt;=&lt
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ whereis git
 git: /usr/local/bin/git
 $ git –version
-git version 1.9.1
+git version &lt;span class="m"&gt;1&lt;/span&gt;.9.1
 $ git –help
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -45,7 +45,7 @@ $ git config –global user.email “1135326346@qq.com”//填写自己的邮箱
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ cat ~/.gitconfig
 &lt;span class="o"&gt;[&lt;/span&gt;user&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; dubuqingfeng
-&lt;span class="nv"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; 1135326346@qq.com
+&lt;span class="nv"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;1135326346&lt;/span&gt;@qq.com
 &lt;/pre&gt;&lt;/div&gt;
 
 

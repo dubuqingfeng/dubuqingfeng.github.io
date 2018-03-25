@@ -159,13 +159,13 @@ upx-hg-68db2e569c63.tar.gz
 
 
 &lt;p&gt;编译安装:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;cd ucl-1.03&lt;/span&gt;
-&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
-&lt;span class="x"&gt;make&lt;/span&gt;
-&lt;span class="x"&gt;cd zlib-1.2.8&lt;/span&gt;
-&lt;span class="x"&gt;./configure --prefix=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PWD&lt;/span&gt;&lt;span class="x"&gt;/../../upx-hg-6cd5982ece4f/build&lt;/span&gt;
-&lt;span class="x"&gt;make&lt;/span&gt;
-&lt;span class="x"&gt;vi .bash_profile&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd ucl-1.03
+./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
+make
+cd zlib-1.2.8
+./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
+make
+vi .bash_profile
 &lt;/pre&gt;&lt;/div&gt;
 
 

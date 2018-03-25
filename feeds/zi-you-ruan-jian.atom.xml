@@ -98,22 +98,22 @@ composer config repo.packagist composer https://packagist.phpcomposer.com
 &lt;li&gt;&lt;a href="https://cnpmjs.org/"&gt;cnpm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;配置：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;可以使用我们定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
 
-&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; npm install -g cnpm --registry=https://registry.npm.taobao.org&lt;/span&gt;
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
-&lt;span class="x"&gt;或者直接通过添加 npm 参数 alias 一个新命令:&lt;/span&gt;
+或者直接通过添加 npm 参数 alias 一个新命令:
 
-&lt;span class="x"&gt;alias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
-&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
-&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
-&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&lt;/span&gt;
+alias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc&amp;quot;
 
-&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="x"&gt; Or alias it in .bashrc or .zshrc&lt;/span&gt;
-&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt; echo &amp;#39;\n&lt;/span&gt;&lt;span class="cp"&gt;#&lt;/span&gt;&lt;span class="nf"&gt;alias&lt;/span&gt;&lt;span class="x"&gt; for cnpm\nalias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \&lt;/span&gt;
-&lt;span class="x"&gt;--cache=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.npm/.cache/cnpm \&lt;/span&gt;
-&lt;span class="x"&gt;--disturl=https://npm.taobao.org/dist \&lt;/span&gt;
-&lt;span class="x"&gt;--userconfig=&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/.cnpmrc&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.zshrc &amp;amp;&amp;amp; source ~/.zshrc&lt;/span&gt;
+# Or alias it in .bashrc or .zshrc
+$ echo &amp;#39;\n#alias for cnpm\nalias cnpm=&amp;quot;npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc&amp;quot;&amp;#39; &amp;gt;&amp;gt; ~/.zshrc &amp;amp;&amp;amp; source ~/.zshrc
 &lt;/pre&gt;&lt;/div&gt;
 
 

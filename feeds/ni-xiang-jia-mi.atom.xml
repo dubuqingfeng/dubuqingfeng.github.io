@@ -19,13 +19,13 @@ option in the “MAP file” group on the “Linker” tab:
 &lt;p&gt;VMProtect根据map文件得到了一些函数信息，然后F9即可进行编译加壳，然后会生成后缀为.vmp.exe的保护后的文件，在peid0.95中查壳，结果如图所示。虽然结果为什么都没找到，但是区段中已经有了vmp1，vmp0。可以以vmprotect来进行脱壳等操作。&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://oijlbmkg8.qnssl.com/blog201407reverse-disassemble-delphi-4.jpg" class="responsive-img"&gt;&lt;/p&gt;
 &lt;p&gt;而语句标记法，主要利用了下列语句进行需要保护的代码的标记&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;asm&lt;/span&gt;
-&lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;10,’VMProtect begin’,0 //标记开始处.&lt;/span&gt;
-&lt;span class="x"&gt;end;&lt;/span&gt;
-&lt;span class="x"&gt;//想保护的程序代码&lt;/span&gt;
-&lt;span class="x"&gt;asm&lt;/span&gt;
-&lt;span class="x"&gt;db &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;EB&lt;/span&gt;&lt;span class="x"&gt;,&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="x"&gt;0E,’VMProtect end’,0 //标记结束处.&lt;/span&gt;
-&lt;span class="x"&gt;end;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;asm
+db $EB,$10,’VMProtect begin’,0 //标记开始处.
+end;
+//想保护的程序代码
+asm
+db $EB,$0E,’VMProtect end’,0 //标记结束处.
+end;
 &lt;/pre&gt;&lt;/div&gt;
 
 
