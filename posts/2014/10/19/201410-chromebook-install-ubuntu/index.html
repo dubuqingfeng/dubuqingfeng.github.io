@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>chromebook的ubuntu安装和软件配置 - 独步清风's blog</title>
+  <title>chromebook 的 ubuntu 安装和软件配置 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -139,8 +139,8 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="collapsible-header active"><a href="/category/chromebook.html"><i class="material-icons">subject</i>【chromebook】</a><a href="#">--chromebook的ubuntu安装和软件配置</a>              </div>
-              <div class="collapsible-body"><p>在入手了chromebook以后，原生的ChromeOS满足不了平时的需要，所以需要安装一些其它的系统，在贴吧等的指引下，安装配置好了ubuntu，记录一下安装的过程和软件。</p></div>
+<div class="collapsible-header active"><a href="/category/chromebook.html"><i class="material-icons">subject</i>【chromebook】</a><a href="#">--chromebook 的 ubuntu 安装和软件配置</a>              </div>
+              <div class="collapsible-body"><p>在入手了 chromebook 以后，原生的 ChromeOS 满足不了平时的需要，所以需要安装一些其它的系统，在贴吧等的指引下，安装配置好了ubuntu，记录一下安装的过程和软件。</p></div>
             </li>
           </ul>
         </div>
@@ -148,85 +148,85 @@
 <div class="section">
     <div class="card z-depth-1">
     <div class="card-content black-text">
-    	<span class="card-title black-text"><a href="/posts/2014/10/19/201410-chromebook-install-ubuntu/index.html" class="black-text flow-text" id="title">chromebook的ubuntu安装和软件配置</a></span>
+    	<span class="card-title black-text"><a href="/posts/2014/10/19/201410-chromebook-install-ubuntu/index.html" class="black-text flow-text" id="title">chromebook 的 ubuntu 安装和软件配置</a></span>
     	<h5>0x01 安装系统</h5>
 <p>需进入开发者模式，在关机状态下，按住Esc+F3（刷新）+电源键，启动Chromebook，看到ChromeOS系统损坏的界面以后（顺带一提，按方向键可以切换成不同的语 音；需要重装ChromeOS的话就在这个界面里插入ChromeOS恢复U盘，google下载）按Ctrl+D，系统提示是否确认要进入开发者模式，回车确认。然后等待系统重启，第一次重启会显示修复系统，耐心等待就可以了，从此系统就进入开发者模式。注意一旦开启开发者模式，开机界面都会显示一个警告界面。要么等待 30秒后系统自动启动，要么按Ctrl+D跳过等待时间。切记不可以按空格键，否则ChromeOS就自动关闭开发者模式了！</p>
 <p><br>
 进入开发者模式的ChromeOS，不要登录google帐号。保持网络连通（我使用了手机usb分享网络，一开始还没研究翻墙），在登录界面按Ctrl+Alt+F2，切换到命令行界面。用chronos帐号登录，不需要密码。紧接着输入curl -L -O http://goo.gl/9sgchs下载脚本，然后sudo bash 9sgchs 执行脚本，保持网络畅通。</p>
 <h5>0x02 安装软件</h5>
-<div class="highlight"><pre><span></span>sudo apt-get update
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">sudo apt-get update</span>
+</code></pre></div>
 
 
-<p>安装emacs</p>
-<div class="highlight"><pre><span></span>sudo apt-get install emacs
-</pre></div>
+<p>安装 emacs</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo apt-get install emacs</span>
+</code></pre></div>
 
 
-<p>设置utf8</p>
-<div class="highlight"><pre><span></span>sudo gedit /etc/default/locale
-LANG=”en_US.UTF-8″
-sudo gedit /etc/environment
-LANG=”en_US.UTF-8″
-LANGUAGE=”zh_CN:zh:en_US:en”
-</pre></div>
+<p>设置 utf8</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo gedit /etc/default/locale</span>
+<span class="err">LANG=”en_US.UTF-8″</span>
+<span class="err">sudo gedit /etc/environment</span>
+<span class="err">LANG=”en_US.UTF-8″</span>
+<span class="err">LANGUAGE=”zh_CN:zh:en_US:en”</span>
+</code></pre></div>
 
 
-<p>安装Apache2</p>
-<div class="highlight"><pre><span></span>sudo apt-get install apache2
-</pre></div>
+<p>安装 Apache2</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo apt-get install apache2</span>
+</code></pre></div>
 
 
-<p>安装PHP5</p>
-<div class="highlight"><pre><span></span>sudo apt-get install php5 libapache2-mod-php5
-</pre></div>
+<p>安装 PHP5</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo apt-get install php5 libapache2-mod-php5</span>
+</code></pre></div>
 
 
-<p>重启Apache2</p>
-<div class="highlight"><pre><span></span>sudo /etc/init.d/apache2 restart
-</pre></div>
+<p>重启 Apache2</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo /etc/init.d/apache2 restart</span>
+</code></pre></div>
 
 
-<p>安装mysql</p>
-<div class="highlight"><pre><span></span>sudo apt-get install mysql-server
-sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
-</pre></div>
+<p>安装 mysql</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo apt-get install mysql-server</span>
+<span class="err">sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin</span>
+</code></pre></div>
 
 
-<p>添加phpmyadmin链接</p>
-<div class="highlight"><pre><span></span>sudo ln -s /usr/share/phpmyadmin /var/www/html
-</pre></div>
+<p>添加 phpmyadmin 链接</p>
+<div class="highlight"><pre><span></span><code><span class="err">sudo ln -s /usr/share/phpmyadmin /var/www/html</span>
+</code></pre></div>
 
 
-<p>安装chrome</p>
-<div class="highlight"><pre><span></span>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb
-apt-get install -f
-</pre></div>
+<p>安装 chrome</p>
+<div class="highlight"><pre><span></span><code><span class="err">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
+<span class="err">dpkg -i google-chrome-stable_current_amd64.deb</span>
+<span class="err">apt-get install -f</span>
+</code></pre></div>
 
 
-<p>安装git</p>
-<div class="highlight"><pre><span></span>apt-get install git
-#git config --global user.name “dubuqingfeng”
-#git config --global user.email “1135326346@qq.com”
-#cd ~/.ssh
-#ssh-keygen -t rsa -C &quot;1135326346@qq.com&quot;
-</pre></div>
+<p>安装 git</p>
+<div class="highlight"><pre><span></span><code><span class="err">apt-get install git</span>
+<span class="err">#git config --global user.name “dubuqingfeng”</span>
+<span class="err">#git config --global user.email “1135326346@qq.com”</span>
+<span class="err">#cd ~/.ssh</span>
+<span class="err">#ssh-keygen -t rsa -C &quot;1135326346@qq.com&quot;</span>
+</code></pre></div>
 
 
-<p>安装java</p>
-<div class="highlight"><pre><span></span>cd /usr/lib
-mkdir jdk
-tar xvzf jdk-8u45-linux-x64.tar.gz
-cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
-#gedit /etc/profile
-</pre></div>
+<p>安装 java</p>
+<div class="highlight"><pre><span></span><code><span class="err">cd /usr/lib</span>
+<span class="err">mkdir jdk</span>
+<span class="err">tar xvzf jdk-8u45-linux-x64.tar.gz</span>
+<span class="err">cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/</span>
+<span class="err">#gedit /etc/profile</span>
+</code></pre></div>
 
 
-<p>安装adt，android-studio</p>
+<p>安装 adt，android-studio</p>
 <p>安装有道词典</p>
-<div class="highlight"><pre><span></span>wget http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">wget http://codown.youdao.com/cidian/linux/youdao-dict_1.0.2~ubuntu_amd64.deb</span>
+</code></pre></div>
 
 
 <h5>0x03 一些备份内容</h5>
@@ -238,6 +238,7 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
 <ul>
 <li><a href="https://gist.github.com/dubuqingfeng/c0c42a4805bee049321c#file-ubuntu-install-software-sh-L48">Gist</a></li>
 <li><a href="https://github.com/dubuqingfeng/Chromebook-For-Chinese">GitHub</a></li>
+<li><a href="https://github.com/dubuqingfeng/ubuntu-dotfiles">Ubuntu-dotfiles</a></li>
 </ul>	
 		<div style="padding: 10px 0;text-align: center;">
 			<br>
@@ -317,10 +318,8 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/git.html">【git】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
-                    <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                     <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
@@ -344,10 +343,10 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/linux.html">Linux</a>
                     <a class="" href="/tag/docker.html">Docker</a>
                     <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
                     <a class="" href="/tag/pkm.html">PKM</a>
                     <a class="" href="/tag/zhi-shi-guan-li.html">知识管理</a>
@@ -372,17 +371,9 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
@@ -404,7 +395,7 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                  <li><a href="/archives.html">所有文章 (32)</a></li>
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
                       <li><a href="/posts/2017/ 1/index.html">一月 2017 (1)</a></li>
                       <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
@@ -414,10 +405,10 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
-                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
-                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (4)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (2)</a></li>
                       <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
                       <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
                       <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
@@ -463,23 +454,15 @@ cp -r ~/Download/jdk1.8.0_45 /usr/lib/jdk/
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
@@ -593,7 +576,6 @@ $(document).ready(function () {
                     <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
                     <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
                     <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
-                    <li><a href="http://www.shijiait.com/" target="_blank">武汉 php 培训</a></li>
                   </ul>
                 </div>
               </div>

@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>dbqf.xyz/</loc>
-<lastmod>2018-03-25T21:59:18-00:00</lastmod>
+<lastmod>2021-02-23T08:24:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dbqf.xyz/archives.html</loc>
-<lastmod>2018-03-25T21:59:18-00:00</lastmod>
+<lastmod>2021-02-23T08:24:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dbqf.xyz/tags.html</loc>
-<lastmod>2018-03-25T21:59:18-00:00</lastmod>
+<lastmod>2021-02-23T08:24:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>dbqf.xyz/categories.html</loc>
-<lastmod>2018-03-25T21:59:18-00:00</lastmod>
+<lastmod>2021-02-23T08:24:16-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -165,13 +165,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>dbqf.xyz/posts/2015/ 5/12/201505-ubuntutouch-ionic-qml/index.html</loc>
-<lastmod>2015-05-12T09:13:00+02:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1</priority>
-</url>
-
-<url>
 <loc>dbqf.xyz/posts/2015/ 4/30/201504-Rubik's-Cube-Robot-yixiezongjie/index.html</loc>
 <lastmod>2015-07-28T21:41:00+02:00</lastmod>
 <changefreq>daily</changefreq>
@@ -214,13 +207,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>dbqf.xyz/posts/2015/ 3/06/201503-RFID-RTLS-RSSI-start/index.html</loc>
-<lastmod>2015-03-07T11:00:00+01:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1</priority>
-</url>
-
-<url>
 <loc>dbqf.xyz/posts/2015/ 3/04/201503-git-fork-synchronized/index.html</loc>
 <lastmod>2015-03-04T12:22:00+01:00</lastmod>
 <changefreq>daily</changefreq>
@@ -230,13 +216,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dbqf.xyz/posts/2015/ 2/12/201502-2014/index.html</loc>
 <lastmod>2015-02-12T12:22:00+01:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>1</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/posts/2015/ 2/12/201502-php-zhanzhang/index.html</loc>
-<lastmod>2015-02-12T12:11:11+01:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1</priority>
 </url>
@@ -368,13 +347,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>dbqf.xyz/category/kua-ping-tai-kai-fa.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
 <loc>dbqf.xyz/category/linux.html</loc>
 <lastmod>2015-05-16T12:53:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -384,13 +356,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dbqf.xyz/category/ni-xiang-jia-mi.html</loc>
 <lastmod>2014-07-28T20:48:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/category/php.html</loc>
-<lastmod>2015-02-12T12:11:11+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -620,41 +585,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>dbqf.xyz/tag/ubuntu.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/sdk.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/ubuntu-touch.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/qml.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/ionic.html</loc>
-<lastmod>2015-05-12T09:21:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
 <loc>dbqf.xyz/tag/dian-zi-she-ji.html</loc>
 <lastmod>2015-07-28T21:41:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -664,13 +594,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dbqf.xyz/tag/jie-mo-fang-ji-qi-ren.html</loc>
 <lastmod>2015-07-28T21:41:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/rfid.html</loc>
-<lastmod>2015-03-07T11:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -704,27 +627,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>dbqf.xyz/tag/php.html</loc>
-<lastmod>2015-02-12T12:11:11+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/whois.html</loc>
-<lastmod>2015-02-12T12:11:11+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>dbqf.xyz/tag/seo.html</loc>
-<lastmod>2015-02-12T12:11:11+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
 <loc>dbqf.xyz/tag/github-pages.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -734,6 +636,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>dbqf.xyz/tag/pelican.html</loc>
 <lastmod>2015-02-10T12:11:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>dbqf.xyz/tag/ubuntu.html</loc>
+<lastmod>2014-11-18T21:25:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

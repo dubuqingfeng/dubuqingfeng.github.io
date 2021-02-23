@@ -155,7 +155,7 @@
 以及一些配置。</p>
 <h5>0x02 浅析</h5>
 <p>PreferenceFragment是继承于Fragment，实现了PreferenceManager.OnPreferenceTreeClickListener这些接口。</p>
-<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
 <span class="cm"> * Interface definition for a callback to be invoked when a</span>
 <span class="cm"> * {@link Preference} in the hierarchy rooted at this </span>
 <span class="cm"> * {@link PreferenceScreen} is</span>
@@ -163,7 +163,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @hide</span>
 <span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnPreferenceTreeClickListener</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OnPreferenceTreeClickListener</span> <span class="p">{</span>
     <span class="cm">/**</span>
 <span class="cm">     * Called when a preference in the tree rooted at this</span>
 <span class="cm">     * {@link PreferenceScreen} has been clicked.</span>
@@ -173,10 +173,10 @@
 <span class="cm">     * @param preference The preference that was clicked.</span>
 <span class="cm">     * @return Whether the click was handled.</span>
 <span class="cm">     */</span>
-    <span class="kt">boolean</span> <span class="nf">onPreferenceTreeClick</span><span class="o">(</span><span class="n">PreferenceScreen</span> 
-    <span class="n">preferenceScreen</span><span class="o">,</span> <span class="n">Preference</span> <span class="n">preference</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></div>
+    <span class="kt">boolean</span> <span class="nf">onPreferenceTreeClick</span><span class="p">(</span><span class="n">PreferenceScreen</span> 
+    <span class="n">preferenceScreen</span><span class="p">,</span> <span class="n">Preference</span> <span class="n">preference</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <h5>0x03 完成步骤</h5>
@@ -185,7 +185,7 @@
 <p>选择Blank Activity With Fragment，填写activity为SettingActivity。</p>
 <p><strong>修改fragment继承PreferenceFragment。</strong></p>
 <p>新建一个xml文件，建立/res/xml/preferences.xml</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;PreferenceScreen</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;PreferenceScreen</span>
     <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;PreferenceCategory</span>
@@ -210,45 +210,45 @@
     <span class="nt">&lt;/PreferenceCategory&gt;</span>
 
 <span class="nt">&lt;/PreferenceScreen&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>在SettingFragment中，通过addPreferencesFromResource(R.xml.preferences);加载上述的xml文件。</p>
-<div class="highlight"><pre><span></span><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-    <span class="n">addPreferencesFromResource</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">preferences</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">);</span>
+    <span class="n">addPreferencesFromResource</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">xml</span><span class="p">.</span><span class="na">preferences</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>设置项保存到哪了？SharedPreferences。在/data/data/应用包名/shared_prefs/应用包名_preferences.xml文件中，android:key即为键值名。</p>
 <p>如何读取设置？通过SharedPreferences</p>
-<div class="highlight"><pre><span></span><span class="n">SharedPreferences</span> <span class="n">mySharedPreferences</span> <span class="o">=</span> <span class="n">PreferenceManager</span>
-        <span class="o">.</span><span class="na">getDefaultSharedPreferences</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">SharedPreferences</span> <span class="n">mySharedPreferences</span> <span class="o">=</span> <span class="n">PreferenceManager</span>
+        <span class="p">.</span><span class="na">getDefaultSharedPreferences</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-<span class="kt">boolean</span> <span class="n">my_checkbox_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span>
-        <span class="s">&quot;checkbox_preference&quot;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-<span class="n">prefCheckBox</span><span class="o">.</span><span class="na">setChecked</span><span class="o">(</span><span class="n">my_checkbox_preference</span><span class="o">);</span>
+<span class="kt">boolean</span> <span class="n">my_checkbox_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="p">.</span><span class="na">getBoolean</span><span class="p">(</span>
+        <span class="s">&quot;checkbox_preference&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="n">prefCheckBox</span><span class="p">.</span><span class="na">setChecked</span><span class="p">(</span><span class="n">my_checkbox_preference</span><span class="p">);</span>
 
-<span class="n">String</span> <span class="n">my_edittext_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span>
-        <span class="s">&quot;edittext_preference&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
-<span class="n">prefEditText</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">my_edittext_preference</span><span class="o">);</span>
-</pre></div>
+<span class="n">String</span> <span class="n">my_edittext_preference</span> <span class="o">=</span> <span class="n">mySharedPreferences</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span>
+        <span class="s">&quot;edittext_preference&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="n">prefEditText</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">my_edittext_preference</span><span class="p">);</span>
+</code></pre></div>
 
 
 <p>列表设置项的ListPreferences类：</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;ListPreference</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;ListPreference</span>
       <span class="na">android:key=</span><span class="s">&quot;list_preference&quot;</span>
       <span class="na">android:title=</span><span class="s">&quot;@string/标题&quot;</span>
       <span class="na">android:dialogTitle=</span><span class="s">&quot;@string/对话框标题&quot;</span>
       <span class="na">android:entries=</span><span class="s">&quot;@array/listArray&quot;</span>
       <span class="na">android:entryValues=</span><span class="s">&quot;@array/listValues&quot;</span> <span class="nt">/&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>entries和entryValues从哪来？/res/values/array.xml或者/res/values/strings.xml</p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;resources&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;resources&gt;</span>
 <span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">&quot;listArray&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item&gt;</span>Headings<span class="nt">&lt;/item&gt;</span>
     <span class="nt">&lt;item&gt;</span>Headings and Details<span class="nt">&lt;/item&gt;</span>
@@ -261,7 +261,7 @@
     <span class="nt">&lt;item&gt;</span>3<span class="nt">&lt;/item&gt;</span>
 <span class="nt">&lt;/string-array&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>preference-headers类</p>
@@ -356,10 +356,8 @@
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/git.html">【git】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
-                    <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                     <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
@@ -383,10 +381,10 @@
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/linux.html">Linux</a>
                     <a class="" href="/tag/docker.html">Docker</a>
                     <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
                     <a class="" href="/tag/pkm.html">PKM</a>
                     <a class="" href="/tag/zhi-shi-guan-li.html">知识管理</a>
@@ -411,17 +409,9 @@
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
@@ -443,7 +433,7 @@
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                  <li><a href="/archives.html">所有文章 (32)</a></li>
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
                       <li><a href="/posts/2017/ 1/index.html">一月 2017 (1)</a></li>
                       <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
@@ -453,10 +443,10 @@
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
-                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
-                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (4)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (2)</a></li>
                       <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
                       <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
                       <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
@@ -502,23 +492,15 @@
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
@@ -632,7 +614,6 @@ $(document).ready(function () {
                     <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
                     <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
                     <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
-                    <li><a href="http://www.shijiait.com/" target="_blank">武汉 php 培训</a></li>
                   </ul>
                 </div>
               </div>

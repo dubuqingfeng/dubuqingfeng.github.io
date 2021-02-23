@@ -175,14 +175,14 @@
 <p>Dex2Jar:<a href="https://github.com/pxb1988/dex2jar/releases">https://github.com/pxb1988/dex2jar/releases</a></p>
 <p>JD-GUI:<a href="http://jd.benow.ca/">http://jd.benow.ca/</a></p>
 <p>使用Dex2Jar和Jd-gui的命令：</p>
-<div class="highlight"><pre><span></span>dex2jar &lt;file0&gt;
-//即
-./d2j-dex2jar.sh xxx.apk
-java -jar jd-gui-x.y.z.jar
-//或者是
-java -classpath jd-gui-x.y.z.jar org.jd.gui.App
-//也可以直接运行客户端
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">dex2jar &lt;file0&gt;</span>
+<span class="err">//即</span>
+<span class="err">./d2j-dex2jar.sh xxx.apk</span>
+<span class="err">java -jar jd-gui-x.y.z.jar</span>
+<span class="err">//或者是</span>
+<span class="err">java -classpath jd-gui-x.y.z.jar org.jd.gui.App</span>
+<span class="err">//也可以直接运行客户端</span>
+</code></pre></div>
 
 
 <p>以下即为反汇编出来的结果。</p>
@@ -199,57 +199,57 @@ java -classpath jd-gui-x.y.z.jar org.jd.gui.App
 <p>smali是将smali文件转换成dex。</p>
 <p>Baksmali和smali相反，将dex转换成smali。</p>
 <p>在<a href="https://www.quora.com/What-is-smali-in-Android">Quora的一篇问答</a>中，介绍了smali和baksmali的作用。</p>
-<div class="highlight"><pre><span></span>Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,
- Android&#39;s Java VM implementation. The names &quot;Smali&quot; and &quot;Baksmali&quot; are the
-  Icelandic equivalents of &quot;assembler&quot; and &quot;disassembler&quot; respectively.
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">Smali/Baksmali is an assembler/disassembler for the dex format used by dalvik,</span>
+<span class="err"> Android&#39;s Java VM implementation. The names &quot;Smali&quot; and &quot;Baksmali&quot; are the</span>
+<span class="err">  Icelandic equivalents of &quot;assembler&quot; and &quot;disassembler&quot; respectively.</span>
+</code></pre></div>
 
 
 <h5>0x03  仅混淆</h5>
 <p>通常Android混淆方法，有ProGuard、DexGuard和APKfuscator等。</p>
 <p>怎样使用ProGuard对Android项目源码进行混淆保护，在Android Studio中build.gradle，修改以下代码片段</p>
-<div class="highlight"><pre><span></span><span class="n">release</span> <span class="o">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">release</span> <span class="p">{</span>
     <span class="n">minifyEnabled</span> <span class="kc">true</span>
-    <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">optimize</span><span class="o">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="o">),</span>
-     <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="o">.</span><span class="na">pro</span><span class="err">&#39;</span>
-<span class="o">}</span>
-</pre></div>
+    <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="p">(</span><span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">optimize</span><span class="p">.</span><span class="na">txt</span><span class="err">&#39;</span><span class="p">),</span>
+     <span class="err">&#39;</span><span class="n">proguard</span><span class="o">-</span><span class="n">rules</span><span class="p">.</span><span class="na">pro</span><span class="err">&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>将<code>minifyEnabled</code>改为true。去除无效资源的话需要添加<a href="http://tools.android.com/tech-docs/new-build-system/resource-shrinking"><code>shrinkResources true</code></a>。</p>
 <p>然后在<code>proguard-rules.pro</code>文件中，编写一些特定框架的混淆规则。</p>
-<div class="highlight"><pre><span></span># ProGuard configurations for Bugtags
--keepattributes LineNumberTable,SourceFile
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">ProGuard</span> <span class="n">configurations</span> <span class="k">for</span> <span class="n">Bugtags</span>
+<span class="o">-</span><span class="n">keepattributes</span> <span class="n">LineNumberTable</span><span class="p">,</span><span class="n">SourceFile</span>
 
--keep class com.bugtags.library.** {*;}
--dontwarn org.apache.http.**
--dontwarn android.net.http.AndroidHttpClient
--dontwarn com.bugtags.library.**
-# End Bugtags
+<span class="o">-</span><span class="n">keep</span> <span class="k">class</span> <span class="n">com</span><span class="p">.</span><span class="n">bugtags</span><span class="p">.</span><span class="n">library</span><span class="p">.</span><span class="o">**</span> <span class="err">{</span><span class="o">*</span><span class="p">;</span><span class="err">}</span>
+<span class="o">-</span><span class="n">dontwarn</span> <span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="o">**</span>
+<span class="o">-</span><span class="n">dontwarn</span> <span class="n">android</span><span class="p">.</span><span class="n">net</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="n">AndroidHttpClient</span>
+<span class="o">-</span><span class="n">dontwarn</span> <span class="n">com</span><span class="p">.</span><span class="n">bugtags</span><span class="p">.</span><span class="n">library</span><span class="p">.</span><span class="o">**</span>
+<span class="o">#</span> <span class="k">End</span> <span class="n">Bugtags</span>
 
-# retrofit
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
+<span class="o">#</span> <span class="n">retrofit</span>
+<span class="o">-</span><span class="n">dontwarn</span> <span class="n">retrofit2</span><span class="p">.</span><span class="o">**</span>
+<span class="o">-</span><span class="n">keep</span> <span class="k">class</span> <span class="n">retrofit2</span><span class="p">.</span><span class="o">**</span> <span class="err">{</span> <span class="o">*</span><span class="p">;</span> <span class="err">}</span>
+<span class="o">-</span><span class="n">keepattributes</span> <span class="n">Signature</span>
+<span class="o">-</span><span class="n">keepattributes</span> <span class="n">Exceptions</span>
 
-# android-async-http
--dontwarn android-async-http-1.4.9.jar.**
--keep class android-async-http-1.4.9.jar.**{*;}
--keep class org.apache.http.** {*; }
-</pre></div>
+<span class="o">#</span> <span class="n">android</span><span class="o">-</span><span class="n">async</span><span class="o">-</span><span class="n">http</span>
+<span class="o">-</span><span class="n">dontwarn</span> <span class="n">android</span><span class="o">-</span><span class="n">async</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">9</span><span class="p">.</span><span class="n">jar</span><span class="p">.</span><span class="o">**</span>
+<span class="o">-</span><span class="n">keep</span> <span class="k">class</span> <span class="n">android</span><span class="o">-</span><span class="n">async</span><span class="o">-</span><span class="n">http</span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">9</span><span class="p">.</span><span class="n">jar</span><span class="p">.</span><span class="o">**</span><span class="err">{</span><span class="o">*</span><span class="p">;</span><span class="err">}</span>
+<span class="o">-</span><span class="n">keep</span> <span class="k">class</span> <span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">http</span><span class="p">.</span><span class="o">**</span> <span class="err">{</span><span class="o">*</span><span class="p">;</span> <span class="err">}</span>
+</code></pre></div>
 
 
 <p>并且混淆时需要对使用的框架进行混淆，或者是避免混淆一些类。这时就对框架的文档进行阅读，分析需要增加的混淆规则。</p>
 <p>混淆的效果如下图所示。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-03.png" class="responsive-img"></p>
 <p>以及加速gradle编译的配置：</p>
-<div class="highlight"><pre><span></span>org.gradle.daemon=true
-org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:
-+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
-org.gradle.parallel=true
-org.gradle.configureondemand=true
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">org.gradle.daemon=true</span>
+<span class="err">org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:</span>
+<span class="err">+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span>
+<span class="err">org.gradle.parallel=true</span>
+<span class="err">org.gradle.configureondemand=true</span>
+</code></pre></div>
 
 
 <p>如何对抗这种混淆呢？这种混淆仅仅是增大了阅读难度，在反汇编之后，类名变成了a,b,c之类的。</p>
@@ -258,13 +258,13 @@ org.gradle.configureondemand=true
 <p>可以使用Proguard再混淆一次，利用自己写的规则Mapping文件。</p>
 <p>这里以一个文件为例。进行Proguard的混淆以及反混淆。</p>
 <p>在Proguard配置文件中，添加如下语句，可打印出默认混淆规则的Mapping文件。</p>
-<div class="highlight"><pre><span></span>-printmapping mapping.txt
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">-printmapping mapping.txt</span>
+</code></pre></div>
 
 
 <p>在修改好对应的值以后，利用以下语句，应用Mapping文件，再建一个项目，分析对应的代码。</p>
-<div class="highlight"><pre><span></span>-applymapping mapping.txt
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">-applymapping mapping.txt</span>
+</code></pre></div>
 
 
 <p>最后结果如下：</p>
@@ -276,21 +276,21 @@ org.gradle.configureondemand=true
 <p>当然如果面面俱到，文章篇幅就比较长了，并且实践、研究花费的时间也比较多。这里就举比较简单的例子。</p>
 <p>Android签名校验：</p>
 <p>在android程序中，可以使用以下代码进行签名的获取。</p>
-<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSignature</span><span class="o">(</span><span class="n">String</span> <span class="n">packageName</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getPackageManager</span><span class="o">();</span>
-    <span class="n">PackageInfo</span> <span class="n">pi</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">pi</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="na">getPackageInfo</span><span class="o">(</span><span class="n">packageName</span><span class="o">,</span> <span class="n">PackageManager</span><span class="o">.</span><span class="na">GET_SIGNATURES</span><span class="o">);</span>
-        <span class="n">Signature</span><span class="o">[]</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pi</span><span class="o">.</span><span class="na">signatures</span><span class="o">;</span>
-        <span class="n">sig</span> <span class="o">=</span> <span class="n">s</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">hashCode</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">sig</span><span class="o">;</span>
-<span class="o">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSignature</span><span class="p">(</span><span class="n">String</span> <span class="n">packageName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">PackageManager</span> <span class="n">pm</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">getPackageManager</span><span class="p">();</span>
+    <span class="n">PackageInfo</span> <span class="n">pi</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="n">pm</span><span class="p">.</span><span class="na">getPackageInfo</span><span class="p">(</span><span class="n">packageName</span><span class="p">,</span> <span class="n">PackageManager</span><span class="p">.</span><span class="na">GET_SIGNATURES</span><span class="p">);</span>
+        <span class="n">Signature</span><span class="o">[]</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pi</span><span class="p">.</span><span class="na">signatures</span><span class="p">;</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">s</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">hashCode</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">e1</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sig</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <p>可以在APP每次访问服务器的时候，携带上当前APP的签名，服务端做个签名验证，如果不对，直接不通过，返回客户端信息，然后客户端进行一定的处理。当然这样的话破解者也可以通过抓包的方式，抓取到签名验证的包，然后每次通信时修改对应的包即可。</p>
@@ -301,71 +301,71 @@ org.gradle.configureondemand=true
 <p>然后添加到文件夹里，如下图所示。</p>
 <p><img src="https://oijlbmkg8.qnssl.com/blog201606-android-security-decompiler-06.png" class="responsive-img"></p>
 <p>准备UPX壳编译环境：</p>
-<div class="highlight"><pre><span></span>zlib-1.2.8.tar.gz
-ucl-1.03.tar.gz
-lzma443.tar.bz2
-upx-hg-68db2e569c63.tar.gz
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">zlib-1.2.8.tar.gz</span>
+<span class="err">ucl-1.03.tar.gz</span>
+<span class="err">lzma443.tar.bz2</span>
+<span class="err">upx-hg-68db2e569c63.tar.gz</span>
+</code></pre></div>
 
 
 <p>编译安装:</p>
-<div class="highlight"><pre><span></span>cd ucl-1.03
-./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
-make
-cd zlib-1.2.8
-./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build
-make
-vi .bash_profile
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">cd ucl-1.03</span>
+<span class="err">./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build</span>
+<span class="err">make</span>
+<span class="err">cd zlib-1.2.8</span>
+<span class="err">./configure --prefix=$PWD/../../upx-hg-6cd5982ece4f/build</span>
+<span class="err">make</span>
+<span class="err">vi .bash_profile</span>
+</code></pre></div>
 
 
 <p>设置环境变量。</p>
-<div class="highlight"><pre><span></span>export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03
-export UPX_ZLIBDIR=/Users/qingfeng/software/upx/libs/zlib-1.2.8
-export UPX_LZMADIR=/Users/qingfeng/software/upx/libs/lzma443
-export UPX_LZMA_VERSION=0x443
-export UPX_DIR=/Users/qingfeng/software/upx/upx-hg-68db2e569c63
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">export UPX_UCLDIR=/Users/qingfeng/software/upx/libs/ucl-1.03</span>
+<span class="err">export UPX_ZLIBDIR=/Users/qingfeng/software/upx/libs/zlib-1.2.8</span>
+<span class="err">export UPX_LZMADIR=/Users/qingfeng/software/upx/libs/lzma443</span>
+<span class="err">export UPX_LZMA_VERSION=0x443</span>
+<span class="err">export UPX_DIR=/Users/qingfeng/software/upx/upx-hg-68db2e569c63</span>
+</code></pre></div>
 
 
 <p>查看环境变量的命令env，应用环境变量的命令<code>source .bash_profile</code>。</p>
 <p>然后在编译<code>make all</code>的过程中，遇到了以下的错误。</p>
-<div class="highlight"><pre><span></span>./bele_policy.h:156:9: error: unused typedef &#39;acc_cta_t__39&#39; [-Werror,-Wunused-local-typedef]
-        COMPILE_TIME_ASSERT(sizeof(U16) == 2)
-        ^
-./conf.h:359:34: note: expanded from macro &#39;COMPILE_TIME_ASSERT&#39;
-#define COMPILE_TIME_ASSERT(e)   ACC_COMPILE_TIME_ASSERT(e)
-./miniacc.h:1563:54: note: expanded from macro &#39;ACC_COMPILE_TIME_ASSERT&#39;
-#    define ACC_COMPILE_TIME_ASSERT(e)  {typedef int __ACC_CTA_NAME(acc_cta_t__)[1-2*!(e)];}
-./miniacc.h:1531:37: note: expanded from macro &#39;__ACC_CTA_NAME&#39;
-#  define __ACC_CTA_NAME(a)         ACC_PP_ECONCAT2(a,__COUNTER__)
-./miniacc.h:331:41: note: expanded from macro &#39;ACC_PP_ECONCAT2&#39;
-#define ACC_PP_ECONCAT2(a,b)            ACC_PP_CONCAT2(a,b)
-./miniacc.h:325:41: note: expanded from macro &#39;ACC_PP_CONCAT2&#39;
-#define ACC_PP_CONCAT2(a,b)             a ## b
-&lt;scratch space&gt;:183:1: note: expanded from here
-acc_cta_t__39
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">./bele_policy.h:156:9: error: unused typedef &#39;acc_cta_t__39&#39; [-Werror,-Wunused-local-typedef]</span>
+<span class="err">        COMPILE_TIME_ASSERT(sizeof(U16) == 2)</span>
+<span class="err">        ^</span>
+<span class="err">./conf.h:359:34: note: expanded from macro &#39;COMPILE_TIME_ASSERT&#39;</span>
+<span class="err">#define COMPILE_TIME_ASSERT(e)   ACC_COMPILE_TIME_ASSERT(e)</span>
+<span class="err">./miniacc.h:1563:54: note: expanded from macro &#39;ACC_COMPILE_TIME_ASSERT&#39;</span>
+<span class="err">#    define ACC_COMPILE_TIME_ASSERT(e)  {typedef int __ACC_CTA_NAME(acc_cta_t__)[1-2*!(e)];}</span>
+<span class="err">./miniacc.h:1531:37: note: expanded from macro &#39;__ACC_CTA_NAME&#39;</span>
+<span class="err">#  define __ACC_CTA_NAME(a)         ACC_PP_ECONCAT2(a,__COUNTER__)</span>
+<span class="err">./miniacc.h:331:41: note: expanded from macro &#39;ACC_PP_ECONCAT2&#39;</span>
+<span class="err">#define ACC_PP_ECONCAT2(a,b)            ACC_PP_CONCAT2(a,b)</span>
+<span class="err">./miniacc.h:325:41: note: expanded from macro &#39;ACC_PP_CONCAT2&#39;</span>
+<span class="err">#define ACC_PP_CONCAT2(a,b)             a ## b</span>
+<span class="err">&lt;scratch space&gt;:183:1: note: expanded from here</span>
+<span class="err">acc_cta_t__39</span>
+</code></pre></div>
 
 
 <p>无论是upx是3.9.1，还是最新版，无论lzma是443版本还是最新版1610，编译的时候都会出现这个问题</p>
 <p>然后试着升级了一下g++的版本，mac自带的是4.2版本，用brew升级到了4.8，然后用zsh的alias功能（vi .zshrc）将自带的替换掉，然后再编译还是不行，最后还是使用ubuntu进行编译吧。</p>
 <p>然后就下了一个16.04的镜像，然后跑起了虚拟机，下载并<a href="http://www.chinapyg.com/thread-77929-1-1.html">编译那些依赖</a>，然后在upx目录下<code>make all</code>的过程中，出现了以下的问题：</p>
-<div class="highlight"><pre><span></span><span class="n">compress</span><span class="p">.</span><span class="nl">cpp</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span> <span class="n">fatal</span> <span class="nl">error</span><span class="p">:</span> <span class="n">zlib</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
+<div class="highlight"><pre><span></span><code><span class="n">compress</span><span class="p">.</span><span class="nl">cpp</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="mi">18</span><span class="o">:</span> <span class="n">fatal</span> <span class="nl">error</span><span class="p">:</span> <span class="n">zlib</span><span class="p">.</span><span class="nl">h</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="n">or</span> <span class="n">directory</span>
      <span class="cp">#include</span> <span class="cpf">&lt;zlib.h&gt;</span><span class="cp"></span>
-</pre></div>
+</code></pre></div>
 
 
 <p>没找到<code>zlib.h</code>，可是自己在zlib那也<code>make</code>了啊，在查找资料的过程中，试着在zlib目录<code>make install</code>了一下，然后就编译完成了，在src目录下也有<code>./upx.out</code>了，版本是3.9.2。</p>
 <p>这个时候就应该考虑so的init段的问题了。据这篇文章说，加壳的文件中需要有INIT段，添加init段的代码如下：</p>
-<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}</span> <span class="err">\\</span><span class="n">c</span><span class="o">++</span>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}</span> <span class="err">\\</span><span class="n">c</span><span class="o">++</span>
 <span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span><span class="kt">void</span> <span class="n">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">){}}</span>    <span class="err">\\</span><span class="n">c</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>然后加壳的命令如下：</p>
-<div class="highlight"><pre><span></span>./upx.out -f -o libdemo_upx.so libdemo.so
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">./upx.out -f -o libdemo_upx.so libdemo.so</span>
+</code></pre></div>
 
 
 <p>然后脱壳自然-d参数即可，需要判断标志是否为UPX!，以及处理变形等问题，脱完壳就可以使用IDA进行android的so分析了。</p>
@@ -493,10 +493,8 @@ acc_cta_t__39
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/git.html">【git】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
-                    <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                     <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
@@ -520,10 +518,10 @@ acc_cta_t__39
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/linux.html">Linux</a>
                     <a class="" href="/tag/docker.html">Docker</a>
                     <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
                     <a class="" href="/tag/pkm.html">PKM</a>
                     <a class="" href="/tag/zhi-shi-guan-li.html">知识管理</a>
@@ -548,17 +546,9 @@ acc_cta_t__39
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
@@ -580,7 +570,7 @@ acc_cta_t__39
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                  <li><a href="/archives.html">所有文章 (32)</a></li>
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
                       <li><a href="/posts/2017/ 1/index.html">一月 2017 (1)</a></li>
                       <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
@@ -590,10 +580,10 @@ acc_cta_t__39
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
-                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
-                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (4)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (2)</a></li>
                       <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
                       <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
                       <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
@@ -639,23 +629,15 @@ acc_cta_t__39
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
@@ -769,7 +751,6 @@ $(document).ready(function () {
                     <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
                     <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
                     <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
-                    <li><a href="http://www.shijiait.com/" target="_blank">武汉 php 培训</a></li>
                   </ul>
                 </div>
               </div>

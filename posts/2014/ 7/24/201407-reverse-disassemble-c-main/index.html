@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>c程序的启动过程的反汇编分析 - 独步清风's blog</title>
+  <title>c 程序的启动过程的反汇编分析 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -139,7 +139,7 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="collapsible-header active"><a href="/category/fan-hui-bian.html"><i class="material-icons">subject</i>【反汇编】</a><a href="#">--c程序的启动过程的反汇编分析</a>              </div>
+<div class="collapsible-header active"><a href="/category/fan-hui-bian.html"><i class="material-icons">subject</i>【反汇编】</a><a href="#">--c 程序的启动过程的反汇编分析</a>              </div>
               <div class="collapsible-body"><p>在认识启动函数的过程中，得知main函数之前系统要做一些准备工作，再加上上学期学的C语言程序入口函数不是main函数，而是_start函数。因此想对启动过程进行一定分析。</p></div>
             </li>
           </ul>
@@ -148,32 +148,32 @@
 <div class="section">
     <div class="card z-depth-1">
     <div class="card-content black-text">
-    	<span class="card-title black-text"><a href="/posts/2014/ 7/24/201407-reverse-disassemble-c-main/index.html" class="black-text flow-text" id="title">c程序的启动过程的反汇编分析</a></span>
+    	<span class="card-title black-text"><a href="/posts/2014/ 7/24/201407-reverse-disassemble-c-main/index.html" class="black-text flow-text" id="title">c 程序的启动过程的反汇编分析</a></span>
     	<h5>0x01  工具准备</h5>
 <p>1.最简c代码一只</p>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>2.ollydbg</p>
 <p>3.VC++6.0</p>
 <p>4.GCC（mingw）</p>
 <h5>0x02  代码分析</h5>
-<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>在gcc下，添加-nostdlib编译选项，即链接器不链接标准库，会提示以下错误信息：</p>
-<div class="highlight"><pre><span></span>D:\Backup\我的文档\src&gt;gcc main.c -nostdlib-o main.exe
-C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\ccmSU3wr.o:main.c:(.text+0x9): undefined reference to `__main’
-collect2.exe: error: ld returned 1 exit status
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="c">D:\Backup\我的文档\src&gt;gcc main.c -nostdlib-o main.exe</span>
+<span class="c">C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\ccmSU3wr.o:main.c:(.text+0x9): undefined reference to `__main’</span>
+<span class="err">collect2.exe: error: ld returned 1 exit status</span>
+</code></pre></div>
 
 
 <p>关于-nostdlib编译选项，只有命令行指定的项才传递给链接器。标准启动文件和库都不会传递给链接器。该选项隐式打开选项-nostartfiles 和-nodefaultlibs。该选项也可以写作–no-standard-libraries。</p>
@@ -183,35 +183,35 @@ collect2.exe: error: ld returned 1 exit status
 <p>汇编里面的_main就是C语言里面的main，是因为汇编器和C编译器对符号的命名差一个下划线。</p>
 <p>链接器会在系统标准库文件，类似于/lib/crt2.o的文件中，寻找_start符号，然后在_start中执行创建堆对象，栈，打开系统预先提供的设备，将argv,argc参数传入main函数，然后调用main函数。</p>
 <h5>0x03  vc main函数反汇编分析</h5>
-<div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">:</span>    <span class="n">int</span> <span class="n">main</span><span class="o">()</span>
-<span class="mi">2</span><span class="o">:</span>    <span class="o">{</span>
-<span class="mi">00401010</span>   <span class="n">push</span>        <span class="n">ebp</span>   <span class="c1">//在堆栈上保存EBP</span>
-<span class="mi">00401011</span>   <span class="n">mov</span>         <span class="n">ebp</span><span class="o">,</span><span class="n">esp</span> <span class="c1">//将堆栈当前位置给EBP，以在堆栈结构中存储值时的参考点</span>
-<span class="mi">00401013</span>   <span class="n">sub</span>         <span class="n">esp</span><span class="o">,</span><span class="mi">40</span><span class="n">h</span> <span class="c1">//分配空间</span>
-<span class="mi">00401016</span>   <span class="n">push</span>        <span class="n">ebx</span>  <span class="c1">//保存数据段值</span>
-<span class="mi">00401017</span>   <span class="n">push</span>        <span class="n">esi</span> <span class="c1">//源地址指针</span>
-<span class="mi">00401018</span>   <span class="n">push</span>        <span class="n">edi</span> <span class="c1">//目的地址指针</span>
-<span class="mi">00401019</span>   <span class="n">lea</span>         <span class="n">edi</span><span class="o">,[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">40</span><span class="n">h</span><span class="o">]</span> <span class="c1">//装入有效地址，用来得到局部变量和函数参数的指针。这里[ebp-40h]就是基地址再向下偏移40h，就是前面说的为本地变量留出的空间的起始地址；将这个值装载入edi寄存器，从而得到局部变量的地址</span>
-<span class="mi">0040101</span><span class="n">C</span>   <span class="n">mov</span>         <span class="n">ecx</span><span class="o">,</span><span class="mi">10</span><span class="n">h</span> <span class="c1">//在ecx寄存器存储10h</span>
-<span class="mi">00401021</span>   <span class="n">mov</span>         <span class="n">eax</span><span class="o">,</span><span class="mi">0</span><span class="n">CCCCCCCCh</span>
-<span class="mi">00401026</span>   <span class="n">rep</span> <span class="n">stos</span>    <span class="n">dword</span> <span class="n">ptr</span> <span class="o">[</span><span class="n">edi</span><span class="o">]</span> <span class="c1">//初始化局部变量空间,ds:[edi]</span>
-<span class="mi">3</span><span class="o">:</span>        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-<span class="mi">00401028</span>   <span class="n">xor</span>         <span class="n">eax</span><span class="o">,</span><span class="n">eax</span>
-<span class="mi">4</span><span class="o">:</span>    <span class="o">}</span>
-<span class="mi">0040102</span><span class="n">A</span>   <span class="n">pop</span>         <span class="n">edi</span> <span class="c1">//恢复所有寄存器的值</span>
-<span class="mi">0040102</span><span class="n">B</span>   <span class="n">pop</span>         <span class="n">esi</span>
-<span class="mi">0040102</span><span class="n">C</span>   <span class="n">pop</span>         <span class="n">ebx</span>
-<span class="mi">0040102</span><span class="n">D</span>   <span class="n">mov</span>         <span class="n">esp</span><span class="o">,</span><span class="n">ebp</span> <span class="c1">//恢复堆栈</span>
-<span class="mi">0040102</span><span class="n">F</span>   <span class="n">pop</span>         <span class="n">ebp</span>
-<span class="mi">00401030</span>   <span class="n">ret</span> <span class="c1">//返回到源EIP地址</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="mi">1</span><span class="err">:</span><span class="w">    </span><span class="nc">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"></span>
+<span class="mi">2</span><span class="err">:</span><span class="w">    </span><span class="err">{</span><span class="w"></span>
+<span class="mi">00401010</span><span class="w">   </span><span class="n">push</span><span class="w">        </span><span class="n">ebp</span><span class="w">   </span><span class="o">//</span><span class="n">在堆栈上保存EBP</span><span class="w"></span>
+<span class="mi">00401011</span><span class="w">   </span><span class="n">mov</span><span class="w">         </span><span class="n">ebp</span><span class="p">,</span><span class="n">esp</span><span class="w"> </span><span class="o">//</span><span class="n">将堆栈当前位置给EBP</span><span class="err">，</span><span class="n">以在堆栈结构中存储值时的参考点</span><span class="w"></span>
+<span class="mi">00401013</span><span class="w">   </span><span class="n">sub</span><span class="w">         </span><span class="n">esp</span><span class="p">,</span><span class="mi">40</span><span class="n">h</span><span class="w"> </span><span class="o">//</span><span class="n">分配空间</span><span class="w"></span>
+<span class="mi">00401016</span><span class="w">   </span><span class="n">push</span><span class="w">        </span><span class="n">ebx</span><span class="w">  </span><span class="o">//</span><span class="n">保存数据段值</span><span class="w"></span>
+<span class="mi">00401017</span><span class="w">   </span><span class="n">push</span><span class="w">        </span><span class="n">esi</span><span class="w"> </span><span class="o">//</span><span class="n">源地址指针</span><span class="w"></span>
+<span class="mi">00401018</span><span class="w">   </span><span class="n">push</span><span class="w">        </span><span class="n">edi</span><span class="w"> </span><span class="o">//</span><span class="n">目的地址指针</span><span class="w"></span>
+<span class="mi">00401019</span><span class="w">   </span><span class="n">lea</span><span class="w">         </span><span class="n">edi</span><span class="p">,</span><span class="o">[</span><span class="n">ebp-40h</span><span class="o">]</span><span class="w"> </span><span class="o">//</span><span class="n">装入有效地址</span><span class="err">，</span><span class="n">用来得到局部变量和函数参数的指针</span><span class="err">。</span><span class="n">这里</span><span class="o">[</span><span class="n">ebp-40h</span><span class="o">]</span><span class="n">就是基地址再向下偏移40h</span><span class="err">，</span><span class="n">就是前面说的为本地变量留出的空间的起始地址</span><span class="err">；</span><span class="n">将这个值装载入edi寄存器</span><span class="err">，</span><span class="n">从而得到局部变量的地址</span><span class="w"></span>
+<span class="mi">0040101</span><span class="n">C</span><span class="w">   </span><span class="n">mov</span><span class="w">         </span><span class="n">ecx</span><span class="p">,</span><span class="mi">10</span><span class="n">h</span><span class="w"> </span><span class="o">//</span><span class="n">在ecx寄存器存储10h</span><span class="w"></span>
+<span class="mi">00401021</span><span class="w">   </span><span class="n">mov</span><span class="w">         </span><span class="n">eax</span><span class="p">,</span><span class="mi">0</span><span class="n">CCCCCCCCh</span><span class="w"></span>
+<span class="mi">00401026</span><span class="w">   </span><span class="n">rep</span><span class="w"> </span><span class="n">stos</span><span class="w">    </span><span class="n">dword</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">[</span><span class="n">edi</span><span class="o">]</span><span class="w"> </span><span class="o">//</span><span class="n">初始化局部变量空间</span><span class="p">,</span><span class="nl">ds</span><span class="p">:</span><span class="o">[</span><span class="n">edi</span><span class="o">]</span><span class="w"></span>
+<span class="mi">3</span><span class="err">:</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="mi">00401028</span><span class="w">   </span><span class="n">xor</span><span class="w">         </span><span class="n">eax</span><span class="p">,</span><span class="n">eax</span><span class="w"></span>
+<span class="mi">4</span><span class="err">:</span><span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="mi">0040102</span><span class="n">A</span><span class="w">   </span><span class="n">pop</span><span class="w">         </span><span class="n">edi</span><span class="w"> </span><span class="o">//</span><span class="n">恢复所有寄存器的值</span><span class="w"></span>
+<span class="mi">0040102</span><span class="n">B</span><span class="w">   </span><span class="n">pop</span><span class="w">         </span><span class="n">esi</span><span class="w"></span>
+<span class="mi">0040102</span><span class="n">C</span><span class="w">   </span><span class="n">pop</span><span class="w">         </span><span class="n">ebx</span><span class="w"></span>
+<span class="mi">0040102</span><span class="n">D</span><span class="w">   </span><span class="n">mov</span><span class="w">         </span><span class="n">esp</span><span class="p">,</span><span class="n">ebp</span><span class="w"> </span><span class="o">//</span><span class="n">恢复堆栈</span><span class="w"></span>
+<span class="mi">0040102</span><span class="n">F</span><span class="w">   </span><span class="n">pop</span><span class="w">         </span><span class="n">ebp</span><span class="w"></span>
+<span class="mi">00401030</span><span class="w">   </span><span class="n">ret</span><span class="w"> </span><span class="o">//</span><span class="n">返回到源EIP地址</span><span class="w"></span>
+</code></pre></div>
 
 
 <p>Vc查看调用栈，可以看到在main函数之前，系统还启动了mainCRTStartup函数，这个函数是控制台环境下多字节编码的启动函数。在kernel32.dll中地址7c816fd7处调用了mainCRTStartup函数。</p>
-<div class="highlight"><pre><span></span>main() line 2
-mainCRTStartup() line 206 + 25 bytes
-KERNEL32! 7c816fd7()
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">main() line 2</span>
+<span class="err">mainCRTStartup() line 206 + 25 bytes</span>
+<span class="err">KERNEL32! 7c816fd7()</span>
+</code></pre></div>
 
 
 <h5>0x04 ollydbg反汇编分析</h5>
@@ -307,10 +307,8 @@ KERNEL32! 7c816fd7()
                     <li class="active"><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/git.html">【git】</a></li>
                     <li ><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
-                    <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                     <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
@@ -334,10 +332,10 @@ KERNEL32! 7c816fd7()
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/linux.html">Linux</a>
                     <a class="" href="/tag/docker.html">Docker</a>
                     <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
                     <a class="" href="/tag/pkm.html">PKM</a>
                     <a class="" href="/tag/zhi-shi-guan-li.html">知识管理</a>
@@ -362,17 +360,9 @@ KERNEL32! 7c816fd7()
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
@@ -394,7 +384,7 @@ KERNEL32! 7c816fd7()
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                  <li><a href="/archives.html">所有文章 (32)</a></li>
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
                       <li><a href="/posts/2017/ 1/index.html">一月 2017 (1)</a></li>
                       <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
@@ -404,10 +394,10 @@ KERNEL32! 7c816fd7()
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
-                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
-                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (4)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (2)</a></li>
                       <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
                       <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
                       <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
@@ -453,23 +443,15 @@ KERNEL32! 7c816fd7()
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
@@ -583,7 +565,6 @@ $(document).ready(function () {
                     <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
                     <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
                     <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
-                    <li><a href="http://www.shijiait.com/" target="_blank">武汉 php 培训</a></li>
                   </ul>
                 </div>
               </div>

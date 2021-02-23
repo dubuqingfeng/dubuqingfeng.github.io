@@ -39,7 +39,7 @@
 &lt;p&gt;因为机型和系统不同，作为一个android开发者，不可避免地会遇到很多Crash，当用户遇到了以后，作为开发也很无奈，毕竟比较难复现，有了Bugtags了以后，可以及时地统计机型，系统版本，以及用户所执行的步骤，现在最近又上线了Crash的发生趋势，可以让开发专注于近期发生频率高的Crash进行改进。&lt;/p&gt;
 &lt;p&gt;此处应该有图片：&lt;/p&gt;
 &lt;p&gt;&lt;img class="responsive-img" src="https://oijlbmkg8.qnssl.com/blog201512-bugtags-feedback-05.jpg"&gt;&lt;/p&gt;
-&lt;p&gt;在今年的华北五省计算机应用大赛的答辩现场，也给评委们简单介绍了一下这个Bug管理平台，提高了一些开发效率。&lt;/p&gt;
+&lt;p&gt;在今年的华北五省计算机应用大赛的答辩现场，也给评委们简单介绍了一下这个 Bug 管理平台，提高了一些开发效率。&lt;/p&gt;
 &lt;h5&gt;0x05   后记、&lt;/h5&gt;
 &lt;p&gt;你们的测试妹子、霸道产品、老板肯定需要它很久了，爱他恨他就转给他。&lt;/p&gt;
 &lt;p&gt;在Bugtags之前，并不知道有相关的Bug管理平台，作为一名开发者，Bugtags是值得推荐的。&lt;/p&gt;
@@ -50,4 +50,4 @@
 &lt;p&gt;开放一些api，实现自定义配置&lt;/p&gt;
 &lt;p&gt;希望可以提供一些移动应用测试，例如monkey之类的实践。&lt;/p&gt;
 &lt;p&gt;如果是非Wi-Fi环境下，提供一些流量方面的统计。&lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="Bug管理"></category><category term="Bugtags"></category></entry></feed>
+&lt;/blockquote&gt;</content><category term="【Bugtags】"></category><category term="Bug管理"></category><category term="Bugtags"></category></entry></feed>

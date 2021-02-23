@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>git-fork项目后与原项目进行同步 - 独步清风's blog</title>
+  <title>git-fork 项目后与原项目进行同步 - 独步清风's blog</title>
 
   <!-- CSS  -->
   <link href="/theme/css/ma.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -139,7 +139,7 @@
         <div class="section">
           <ul class="collapsible" data-collapsible="accordion">
             <li>
-<div class="collapsible-header active"><a href="/category/github.html"><i class="material-icons">subject</i>【github】</a><a href="#">--git-fork项目后与原项目进行同步</a>              </div>
+<div class="collapsible-header active"><a href="/category/github.html"><i class="material-icons">subject</i>【github】</a><a href="#">--git-fork 项目后与原项目进行同步</a>              </div>
               <div class="collapsible-body"><p>每fork一个项目后，当进行改动，然后push上去以后，如何进行保持与原作者的同步，以及git的一些协同命令和Pull Request。</p></div>
             </li>
           </ul>
@@ -148,34 +148,34 @@
 <div class="section">
     <div class="card z-depth-1">
     <div class="card-content black-text">
-    	<span class="card-title black-text"><a href="/posts/2015/ 3/04/201503-git-fork-synchronized/index.html" class="black-text flow-text" id="title">git-fork项目后与原项目进行同步</a></span>
+    	<span class="card-title black-text"><a href="/posts/2015/ 3/04/201503-git-fork-synchronized/index.html" class="black-text flow-text" id="title">git-fork 项目后与原项目进行同步</a></span>
     	<h5>0x01 与原项目进行同步</h5>
 <blockquote>
 <p>在github里，每当fork一个项目后，如何保持与原作者的同步？一般可以以下几步。</p>
 </blockquote>
 <p>1.首先clone自己，从git获取自己仓库的内容。</p>
-<div class="highlight"><pre><span></span>git clone https://github.com/xxx.git
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git clone https://github.com/xxx.git</span>
+</code></pre></div>
 
 
 <p>2.添加远程仓库
 添加远程仓库的别名，获取远程仓库的内容并合并。如果有冲突则需要手动解决冲突。</p>
-<div class="highlight"><pre><span></span>git remote add username https://github.com/xxx.git
-git fetch username
-git merge username/master
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git remote add username https://github.com/xxx.git</span>
+<span class="err">git fetch username</span>
+<span class="err">git merge username/master</span>
+</code></pre></div>
 
 
 <p>3.提交改动，推到远程的master分支。</p>
-<div class="highlight"><pre><span></span>git commit -m &quot;merge from username-xx&quot;
-git push -u origin master
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git commit -m &quot;merge from username-xx&quot;</span>
+<span class="err">git push -u origin master</span>
+</code></pre></div>
 
 
 <p>4.查看本地仓库</p>
-<div class="highlight"><pre><span></span>git remote -v
-git branch -a
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git remote -v</span>
+<span class="err">git branch -a</span>
+</code></pre></div>
 
 
 <h5>0x02 git协同命令</h5>
@@ -183,19 +183,19 @@ git branch -a
 <p>当使用git进行协作开发的时候，可以设置好几个分支，以主分支master为开发版，Release分支为发行版。</p>
 <p>而产品类型的git协作时，主分支只用来分布重大版本，日常开发应该在另一条分支上完成。我们把开发用的分支，叫做Develop。</p>
 <p>Git创建Develop分支的命令：</p>
-<div class="highlight"><pre><span></span>git checkout -b develop master
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git checkout -b develop master</span>
+</code></pre></div>
 
 
 <p>将Develop分支发布到Master分支的命令：</p>
 <p>切换到Master分支</p>
-<div class="highlight"><pre><span></span>git checkout master
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git checkout master</span>
+</code></pre></div>
 
 
 <p>对Develop分支进行合并</p>
-<div class="highlight"><pre><span></span>git merge --no-ff develop
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">git merge --no-ff develop</span>
+</code></pre></div>
 
 
 <p>默认情况下，Git执行"快进式合并"（fast-farward merge），会直接将Master分支指向Develop分支。
@@ -286,10 +286,8 @@ git branch -a
                     <li ><a href="/category/fan-hui-bian.html">【反汇编】</a></li>
                     <li ><a href="/category/git.html">【git】</a></li>
                     <li class="active"><a href="/category/github.html">【github】</a></li>
-                    <li ><a href="/category/kua-ping-tai-kai-fa.html">【跨平台开发】</a></li>
                     <li ><a href="/category/linux.html">【Linux】</a></li>
                     <li ><a href="/category/ni-xiang-jia-mi.html">【逆向加密】</a></li>
-                    <li ><a href="/category/php.html">【php】</a></li>
                     <li ><a href="/category/sui-bi.html">【随笔】</a></li>
                     <li ><a href="/category/test.html">【test】</a></li>
                     <li ><a href="/category/weban-quan.html">【Web安全】</a></li>
@@ -313,10 +311,10 @@ git branch -a
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
                     <a class="" href="/tag/androidan-quan.html">Android安全</a>
                     <a class="" href="/tag/android.html">Android</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/linux.html">Linux</a>
                     <a class="" href="/tag/docker.html">Docker</a>
                     <a class="" href="/tag/git.html">git</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/sui-bi.html">随笔</a>
                     <a class="" href="/tag/pkm.html">PKM</a>
                     <a class="" href="/tag/zhi-shi-guan-li.html">知识管理</a>
@@ -341,17 +339,9 @@ git branch -a
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
@@ -373,7 +363,7 @@ git branch -a
               <div class="col s12">
                 <div class="card-action">
                   <ul class="">
-                  <li><a href="/archives.html">所有文章 (32)</a></li>
+                  <li><a href="/archives.html">所有文章 (29)</a></li>
                       <li><a href="/posts/2017/ 1/index.html">一月 2017 (1)</a></li>
                       <li><a href="/posts/2016/10/index.html">十月 2016 (1)</a></li>
                       <li><a href="/posts/2016/ 7/index.html">七月 2016 (1)</a></li>
@@ -383,10 +373,10 @@ git branch -a
                       <li><a href="/posts/2015/12/index.html">十二月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 8/index.html">八月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 6/index.html">六月 2015 (1)</a></li>
-                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (2)</a></li>
+                      <li><a href="/posts/2015/ 5/index.html">五月 2015 (1)</a></li>
                       <li><a href="/posts/2015/ 4/index.html">四月 2015 (3)</a></li>
-                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (5)</a></li>
-                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (3)</a></li>
+                      <li><a href="/posts/2015/ 3/index.html">三月 2015 (4)</a></li>
+                      <li><a href="/posts/2015/ 2/index.html">二月 2015 (2)</a></li>
                       <li><a href="/posts/2014/11/index.html">十一月 2014 (1)</a></li>
                       <li><a href="/posts/2014/10/index.html">十月 2014 (1)</a></li>
                       <li><a href="/posts/2014/ 7/index.html">七月 2014 (2)</a></li>
@@ -432,23 +422,15 @@ git branch -a
                     <a class="" href="/tag/cnutcon.html">CNUTCon</a>
                     <a class="" href="/tag/preferencefragment.html">PreferenceFragment</a>
                     <a class="" href="/tag/vps.html">vps</a>
-                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
-                    <a class="" href="/tag/sdk.html">sdk</a>
-                    <a class="" href="/tag/ubuntu-touch.html">ubuntu touch</a>
-                    <a class="" href="/tag/qml.html">qml</a>
-                    <a class="" href="/tag/ionic.html">ionic</a>
                     <a class="" href="/tag/dian-zi-she-ji.html">电子设计</a>
                     <a class="" href="/tag/jie-mo-fang-ji-qi-ren.html">解魔方机器人</a>
-                    <a class="" href="/tag/rfid.html">RFID</a>
                     <a class="" href="/tag/git.html">git</a>
                     <a class="" href="/tag/fork.html">fork</a>
                     <a class="" href="/tag/2014.html">2014</a>
                     <a class="" href="/tag/nian-zhong-zong-jie.html">年终总结</a>
-                    <a class="" href="/tag/php.html">php</a>
-                    <a class="" href="/tag/whois.html">whois</a>
-                    <a class="" href="/tag/seo.html">seo</a>
                     <a class="" href="/tag/github-pages.html">github pages</a>
                     <a class="" href="/tag/pelican.html">pelican</a>
+                    <a class="" href="/tag/ubuntu.html">ubuntu</a>
                     <a class="" href="/tag/chromebook.html">chromebook</a>
                     <a class="" href="/tag/ni-xiang.html">逆向</a>
                     <a class="" href="/tag/delphijia-mi.html">delphi加密</a>
@@ -562,7 +544,6 @@ $(document).ready(function () {
                     <li><a href="http://www.monburan.cn/" target="_blank">Monburan</a></li>
                     <li><a href="http://www.sunu11.com" target="_blank">SuNu11</a></li>
                     <li><a href="http://blog.csdn.net/ifkirin" target="_blank">ifkirin</a></li>
-                    <li><a href="http://www.shijiait.com/" target="_blank">武汉 php 培训</a></li>
                   </ul>
                 </div>
               </div>
